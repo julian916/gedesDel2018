@@ -32,34 +32,34 @@
             this.loginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // hotelesBtn
             // 
-            this.hotelesBtn.Location = new System.Drawing.Point(55, 126);
-            this.hotelesBtn.Name = "button1";
+            this.hotelesBtn.Location = new System.Drawing.Point(48, 48);
+            this.hotelesBtn.Name = "hotelesBtn";
             this.hotelesBtn.Size = new System.Drawing.Size(132, 67);
             this.hotelesBtn.TabIndex = 0;
             this.hotelesBtn.Text = "Buscar Hotel";
             this.hotelesBtn.UseVisualStyleBackColor = true;
             this.hotelesBtn.Click += new System.EventHandler(this.buscarHoteles_Click);
             // 
-            // button2
+            // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(259, 126);
-            this.loginBtn.Name = "button2";
+            this.loginBtn.Location = new System.Drawing.Point(262, 48);
+            this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(132, 67);
             this.loginBtn.TabIndex = 1;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.login_Click);
             // 
-            // Form1
+            // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 327);
+            this.ClientSize = new System.Drawing.Size(447, 174);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.hotelesBtn);
-            this.Name = "Form1";
+            this.Name = "Inicio";
             this.Text = "Form1";
             this.ResumeLayout(false);
 

@@ -67,5 +67,16 @@ namespace FrbaHotel.Login
             }	
 
         }
+
+        private void cancelLogin_Click(object sender, EventArgs e)
+        {
+            Inicio obj = new Inicio();
+            if (obj == null)
+            {
+                obj.Parent = this;
+            }
+            obj.Show();
+            this.Hide();
+        }
     }
 }

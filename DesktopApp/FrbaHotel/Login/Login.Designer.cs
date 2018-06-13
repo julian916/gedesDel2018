@@ -33,7 +33,7 @@
             this.userLoginBox = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.acceptLoginButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cancelLoginBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -78,27 +78,28 @@
             this.acceptLoginButton.UseVisualStyleBackColor = true;
             this.acceptLoginButton.Click += new System.EventHandler(this.acceptLoginButton_Click);
             // 
-            // button2
+            // cancelLoginBtn
             // 
-            this.button2.Location = new System.Drawing.Point(175, 124);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancelLoginBtn.Location = new System.Drawing.Point(175, 124);
+            this.cancelLoginBtn.Name = "cancelLoginBtn";
+            this.cancelLoginBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelLoginBtn.TabIndex = 5;
+            this.cancelLoginBtn.Text = "Cancelar";
+            this.cancelLoginBtn.UseVisualStyleBackColor = true;
+            this.cancelLoginBtn.Click += new System.EventHandler(this.cancelLogin_Click);
             // 
-            // Login
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(296, 190);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cancelLoginBtn);
             this.Controls.Add(this.acceptLoginButton);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.userLoginBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.Text = "FRBA Hotel - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -112,6 +113,6 @@
         private System.Windows.Forms.TextBox userLoginBox;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button acceptLoginButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cancelLoginBtn;
     }
 }

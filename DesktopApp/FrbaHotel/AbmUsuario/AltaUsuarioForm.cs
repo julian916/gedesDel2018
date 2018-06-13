@@ -1,5 +1,6 @@
 ﻿using FrbaHotel.AbmCliente;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,49 +30,49 @@ namespace FrbaHotel.AbmUsuario
             }
         }
 
-        private void ingresar_NuevoUsuario() {
-
-            string connectionString = null;
-            connectionString = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;User ID=gdHotel2018;Password=gd2018";
+        private void ingresar_NuevoUsuario()
+        {
+            //TODO: los connectionString tienen el mismo valor deberiamos poner una variable de clase y no interna del metodo
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString(); 
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand spCommand = new SqlCommand("sp_altaUsuario", con);
-			spCommand.CommandType = CommandType.StoredProcedure; 
-			con.Open();
+            spCommand.CommandType = CommandType.StoredProcedure;
+            con.Open();
             spCommand.Parameters.Clear();
             spCommand.Parameters.Add(new SqlParameter("@usuario", userTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", passTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@idRol", comboRoles.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", comboHoteles.SelectedValue));
-			/*SqlParameter paramCantInsert = new SqlParameter();
+            /*SqlParameter paramCantInsert = new SqlParameter();
 			paramCantInsert.ParameterName = "@cantRegistrosIns";
 			paramCantInsert.DbType = DbType.Int32;
 			paramCantInsert.Direction = ParameterDirection.Output;
 		*/
-			try
+            try
+            {
+                int sqlRows = spCommand.ExecuteNonQuery();
+                if (sqlRows > 1)
                 {
-                    int	sqlRows = spCommand.ExecuteNonQuery();
-                    if (sqlRows > 1)
-						{
-							MessageBox.Show ("Registrado ingresado correctamente. A continuciacion ingrese datos personales");
-                            AltaClienteForm formAltaCliente =new AltaClienteForm();
-                            formAltaCliente.Show();
-						}
-					else
-						{
-							userTextBox.Clear();
-							throw new System.ArgumentException("Existe un usuario con el valor ingresado. Reingrese el username");
-					}
+                    MessageBox.Show("Registrado ingresado correctamente. A continuciacion ingrese datos personales");
+                    AltaClienteForm formAltaCliente = new AltaClienteForm();
+                    formAltaCliente.Show();
                 }
-			catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message);
-				}
-			finally
-				{
-					// Cierro la Conexión.
-					con.Close();
-				}	
-		}
+                else
+                {
+                    userTextBox.Clear();
+                    throw new System.ArgumentException("Existe un usuario con el valor ingresado. Reingrese el username");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Cierro la Conexión.
+                con.Close();
+            }
+        }
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
@@ -90,8 +91,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            string connectionString = null;
-            connectionString = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;User ID=gdHotel2018;Password=gd2018";
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             SqlCommand scRol = new SqlCommand("sp_RolesComboBox", con);
@@ -106,8 +106,8 @@ namespace FrbaHotel.AbmUsuario
 
             comboHoteles.DisplayMember = "dir_Hotel";
             comboHoteles.ValueMember = "id_Hotel";
-            comboHoteles.DataSource = dtHotel;    
+            comboHoteles.DataSource = dtHotel;
         }
 
-      }
+    }
 }

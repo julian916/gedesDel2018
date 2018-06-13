@@ -15,9 +15,11 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class AltaUsuarioForm : Form
     {
+        public string connectionString;
         public AltaUsuarioForm()
         {
             //InitializeComponent();
+            this.connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
         }
 
         private void verificar_Contrasenias()
@@ -32,12 +34,10 @@ namespace FrbaHotel.AbmUsuario
 
         private void ingresar_NuevoUsuario()
         {
-            //TODO: los connectionString tienen el mismo valor deberiamos poner una variable de clase y no interna del metodo
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString(); 
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand spCommand = new SqlCommand("sp_altaUsuario", con);
+            SqlConnection sqlConnection = new SqlConnection(this.connectionString);
+            SqlCommand spCommand = new SqlCommand("sp_altaUsuario", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
-            con.Open();
+            sqlConnection.Open();
             spCommand.Parameters.Clear();
             spCommand.Parameters.Add(new SqlParameter("@usuario", userTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", passTextBox.Text));
@@ -70,7 +70,7 @@ namespace FrbaHotel.AbmUsuario
             finally
             {
                 // Cierro la Conexión.
-                con.Close();
+                sqlConnection.Close();
             }
         }
 
@@ -91,22 +91,18 @@ namespace FrbaHotel.AbmUsuario
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-            SqlCommand scRol = new SqlCommand("sp_RolesComboBox", con);
-            SqlCommand scHoteles = new SqlCommand("sp_HotelesComboBox", con);
-            DataTable dtRol = new DataTable();
-            DataTable dtHotel = new DataTable();
-            dtRol.Load(scRol.ExecuteReader());
-            dtHotel.Load(scHoteles.ExecuteReader());
+            SqlConnection sqlConnection = new SqlConnection(this.connectionString);
+            sqlConnection.Open();
+            Repositorios.RepositorioRoles repoRoles = new Repositorios.RepositorioRoles(sqlConnection);
+            Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles(sqlConnection);
+
             comboRoles.DisplayMember = "nombre";
             comboRoles.ValueMember = "id_rol";
-            comboRoles.DataSource = dtRol;
+            comboRoles.DataSource = repoRoles.getAll();
 
             comboHoteles.DisplayMember = "dir_Hotel";
             comboHoteles.ValueMember = "id_Hotel";
-            comboHoteles.DataSource = dtHotel;
+            comboHoteles.DataSource = repoHoteles.getAll();
         }
 
     }

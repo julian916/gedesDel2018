@@ -125,6 +125,7 @@
     <Compile Include="RegistrarEstadia\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositorios\RepositorioHoteles.cs" />
     <Compile Include="Repositorios\RepositorioRoles.cs" />
     <EmbeddedResource Include="AbmHabitacion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

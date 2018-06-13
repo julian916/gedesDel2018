@@ -9,11 +9,11 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.Repositorios
 {
-    public class RepositorioRoles
+    public class RepositorioHoteles
     {
         public SqlConnection sqlConnection = null;
 
-        public RepositorioRoles(SqlConnection sqlConnection)
+        public RepositorioHoteles(SqlConnection sqlConnection)
         {
             this.sqlConnection = sqlConnection;
             if (this.sqlConnection.State != ConnectionState.Open)
@@ -22,11 +22,12 @@ namespace FrbaHotel.Repositorios
             }
         }
 
-        public DataTable getAll() {
-            SqlCommand scRol = new SqlCommand("sp_RolesComboBox", sqlConnection);
-            DataTable dtRol = new DataTable();
-            dtRol.Load(scRol.ExecuteReader());
-            return dtRol;
+        public DataTable getAll()
+        {
+            SqlCommand scHoteles = new SqlCommand("sp_HotelesComboBox", sqlConnection);
+            DataTable dtHotel = new DataTable();
+            dtHotel.Load(scHoteles.ExecuteReader());
+            return dtHotel;
         }
     }
 }

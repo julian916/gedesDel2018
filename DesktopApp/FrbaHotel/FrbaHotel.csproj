@@ -81,10 +81,10 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarReserva\GenerarReserva.cs">
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarReserva\GenerarReserva.Designer.cs">
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
@@ -133,7 +133,7 @@
     <EmbeddedResource Include="AbmUsuario\AltaUsuarioForm.resx">
       <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarReserva\GenerarReserva.resx">
+    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">

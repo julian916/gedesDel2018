@@ -134,6 +134,7 @@
             this.comboHoteles.Name = "comboHoteles";
             this.comboHoteles.Size = new System.Drawing.Size(121, 21);
             this.comboHoteles.TabIndex = 9;
+            this.comboHoteles.SelectedIndexChanged += new System.EventHandler(this.comboHoteles_SelectedIndexChanged);
             // 
             // comboRoles
             // 
@@ -186,7 +187,7 @@
             this.mailBox.Size = new System.Drawing.Size(121, 20);
             this.mailBox.TabIndex = 15;
             // 
-            // Form2
+            // AltaUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,7 +208,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "AltaUsuarioForm";
             this.Text = "FRBA-Hotel - Nuevo usuario";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

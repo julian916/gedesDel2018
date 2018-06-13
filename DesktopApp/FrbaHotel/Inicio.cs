@@ -21,7 +21,14 @@ namespace FrbaHotel
 
         private void buscarHoteles_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            GenerarModificarReserva.GenerarReserva obj = new GenerarModificarReserva.GenerarReserva();
+            if (obj == null)
+            {
+                obj.Parent = this;
+            }
+            obj.Show();
+            this.Hide();
+            //MessageBox.Show("Not Implemented", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void login_Click(object sender, EventArgs e)

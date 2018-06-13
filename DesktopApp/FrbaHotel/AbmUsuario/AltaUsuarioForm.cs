@@ -18,7 +18,7 @@ namespace FrbaHotel.AbmUsuario
         public string connectionString;
         public AltaUsuarioForm()
         {
-            //InitializeComponent();
+            InitializeComponent();
             this.connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
         }
 
@@ -93,8 +93,8 @@ namespace FrbaHotel.AbmUsuario
         {
             SqlConnection sqlConnection = new SqlConnection(this.connectionString);
             sqlConnection.Open();
-            Repositorios.RepositorioRoles repoRoles = new Repositorios.RepositorioRoles(sqlConnection);
-            Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles(sqlConnection);
+            Repositorios.RepositorioRoles repoRoles = new Repositorios.RepositorioRoles();
+            Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles();
 
             comboRoles.DisplayMember = "nombre";
             comboRoles.ValueMember = "id_rol";
@@ -105,5 +105,9 @@ namespace FrbaHotel.AbmUsuario
             comboHoteles.DataSource = repoHoteles.getAll();
         }
 
+        private void comboHoteles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

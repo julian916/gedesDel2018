@@ -11,21 +11,35 @@ namespace FrbaHotel.Repositorios
 {
     public class RepositorioRoles
     {
-        public SqlConnection sqlConnection = null;
+        public SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString();
 
-        public RepositorioRoles(SqlConnection sqlConnection)
+        public RepositorioRoles()
         {
-            this.sqlConnection = sqlConnection;
             if (this.sqlConnection.State != ConnectionState.Open)
             {
-                this.sqlConnection.Open();
+                try
+                {
+                    this.sqlConnection.Open();
+                }
+                catch (SqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error open SqlConnection: " + ex.Message);
+                }
             }
         }
 
         public DataTable getAll() {
             SqlCommand scRol = new SqlCommand("sp_RolesComboBox", sqlConnection);
             DataTable dtRol = new DataTable();
-            dtRol.Load(scRol.ExecuteReader());
+
+            try
+            {
+                dtRol.Load(scRol.ExecuteReader());
+            }
+            catch (System.IO.IOException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error executingReader" + ex.Message);
+            }
             return dtRol;
         }
     }

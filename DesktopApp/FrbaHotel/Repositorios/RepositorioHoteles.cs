@@ -11,14 +11,20 @@ namespace FrbaHotel.Repositorios
 {
     public class RepositorioHoteles
     {
-        public SqlConnection sqlConnection = null;
+        public SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString();
 
-        public RepositorioHoteles(SqlConnection sqlConnection)
+        public RepositorioHoteles()
         {
-            this.sqlConnection = sqlConnection;
             if (this.sqlConnection.State != ConnectionState.Open)
             {
-                this.sqlConnection.Open();
+                try
+                {
+                    this.sqlConnection.Open();
+                }
+                catch (SqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error open SqlConnection: "+ ex.Message);
+                }
             }
         }
 
@@ -26,7 +32,13 @@ namespace FrbaHotel.Repositorios
         {
             SqlCommand scHoteles = new SqlCommand("sp_HotelesComboBox", sqlConnection);
             DataTable dtHotel = new DataTable();
-            dtHotel.Load(scHoteles.ExecuteReader());
+            try
+            {
+                dtHotel.Load(scHoteles.ExecuteReader());
+            }
+            catch (System.IO.IOException ex) {
+                System.Diagnostics.Debug.WriteLine("Error executingReader" + ex.Message);
+            }
             return dtHotel;
         }
     }

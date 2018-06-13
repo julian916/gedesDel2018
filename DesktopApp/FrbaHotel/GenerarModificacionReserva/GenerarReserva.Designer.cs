@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.GenerarReserva
+﻿namespace FrbaHotel.GenerarModificarReserva
 {
     partial class GenerarReserva
     {
@@ -44,7 +44,7 @@
             this.comboHoteles.Size = new System.Drawing.Size(158, 21);
             this.comboHoteles.TabIndex = 0;
             this.comboHoteles.Text = "Seleccionar Hotel";
-            this.comboHoteles.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboHoteles.SelectedIndexChanged += new System.EventHandler(this.hotelesCombo_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -68,7 +68,7 @@
             this.Controls.Add(this.comboHoteles);
             this.Name = "GenerarReserva";
             this.Text = "GenerarReserva";
-            //this.Load += new System.EventHandler(this.GenerarReserva_Load);
+            this.Load += new System.EventHandler(this.GenerarReserva_Load);
             this.ResumeLayout(false);
 
         }

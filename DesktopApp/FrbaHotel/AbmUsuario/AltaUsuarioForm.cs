@@ -1,8 +1,7 @@
-﻿using FrbaHotel.AbmCliente;
-using System;
-using System.Configuration;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -41,21 +40,18 @@ namespace FrbaHotel.AbmUsuario
             spCommand.Parameters.Clear();
             spCommand.Parameters.Add(new SqlParameter("@usuario", userTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", passTextBox.Text));
+            spCommand.Parameters.Add(new SqlParameter("@emailUsuario", passTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@idRol", comboRoles.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", comboHoteles.SelectedValue));
-            /*SqlParameter paramCantInsert = new SqlParameter();
-			paramCantInsert.ParameterName = "@cantRegistrosIns";
-			paramCantInsert.DbType = DbType.Int32;
-			paramCantInsert.Direction = ParameterDirection.Output;
-		*/
+          
             try
             {
                 int sqlRows = spCommand.ExecuteNonQuery();
                 if (sqlRows > 1)
                 {
                     MessageBox.Show("Registrado ingresado correctamente. A continuciacion ingrese datos personales");
-                    AltaClienteForm formAltaCliente = new AltaClienteForm();
-                    formAltaCliente.Show();
+                    /*AltaClienteForm formAltaCliente = new AltaClienteForm();
+                    formAltaCliente.Show();*/
                 }
                 else
                 {

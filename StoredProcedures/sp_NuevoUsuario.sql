@@ -3,13 +3,13 @@ GO
 IF OBJECT_ID('dbo.sp_altaUsuario', 'P') IS NOT NULL
     DROP PROCEDURE dbo.sp_altaUsuario
 GO
-CREATE PROCEDURE dbo.sp_altaUsuario @usuario varchar(255), @contras varchar(255), @idRol int, @idHotel int
+CREATE PROCEDURE dbo.sp_altaUsuario @usuario varchar(255), @contras varchar(255),@emailUsu varchar (255),  @idRol int, @idHotel int
 AS
 	
 	INSERT INTO dbo.Usuarios (username, password)
 	SELECT @usuario,HASHBYTES('SHA2_256', @contras)
 	WHERE (NOT EXISTS (SELECT * FROM dbo.Usuarios WHERE username = @usuario))  
-		  /*AND (NOT EXISTS (SELECT * FROM dbo.Personas WHERE email = @mailUsuario)) */
+		  AND (NOT EXISTS (SELECT * FROM dbo.Personas WHERE email = @emailUsu))
 	DECLARE @nuevoIDUsuario int
 	SELECT @nuevoIDUsuario=SCOPE_IDENTITY() FROM Usuarios
 	IF @@ROWCOUNT >0 

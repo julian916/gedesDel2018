@@ -11,7 +11,7 @@ namespace FrbaHotel.Repositorios
 {
     public class RepositorioHoteles
     {
-        public SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString();
+        public SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
 
         public RepositorioHoteles()
         {

@@ -62,6 +62,7 @@ namespace FrbaHotel.AbmUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al ingresar nuevo usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             finally
             {
@@ -81,6 +82,7 @@ namespace FrbaHotel.AbmUsuario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Ocurrio un error en el ingreso de nuevo usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
 
         }

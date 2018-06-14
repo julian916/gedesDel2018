@@ -45,12 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmCliente\AltaClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmCliente\AltaClienteForm.Designer.cs">
-      <DependentUpon>AltaClienteForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmHabitacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

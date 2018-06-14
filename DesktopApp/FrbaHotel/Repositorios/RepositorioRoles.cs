@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace FrbaHotel.Repositorios
 {
@@ -30,6 +31,7 @@ namespace FrbaHotel.Repositorios
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine("Error open SqlConnection: " + ex.Message);
+                    MessageBox.Show("Error al conectarse con la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
 
@@ -40,6 +42,7 @@ namespace FrbaHotel.Repositorios
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error executingReader" + ex.Message);
+                MessageBox.Show("Error al obtener los roles", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             this.sqlConnection.Close();
             return dtRol;

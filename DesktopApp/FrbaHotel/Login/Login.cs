@@ -59,6 +59,7 @@ namespace FrbaHotel.Login
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al logearse", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             finally
             {

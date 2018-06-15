@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaHotel.AbmPersona;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -43,13 +44,21 @@ namespace FrbaHotel.AbmUsuario
             spCommand.Parameters.Add(new SqlParameter("@emailUsuario", passTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@idRol", comboRoles.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", comboHoteles.SelectedValue));
-          
+                
+            
             try
             {
-                int sqlRows = spCommand.ExecuteNonQuery();
-                if (sqlRows > 1)
+                int idUsuario = spCommand.ExecuteNonQuery();
+                if (idUsuario != null) //Si es null ya existia
                 {
                     MessageBox.Show("Registrado ingresado correctamente. A continuciacion ingrese datos personales");
+                    AltaPersonaForm obj = new AltaPersonaForm(idUsuario);
+                    if (obj == null)
+                    {
+                        obj.Parent = this;
+                    }
+                    obj.Show();
+                    this.Hide();
                     /*AltaClienteForm formAltaCliente = new AltaClienteForm();
                     formAltaCliente.Show();*/
                 }

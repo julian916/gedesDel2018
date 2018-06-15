@@ -15,10 +15,11 @@ namespace FrbaHotel.Repositorios
 
         public RepositorioRoles()
         {
-           
+
         }
 
-        public DataTable getAll() {
+        public DataTable getAll()
+        {
             SqlCommand scRol = new SqlCommand("sp_RolesComboBox", sqlConnection);
             DataTable dtRol = new DataTable();
             if (this.sqlConnection.State != ConnectionState.Open)

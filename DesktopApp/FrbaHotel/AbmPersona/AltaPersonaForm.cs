@@ -1,7 +1,11 @@
-﻿using System;
+﻿using FrbaHotel.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,33 +16,57 @@ namespace FrbaHotel.AbmPersona
 {
     public partial class AltaPersonaForm : Form
     {
-        public AltaPersonaForm()
+        public int idUsuario;
+        public AltaPersonaForm(int idUsuario)
         {
+            this.idUsuario = idUsuario;
             InitializeComponent();
         }
 
-        private void Aceptar_Click(object sender, EventArgs e)
-        {
-            DataTable dataTable = new DataTable("datosPersona");
-            //we create column names as per the type in DB 
-            dataTable.Columns.Add("tipo_documento", typeof(string));
-            dataTable.Columns.Add("nro_documento", typeof(Int32));
-            dataTable.Columns.Add("email", typeof(string));
-            dataTable.Columns.Add("nombre", typeof(string));
-            dataTable.Columns.Add("apellido", typeof(string));
-            dataTable.Columns.Add("telefono", typeof(Int32));
-            dataTable.Columns.Add("nacionalidad", typeof(string));
-            dataTable.Columns.Add("calle", typeof(string));
-            dataTable.Columns.Add("nro_calle", typeof(string));
-            dataTable.Columns.Add("piso", typeof(string));
-            dataTable.Columns.Add("departamento", typeof(string));
-            dataTable.Columns.Add("localidad", typeof(string));
-            dataTable.Columns.Add("pais", typeof(string));
-            dataTable.Columns.Add("fecha_nacimiento", typeof(DateTime));
-            dataTable.Columns.Add("id_usuario", typeof(Int32));
-            //and fill in some values 
-            dataTable.Rows.Add("99", 99);
 
+        private void Aceptar_Click(object sender, EventArgs e) {
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            comboTipoDni.DataSource = Enum.GetValues(typeof(EnumTiposDocumento)).Cast<EnumTiposDocumento>();
+            //comboTipoDni.
+            //Cargo combo de tipos de dni
+            
+            //creo un DataTable para obtener los datos de la persona y pasarlo como parametro al storedProcedure de alta
+            DataTable dataPersonas = new DataTable("datosPersona");         
+
+            dataPersonas.Columns.Add("tipo_documento", typeof(string));
+            dataPersonas.Columns.Add("tipo_documento", typeof(string));
+            dataPersonas.Columns.Add("nro_documento", typeof(Int32));
+            dataPersonas.Columns.Add("email", typeof(string));
+            dataPersonas.Columns.Add("nombre", typeof(string));
+            dataPersonas.Columns.Add("apellido", typeof(string));
+            dataPersonas.Columns.Add("telefono", typeof(Int32));
+            dataPersonas.Columns.Add("nacionalidad", typeof(string));
+            dataPersonas.Columns.Add("calle", typeof(string));
+            dataPersonas.Columns.Add("nro_calle", typeof(string));
+            dataPersonas.Columns.Add("piso", typeof(string));
+            dataPersonas.Columns.Add("departamento", typeof(string));
+            dataPersonas.Columns.Add("localidad", typeof(string));
+            dataPersonas.Columns.Add("pais", typeof(string));
+            dataPersonas.Columns.Add("fecha_nacimiento", typeof(DateTime));
+            dataPersonas.Columns.Add("id_usuario", typeof(Int32));
+
+            //cargo las columnas con los datos ingresados
+            dataPersonas.Rows.Add(comboTipoDni.SelectedValue,dniBox.Text,emailBox.Text,nombreBox.Text, apellidoBox.Text,
+                telBox.Text, comboNacionalidad.SelectedValue,calleBox.Text,nroCalleBox.Text, pisoBox.Text,
+                depBox.Text,localidadBox.Text,paisBox.Text,fechaBox.Value.Date);
+           
+          
+            SqlCommand spCommand = new SqlCommand("sp_altaPersona", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            spCommand.Parameters.Clear();
+            
+            SqlParameter parameter = new SqlParameter();
+            //The parameter for the SP must be of SqlDbType.Structured 
+            parameter.ParameterName = "@Sample";
+            parameter.SqlDbType = System.Data.SqlDbType.Structured;
+            parameter.Value = dataPersonas;
+            spCommand.Parameters.Add(parameter);
         }
 
     }

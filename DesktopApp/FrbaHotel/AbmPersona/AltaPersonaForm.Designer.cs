@@ -53,7 +53,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.paisBox = new System.Windows.Forms.TextBox();
-            this.ciudadBox = new System.Windows.Forms.TextBox();
+            this.localidadBox = new System.Windows.Forms.TextBox();
             this.calleBox = new System.Windows.Forms.TextBox();
             this.nroCalleBox = new System.Windows.Forms.TextBox();
             this.pisoBox = new System.Windows.Forms.TextBox();
@@ -226,9 +226,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(263, 218);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 13);
+            this.label12.Size = new System.Drawing.Size(53, 13);
             this.label12.TabIndex = 19;
-            this.label12.Text = "Ciudad";
+            this.label12.Text = "Localidad";
             // 
             // label13
             // 
@@ -273,12 +273,12 @@
             this.paisBox.Size = new System.Drawing.Size(121, 20);
             this.paisBox.TabIndex = 24;
             // 
-            // ciudadBox
+            // localidadBox
             // 
-            this.ciudadBox.Location = new System.Drawing.Point(377, 211);
-            this.ciudadBox.Name = "ciudadBox";
-            this.ciudadBox.Size = new System.Drawing.Size(121, 20);
-            this.ciudadBox.TabIndex = 25;
+            this.localidadBox.Location = new System.Drawing.Point(377, 211);
+            this.localidadBox.Name = "localidadBox";
+            this.localidadBox.Size = new System.Drawing.Size(121, 20);
+            this.localidadBox.TabIndex = 25;
             // 
             // calleBox
             // 
@@ -338,7 +338,7 @@
             this.Controls.Add(this.pisoBox);
             this.Controls.Add(this.nroCalleBox);
             this.Controls.Add(this.calleBox);
-            this.Controls.Add(this.ciudadBox);
+            this.Controls.Add(this.localidadBox);
             this.Controls.Add(this.paisBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -398,7 +398,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox paisBox;
-        private System.Windows.Forms.TextBox ciudadBox;
+        private System.Windows.Forms.TextBox localidadBox;
         private System.Windows.Forms.TextBox calleBox;
         private System.Windows.Forms.TextBox nroCalleBox;
         private System.Windows.Forms.TextBox pisoBox;

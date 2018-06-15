@@ -39,7 +39,6 @@ namespace FrbaHotel
                 obj.Parent = this;
             }
             obj.Show();
-            this.Hide();
         }
     }
 }

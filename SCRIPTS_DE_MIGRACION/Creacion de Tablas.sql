@@ -113,33 +113,6 @@ GO
 		precio numeric(18,2) NOT NULL
 	);
 
-	/*Creo tabla Estadias*/
-	CREATE TABLE [CUATROGDD2018].[Estadias](	
-		id_estadia int identity(1,1) PRIMARY KEY,
-		fecha_inicio datetime,
-		cant_noches numeric(18,0) null,
-		id_usuario_checkIn int not null,
-		id_usuario_checkOut int not null, /* recepcionistas */
-		id_habitacion int not null,
-		id_reserva int not null,
-		FOREIGN KEY (id_habitacion) REFERENCES [CUATROGDD2018].[Habitaciones] ( id_habitacion ),
-		FOREIGN KEY (id_usuario_checkIn) REFERENCES [CUATROGDD2018].[Usuarios] ( id_usuario ),
-		FOREIGN KEY (id_usuario_checkOut) REFERENCES [CUATROGDD2018].[Usuarios] ( id_usuario ),
-		FOREIGN KEY (id_reserva) REFERENCES [CUATROGDD2018].[Reservas] ( id_reserva )
-	);
-
-	/*Creo tabla Consumible por estadia*/
-	CREATE TABLE [CUATROGDD2018].[Consumible_X_Estadia](	
-		id_estadia int NOT NULL,
-		id_consumible int NOT NULL,
-		cantidad numeric(18,0),
-		monto numeric(18,2),
-		PRIMARY KEY CLUSTERED ( id_estadia, id_consumible ),
-		FOREIGN KEY (id_estadia) REFERENCES [CUATROGDD2018].[Estadias] ( id_estadia ),
-		FOREIGN KEY (id_consumible) REFERENCES [CUATROGDD2018].[Consumibles] (id_consumible)
-	);
-
-
 	/*Creo tabla Estado de reservas*/
 	CREATE TABLE [CUATROGDD2018].[Estados_Reservas] (
 		id_estado_reserva int identity(1,1) PRIMARY KEY,
@@ -167,16 +140,7 @@ GO
 		[id_usuario] [int] NOT NULL DEFAULT(1),
 		foreign key ([id_usuario]) references [CUATROGDD2018].[Usuarios]([id_usuario]),
 		primary key ([id_persona]),
-		INDEX IDX_Personas (id_persona,nro_documento, email)
-	);
-
-	/*Creo tabla Estadia por Persona*/
-	CREATE TABLE [CUATROGDD2018].[Estadia_X_Persona](	
-		id_persona int NOT NULL,
-		id_estadia int NOT NULL,
-		PRIMARY KEY CLUSTERED ( id_estadia, id_persona ),
-		FOREIGN KEY (id_estadia) REFERENCES [CUATROGDD2018].[Estadias] ( id_estadia ),
-		FOREIGN KEY (id_persona) REFERENCES [CUATROGDD2018].[Personas] (id_persona)
+		--INDEX IDX_Personas (id_persona,nro_documento, email)
 	);
 
 	/*Creo tabla Reservas*/
@@ -192,6 +156,41 @@ GO
 		FOREIGN KEY (id_persona) REFERENCES [CUATROGDD2018].[Personas] (id_persona),
 		FOREIGN KEY (id_regimen) REFERENCES [CUATROGDD2018].[Regimenes_Estadia] (id_regimen),
 		FOREIGN KEY (id_estado_reserva) REFERENCES [CUATROGDD2018].[Estados_Reservas] (id_estado_reserva)
+	);
+
+	/*Creo tabla Estadias*/
+	CREATE TABLE [CUATROGDD2018].[Estadias](	
+		id_estadia int identity(1,1) PRIMARY KEY,
+		fecha_inicio datetime,
+		cant_noches numeric(18,0) null,
+		id_usuario_checkIn int not null,
+		id_usuario_checkOut int not null, /* recepcionistas */
+		id_habitacion int not null,
+		id_reserva int not null,
+		FOREIGN KEY (id_habitacion) REFERENCES [CUATROGDD2018].[Habitaciones] ( id_habitacion ),
+		FOREIGN KEY (id_usuario_checkIn) REFERENCES [CUATROGDD2018].[Usuarios] ( id_usuario ),
+		FOREIGN KEY (id_usuario_checkOut) REFERENCES [CUATROGDD2018].[Usuarios] ( id_usuario ),
+		FOREIGN KEY (id_reserva) REFERENCES [CUATROGDD2018].[Reservas] ( id_reserva )
+	);
+
+	/*Creo tabla Consumible por estadia*/
+	CREATE TABLE [CUATROGDD2018].[Consumible_X_Estadia](	
+		id_estadia int NOT NULL,
+		id_consumible int NOT NULL,
+		cantidad numeric(18,0),
+		monto numeric(18,2),
+		PRIMARY KEY CLUSTERED ( id_estadia, id_consumible ),
+		FOREIGN KEY (id_estadia) REFERENCES [CUATROGDD2018].[Estadias] ( id_estadia ),
+		FOREIGN KEY (id_consumible) REFERENCES [CUATROGDD2018].[Consumibles] (id_consumible)
+	);
+
+	/*Creo tabla Estadia por Persona*/
+	CREATE TABLE [CUATROGDD2018].[Estadia_X_Persona](	
+		id_persona int NOT NULL,
+		id_estadia int NOT NULL,
+		PRIMARY KEY CLUSTERED ( id_estadia, id_persona ),
+		FOREIGN KEY (id_estadia) REFERENCES [CUATROGDD2018].[Estadias] ( id_estadia ),
+		FOREIGN KEY (id_persona) REFERENCES [CUATROGDD2018].[Personas] (id_persona)
 	);
 
 	/*Creo tabla Habitaciones por Reserva*/
@@ -211,6 +210,6 @@ GO
 		puntos_obtenidos int not null,
 		id_estadias int,
 		id_persona int, 
-		foreign key (id_estadias) references [CUATROGDD2018].[Estadias] (id_estadias),
+		foreign key (id_estadias) references [CUATROGDD2018].[Estadias] (id_estadia),
 		foreign key (id_persona) references [CUATROGDD2018].[Personas] (id_persona)
 		);

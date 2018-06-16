@@ -5,5 +5,5 @@ IF OBJECT_ID('dbo.sp_RolesComboBox', 'P') IS NOT NULL
 GO
 CREATE PROCEDURE dbo.sp_RolesComboBox
 AS
-	SELECT id_rol, nombre from Roles
+	SELECT id_rol, nombre from CUATROGDD2018.Roles
 GO

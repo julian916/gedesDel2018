@@ -7,6 +7,6 @@ CREATE PROCEDURE dbo.sp_Login @usuario varchar(255), @contras varchar(255)
 AS
 	SELECT * 
 	FROM Personas
-	JOIN Usuarios ON Usuarios.id_usuario=Personas.id_usuario
-	WHERE Usuarios.username=@usuario AND Usuarios.password=HASHBYTES('SHA2_256', @contras)
+	JOIN CUATROGDD2018.Usuarios ON CUATROGDD2018.Usuarios.id_usuario=CUATROGDD2018.Personas.id_usuario
+	WHERE CUATROGDD2018.Usuarios.username=@usuario AND CUATROGDD2018.Usuarios.password=HASHBYTES('SHA2_256', @contras)
 GO

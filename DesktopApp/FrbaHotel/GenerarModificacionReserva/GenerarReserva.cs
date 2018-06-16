@@ -19,13 +19,13 @@ namespace FrbaHotel.GenerarModificarReserva
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
         }
 
-        private void hotelesCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void HotelesCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void GenerarReserva_Load(object sender, EventArgs e)
@@ -35,6 +35,26 @@ namespace FrbaHotel.GenerarModificarReserva
             comboHoteles.DisplayMember = "dir_Hotel";
             comboHoteles.ValueMember = "id_Hotel";
             comboHoteles.DataSource = repoHoteles.getAll();
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FechaHastaCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void FechaDesdeCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
         }
     }
 }

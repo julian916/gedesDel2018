@@ -140,8 +140,8 @@ GO
 		[id_usuario] [int] NOT NULL DEFAULT(1),
 		foreign key ([id_usuario]) references [CUATROGDD2018].[Usuarios]([id_usuario]),
 		primary key ([id_persona]),
-		--INDEX IDX_Personas (id_persona,nro_documento, email)
 	);
+	CREATE INDEX IDX_Personas ON [CUATROGDD2018].[Personas] (id_persona,nro_documento, email);  
 
 	/*Creo tabla Reservas*/
 	CREATE TABLE [CUATROGDD2018].[Reservas] (

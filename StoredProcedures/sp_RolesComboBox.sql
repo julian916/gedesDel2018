@@ -1,9 +1,10 @@
 USE GD1C2018
 GO
-IF OBJECT_ID('dbo.sp_RolesComboBox', 'P') IS NOT NULL
-    DROP PROCEDURE dbo.sp_RolesComboBox
+IF OBJECT_ID('CUATROGDD2018.sp_RolesComboBox', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_RolesComboBox
 GO
-CREATE PROCEDURE dbo.sp_RolesComboBox
+CREATE PROCEDURE CUATROGDD2018.sp_RolesComboBox
 AS
 	SELECT id_rol, nombre from CUATROGDD2018.Roles
+	WHERE NOT nombre = 'GUEST'
 GO

@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 66);
+            this.label1.Location = new System.Drawing.Point(16, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
@@ -60,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 104);
+            this.label2.Location = new System.Drawing.Point(16, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 1;
@@ -69,7 +69,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 150);
+            this.label3.Location = new System.Drawing.Point(16, 144);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 2;
@@ -77,32 +77,32 @@
             // 
             // userTextBox
             // 
-            this.userTextBox.Location = new System.Drawing.Point(146, 66);
+            this.userTextBox.Location = new System.Drawing.Point(125, 60);
             this.userTextBox.Name = "userTextBox";
-            this.userTextBox.Size = new System.Drawing.Size(121, 20);
+            this.userTextBox.Size = new System.Drawing.Size(179, 20);
             this.userTextBox.TabIndex = 3;
             // 
             // passTextBox
             // 
-            this.passTextBox.Location = new System.Drawing.Point(146, 104);
+            this.passTextBox.Location = new System.Drawing.Point(125, 98);
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.PasswordChar = '*';
-            this.passTextBox.Size = new System.Drawing.Size(121, 20);
+            this.passTextBox.Size = new System.Drawing.Size(179, 20);
             this.passTextBox.TabIndex = 4;
             // 
             // pass2TextBox
             // 
-            this.pass2TextBox.Location = new System.Drawing.Point(146, 143);
+            this.pass2TextBox.Location = new System.Drawing.Point(125, 137);
             this.pass2TextBox.Name = "pass2TextBox";
             this.pass2TextBox.PasswordChar = '*';
-            this.pass2TextBox.Size = new System.Drawing.Size(121, 20);
+            this.pass2TextBox.Size = new System.Drawing.Size(179, 20);
             this.pass2TextBox.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(48, 25);
+            this.label4.Location = new System.Drawing.Point(47, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(209, 20);
             this.label4.TabIndex = 6;
@@ -110,7 +110,7 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(412, 283);
+            this.acceptButton.Location = new System.Drawing.Point(427, 277);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 7;
@@ -120,7 +120,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(412, 313);
+            this.cancelButton.Location = new System.Drawing.Point(427, 322);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
@@ -130,24 +130,23 @@
             // comboHoteles
             // 
             this.comboHoteles.FormattingEnabled = true;
-            this.comboHoteles.Location = new System.Drawing.Point(146, 184);
+            this.comboHoteles.Location = new System.Drawing.Point(125, 178);
             this.comboHoteles.Name = "comboHoteles";
-            this.comboHoteles.Size = new System.Drawing.Size(121, 21);
+            this.comboHoteles.Size = new System.Drawing.Size(179, 21);
             this.comboHoteles.TabIndex = 9;
-            this.comboHoteles.SelectedIndexChanged += new System.EventHandler(this.comboHoteles_SelectedIndexChanged);
             // 
             // comboRoles
             // 
             this.comboRoles.FormattingEnabled = true;
-            this.comboRoles.Location = new System.Drawing.Point(146, 229);
+            this.comboRoles.Location = new System.Drawing.Point(125, 223);
             this.comboRoles.Name = "comboRoles";
-            this.comboRoles.Size = new System.Drawing.Size(121, 21);
+            this.comboRoles.Size = new System.Drawing.Size(179, 21);
             this.comboRoles.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 192);
+            this.label5.Location = new System.Drawing.Point(16, 186);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 11;
@@ -156,7 +155,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 237);
+            this.label6.Location = new System.Drawing.Point(16, 231);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 12;
@@ -165,16 +164,16 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(324, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(339, 31);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(222, 227);
+            this.pictureBox1.Size = new System.Drawing.Size(231, 228);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(37, 283);
+            this.label7.Location = new System.Drawing.Point(16, 277);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 14;
@@ -182,9 +181,9 @@
             // 
             // mailBox
             // 
-            this.mailBox.Location = new System.Drawing.Point(146, 280);
+            this.mailBox.Location = new System.Drawing.Point(125, 274);
             this.mailBox.Name = "mailBox";
-            this.mailBox.Size = new System.Drawing.Size(121, 20);
+            this.mailBox.Size = new System.Drawing.Size(179, 20);
             this.mailBox.TabIndex = 15;
             // 
             // AltaUsuarioForm
@@ -209,7 +208,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AltaUsuarioForm";
-            this.Text = "FRBA-Hotel - Nuevo usuario";
+            this.Text = "s";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

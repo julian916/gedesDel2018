@@ -52,7 +52,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.paisBox = new System.Windows.Forms.TextBox();
             this.localidadBox = new System.Windows.Forms.TextBox();
             this.calleBox = new System.Windows.Forms.TextBox();
             this.nroCalleBox = new System.Windows.Forms.TextBox();
@@ -60,6 +59,7 @@
             this.depBox = new System.Windows.Forms.TextBox();
             this.Aceptar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.comboPais = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -153,7 +153,7 @@
             this.comboTipoDni.FormattingEnabled = true;
             this.comboTipoDni.Location = new System.Drawing.Point(107, 79);
             this.comboTipoDni.Name = "comboTipoDni";
-            this.comboTipoDni.Size = new System.Drawing.Size(60, 21);
+            this.comboTipoDni.Size = new System.Drawing.Size(121, 21);
             this.comboTipoDni.TabIndex = 10;
             // 
             // dniBox
@@ -167,6 +167,7 @@
             // 
             this.emailBox.Location = new System.Drawing.Point(107, 145);
             this.emailBox.Name = "emailBox";
+            this.emailBox.ReadOnly = true;
             this.emailBox.Size = new System.Drawing.Size(121, 20);
             this.emailBox.TabIndex = 12;
             // 
@@ -266,13 +267,6 @@
             this.label16.TabIndex = 23;
             this.label16.Text = "Departamento";
             // 
-            // paisBox
-            // 
-            this.paisBox.Location = new System.Drawing.Point(107, 215);
-            this.paisBox.Name = "paisBox";
-            this.paisBox.Size = new System.Drawing.Size(121, 20);
-            this.paisBox.TabIndex = 24;
-            // 
             // localidadBox
             // 
             this.localidadBox.Location = new System.Drawing.Point(377, 211);
@@ -327,11 +321,20 @@
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // comboPais
+            // 
+            this.comboPais.FormattingEnabled = true;
+            this.comboPais.Location = new System.Drawing.Point(107, 210);
+            this.comboPais.Name = "comboPais";
+            this.comboPais.Size = new System.Drawing.Size(121, 21);
+            this.comboPais.TabIndex = 32;
+            // 
             // AltaPersonaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(523, 396);
+            this.Controls.Add(this.comboPais);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Aceptar);
             this.Controls.Add(this.depBox);
@@ -339,7 +342,6 @@
             this.Controls.Add(this.nroCalleBox);
             this.Controls.Add(this.calleBox);
             this.Controls.Add(this.localidadBox);
-            this.Controls.Add(this.paisBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -366,6 +368,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaPersonaForm";
             this.Text = "Datos nuevos";
+            this.Load += new System.EventHandler(this.AltaPersonaForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,7 +400,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox paisBox;
         private System.Windows.Forms.TextBox localidadBox;
         private System.Windows.Forms.TextBox calleBox;
         private System.Windows.Forms.TextBox nroCalleBox;
@@ -405,6 +407,7 @@
         private System.Windows.Forms.TextBox depBox;
         private System.Windows.Forms.Button Aceptar;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboPais;
 
     }
 }

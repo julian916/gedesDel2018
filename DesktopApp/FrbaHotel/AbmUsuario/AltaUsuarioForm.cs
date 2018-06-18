@@ -41,31 +41,30 @@ namespace FrbaHotel.AbmUsuario
             spCommand.Parameters.Clear();
             spCommand.Parameters.Add(new SqlParameter("@usuario", userTextBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", passTextBox.Text));
-            spCommand.Parameters.Add(new SqlParameter("@emailUsuario", passTextBox.Text));
+            spCommand.Parameters.Add(new SqlParameter("@emailUsu", mailBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@idRol", comboRoles.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", comboHoteles.SelectedValue));
-                
             
             try
             {
                 int idUsuario = spCommand.ExecuteNonQuery();
                 if (idUsuario != null) //Si es null ya existia
                 {
-                    MessageBox.Show("Registrado ingresado correctamente. A continuciacion ingrese datos personales");
-                    AltaPersonaForm obj = new AltaPersonaForm(idUsuario);
+                    MessageBox.Show("Registro ingresado correctamente. A continuación ingrese datos personales");
+                    AltaPersonaForm obj = new AltaPersonaForm(idUsuario, mailBox.Text);
                     if (obj == null)
                     {
                         obj.Parent = this;
                     }
                     obj.Show();
                     this.Hide();
-                    /*AltaClienteForm formAltaCliente = new AltaClienteForm();
-                    formAltaCliente.Show();*/
+                   
                 }
                 else
                 {
                     userTextBox.Clear();
-                    throw new System.ArgumentException("Existe un usuario con el valor ingresado. Reingrese el username");
+                    mailBox.Clear();
+                    throw new System.ArgumentException("Existe un usuario con username y/o email ingresados. Reingrese los datos mencionados");
                 }
             }
             catch (Exception ex)
@@ -110,11 +109,9 @@ namespace FrbaHotel.AbmUsuario
             comboHoteles.DisplayMember = "dir_Hotel";
             comboHoteles.ValueMember = "id_Hotel";
             comboHoteles.DataSource = repoHoteles.getAll();
+            sqlConnection.Close();
         }
 
-        private void comboHoteles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

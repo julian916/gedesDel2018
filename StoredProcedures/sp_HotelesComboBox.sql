@@ -5,5 +5,5 @@ IF OBJECT_ID('dbo.sp_HotelesComboBox', 'P') IS NOT NULL
 GO
 CREATE PROCEDURE dbo.sp_HotelesComboBox
 AS
-	SELECT id_Hotel, pais + '-' + ciudad + '-' + calle + '-' + CAST(nro_calle as varchar(10)) as dir_Hotel from CUATROGDD2018.Hoteles
+	SELECT id_Hotel, LTRIM(RTRIM(pais)) + '-' + LTRIM(RTRIM(ciudad)) + '-' + LTRIM(RTRIM(calle)) + '-' + CAST(nro_calle as varchar(10)) as dir_Hotel from CUATROGDD2018.Hoteles
 GO

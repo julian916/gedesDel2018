@@ -8,7 +8,7 @@ OPEN insert_cursor
 FETCH NEXT FROM insert_cursor INTO @nroCalle, @numHab, @habPiso, @habFrente, @tipoHab 
 WHILE @@FETCH_STATUS=0
 	BEGIN
-		SELECT @codHotel=id_hotel FROM Hoteles where nro_calle = @nroCalle
+		SELECT @codHotel=id_hotel FROM [CUATROGDD2018].Hoteles where nro_calle = @nroCalle
 		INSERT INTO [CUATROGDD2018].[Habitaciones] (id_tipo_habitacion,id_hotel,piso,frente,nro_habitacion)
 		VALUES  (@tipoHab, @codHotel,@habPiso,@habFrente,@numHab)
 		FETCH NEXT FROM insert_cursor INTO @nroCalle, @numHab, @habPiso, @habFrente, @tipoHab 

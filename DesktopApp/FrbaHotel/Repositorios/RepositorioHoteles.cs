@@ -47,5 +47,13 @@ namespace FrbaHotel.Repositorios
             sqlConnection.Close();
             return dtHotel;
         }
+
+        internal static bool comprobarDisponibilidad(int idHotel, DateTime ahora, DateTime fechaDesde, DateTime fechaHasta, int tipo_habitacion, int tipo_regimen)
+        {
+            throw new NotImplementedException();
+            //TODO: Hacer consulta de disponibilidad
+            //Devolver booleano que indique si esta disponible el pedido de reserva
+            
+        }
     }
 }

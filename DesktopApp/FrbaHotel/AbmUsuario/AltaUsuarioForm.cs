@@ -35,7 +35,7 @@ namespace FrbaHotel.AbmUsuario
         private void ingresar_NuevoUsuario()
         {
             SqlConnection sqlConnection = new SqlConnection(this.connectionString);
-            SqlCommand spCommand = new SqlCommand("sp_altaUsuario", sqlConnection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_altaUsuario", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             sqlConnection.Open();
             spCommand.Parameters.Clear();
@@ -48,7 +48,7 @@ namespace FrbaHotel.AbmUsuario
             try
             {
                 int idUsuario = spCommand.ExecuteNonQuery();
-                if (idUsuario != null) //Si es null ya existia
+                if (idUsuario>1 ) //Si es null ya existia
                 {
                     MessageBox.Show("Registro ingresado correctamente. A continuación ingrese datos personales");
                     AltaPersonaForm obj = new AltaPersonaForm(idUsuario, mailBox.Text);

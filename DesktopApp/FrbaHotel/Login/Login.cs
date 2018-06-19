@@ -1,6 +1,8 @@
-﻿using System;
+﻿using FrbaHotel.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,41 +15,68 @@ namespace FrbaHotel.Login
 {
     public partial class LoginForm : Form
     {
+        public string connectionString;
         public LoginForm()
         {
             InitializeComponent();
+            this.connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
         }
 
         private void acceptLoginButton_Click(object sender, EventArgs e)
         {
-
-            string connectionString = null;
-            connectionString = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;User ID=gdHotel2018;Password=gd2018";
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand spCommand = new SqlCommand("sp_login", con);
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_login", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
-            con.Open();
+            connection.Open();
             spCommand.Parameters.Clear();
             spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", textBox2.Text));
-            SqlParameter paramCantInsert = new SqlParameter();
-            paramCantInsert.ParameterName = "@usuario_encontrado";
-            paramCantInsert.SqlDbType = SqlDbType.Bit;
-            paramCantInsert.Direction = ParameterDirection.Output;
-            bool se_Logueo = false; //paramCantInsert.Value; //TODO: terminar logica de si se logeo
-        
+            spCommand.Parameters.Add("@idUsuario", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+            DataTable dtHotelesDeUsuario = new DataTable();
+            dtHotelesDeUsuario.Load(spCommand.ExecuteReader());
+            int idUsuario = Int32.Parse(spCommand.Parameters["@idUsuario"].Value.ToString());
             try
+
             {
-                spCommand.ExecuteNonQuery();
-                if (se_Logueo)//Login correcto
+                if (idUsuario != null) //Si es null se ingresaron datos incorrectos
                 {
+
+                    if (dtHotelesDeUsuario.Rows.Count > 1)
+                    {
+                        SeleccionHotelLoginForm seleccionHotel = new SeleccionHotelLoginForm(dtHotelesDeUsuario);
+                        if (seleccionHotel.ShowDialog(this) == DialogResult.OK)
+                        {
+                         
+                            InfoGlobal.Setid_HotelSeleccionado(seleccionHotel.id_hotelSeleccionado);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Operacion cancelada");
+                        }
+                        seleccionHotel.Dispose();
+
+                    }
+                    if (dtHotelesDeUsuario.Rows.Count == 0) {
+                        MessageBox.Show("Ingrese hotel donde se desempeña y rol asingado");
+                        SeleccionNuevoHotel_RolForm actualizarRolHotel = new SeleccionNuevoHotel_RolForm(idUsuario, connection);
+                        if (actualizarRolHotel.ShowDialog(this) == DialogResult.OK)
+                        {
+                            InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
+                            InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Operacion cancelada");
+                        }
+
+                    }
                     //this.Close();
                     //SqlConnection con = new SqlConnection(connectionString);
                     //SqlCommand spCommandRol = new SqlCommand("sp_RolesAsignados", con);
                     //spCommand.CommandType = CommandType.StoredProcedure;
                     //spCommand.Parameters.Clear();
                     //spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
-                    
+
                     //formAltaCliente.Show();
                 }
                 else
@@ -64,8 +93,8 @@ namespace FrbaHotel.Login
             finally
             {
                 // Cierro la Conexión.
-                con.Close();
-            }	
+                connection.Close();
+            }
 
         }
 

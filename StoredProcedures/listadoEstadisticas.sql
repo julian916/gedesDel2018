@@ -2,11 +2,11 @@ USE GD1C2018
 GO
 
 --Funcion Para saber si una fecha pertenece al trimestre seleccionado
-IF OBJECT_ID('GD1C2018.fnc_perteneceATrimestre', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.fnc_perteneceATrimestre
+IF OBJECT_ID('CUATROGDD2018.fnc_perteneceATrimestre', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.fnc_perteneceATrimestre
 GO
 
-CREATE PROCEDURE GD1C2018.fnc_perteneceATrimestre ( @anioConsulta int, @trimestre int , @fechaConsulta datetime)
+CREATE PROCEDURE CUATROGDD2018.fnc_perteneceATrimestre ( @anioConsulta int, @trimestre int , @fechaConsulta datetime)
 AS
 RETURN BIT
 declare @pertenece BIT
@@ -17,14 +17,14 @@ RETURN @pertenece
 END
 
 
-IF OBJECT_ID('GD1C2018.sp_TopHotelesConReservasCanceladas', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.sp_TopHotelesConReservasCanceladas
+IF OBJECT_ID('CUATROGDD2018.sp_TopHotelesConReservasCanceladas', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_TopHotelesConReservasCanceladas
 GO
 
 /*Además el sistema nos pedirá que ingresemos obligatoriamente el año por el cual
 queremos consultar, luego nos pedirá el trimestre*/
 
-CREATE PROCEDURE GD1C2018.sp_TopHotelesConReservasCanceladas ( @anioConsulta int, @trimestre int )
+CREATE PROCEDURE CUATROGDD2018.sp_TopHotelesConReservasCanceladas ( @anioConsulta int, @trimestre int )
 AS
 	SELECT top 5 calle, nro_calle, ciudad, pais, cant_estrellas, count (*) as "Cantidad reservas canceladas"
 	FROM Reservas
@@ -37,11 +37,11 @@ AS
 GO
 /*Hoteles con mayor cantidad de consumibles facturados.*/
 
-IF OBJECT_ID('GD1C2018.sp_TopHotelesConsumiblesFacturados', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.sp_TopHotelesConsumiblesFacturados
+IF OBJECT_ID('CUATROGDD2018.sp_TopHotelesConsumiblesFacturados', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_TopHotelesConsumiblesFacturados
 GO
 
-CREATE PROCEDURE GD1C2018.sp_TopHotelesConsumiblesFacturados ( @anioConsulta int, @trimestre int )
+CREATE PROCEDURE CUATROGDD2018.sp_TopHotelesConsumiblesFacturados ( @anioConsulta int, @trimestre int )
 AS
 	SELECT top 5 calle, nro_calle, ciudad, pais, cant_estrellas, sum (ConsumXEst.cantidad) as "Cantidad consumibles facturados"
 	FROM Facturas
@@ -54,11 +54,11 @@ GO
 
 /*Hoteles con mayor cantidad de días fuera de servicio.*/
 
-IF OBJECT_ID('GD1C2018.sp_TopHotelesDiasSinServ', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.sp_TopHotelesDiasSinServ
+IF OBJECT_ID('CUATROGDD2018.sp_TopHotelesDiasSinServ', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_TopHotelesDiasSinServ
 GO
 
-CREATE PROCEDURE GD1C2018.sp_TopHotelesDiasSinServ ( @anioConsulta int, @trimestre int )
+CREATE PROCEDURE CUATROGDD2018.sp_TopHotelesDiasSinServ ( @anioConsulta int, @trimestre int )
 AS
 	SELECT top 5 calle, nro_calle, ciudad, pais, cant_estrellas, sum (DATEDIFF(DAY, Historial.fecha_inicio, Historial.fecha_fin)) as "Cantidad días fuera de servicio"
 	FROM Hoteles
@@ -70,11 +70,11 @@ GO
 
 /*Habitaciones con mayor cantidad de días y veces que fueron ocupadas, informando a demás a que hotel pertenecen.*/
 
-IF OBJECT_ID('GD1C2018.sp_TopHabitacionOcupadas', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.sp_TopHabitacionOcupadas
+IF OBJECT_ID('CUATROGDD2018.sp_TopHabitacionOcupadas', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_TopHabitacionOcupadas
 GO
 
-CREATE PROCEDURE GD1C2018.sp_TopHabitacionOcupadas ( @anioConsulta int, @trimestre int )
+CREATE PROCEDURE CUATROGDD2018.sp_TopHabitacionOcupadas ( @anioConsulta int, @trimestre int )
 AS
 	SELECT top 5 calle, nro_calle, piso, departamento, count(id_habitacion) as "Cantidas veces ocupado",sum (DATEDIFF(DAY, Est.fecha_inicio, Est.fecha_fin)) as "Cantidad días ocupado"
 	FROM Hoteles
@@ -92,11 +92,11 @@ facturaciones que haya tenido dentro de un periodo independientemente
 del Hotel. Tener en cuenta que la facturación siempre es a quien haya
 realizado la reserva.*/
 
-IF OBJECT_ID('GD1C2018.sp_TopClientesMasPuntos', 'P') IS NOT NULL
-    DROP PROCEDURE GD1C2018.sp_TopClientesMasPuntos
+IF OBJECT_ID('CUATROGDD2018.sp_TopClientesMasPuntos', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_TopClientesMasPuntos
 GO
 
-CREATE PROCEDURE GD1C2018.sp_TopClientesMasPuntos ( @anioConsulta int, @trimestre int )
+CREATE PROCEDURE CUATROGDD2018.sp_TopClientesMasPuntos ( @anioConsulta int, @trimestre int )
 AS
 	SELECT top 5 sum(Facturas.puntos_obtenidos) as "Puntos acumulados", Pers.nombre, Pers.nro_documento
 	FROM Facturas as Fact

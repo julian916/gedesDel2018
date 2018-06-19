@@ -34,7 +34,7 @@ namespace FrbaHotel.Repositorios
                 }
             }
 
-            SqlCommand scHoteles = new SqlCommand("sp_HotelesComboBox", sqlConnection);
+            SqlCommand scHoteles = new SqlCommand("CUATROGDD2018.sp_HotelesComboBox", sqlConnection);
             DataTable dtHotel = new DataTable();
             try
             {

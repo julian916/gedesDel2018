@@ -54,7 +54,7 @@ namespace FrbaHotel.AbmPersona
                 depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario);
            
           
-            SqlCommand spCommand = new SqlCommand("sp_altaPersona", sqlConnection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_altaPersona", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             sqlConnection.Open();
             spCommand.Parameters.Clear();
@@ -69,7 +69,7 @@ namespace FrbaHotel.AbmPersona
             try
             {
                 int idPersona = spCommand.ExecuteNonQuery();
-                if (idPersona != null) //Si es null ya existe mail y/o documento
+                if (idPersona >1) //Si es null ya existe mail y/o documento
                 {
                     MessageBox.Show("Registrado ingresado correctamente.");
                     this.Hide();

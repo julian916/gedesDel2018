@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.acceptButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.hotelesComboBox = new System.Windows.Forms.ComboBox();
             this.rolesComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // acceptButton
+            // btnOK
             // 
-            this.acceptButton.Location = new System.Drawing.Point(54, 103);
-            this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(75, 23);
-            this.acceptButton.TabIndex = 0;
-            this.acceptButton.Text = "Aceptar";
-            this.acceptButton.UseVisualStyleBackColor = true;
-            this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
+            this.btnOK.Location = new System.Drawing.Point(54, 103);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "Aceptar";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.acceptButton_Click);
             // 
-            // cancelButton
+            // btnCancel
             // 
-            this.cancelButton.Location = new System.Drawing.Point(236, 103);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 1;
-            this.cancelButton.Text = "Cancelar";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.btnCancel.Location = new System.Drawing.Point(236, 103);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // hotelesComboBox
             // 
@@ -89,7 +89,7 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Rol";
             // 
-            // SeleccionNuevoHotel_RolFormcs
+            // SeleccionNuevoHotel_RolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,9 +98,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rolesComboBox);
             this.Controls.Add(this.hotelesComboBox);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.acceptButton);
-            this.Name = "SeleccionNuevoHotel_RolFormcs";
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Name = "SeleccionNuevoHotel_RolForm";
             this.Text = "Seleccione hotel y rol asignado";
             this.Load += new System.EventHandler(this.SeleccionNuevoHotel_RolFormcs_Load);
             this.ResumeLayout(false);
@@ -110,8 +110,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button acceptButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox hotelesComboBox;
         private System.Windows.Forms.ComboBox rolesComboBox;
         private System.Windows.Forms.Label label1;

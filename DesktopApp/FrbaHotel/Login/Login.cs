@@ -57,12 +57,15 @@ namespace FrbaHotel.Login
 
                     }
                     if (dtHotelesDeUsuario.Rows.Count == 0) {
-                        MessageBox.Show("Ingrese hotel donde se desempeña y rol asingado");
+                        MessageBox.Show("El usuario no tiene cargado el hotel donde se desempeña y rol asingado");
                         SeleccionNuevoHotel_RolForm actualizarRolHotel = new SeleccionNuevoHotel_RolForm(idUsuario, connection);
-                        if (actualizarRolHotel.ShowDialog(this) == DialogResult.OK)
+                        DialogResult dr = actualizarRolHotel.ShowDialog(this);
+
+                        if (dr == DialogResult.OK)
                         {
                             InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
                             InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
+                            actualizarRolHotel.Close();
                         }
                         else
                         {

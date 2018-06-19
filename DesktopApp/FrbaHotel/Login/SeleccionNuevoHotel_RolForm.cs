@@ -44,7 +44,7 @@ namespace FrbaHotel.Login
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_asignarHotelYRolAUsuario", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             spCommand.Parameters.Clear();
-            spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuario));
+            spCommand.Parameters.Add(new SqlParameter("@idUsu", id_usuario));
             spCommand.Parameters.Add(new SqlParameter("@idRol", rolesComboBox.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", hotelesComboBox.SelectedValue));
 
@@ -56,6 +56,7 @@ namespace FrbaHotel.Login
                     MessageBox.Show("Se actualizaron permisos");
                     id_hotelIngresado = Int32.Parse(hotelesComboBox.SelectedValue.ToString());
                     id_rolIngresado = Int32.Parse(rolesComboBox.SelectedValue.ToString());
+                   
                    
                 }
                 else

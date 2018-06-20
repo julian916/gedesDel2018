@@ -16,12 +16,12 @@ namespace FrbaHotel.AbmPersona
 {
     public partial class AltaPersonaForm : Form
     {
-        public int idUsuario;
+        public Nullable<int> idUsuario;
         public string emailPersona="";
         public string tipoDNI;
         public string nroDocumento;
 
-        public AltaPersonaForm(int idUsuario, string email, string tipoDNI, string nro)
+        public AltaPersonaForm(Nullable<int> idUsuario, string email, string tipoDNI, string nro)
         {
             this.emailPersona = email;
             this.idUsuario = idUsuario;

@@ -51,11 +51,12 @@ namespace FrbaHotel.AbmUsuario
 
             try
             {
-                int idUsuario = spCommand.ExecuteNonQuery();
-                if (idUsuario>1 ) //Si es null ya existia
+                spCommand.ExecuteNonQuery();
+                Nullable<int> idUsuario = (int) spCommand.Parameters["@idUsu"].Value;
+                if (idUsuario!=null ) //Si es 0 
                 {
                     MessageBox.Show("Registro ingresado correctamente. A continuación ingrese datos personales");
-                    //int idUsuario, string email, string tipoDNI, string nro
+
                     AltaPersonaForm obj = new AltaPersonaForm(idUsuario, mailBox.Text,comboTipoDNI.SelectedValue.ToString(),dniBox.Text);
                     if (obj == null)
                     {

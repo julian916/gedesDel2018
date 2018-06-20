@@ -38,24 +38,25 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 33);
+            this.label1.Location = new System.Drawing.Point(12, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 17);
+            this.label1.Size = new System.Drawing.Size(92, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Info hoteles válidos";
+            this.label1.Text = "Rol - Info Hotel";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // comboHotelesValidos
             // 
             this.comboHotelesValidos.FormattingEnabled = true;
-            this.comboHotelesValidos.Location = new System.Drawing.Point(226, 29);
+            this.comboHotelesValidos.Location = new System.Drawing.Point(110, 15);
             this.comboHotelesValidos.Name = "comboHotelesValidos";
-            this.comboHotelesValidos.Size = new System.Drawing.Size(121, 21);
+            this.comboHotelesValidos.Size = new System.Drawing.Size(221, 21);
             this.comboHotelesValidos.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(68, 79);
+            this.button1.Location = new System.Drawing.Point(52, 65);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -66,7 +67,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(226, 79);
+            this.button2.Location = new System.Drawing.Point(210, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -77,14 +78,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 114);
+            this.ClientSize = new System.Drawing.Size(346, 106);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboHotelesValidos);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "SeleccionHotelLoginForm";
-            this.Text = "Seleccione hotel para iniciar sesión";
+            this.Text = "Seleccione Rol y Hotel";
             this.Load += new System.EventHandler(this.SeleccionHotelLoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

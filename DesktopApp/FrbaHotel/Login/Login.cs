@@ -25,23 +25,25 @@ namespace FrbaHotel.Login
         private void acceptLoginButton_Click(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_login", connection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_login", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             connection.Open();
             spCommand.Parameters.Clear();
+            //agredo parametros al SP_Login
             spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", textBox2.Text));
             spCommand.Parameters.Add("@idUsuario", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+            //Creo una dataTable para generar combo box
             DataTable dtHotelesDeUsuario = new DataTable();
             dtHotelesDeUsuario.Load(spCommand.ExecuteReader());
             int idUsuario = Int32.Parse(spCommand.Parameters["@idUsuario"].Value.ToString());
             try
 
             {
-                if (idUsuario >0) //Si es null se ingresaron datos incorrectos
+                if (idUsuario >0 ) //Si es null se ingresaron datos incorrectos
                 {
 
-                    if (dtHotelesDeUsuario.Rows.Count > 1)
+                    if (dtHotelesDeUsuario.Rows.Count > 1) //Si la cantidad de filas es mayor a 1 tengo mas de un rol_X_Hotel
                     {
                         SeleccionHotelLoginForm seleccionHotel = new SeleccionHotelLoginForm(dtHotelesDeUsuario);
                         if (seleccionHotel.ShowDialog(this) == DialogResult.OK)
@@ -55,31 +57,17 @@ namespace FrbaHotel.Login
                         }
                         seleccionHotel.Dispose();
 
-                    }
-                    if (dtHotelesDeUsuario.Rows.Count == 0) {
-                        MessageBox.Show("El usuario no tiene cargado el hotel donde se desempeña y rol asingado");
-                        SeleccionNuevoHotel_RolForm actualizarRolHotel = new SeleccionNuevoHotel_RolForm(idUsuario, connection);
-                        DialogResult dr = actualizarRolHotel.ShowDialog(this);
-
-                        if (dr == DialogResult.OK)
-                        {
-                            InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
-                            InfoGlobal.Setid_HotelSeleccionado(actualizarRolHotel.id_hotelIngresado);
-                            actualizarRolHotel.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Operacion cancelada");
-                        }
-
-                    }
-                   
+                    }                   
                 }
                 else
                 {
                     userLoginBox.Clear();
                     throw new System.ArgumentException("Existe un usuario con el valor ingresado. Reingrese el username");
                 }
+                MenuPrincipal menu = new MenuPrincipal();
+                menu.Show();
+                this.Hide();
+                
             }
             catch (Exception ex)
             {

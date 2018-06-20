@@ -1,5 +1,5 @@
 
-DROP TABLE [CUATROGDD2018].[Habitacion_X_Reservas]
+DROP TABLE [CUATROGDD2018].[Habitacion_X_Reserva]
 DROP TABLE [CUATROGDD2018].[Consumible_X_Estadia]
 DROP TABLE [CUATROGDD2018].[Estadia_X_Persona]
 DROP TABLE [CUATROGDD2018].[Regimen_X_Hotel]

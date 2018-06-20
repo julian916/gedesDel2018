@@ -45,6 +45,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.mailBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboTipoDNI = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dniBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,7 +114,7 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(427, 277);
+            this.acceptButton.Location = new System.Drawing.Point(339, 272);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 7;
@@ -120,7 +124,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(427, 322);
+            this.cancelButton.Location = new System.Drawing.Point(495, 272);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
@@ -186,11 +190,48 @@
             this.mailBox.Size = new System.Drawing.Size(179, 20);
             this.mailBox.TabIndex = 15;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 324);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Tipo Documento";
+            // 
+            // comboTipoDNI
+            // 
+            this.comboTipoDNI.FormattingEnabled = true;
+            this.comboTipoDNI.Location = new System.Drawing.Point(125, 322);
+            this.comboTipoDNI.Name = "comboTipoDNI";
+            this.comboTipoDNI.Size = new System.Drawing.Size(121, 21);
+            this.comboTipoDNI.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(336, 322);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "DNI";
+            // 
+            // dniBox
+            // 
+            this.dniBox.Location = new System.Drawing.Point(368, 322);
+            this.dniBox.Name = "dniBox";
+            this.dniBox.Size = new System.Drawing.Size(179, 20);
+            this.dniBox.TabIndex = 19;
+            // 
             // AltaUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 357);
+            this.ClientSize = new System.Drawing.Size(584, 375);
+            this.Controls.Add(this.dniBox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboTipoDNI);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.mailBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox1);
@@ -234,5 +275,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox mailBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboTipoDNI;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox dniBox;
     }
 }

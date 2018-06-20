@@ -75,6 +75,12 @@
     <Compile Include="AbmUsuario\AltaUsuarioForm.Designer.cs">
       <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmUsuario\ModBajaUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuario\ModBajaUsuarioForm.Designer.cs">
+      <DependentUpon>ModBajaUsuarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     </Compile>
     <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.Designer.cs">
+      <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -151,8 +163,14 @@
     <EmbeddedResource Include="AbmUsuario\AltaUsuarioForm.resx">
       <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuario\ModBajaUsuarioForm.resx">
+      <DependentUpon>ModBajaUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\RegimenYHabitacion.resx">
+      <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

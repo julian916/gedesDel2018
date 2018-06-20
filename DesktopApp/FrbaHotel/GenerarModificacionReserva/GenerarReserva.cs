@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using FrbaHotel.GenerarModificacionReserva;
 
 namespace FrbaHotel.GenerarModificarReserva
 {
     public partial class GenerarReserva : Form
     {
-
+        private Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles();
         public GenerarReserva()
         {
             InitializeComponent();
@@ -26,18 +27,19 @@ namespace FrbaHotel.GenerarModificarReserva
         {
         }
 
-        private void HotelesCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CiudadesCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //MessageBox.Show("No se selecciono hotel" + comboCiudad.SelectedValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            comboCalles.DisplayMember = "calles";
+            comboCalles.ValueMember = "idHotel";
+            comboCalles.DataSource = repoHoteles.getCalles(comboCiudad.SelectedValue.ToString());
         }
 
         private void GenerarReserva_Load(object sender, EventArgs e)
         {
-            Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles();
-
-            comboHoteles.DisplayMember = "dir_Hotel";
-            comboHoteles.ValueMember = "id_Hotel";
-            comboHoteles.DataSource = repoHoteles.getAll();
+            comboCiudad.DisplayMember = "ciudad";
+            comboCiudad.ValueMember = "ciudad";
+            comboCiudad.DataSource = repoHoteles.getCiudades();
         }
 
         private void Label2_Click(object sender, EventArgs e)
@@ -60,9 +62,9 @@ namespace FrbaHotel.GenerarModificarReserva
             fechaHastaCalendar.MinDate = e.End;
         }
 
-        private void comprobarDisponibilidad_Click(object sender, EventArgs e)
+        private void buscarDisponibilidad_Click(object sender, EventArgs e)
         {
-            if (comboHoteles.SelectedItem == null)
+            if (comboCalles.SelectedItem == null)
             {
                 MessageBox.Show("No se selecciono hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -74,18 +76,21 @@ namespace FrbaHotel.GenerarModificarReserva
                 }
                 else
                 {
-                    int idHotel = int.Parse(comboHoteles.SelectedValue.ToString());
-                    DateTime ahora = DateTime.Now;
+                    int idHotel = int.Parse(comboCiudad.SelectedValue.ToString());
                     DateTime fechaDesde = fechaDesdeCalendar.SelectionEnd;
                     DateTime fechaHasta = fechaHastaCalendar.SelectionEnd;
-                    int tipo_habitacion = -1; //TODO: Pendiente definir como se van a pasar las habitaciones
-                    int tipo_regimen = -1; //TODO: pendiente sacar el id de tipo de regimen
-
+                    
                     try
                     {
                         if (Repositorios.RepositorioHoteles.comprobarDisponibilidad(idHotel, ahora, fechaDesde, fechaHasta, tipo_habitacion, tipo_regimen))
                         {
-                            MessageBox.Show("La opcion seleccionada se encuentra disponible. ¿Continuar con la reserva?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                            RegimenYHabitaciones obj = new AltaPersonaForm(idUsuario, mailBox.Text);
+                            if (obj == null)
+                            {
+                                obj.Parent = this;
+                            }
+                            obj.Show();
+                            this.Hide();
                         } else
                         {
                             MessageBox.Show("La opcion seleccionada no tiene disponibilidad", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

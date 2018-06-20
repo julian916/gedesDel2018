@@ -38,7 +38,7 @@ namespace FrbaHotel.Login
             try
 
             {
-                if (idUsuario != null) //Si es null se ingresaron datos incorrectos
+                if (idUsuario >0) //Si es null se ingresaron datos incorrectos
                 {
 
                     if (dtHotelesDeUsuario.Rows.Count > 1)
@@ -73,14 +73,7 @@ namespace FrbaHotel.Login
                         }
 
                     }
-                    //this.Close();
-                    //SqlConnection con = new SqlConnection(connectionString);
-                    //SqlCommand spCommandRol = new SqlCommand("sp_RolesAsignados", con);
-                    //spCommand.CommandType = CommandType.StoredProcedure;
-                    //spCommand.Parameters.Clear();
-                    //spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
-
-                    //formAltaCliente.Show();
+                   
                 }
                 else
                 {
@@ -103,12 +96,7 @@ namespace FrbaHotel.Login
 
         private void cancelLogin_Click(object sender, EventArgs e)
         {
-            Inicio obj = new Inicio();
-            if (obj == null)
-            {
-                obj.Parent = this;
-            }
-            obj.Show();
+
             this.Hide();
         }
     }

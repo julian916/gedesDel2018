@@ -1,4 +1,5 @@
 ﻿using FrbaHotel.AbmPersona;
+using FrbaHotel.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,14 +45,18 @@ namespace FrbaHotel.AbmUsuario
             spCommand.Parameters.Add(new SqlParameter("@emailUsu", mailBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@idRol", comboRoles.SelectedValue));
             spCommand.Parameters.Add(new SqlParameter("@idHotel", comboHoteles.SelectedValue));
-            
+            spCommand.Parameters.Add(new SqlParameter("@tipoDNI", comboTipoDNI.SelectedValue));
+            spCommand.Parameters.Add(new SqlParameter("@nroDNI", dniBox.Text));
+            spCommand.Parameters.Add("@idUsu", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
             try
             {
                 int idUsuario = spCommand.ExecuteNonQuery();
                 if (idUsuario>1 ) //Si es null ya existia
                 {
                     MessageBox.Show("Registro ingresado correctamente. A continuación ingrese datos personales");
-                    AltaPersonaForm obj = new AltaPersonaForm(idUsuario, mailBox.Text);
+                    //int idUsuario, string email, string tipoDNI, string nro
+                    AltaPersonaForm obj = new AltaPersonaForm(idUsuario, mailBox.Text,comboTipoDNI.SelectedValue.ToString(),dniBox.Text);
                     if (obj == null)
                     {
                         obj.Parent = this;
@@ -109,6 +114,8 @@ namespace FrbaHotel.AbmUsuario
             comboHoteles.DisplayMember = "dir_Hotel";
             comboHoteles.ValueMember = "id_Hotel";
             comboHoteles.DataSource = repoHoteles.getAll();
+            
+            comboTipoDNI.DataSource = new TiposDocumentos().getAll();
             sqlConnection.Close();
         }
 

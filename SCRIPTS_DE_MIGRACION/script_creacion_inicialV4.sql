@@ -438,6 +438,7 @@ Print 'Inicio de migracion de datos'
 					,[nro_calle]
 					,[piso]
 					,[departamento]
+					,[pais]
 					,[fecha_nacimiento]
 					,[id_usuario]
 					)
@@ -450,7 +451,8 @@ Print 'Inicio de migracion de datos'
 			,calle
 			,nro_calle
 			,piso
-			,depto 
+			,depto
+			,'ARGENTINA' 
 			,fecha_nac
 			,1
 
@@ -470,6 +472,7 @@ Print 'Inicio de migracion de datos'
 					,[nro_calle]
 					,[piso]
 					,[departamento]
+					,[pais]
 					,[fecha_nacimiento]
 					,[id_usuario]
 					,[estado]
@@ -483,7 +486,8 @@ Print 'Inicio de migracion de datos'
 			,calle
 			,nro_calle
 			,piso
-			,depto 
+			,depto
+			,'ARGENTINA' 
 			,fecha_nac
 			,1
 			,'Inconsistente'

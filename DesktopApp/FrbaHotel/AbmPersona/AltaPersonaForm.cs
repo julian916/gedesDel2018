@@ -17,16 +17,23 @@ namespace FrbaHotel.AbmPersona
     public partial class AltaPersonaForm : Form
     {
         public int idUsuario;
-        public string emailPersona;
-        public AltaPersonaForm(int idUsuario, string email)
+        public string emailPersona="";
+        public string tipoDNI;
+        public string nroDocumento;
+
+        public AltaPersonaForm(int idUsuario, string email, string tipoDNI, string nro)
         {
             this.emailPersona = email;
             this.idUsuario = idUsuario;
+            this.tipoDNI = tipoDNI;
+            this.nroDocumento = nro;
             InitializeComponent();
         }
 
 
         private void Aceptar_Click(object sender, EventArgs e) {
+           
+
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
                         
             //creo un DataTable para obtener los datos de la persona y pasarlo como parametro al storedProcedure de alta
@@ -51,9 +58,12 @@ namespace FrbaHotel.AbmPersona
             //cargo las columnas con los datos ingresados
             dataPersonas.Rows.Add(comboTipoDni.SelectedValue, dniBox.Text, emailPersona, nombreBox.Text, apellidoBox.Text,
                 telBox.Text, comboNacionalidad.SelectedValue,calleBox.Text,nroCalleBox.Text, pisoBox.Text,
-                depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario);
-           
-          
+                depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario,emailPersona);
+            if (this.esAltaDeCliente() )
+            {
+                this.validarDatosPersona(comboTipoDni.SelectedValue.ToString(),Convert.ToInt32(dniBox.Text),emailBox.Text,sqlConnection);
+            };
+            
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_altaPersona", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             sqlConnection.Open();
@@ -95,13 +105,57 @@ namespace FrbaHotel.AbmPersona
 
         }
 
+        private void validarDatosPersona(string tipo,int dni,string emailPer, SqlConnection conSql)
+            {
+ 	            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_validarDatosPersona", conSql);
+                spCommand.CommandType = CommandType.StoredProcedure;
+                spCommand.Parameters.Clear();
+                spCommand.Parameters.Add(new SqlParameter("@tipoDNI", tipo));
+                spCommand.Parameters.Add(new SqlParameter("@nroDNI", dni));
+                spCommand.Parameters.Add(new SqlParameter("@emailPer", emailPer));
+            
+                try
+                {
+                    int esValido = (int)spCommand.ExecuteScalar(); // es valido si es 1
+                    if (esValido != 1)
+                    {
+          
+                      throw new System.ArgumentException("Existe un cliente con la misma identificacion. Reingrese los campos en blanco");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error al ingresar nuevo Cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+                finally
+                {
+                    // Cierro la Conexión.
+                    conSql.Close();
+                }
+         }
+
+        private bool esAltaDeCliente()
+        {
+ 	        return idUsuario == 1;
+        }
+
         private void AltaPersonaForm_Load(object sender, EventArgs e)
         {
             //Cargo combo de tipos de dni
             comboTipoDni.DataSource = new TiposDocumentos().getAll();
             comboNacionalidad.DataSource = new Paises().getAll();
             comboPais.DataSource = new Paises().getAll();
-            emailBox.Text = emailPersona;
+            if (idUsuario != 1){ //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
+                emailBox.ReadOnly=true;
+                comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
+                dniBox.ReadOnly = true;
+                emailBox.Text = emailPersona;
+                comboTipoDni.SelectedValue = tipoDNI;
+                dniBox.Text= nroDocumento;
+
+            };
+            
         }
 
   

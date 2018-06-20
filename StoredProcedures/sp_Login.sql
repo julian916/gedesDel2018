@@ -1,12 +1,16 @@
 USE GD1C2018
 GO
-IF OBJECT_ID('dbo.sp_Login', 'P') IS NOT NULL
-    DROP PROCEDURE dbo.sp_Login
+IF OBJECT_ID('CUATROGDD2018.sp_Login', 'P') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.sp_Login
 GO
-CREATE PROCEDURE dbo.sp_Login @usuario varchar(255), @contras varchar(255)
+CREATE PROCEDURE CUATROGDD2018.sp_Login @usuario varchar(255), @contras varchar(255), @idUsuario int out
 AS
-	SELECT * 
-	FROM Personas
-	JOIN CUATROGDD2018.Usuarios ON CUATROGDD2018.Usuarios.id_usuario=CUATROGDD2018.Personas.id_usuario
-	WHERE CUATROGDD2018.Usuarios.username=@usuario AND CUATROGDD2018.Usuarios.password=HASHBYTES('SHA2_256', @contras)
+	SELECT @idUsuario=Usu.id_usuario 
+	FROM CUATROGDD2018.Usuarios as Usu
+	WHERE Usu.username=@usuario AND Usu.password=HASHBYTES('SHA2_256', @contras)
+	
+	SELECT UXH.id_hotel,nombre
+	FROM Hoteles
+	INNER JOIN Usuario_X_Hotel as UXH on UXH.id_hotel=Hoteles.id_hotel
+	WHERE UXH.id_usuario=@idUsuario
 GO

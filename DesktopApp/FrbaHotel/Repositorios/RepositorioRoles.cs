@@ -21,7 +21,7 @@ namespace FrbaHotel.Repositorios
 
         public DataTable getAll()
         {
-            SqlCommand scRol = new SqlCommand("sp_RolesComboBox", sqlConnection);
+            SqlCommand scRol = new SqlCommand("CUATROGDD2018.sp_RolesComboBox", sqlConnection);
             DataTable dtRol = new DataTable();
             if (this.sqlConnection.State != ConnectionState.Open)
             {

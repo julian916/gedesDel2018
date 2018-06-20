@@ -9,8 +9,7 @@ AS
 	FROM CUATROGDD2018.Usuarios as Usu
 	WHERE Usu.username=@usuario AND Usu.password=HASHBYTES('SHA2_256', @contras)
 	
-	SELECT UXH.id_hotel,nombre
-	FROM Hoteles
-	INNER JOIN Usuario_X_Hotel as UXH on UXH.id_hotel=Hoteles.id_hotel
-	WHERE UXH.id_usuario=@idUsuario
+	SELECT id_hotel,id_usuario
+	FROM CUATROGDD2018.Usuario_X_Hotel_X_Rol as UxHxR
+	WHERE UxHxR.id_usuario=@idUsuario
 GO

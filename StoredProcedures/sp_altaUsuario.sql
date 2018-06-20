@@ -1,6 +1,6 @@
 USE [GD1C2018]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_altaUsuario]    Script Date: 14/6/2018 22:29:34 ******/
+/****** Object:  StoredProcedure [CUATROGDD2018].[sp_altaUsuario]    Script Date: 14/6/2018 22:29:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

@@ -1,4 +1,4 @@
-CREATE FUNCTION [CUATROGDD2018].[DarRecargaHotel] (@idHotel int)
+CREATE FUNCTION [CUATROGDD2018].[FN_DarRecargaHotel] (@idHotel int)
 RETURNS numeric(18,0)
 AS BEGIN
     DECLARE @resultado numeric(18,0);

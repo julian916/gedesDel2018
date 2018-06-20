@@ -1,4 +1,4 @@
-CREATE FUNCTION [CUATROGDD2018].[DarCostoXNoche] (@idRegimen int,@idTipoHab int)
+CREATE FUNCTION [CUATROGDD2018].[FN_DarCostoXNoche] (@idRegimen int,@idTipoHab int)
 RETURNS numeric(18,0)
 AS BEGIN
     DECLARE @precioBaseReg numeric(18,0);

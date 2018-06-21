@@ -113,7 +113,7 @@ namespace FrbaHotel.Repositorios
             return dtCiudades;
         }
 
-        internal static bool comprobarDisponibilidad(int idHotel, DateTime ahora, DateTime fechaDesde, DateTime fechaHasta, int tipo_habitacion, int tipo_regimen)
+        internal static bool comprobarDisponibilidad(int idHotel, DateTime fechaDesde, DateTime fechaHasta)
         {
             throw new NotImplementedException();
             //TODO: Hacer consulta de disponibilidad

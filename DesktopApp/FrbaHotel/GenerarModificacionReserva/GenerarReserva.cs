@@ -82,15 +82,15 @@ namespace FrbaHotel.GenerarModificarReserva
                     
                     try
                     {
-                        if (Repositorios.RepositorioHoteles.comprobarDisponibilidad(idHotel, ahora, fechaDesde, fechaHasta, tipo_habitacion, tipo_regimen))
+                        if (Repositorios.RepositorioHoteles.comprobarDisponibilidad(idHotel, fechaDesde, fechaHasta))
                         {
-                            RegimenYHabitaciones obj = new AltaPersonaForm(idUsuario, mailBox.Text);
-                            if (obj == null)
-                            {
-                                obj.Parent = this;
-                            }
-                            obj.Show();
-                            this.Hide();
+                            //RegimenYHabitaciones obj = new AltaPersonaForm(idUsuario, mailBox.Text);
+                            //if (obj == null)
+                            //{
+                            //    obj.Parent = this;
+                            //}
+                            //obj.Show();
+                            //this.Hide();
                         } else
                         {
                             MessageBox.Show("La opcion seleccionada no tiene disponibilidad", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

@@ -60,6 +60,7 @@
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.hotelesBtn);
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
 

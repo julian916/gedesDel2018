@@ -29,26 +29,31 @@ namespace FrbaHotel.Login
             spCommand.CommandType = CommandType.StoredProcedure;
             connection.Open();
             spCommand.Parameters.Clear();
-            //agredo parametros al SP_Login
+            //agrego parametros al SP_Login
             spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", textBox2.Text));
-            spCommand.Parameters.Add("@idUsuario", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-            //Creo una dataTable para generar combo box
-            DataTable dtHotelesDeUsuario = new DataTable();
-            dtHotelesDeUsuario.Load(spCommand.ExecuteReader());
-            int idUsuario = Int32.Parse(spCommand.Parameters["@idUsuario"].Value.ToString());
+            Nullable<int> idUsuario = (Nullable<int>)spCommand.ExecuteScalar();
+            
             try
 
             {
-                if (idUsuario >0 ) //Si es null se ingresaron datos incorrectos
+                if (idUsuario != null ) //Si es null se ingresaron datos incorrectos
                 {
-
-                    if (dtHotelesDeUsuario.Rows.Count > 1) //Si la cantidad de filas es mayor a 1 tengo mas de un rol_X_Hotel
+                    //seteo la variable global de usuarioLogueado
+                    InfoGlobal.Setid_usuarioSeleccionado((int)idUsuario);
+                    //Creo una dataTable para generar combo box con roles y hoteles para login
+                    DataTable dtHotelesRolesDeUsuario = new DataTable();
+                    SqlCommand spCommandHotelRol = new SqlCommand("CUATROGDD2018.SP_RolesXHotel", connection);
+                    spCommandHotelRol.CommandType = CommandType.StoredProcedure;
+                    spCommandHotelRol.Parameters.Add(new SqlParameter("@idUsuario", idUsuario));
+                    dtHotelesRolesDeUsuario.Load(spCommandHotelRol.ExecuteReader());
+                    if (dtHotelesRolesDeUsuario.Rows.Count > 1) //Si la cantidad de filas es mayor a 1 tengo mas de un rol_X_Hotel
                     {
-                        SeleccionHotelLoginForm seleccionHotel = new SeleccionHotelLoginForm(dtHotelesDeUsuario);
+                        //abro ventana de seleccion de rol y hotel para la sesion
+                        SeleccionHotelLoginForm seleccionHotel = new SeleccionHotelLoginForm(dtHotelesRolesDeUsuario);
                         if (seleccionHotel.ShowDialog(this) == DialogResult.OK)
                         {
-                         
+                            InfoGlobal.Setid_rolSeleccionado(seleccionHotel.id_RolSeleccionado);
                             InfoGlobal.Setid_HotelSeleccionado(seleccionHotel.id_hotelSeleccionado);
                         }
                         else
@@ -57,6 +62,19 @@ namespace FrbaHotel.Login
                         }
                         seleccionHotel.Dispose();
 
+                    }
+                    else {
+                        //dtHotelesRolesDeUsuario.Rows[0][1] tiene el unico rol asignado
+                        InfoGlobal.Setid_rolSeleccionado((int)dtHotelesRolesDeUsuario.Rows[0][1]);
+                        if ((dtHotelesRolesDeUsuario.Rows[0][0]) == System.DBNull.Value)
+                        {
+                            //Si es null el usuario no tiene Hotel asignado. Es un Admin Gral.Para hotel no asignado se usa 0
+                            InfoGlobal.Setid_HotelSeleccionado(0);
+                        }
+                        else {
+                            InfoGlobal.Setid_HotelSeleccionado((int)dtHotelesRolesDeUsuario.Rows[0][0]);
+                        }
+                        
                     }                   
                 }
                 else

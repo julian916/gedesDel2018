@@ -11,8 +11,10 @@ namespace FrbaHotel.Entidades
           // public get, and private set for strict access control
           public static int id_HotelSeleccionado { get; private set; }
           public static int id_usuarioSeleccionado { get; private set; }
+          public static int id_rolSeleccionado { get; private set; }
+          public static int id_usuarioGUEST = 2;
 
-          public static void Setid_HotelSeleccionado(int newInt)
+          public static void Setid_HotelSeleccionado( int newInt)
           {
               id_HotelSeleccionado = newInt;
           }
@@ -20,5 +22,11 @@ namespace FrbaHotel.Entidades
           {
               id_usuarioSeleccionado = newInt;
           }
+
+          public static void Setid_rolSeleccionado(int newInt)
+          {
+              id_rolSeleccionado = newInt;
+          }
+
     }
 }

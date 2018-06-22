@@ -1,4 +1,4 @@
-CREATE PROCEDURE [CUATROGDD2018].[sp_altaHabitacon] @idTipoHabitacion int, @idHotel int, @piso numeric(18, 0), 
+CREATE PROCEDURE [CUATROGDD2018].[SP_altaHabitacon] @idTipoHabitacion int, @idHotel int, @piso numeric(18, 0), 
  @frente nvarchar(50), @nroHab numeric(18, 0), @comodidades varchar(255)
 
 AS  

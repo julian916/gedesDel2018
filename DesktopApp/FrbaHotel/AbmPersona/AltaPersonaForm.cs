@@ -151,7 +151,7 @@ namespace FrbaHotel.AbmPersona
                 comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
                 dniBox.ReadOnly = true;
                 emailBox.Text = emailPersona;
-                comboTipoDni.SelectedValue = tipoDNI;
+                comboTipoDni.SelectedIndex = comboTipoDni.FindString(tipoDNI);
                 dniBox.Text= nroDocumento;
 
             };

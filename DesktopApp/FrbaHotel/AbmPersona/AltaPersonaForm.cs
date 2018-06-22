@@ -58,28 +58,28 @@ namespace FrbaHotel.AbmPersona
             //cargo las columnas con los datos ingresados
             dataPersonas.Rows.Add(comboTipoDni.SelectedValue, dniBox.Text, emailPersona, nombreBox.Text, apellidoBox.Text,
                 telBox.Text, comboNacionalidad.SelectedValue,calleBox.Text,nroCalleBox.Text, pisoBox.Text,
-                depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario,emailPersona);
+                depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario);
             if (this.esAltaDeCliente() )
             {
                 this.validarDatosPersona(comboTipoDni.SelectedValue.ToString(),Convert.ToInt32(dniBox.Text),emailBox.Text,sqlConnection);
             };
             
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_altaPersona", sqlConnection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_altaPersona", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             sqlConnection.Open();
             spCommand.Parameters.Clear();
             
             SqlParameter parametroDatosPersona = new SqlParameter();
             //The parameter for the SP must be of SqlDbType.Structured 
-            parametroDatosPersona.ParameterName = "@datosPersona";
+            parametroDatosPersona.ParameterName = "@datosIngresadosPersona";
             parametroDatosPersona.SqlDbType = System.Data.SqlDbType.Structured;
             parametroDatosPersona.Value = dataPersonas;
             spCommand.Parameters.Add(parametroDatosPersona);
 
             try
             {
-                int idPersona = spCommand.ExecuteNonQuery();
-                if (idPersona >1) //Si es null ya existe mail y/o documento
+                int filasAfectadas = spCommand.ExecuteNonQuery();
+                if (filasAfectadas == 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
                 {
                     MessageBox.Show("Registrado ingresado correctamente.");
                     this.Hide();
@@ -95,7 +95,7 @@ namespace FrbaHotel.AbmPersona
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                MessageBox.Show("Error al ingresar nuevo usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("Error al cargar datos personales. Reintentelo. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             finally
             {
@@ -107,7 +107,7 @@ namespace FrbaHotel.AbmPersona
 
         private void validarDatosPersona(string tipo,int dni,string emailPer, SqlConnection conSql)
             {
- 	            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.sp_validarDatosPersona", conSql);
+ 	            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_validarDatosPersona", conSql);
                 spCommand.CommandType = CommandType.StoredProcedure;
                 spCommand.Parameters.Clear();
                 spCommand.Parameters.Add(new SqlParameter("@tipoDNI", tipo));
@@ -126,7 +126,7 @@ namespace FrbaHotel.AbmPersona
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    MessageBox.Show("Error al ingresar nuevo Cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Error al cargar datos personales del Cliente. Reintentelo. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 finally
                 {
@@ -137,7 +137,7 @@ namespace FrbaHotel.AbmPersona
 
         private bool esAltaDeCliente()
         {
- 	        return idUsuario == 1;
+            return idUsuario == InfoGlobal.id_usuarioGUEST;
         }
 
         private void AltaPersonaForm_Load(object sender, EventArgs e)
@@ -146,7 +146,7 @@ namespace FrbaHotel.AbmPersona
             comboTipoDni.DataSource = new TiposDocumentos().getAll();
             comboNacionalidad.DataSource = new Paises().getAll();
             comboPais.DataSource = new Paises().getAll();
-            if (idUsuario != 1){ //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
+            if (esAltaDeCliente()) { //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
                 emailBox.ReadOnly=true;
                 comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
                 dniBox.ReadOnly = true;

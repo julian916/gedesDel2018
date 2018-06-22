@@ -33,6 +33,11 @@ namespace FrbaHotel
             usuarioAlta.Show();
         }
 
+        private void modicarDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

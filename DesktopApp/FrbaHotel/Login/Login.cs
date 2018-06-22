@@ -21,6 +21,10 @@ namespace FrbaHotel.Login
             InitializeComponent();
             this.connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
         }
+        private void limpiarParametros() {
+            userLoginBox.Clear();
+            textBox2.Clear();
+        }
 
         private void acceptLoginButton_Click(object sender, EventArgs e)
         {
@@ -32,15 +36,32 @@ namespace FrbaHotel.Login
             //agrego parametros al SP_Login
             spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
             spCommand.Parameters.Add(new SqlParameter("@contras", textBox2.Text));
-            Nullable<int> idUsuario = (Nullable<int>)spCommand.ExecuteScalar();
-            
+            spCommand.Parameters.Add("@loginCorrecto", SqlDbType.Bit).Direction = ParameterDirection.Output;
+            spCommand.Parameters.Add("@idUsuario", SqlDbType.Int).Direction = ParameterDirection.Output;
+            spCommand.Parameters.Add("@estaHabilitado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
             try
 
             {
-                if (idUsuario != null ) //Si es null se ingresaron datos incorrectos
+                int idUsuario;
+                spCommand.ExecuteNonQuery();
+                Boolean loginCorrecto = Convert.ToBoolean(spCommand.Parameters["@loginCorrecto"].Value);
+                Boolean estaHabilitado = Convert.ToBoolean(spCommand.Parameters["@estaHabilitado"].Value);
+
+                if (spCommand.Parameters["@idUsuario"].Value == System.DBNull.Value)
                 {
+                    limpiarParametros();
+                    throw new System.ArgumentException("No existe username ingresado. Comuniquese con el administrador para crear usuario");
+                }
+                else {
+                    idUsuario = (int)spCommand.Parameters["@idUsuario"].Value;
+                }
+                if (loginCorrecto) {
+                    //reinicio contador de intentos de login
+                    InfoGlobal.reiniciarIntentosLogin();
+
                     //seteo la variable global de usuarioLogueado
-                    InfoGlobal.Setid_usuarioSeleccionado((int)idUsuario);
+                    InfoGlobal.Setid_usuarioSeleccionado(idUsuario);
                     //Creo una dataTable para generar combo box con roles y hoteles para login
                     DataTable dtHotelesRolesDeUsuario = new DataTable();
                     SqlCommand spCommandHotelRol = new SqlCommand("CUATROGDD2018.SP_RolesXHotel", connection);
@@ -75,17 +96,33 @@ namespace FrbaHotel.Login
                             InfoGlobal.Setid_HotelSeleccionado((int)dtHotelesRolesDeUsuario.Rows[0][0]);
                         }
                         
-                    }                   
+                    }
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.Show();
+                    this.Hide();
+                }else{
+                    if (estaHabilitado)
+                    {
+                        textBox2.Clear();
+                        InfoGlobal.incrementarIntentoLogin();
+                        if (InfoGlobal.seSuperoIntentosLogin())
+                        {
+                            SqlCommand commandBloquear = new SqlCommand("CUATROGDD2018.SP_bloquerUsuario", connection);
+                            commandBloquear.CommandType = CommandType.StoredProcedure;
+                            commandBloquear.Parameters.Add(new SqlParameter("@idUsuario", idUsuario));
+                            commandBloquear.ExecuteNonQuery();
+                            MessageBox.Show("Se superaron los intentos para iniciar sesion. Usuario bloqueado. Contacte con su Administrador para desbloquear la cuenta");
+
+                        }
+                        else
+                        {
+                            throw new System.ArgumentException("Contraseña incorrecta. Reingrese contraseña");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Usuario bloqueado. Contacte con su Administrador para desbloquear la cuenta");
+                    }
                 }
-                else
-                {
-                    userLoginBox.Clear();
-                    throw new System.ArgumentException("Existe un usuario con el valor ingresado. Reingrese el username");
-                }
-                MenuPrincipal menu = new MenuPrincipal();
-                menu.Show();
-                this.Hide();
-                
             }
             catch (Exception ex)
             {

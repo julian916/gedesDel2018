@@ -51,6 +51,15 @@
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.modicarDatosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hotelesConMasReservasCanceladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hotelesConMásDíasSinServicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habitacionesMasOcupadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteConMayorCantidadDePuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.desbloquearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +70,8 @@
             this.toolStripMenuItem1,
             this.reservasToolStripMenuItem,
             this.configuracionToolStripMenuItem,
-            this.estadísticasToolStripMenuItem});
+            this.estadísticasToolStripMenuItem,
+            this.configuracionToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(723, 24);
@@ -134,7 +144,7 @@
             this.nuevoClienteToolStripMenuItem,
             this.modificacionBajaToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // nuevoClienteToolStripMenuItem
@@ -154,9 +164,10 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoUsuarioToolStripMenuItem,
-            this.modificacionBajaToolStripMenuItem1});
+            this.modificacionBajaToolStripMenuItem1,
+            this.desbloquearUsuarioToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // nuevoUsuarioToolStripMenuItem
@@ -223,9 +234,73 @@
             // 
             // estadísticasToolStripMenuItem
             // 
+            this.estadísticasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hotelesConMasReservasCanceladasToolStripMenuItem,
+            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem,
+            this.hotelesConMásDíasSinServicioToolStripMenuItem,
+            this.habitacionesMasOcupadasToolStripMenuItem,
+            this.clienteConMayorCantidadDePuntosToolStripMenuItem});
             this.estadísticasToolStripMenuItem.Name = "estadísticasToolStripMenuItem";
             this.estadísticasToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.estadísticasToolStripMenuItem.Text = "Estadísticas";
+            // 
+            // configuracionToolStripMenuItem1
+            // 
+            this.configuracionToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modicarDatosPersonalesToolStripMenuItem,
+            this.cambiarContraseñaToolStripMenuItem});
+            this.configuracionToolStripMenuItem1.Name = "configuracionToolStripMenuItem1";
+            this.configuracionToolStripMenuItem1.Size = new System.Drawing.Size(95, 20);
+            this.configuracionToolStripMenuItem1.Text = "Configuracion";
+            // 
+            // modicarDatosPersonalesToolStripMenuItem
+            // 
+            this.modicarDatosPersonalesToolStripMenuItem.Name = "modicarDatosPersonalesToolStripMenuItem";
+            this.modicarDatosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.modicarDatosPersonalesToolStripMenuItem.Text = "Modificar datos personales";
+            this.modicarDatosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.modicarDatosPersonalesToolStripMenuItem_Click);
+            // 
+            // cambiarContraseñaToolStripMenuItem
+            // 
+            this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar contraseña";
+            // 
+            // hotelesConMasReservasCanceladasToolStripMenuItem
+            // 
+            this.hotelesConMasReservasCanceladasToolStripMenuItem.Name = "hotelesConMasReservasCanceladasToolStripMenuItem";
+            this.hotelesConMasReservasCanceladasToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
+            this.hotelesConMasReservasCanceladasToolStripMenuItem.Text = "Hoteles con más reservas canceladas";
+            // 
+            // hotelesConMasConsumiblesFacturadosToolStripMenuItem
+            // 
+            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Name = "hotelesConMasConsumiblesFacturadosToolStripMenuItem";
+            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
+            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Text = "Hoteles con más consumibles facturados";
+            // 
+            // hotelesConMásDíasSinServicioToolStripMenuItem
+            // 
+            this.hotelesConMásDíasSinServicioToolStripMenuItem.Name = "hotelesConMásDíasSinServicioToolStripMenuItem";
+            this.hotelesConMásDíasSinServicioToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
+            this.hotelesConMásDíasSinServicioToolStripMenuItem.Text = "Hoteles con más días sin Servicio";
+            // 
+            // habitacionesMasOcupadasToolStripMenuItem
+            // 
+            this.habitacionesMasOcupadasToolStripMenuItem.Name = "habitacionesMasOcupadasToolStripMenuItem";
+            this.habitacionesMasOcupadasToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
+            this.habitacionesMasOcupadasToolStripMenuItem.Text = "Habitaciones mas ocupadas";
+            // 
+            // clienteConMayorCantidadDePuntosToolStripMenuItem
+            // 
+            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Name = "clienteConMayorCantidadDePuntosToolStripMenuItem";
+            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
+            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Text = "Clientes con más puntos";
+            // 
+            // desbloquearUsuarioToolStripMenuItem
+            // 
+            this.desbloquearUsuarioToolStripMenuItem.Name = "desbloquearUsuarioToolStripMenuItem";
+            this.desbloquearUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.desbloquearUsuarioToolStripMenuItem.Text = "Desbloquear Usuario";
             // 
             // MenuPrincipal
             // 
@@ -270,5 +345,14 @@
         private System.Windows.Forms.ToolStripMenuItem consultarReservaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem modicarDatosPersonalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem desbloquearUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMasConsumiblesFacturadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMásDíasSinServicioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clienteConMayorCantidadDePuntosToolStripMenuItem;
     }
 }

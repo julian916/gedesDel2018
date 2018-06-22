@@ -8,11 +8,12 @@ namespace FrbaHotel.Entidades
 {
     static class InfoGlobal
     {
-          // public get, and private set for strict access control
+          // informacion importante para la sesion, variables globales
           public static int id_HotelSeleccionado { get; private set; }
           public static int id_usuarioSeleccionado { get; private set; }
           public static int id_rolSeleccionado { get; private set; }
           public static int id_usuarioGUEST = 2;
+          public static int intentos_Login { get; private set; }
 
           public static void Setid_HotelSeleccionado( int newInt)
           {
@@ -28,5 +29,19 @@ namespace FrbaHotel.Entidades
               id_rolSeleccionado = newInt;
           }
 
+          public static void reiniciarIntentosLogin()
+          {
+              intentos_Login = 0;
+          }
+
+          public static void incrementarIntentoLogin()
+          {
+              intentos_Login = intentos_Login + 1;
+          }
+
+          public static bool seSuperoIntentosLogin()
+          {
+             return intentos_Login == 3;
+          }
     }
 }

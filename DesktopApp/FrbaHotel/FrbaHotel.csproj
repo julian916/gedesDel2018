@@ -87,6 +87,8 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\DatosSesion.cs" />
+    <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Info_Rol_X_Hotel.cs" />
     <Compile Include="Entidades\InfoGlobal.cs" />
     <Compile Include="Entidades\Paises.cs" />

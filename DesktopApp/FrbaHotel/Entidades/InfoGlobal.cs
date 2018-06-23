@@ -13,6 +13,7 @@ namespace FrbaHotel.Entidades
           public static int id_usuarioSeleccionado { get; private set; }
           public static int id_rolSeleccionado { get; private set; }
           public static int id_usuarioGUEST = 2;
+          public static int id_rolGUEST = 1;
           public static int intentos_Login { get; private set; }
 
           public static void Setid_HotelSeleccionado( int newInt)

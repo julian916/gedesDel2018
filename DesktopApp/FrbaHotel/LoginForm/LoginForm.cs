@@ -15,6 +15,17 @@ namespace FrbaHotel.Login
 {
     public partial class LoginForm : Form
     {
+        /*LoginManager _loginMan = new LoginManager();
+        UsuarioManager _userMan = new UsuarioManager();
+        RolManager _rolMan = new RolManager();
+        HotelManager _hotelMan = new HotelManager();
+        FuncionalidadManager _funcMan = new FuncionalidadManager();*/
+        private int id_usuario;
+        private string password;
+        private int id_rol;
+        private int id_hotel;
+        private BindingList<Funcionalidad> funcionalidades;
+
         public string connectionString;
         public LoginForm()
         {
@@ -23,10 +34,37 @@ namespace FrbaHotel.Login
         }
         private void limpiarParametros() {
             userLoginBox.Clear();
-            textBox2.Clear();
+            passTextBox.Clear();
         }
 
         private void acceptLoginButton_Click(object sender, EventArgs e)
+        {
+            //obtengo funcionalidades segun el rol
+            funcionalidades = _funcMan.GetPorRol(_rolMan.GetIdPorNombre(rol));
+            //InicioSesion segun los datos ingresaados en una clase
+            DatosSesion.iniciar_sesion(id_usuario, password, id_rol, id_hotel, funcionalidades);
+
+            this.Dispose(); //TODO: ver si esto no borra nada
+            this.Close();
+        }
+
+        private void buttonGuest_Click(object sender, EventArgs e)
+        {
+            panelSession.Enabled = false;
+            iniciarButton.Enabled = true;
+            iniciarButton.Focus();
+            id_hotel = 0;
+            id_rol = InfoGlobal.id_rolGUEST;
+            id_usuario = InfoGlobal.id_usuarioGUEST;
+        }
+
+        private void buttonUser_Click(object sender, EventArgs e)
+        {
+            panelSession.Enabled = true;
+            loginButton.Focus();
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_login", connection);
@@ -35,13 +73,12 @@ namespace FrbaHotel.Login
             spCommand.Parameters.Clear();
             //agrego parametros al SP_Login
             spCommand.Parameters.Add(new SqlParameter("@usuario", userLoginBox.Text));
-            spCommand.Parameters.Add(new SqlParameter("@contras", textBox2.Text));
+            spCommand.Parameters.Add(new SqlParameter("@contras", passTextBox.Text));
             spCommand.Parameters.Add("@loginCorrecto", SqlDbType.Bit).Direction = ParameterDirection.Output;
             spCommand.Parameters.Add("@idUsuario", SqlDbType.Int).Direction = ParameterDirection.Output;
             spCommand.Parameters.Add("@estaHabilitado", SqlDbType.Bit).Direction = ParameterDirection.Output;
 
             try
-
             {
                 int idUsuario;
                 spCommand.ExecuteNonQuery();
@@ -53,10 +90,12 @@ namespace FrbaHotel.Login
                     limpiarParametros();
                     throw new System.ArgumentException("No existe username ingresado. Comuniquese con el administrador para crear usuario");
                 }
-                else {
+                else
+                {
                     idUsuario = (int)spCommand.Parameters["@idUsuario"].Value;
                 }
-                if (loginCorrecto) {
+                if (loginCorrecto)
+                {
                     //reinicio contador de intentos de login
                     InfoGlobal.reiniciarIntentosLogin();
 
@@ -84,7 +123,8 @@ namespace FrbaHotel.Login
                         seleccionHotel.Dispose();
 
                     }
-                    else {
+                    else
+                    {
                         //dtHotelesRolesDeUsuario.Rows[0][1] tiene el unico rol asignado
                         InfoGlobal.Setid_rolSeleccionado((int)dtHotelesRolesDeUsuario.Rows[0][1]);
                         if ((dtHotelesRolesDeUsuario.Rows[0][0]) == System.DBNull.Value)
@@ -92,18 +132,21 @@ namespace FrbaHotel.Login
                             //Si es null el usuario no tiene Hotel asignado. Es un Admin Gral.Para hotel no asignado se usa 0
                             InfoGlobal.Setid_HotelSeleccionado(0);
                         }
-                        else {
+                        else
+                        {
                             InfoGlobal.Setid_HotelSeleccionado((int)dtHotelesRolesDeUsuario.Rows[0][0]);
                         }
-                        
+
                     }
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.Show();
                     this.Hide();
-                }else{
+                }
+                else
+                {
                     if (estaHabilitado)
                     {
-                        textBox2.Clear();
+                        passTextBox.Clear();
                         InfoGlobal.incrementarIntentoLogin();
                         if (InfoGlobal.seSuperoIntentosLogin())
                         {
@@ -119,7 +162,8 @@ namespace FrbaHotel.Login
                             throw new System.ArgumentException("Contraseña incorrecta. Reingrese contraseña");
                         }
                     }
-                    else {
+                    else
+                    {
                         MessageBox.Show("Usuario bloqueado. Contacte con su Administrador para desbloquear la cuenta");
                     }
                 }
@@ -134,13 +178,7 @@ namespace FrbaHotel.Login
                 // Cierro la Conexión.
                 connection.Close();
             }
-
         }
 
-        private void cancelLogin_Click(object sender, EventArgs e)
-        {
-
-            this.Hide();
-        }
     }
 }

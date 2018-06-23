@@ -87,6 +87,7 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Info_Rol_X_Hotel.cs" />
     <Compile Include="Entidades\InfoGlobal.cs" />
     <Compile Include="Entidades\Paises.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
@@ -120,22 +121,25 @@
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Login.cs">
+    <Compile Include="LoginForm\InfoRolXHotel.cs" />
+    <Compile Include="LoginForm\LoginForm.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="LoginForm\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="LoginForm\SeleccionHotelLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\SeleccionHotelLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\SeleccionHotelLoginForm.Designer.cs">
+    <Compile Include="LoginForm\SeleccionHotelLoginForm.Designer.cs">
       <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\SeleccionNuevoHotel_RolForm.cs">
+    <Compile Include="LoginForm\SeleccionNuevoHotel_RolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\SeleccionNuevoHotel_RolForm.Designer.cs">
+    <Compile Include="LoginForm\SeleccionNuevoHotel_RolForm.Designer.cs">
       <DependentUpon>SeleccionNuevoHotel_RolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuPrincipal.cs">
@@ -181,13 +185,14 @@
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\SeleccionHotelLoginForm.resx">
+    <EmbeddedResource Include="LoginForm\SeleccionHotelLoginForm.resx">
       <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\SeleccionNuevoHotel_RolForm.resx">
+    <EmbeddedResource Include="LoginForm\SeleccionNuevoHotel_RolForm.resx">
       <DependentUpon>SeleccionNuevoHotel_RolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">

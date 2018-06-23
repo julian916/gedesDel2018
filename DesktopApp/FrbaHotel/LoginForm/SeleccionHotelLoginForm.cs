@@ -10,13 +10,6 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.Login
 {
-    public class InfoRolXHotel
-    {
-        public int id_hotel { get; set; }
-	    public int id_rol { get; set; }
-        public string InfoRol_Hotel { get; set; }
-	
-    }
 
     public partial class SeleccionHotelLoginForm : Form
     {
@@ -32,24 +25,24 @@ namespace FrbaHotel.Login
         private void SeleccionHotelLoginForm_Load(object sender, EventArgs e)
         {
             List<InfoRolXHotel> listaRoles_X_Hotel = seleccionHoteles.AsEnumerable().Select(m => new InfoRolXHotel()
-                {
-                    id_hotel = m.Field<int>("id_hotel"),
-                    id_rol = m.Field<int>("id_rol"),
-                    InfoRol_Hotel = m.Field<string>("Rol-Hotel"),
-                }).ToList();
+            {
+                id_hotel = m.Field<int>("id_hotel"),
+                id_rol = m.Field<int>("id_rol"),
+                InfoRol_Hotel = m.Field<string>("Rol-Hotel"),
+            }).ToList();
 
-            comboHotelesValidos.DisplayMember = "nombre";
-            comboHotelesValidos.ValueMember = "id_hotel";
+            comboHotelesValidos.DisplayMember = "Rol-Hotel";
             comboHotelesValidos.DataSource = listaRoles_X_Hotel;
         }
 
         private void button1_Click(object sender, EventArgs e)
-            {
+        {
+            InfoRolXHotel combinacionSeleccionada = (InfoRolXHotel)comboHotelesValidos.SelectedItem;
 
-                id_hotelSeleccionado = Int32.Parse(comboHotelesValidos.SelectedValue.ToString());
-            }
-
+            id_hotelSeleccionado = (combinacionSeleccionada.id_hotel);
+            id_RolSeleccionado = (combinacionSeleccionada.id_rol);
         }
 
+    }
    
 }

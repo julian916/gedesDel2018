@@ -42,7 +42,7 @@ namespace FrbaHotel.Entidades
 
           public static bool seSuperoIntentosLogin()
           {
-             return intentos_Login == 3;
+		  return intentos_Login == 3;
           }
     }
 }

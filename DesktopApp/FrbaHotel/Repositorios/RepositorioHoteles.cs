@@ -66,7 +66,7 @@ namespace FrbaHotel.Repositorios
 
             SqlCommand sqlCommand = new SqlCommand("sp_ObtenerCallesAPartirDeCiudad", this.sqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
-        
+
             sqlCommand.Parameters.Add(new SqlParameter("@ciudad", ciudad));
             DataTable dtCalles = new DataTable();
 
@@ -113,9 +113,41 @@ namespace FrbaHotel.Repositorios
             return dtCiudades;
         }
 
-        internal static bool comprobarDisponibilidad(int idHotel, DateTime fechaDesde, DateTime fechaHasta)
+        public DataTable obtenerHabitacionesDisponibles(int idHotel, DateTime fechaDesde, DateTime fechaHasta, int idRegimen)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                this.sqlConnection.Open();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error open SqlConnection: " + ex.Message);
+                MessageBox.Show("Error al conectase con la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+            SqlCommand sqlCommand = new SqlCommand("CUATROGDD2018.SP_DarHabitacionesDisponibles", sqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@id_hotel", idHotel));
+            sqlCommand.Parameters.Add(new SqlParameter("@fechaDesde", fechaDesde));
+            sqlCommand.Parameters.Add(new SqlParameter("@fechaHasta", fechaHasta));
+            sqlCommand.Parameters.Add(new SqlParameter("@idRegimen", idRegimen));
+            
+            DataTable dtHabitaciones = new DataTable();
+            try
+            {
+                dtHabitaciones.Load(sqlCommand.ExecuteReader());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error executingReader: " + ex.Message);
+                MessageBox.Show("Error al obtener las ciudades", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            sqlConnection.Close();
+
+            return dtHabitaciones;
+            //throw new NotImplementedException();
             //TODO: Hacer consulta de disponibilidad
             //Devolver booleano que indique si esta disponible el pedido de reserva
 

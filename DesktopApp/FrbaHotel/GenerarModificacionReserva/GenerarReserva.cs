@@ -31,7 +31,7 @@ namespace FrbaHotel.GenerarModificarReserva
         {
             //MessageBox.Show("No se selecciono hotel" + comboCiudad.SelectedValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             comboCalles.DisplayMember = "calles";
-            comboCalles.ValueMember = "idHotel";
+            comboCalles.ValueMember = "id_Hotel";
             comboCalles.DataSource = repoHoteles.getCalles(comboCiudad.SelectedValue.ToString());
         }
 
@@ -76,14 +76,18 @@ namespace FrbaHotel.GenerarModificarReserva
                 }
                 else
                 {
-                    int idHotel = int.Parse(comboCiudad.SelectedValue.ToString());
+                    int idHotel = int.Parse(comboCalles.SelectedValue.ToString());
                     DateTime fechaDesde = fechaDesdeCalendar.SelectionEnd;
                     DateTime fechaHasta = fechaHastaCalendar.SelectionEnd;
-                    
+                    int idRegimen = 1;
+
                     try
                     {
-                        if (Repositorios.RepositorioHoteles.comprobarDisponibilidad(idHotel, fechaDesde, fechaHasta))
+                        var habitacionesDisponibles = repoHoteles.obtenerHabitacionesDisponibles(idHotel, fechaDesde, fechaHasta,idRegimen);
+                        if(habitacionesDisponibles.Rows.Count > 0)
                         {
+                            //Tiene registros
+
                             //RegimenYHabitaciones obj = new AltaPersonaForm(idUsuario, mailBox.Text);
                             //if (obj == null)
                             //{
@@ -93,6 +97,7 @@ namespace FrbaHotel.GenerarModificarReserva
                             //this.Hide();
                         } else
                         {
+                            //No tiene registros
                             MessageBox.Show("La opcion seleccionada no tiene disponibilidad", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }
                         

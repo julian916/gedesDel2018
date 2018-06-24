@@ -44,8 +44,8 @@
             this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionBajaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.desbloquearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesConMasReservasCanceladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,12 +55,13 @@
             this.clienteConMayorCantidadDePuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.panelReservas = new System.Windows.Forms.Panel();
-            this.newReservaButton = new System.Windows.Forms.Button();
-            this.updateReservaButton = new System.Windows.Forms.Button();
             this.cancelReservaButton = new System.Windows.Forms.Button();
+            this.updateReservaButton = new System.Windows.Forms.Button();
+            this.newReservaButton = new System.Windows.Forms.Button();
             this.passLinkLabel = new System.Windows.Forms.LinkLabel();
             this.closeSessionLink = new System.Windows.Forms.LinkLabel();
             this.panelSession = new System.Windows.Forms.Panel();
+            this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.panelReservas.SuspendLayout();
             this.panelSession.SuspendLayout();
@@ -71,11 +72,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administracionHotelToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.configuracionToolStripMenuItem,
+            this.rolToolStripMenuItem,
             this.estadísticasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(745, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -145,7 +146,7 @@
             this.nuevoClienteToolStripMenuItem,
             this.modificacionBajaToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // nuevoClienteToolStripMenuItem
@@ -168,7 +169,7 @@
             this.modificacionBajaToolStripMenuItem1,
             this.desbloquearUsuarioToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // nuevoUsuarioToolStripMenuItem
@@ -190,25 +191,25 @@
             this.desbloquearUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.desbloquearUsuarioToolStripMenuItem.Text = "Desbloquear Usuario";
             // 
-            // configuracionToolStripMenuItem
+            // rolToolStripMenuItem
             // 
-            this.configuracionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultarToolStripMenuItem,
+            this.rolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultarRolToolStripMenuItem,
             this.modificarRolToolStripMenuItem});
-            this.configuracionToolStripMenuItem.Name = "configuracionToolStripMenuItem";
-            this.configuracionToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.configuracionToolStripMenuItem.Text = "Roles";
+            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
+            this.rolToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.rolToolStripMenuItem.Text = "Roles";
             // 
-            // consultarToolStripMenuItem
+            // consultarRolToolStripMenuItem
             // 
-            this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
-            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.consultarToolStripMenuItem.Text = "Consultar";
+            this.consultarRolToolStripMenuItem.Name = "consultarRolToolStripMenuItem";
+            this.consultarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.consultarRolToolStripMenuItem.Text = "Consultar Rol";
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.modificarRolToolStripMenuItem.Text = "Modificar Rol";
             // 
             // estadísticasToolStripMenuItem
@@ -257,7 +258,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(260, 70);
+            this.label1.Location = new System.Drawing.Point(308, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(187, 39);
             this.label1.TabIndex = 1;
@@ -265,31 +266,15 @@
             // 
             // panelReservas
             // 
+            this.panelReservas.AutoSize = true;
+            this.panelReservas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelReservas.Controls.Add(this.cancelReservaButton);
             this.panelReservas.Controls.Add(this.updateReservaButton);
             this.panelReservas.Controls.Add(this.newReservaButton);
-            this.panelReservas.Location = new System.Drawing.Point(76, 157);
+            this.panelReservas.Location = new System.Drawing.Point(124, 195);
             this.panelReservas.Name = "panelReservas";
             this.panelReservas.Size = new System.Drawing.Size(572, 100);
             this.panelReservas.TabIndex = 2;
-            // 
-            // newReservaButton
-            // 
-            this.newReservaButton.Location = new System.Drawing.Point(54, 18);
-            this.newReservaButton.Name = "newReservaButton";
-            this.newReservaButton.Size = new System.Drawing.Size(139, 65);
-            this.newReservaButton.TabIndex = 0;
-            this.newReservaButton.Text = "Generar reserva";
-            this.newReservaButton.UseVisualStyleBackColor = true;
-            // 
-            // updateReservaButton
-            // 
-            this.updateReservaButton.Location = new System.Drawing.Point(217, 18);
-            this.updateReservaButton.Name = "updateReservaButton";
-            this.updateReservaButton.Size = new System.Drawing.Size(139, 65);
-            this.updateReservaButton.TabIndex = 1;
-            this.updateReservaButton.Text = "Modificar reserva";
-            this.updateReservaButton.UseVisualStyleBackColor = true;
             // 
             // cancelReservaButton
             // 
@@ -300,10 +285,28 @@
             this.cancelReservaButton.Text = "Cancelar reserva";
             this.cancelReservaButton.UseVisualStyleBackColor = true;
             // 
+            // updateReservaButton
+            // 
+            this.updateReservaButton.Location = new System.Drawing.Point(217, 18);
+            this.updateReservaButton.Name = "updateReservaButton";
+            this.updateReservaButton.Size = new System.Drawing.Size(139, 65);
+            this.updateReservaButton.TabIndex = 1;
+            this.updateReservaButton.Text = "Modificar reserva";
+            this.updateReservaButton.UseVisualStyleBackColor = true;
+            // 
+            // newReservaButton
+            // 
+            this.newReservaButton.Location = new System.Drawing.Point(54, 18);
+            this.newReservaButton.Name = "newReservaButton";
+            this.newReservaButton.Size = new System.Drawing.Size(139, 65);
+            this.newReservaButton.TabIndex = 0;
+            this.newReservaButton.Text = "Generar reserva";
+            this.newReservaButton.UseVisualStyleBackColor = true;
+            // 
             // passLinkLabel
             // 
             this.passLinkLabel.AutoSize = true;
-            this.passLinkLabel.Location = new System.Drawing.Point(39, 19);
+            this.passLinkLabel.Location = new System.Drawing.Point(18, 17);
             this.passLinkLabel.Name = "passLinkLabel";
             this.passLinkLabel.Size = new System.Drawing.Size(101, 13);
             this.passLinkLabel.TabIndex = 3;
@@ -313,7 +316,7 @@
             // closeSessionLink
             // 
             this.closeSessionLink.AutoSize = true;
-            this.closeSessionLink.Location = new System.Drawing.Point(164, 19);
+            this.closeSessionLink.Location = new System.Drawing.Point(142, 17);
             this.closeSessionLink.Name = "closeSessionLink";
             this.closeSessionLink.Size = new System.Drawing.Size(68, 13);
             this.closeSessionLink.TabIndex = 4;
@@ -324,16 +327,28 @@
             // 
             this.panelSession.Controls.Add(this.closeSessionLink);
             this.panelSession.Controls.Add(this.passLinkLabel);
-            this.panelSession.Location = new System.Drawing.Point(453, 27);
+            this.panelSession.Location = new System.Drawing.Point(537, 65);
             this.panelSession.Name = "panelSession";
-            this.panelSession.Size = new System.Drawing.Size(258, 56);
+            this.panelSession.Size = new System.Drawing.Size(233, 56);
             this.panelSession.TabIndex = 5;
+            // 
+            // inicioSesionLink
+            // 
+            this.inicioSesionLink.AutoSize = true;
+            this.inicioSesionLink.Location = new System.Drawing.Point(679, 335);
+            this.inicioSesionLink.Name = "inicioSesionLink";
+            this.inicioSesionLink.Size = new System.Drawing.Size(65, 13);
+            this.inicioSesionLink.TabIndex = 5;
+            this.inicioSesionLink.TabStop = true;
+            this.inicioSesionLink.Text = "Inicio sesión";
+            this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 366);
+            this.ClientSize = new System.Drawing.Size(837, 366);
+            this.Controls.Add(this.inicioSesionLink);
             this.Controls.Add(this.panelSession);
             this.Controls.Add(this.panelReservas);
             this.Controls.Add(this.label1);
@@ -364,7 +379,7 @@
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem configuracionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administracionHotelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aBMHotelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaHotelToolStripMenuItem;
@@ -373,7 +388,7 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaHabitaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem desbloquearUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
@@ -389,5 +404,6 @@
         private System.Windows.Forms.LinkLabel passLinkLabel;
         private System.Windows.Forms.LinkLabel closeSessionLink;
         private System.Windows.Forms.Panel panelSession;
+        private System.Windows.Forms.LinkLabel inicioSesionLink;
     }
 }

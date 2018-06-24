@@ -167,6 +167,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel - Inicio";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panelSession.ResumeLayout(false);
             this.panelSession.PerformLayout();
             this.ResumeLayout(false);

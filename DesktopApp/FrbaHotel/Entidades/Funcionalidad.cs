@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FrbaHotel.Entidades
 {
-    class Funcionalidad
+    public class Funcionalidad
     {
         public Int32 id_funcionalidad { get; set; }
-        public string info_funcionalidad { get; set; }
+        public string descripcion_funcionalidad { get; set; }
     }
 }

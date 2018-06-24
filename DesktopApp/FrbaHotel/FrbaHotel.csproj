@@ -87,6 +87,7 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Funcionalidad_Ctrl.cs" />
     <Compile Include="Entidades\DatosSesion.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Info_Rol_X_Hotel.cs" />
@@ -104,12 +105,6 @@
     </Compile>
     <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.Designer.cs">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inicio.Designer.cs">
-      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -183,9 +178,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\RegimenYHabitacion.resx">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using FrbaHotel.Entidades;
+﻿using FrbaHotel.Control;
+using FrbaHotel.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace FrbaHotel.Login
         RolManager _rolMan = new RolManager();
         HotelManager _hotelMan = new HotelManager();
         FuncionalidadManager _funcMan = new FuncionalidadManager();*/
+        Funcionalidad_Ctrl funcCtrl = new Funcionalidad_Ctrl();
         private int id_usuario;
         private string password;
         private int id_rol;
@@ -40,7 +42,7 @@ namespace FrbaHotel.Login
         private void acceptLoginButton_Click(object sender, EventArgs e)
         {
             //obtengo funcionalidades segun el rol
-            funcionalidades = _funcMan.GetPorRol(_rolMan.GetIdPorNombre(rol));
+            funcionalidades = funcCtrl.funcionalidadesXRol(id_rol);
             //InicioSesion segun los datos ingresaados en una clase
             DatosSesion.iniciar_sesion(id_usuario, password, id_rol, id_hotel, funcionalidades);
 
@@ -61,6 +63,7 @@ namespace FrbaHotel.Login
         private void buttonUser_Click(object sender, EventArgs e)
         {
             panelSession.Enabled = true;
+            iniciarButton.Enabled = false;
             loginButton.Focus();
         }
 
@@ -178,6 +181,13 @@ namespace FrbaHotel.Login
                 // Cierro la Conexión.
                 connection.Close();
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            panelSession.Enabled = false;
+            iniciarButton.Enabled = false;
+
         }
 
     }

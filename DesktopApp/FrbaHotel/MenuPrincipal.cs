@@ -32,13 +32,50 @@ namespace FrbaHotel
             if (DatosSesion.sesion_iniciada)
             {
                 //ActualizarStatusStrip();
-                //habilitar_segun_rol();
+                habilitar_func_x_rol();
                 closeSessionLink.Visible = true;
                 //linkLabel_Login.Visible = false;
-                if (DatosSesion.esGuest())
-                    passLinkLabel.Visible = true;
             }
         
+        }
+        public void habilitar_func_x_rol()
+        {
+            if (DatosSesion.esGuest())
+            {
+                menuStrip1.Visible = false;
+                panelSession.Visible = false;
+            }
+            panelReservas.Enabled = true;
+
+            menuStrip1.Enabled = true;
+            BindingList<Funcionalidad> f = DatosSesion.funcionalidades;
+            newReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
+            updateReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
+            cancelReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Cancelar Reserva");
+
+            ToolStripItemCollection itemsMenu = menuStrip1.Items;
+
+            ToolStripItem menu_Hotel = itemsMenu.Find("aBMHotelToolStripMenuItem", true)[0];
+            menu_Hotel.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Hotel");
+
+            ToolStripItem menu_Habitacion = itemsMenu.Find("aBMHabitacionToolStripMenuItem", true)[0];
+            menu_Habitacion.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Habitacion");
+
+            ToolStripItem menu_cliente = itemsMenu.Find("clientesToolStripMenuItem", true)[0];
+            menu_cliente.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Clientes");
+
+            ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
+            menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "abmRegimenEstadia");
+
+            ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
+            menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "abmHotel");
+
+            ToolStripItem menu_estadisticas = itemsMenu.Find("estadísticasToolStripMenuItem", true)[0];
+            menu_estadisticas.Enabled = f.Any(func => func.descripcion_funcionalidad == "abmHotel");
+                
+
+            
+
         }
 
         private void nuevoClienteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +102,14 @@ namespace FrbaHotel
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
+         
+        }
+
+        private void inicioSesionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoginForm login = new Login();
+            login.Show();
+            this.Hide();
         }
 
        

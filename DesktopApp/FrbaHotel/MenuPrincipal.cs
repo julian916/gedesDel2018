@@ -107,7 +107,7 @@ namespace FrbaHotel
 
         private void inicioSesionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginForm login = new Login();
+            LoginForm login = new LoginForm();
             login.Show();
             this.Hide();
         }

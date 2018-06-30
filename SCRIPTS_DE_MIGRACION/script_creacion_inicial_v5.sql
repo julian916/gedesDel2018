@@ -100,7 +100,7 @@ Print 'Inicio de creacion de tablas'
 		[id_usuario] [int] NOT NULL,
 		[id_hotel] [int],
 		[id_rol] [int] NOT NULL,
-		PRIMARY KEY ( [id_usuario], [id_rol] ),
+		PRIMARY KEY ( [id_usuario], [id_rol], [id_hotel]),
 		foreign key ([id_usuario]) references [CUATROGDD2018].[Usuarios]([id_usuario]),
 		foreign key ([id_hotel]) references [CUATROGDD2018].[Hoteles]([id_hotel]),
 		foreign key ([id_rol]) references [CUATROGDD2018].[Roles]([id_rol])
@@ -289,9 +289,8 @@ Print 'Inicio de migracion de datos'
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (1,7);
 
 	/*-3- Insertar Usuarios por Rol*/
-	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (2,1,null);
-	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,null);
-	
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (2,1,0);
+
 	/*-4- Insertar Estado de reservas*/
 	INSERT INTO [CUATROGDD2018].[Estados_Reservas] ( descripcion )
 	VALUES ('Reserva correcta');
@@ -321,6 +320,8 @@ Print 'Inicio de migracion de datos'
 	print	'Insersión Tipo de Habitaciones finalizada - ' + convert(varchar,@@rowcount) + ' filas insertadas.';
 
 	/*-6- Insertar Hoteles*/
+	
+	INSERT INTO 
 	INSERT INTO [CUATROGDD2018].[Hoteles] (
 				nombre
 				,nro_calle
@@ -341,6 +342,22 @@ Print 'Inicio de migracion de datos'
 	FROM [gd_esquema].[Maestra]
 	print	'Insersión de Hoteles finalizada - ' + convert(varchar,@@rowcount) + ' filas insertadas.';
 
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,1);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,2);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,3);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,4);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,5);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,6);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,7);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,8);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,9);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,10);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,11);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,12);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,13);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,14);
+	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,15);
+	
 	/*-7- Insertar Habitaciones*/
 	DECLARE @nroCalle numeric(18,0)
 			,@numHab numeric (18,0)

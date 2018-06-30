@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmHabitacion\Form1.cs">
+    <Compile Include="AbmHabitacion\AltaHabitacionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHabitacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmHabitacion\AltaHabitacionForm.Designer.cs">
+      <DependentUpon>AltaHabitacionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMHotel\AltaHotelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMHotel\AltaHotelForm.Designer.cs">
+      <DependentUpon>AltaHotelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmPersona\AltaPersonaForm.cs">
       <SubType>Form</SubType>
@@ -88,11 +94,23 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\Funcionalidad_Ctrl.cs" />
+    <Compile Include="Control\Habitacion_Ctrl.cs" />
+    <Compile Include="Control\Hotel_Ctrl.cs" />
+    <Compile Include="Control\Login_Ctrl.cs" />
+    <Compile Include="Control\Regimenes_Ctrl.cs" />
+    <Compile Include="Control\Rol_Ctrl.cs" />
+    <Compile Include="Control\TipoHabitacion_Ctrl.cs" />
+    <Compile Include="Control\Usuario_Ctrl.cs" />
     <Compile Include="Entidades\DatosSesion.cs" />
+    <Compile Include="Entidades\Encriptacion.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
+    <Compile Include="Entidades\Habitacion.cs" />
+    <Compile Include="Entidades\Hotel.cs" />
     <Compile Include="Entidades\Info_Rol_X_Hotel.cs" />
     <Compile Include="Entidades\InfoGlobal.cs" />
     <Compile Include="Entidades\Paises.cs" />
+    <Compile Include="Entidades\RegimenEstadia.cs" />
+    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
     <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
       <SubType>Form</SubType>
@@ -118,26 +136,32 @@
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm\InfoRolXHotel.cs" />
-    <Compile Include="LoginForm\LoginForm.cs">
+    <Compile Include="Login\CambioPassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\CambioPassForm.Designer.cs">
+      <DependentUpon>CambioPassForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\InfoRolXHotel.cs" />
+    <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="LoginForm\LoginForm.Designer.cs">
+    <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="LoginForm\SeleccionHotelLoginForm.cs">
+    <Compile Include="Login\SeleccionHotelLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm\SeleccionHotelLoginForm.Designer.cs">
+    <Compile Include="Login\SeleccionHotelLoginForm.Designer.cs">
       <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm\SeleccionNuevoHotel_RolForm.cs">
+    <Compile Include="Login\SelHotelRolLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm\SeleccionNuevoHotel_RolForm.Designer.cs">
-      <DependentUpon>SeleccionNuevoHotel_RolForm.cs</DependentUpon>
+    <Compile Include="Login\SelHotelRolLoginForm.Designer.cs">
+      <DependentUpon>SelHotelRolLoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -161,8 +185,11 @@
     </Compile>
     <Compile Include="Repositorios\RepositorioHoteles.cs" />
     <Compile Include="Repositorios\RepositorioRoles.cs" />
-    <EmbeddedResource Include="AbmHabitacion\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmHabitacion\AltaHabitacionForm.resx">
+      <DependentUpon>AltaHabitacionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMHotel\AltaHotelForm.resx">
+      <DependentUpon>AltaHotelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmPersona\AltaPersonaForm.resx">
       <DependentUpon>AltaPersonaForm.cs</DependentUpon>
@@ -179,15 +206,18 @@
     <EmbeddedResource Include="GenerarModificacionReserva\RegimenYHabitacion.resx">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+    <EmbeddedResource Include="Login\CambioPassForm.resx">
+      <DependentUpon>CambioPassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm\SeleccionHotelLoginForm.resx">
+    <EmbeddedResource Include="Login\SeleccionHotelLoginForm.resx">
       <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm\SeleccionNuevoHotel_RolForm.resx">
-      <DependentUpon>SeleccionNuevoHotel_RolForm.cs</DependentUpon>
+    <EmbeddedResource Include="Login\SelHotelRolLoginForm.resx">
+      <DependentUpon>SelHotelRolLoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>

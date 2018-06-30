@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,9 @@ namespace FrbaHotel.Entidades
 {
     static class InfoGlobal
     {
+          //string de conexion
+          public static string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+
           // informacion importante para la sesion, variables globales
           public static int id_HotelSeleccionado { get; private set; }
           public static int id_usuarioSeleccionado { get; private set; }
@@ -30,19 +34,5 @@ namespace FrbaHotel.Entidades
               id_rolSeleccionado = newInt;
           }
 
-          public static void reiniciarIntentosLogin()
-          {
-              intentos_Login = 0;
-          }
-
-          public static void incrementarIntentoLogin()
-          {
-              intentos_Login = intentos_Login + 1;
-          }
-
-          public static bool seSuperoIntentosLogin()
-          {
-		  return intentos_Login == 3;
-          }
     }
 }

@@ -103,6 +103,7 @@
             this.altaHotelToolStripMenuItem.Name = "altaHotelToolStripMenuItem";
             this.altaHotelToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.altaHotelToolStripMenuItem.Text = "Nuevo Hotel";
+            this.altaHotelToolStripMenuItem.Click += new System.EventHandler(this.altaHotelToolStripMenuItem_Click);
             // 
             // modificToolStripMenuItem
             // 
@@ -124,6 +125,7 @@
             this.nuevaHabitaciónToolStripMenuItem.Name = "nuevaHabitaciónToolStripMenuItem";
             this.nuevaHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.nuevaHabitaciónToolStripMenuItem.Text = "Nueva habitación";
+            this.nuevaHabitaciónToolStripMenuItem.Click += new System.EventHandler(this.nuevaHabitaciónToolStripMenuItem_Click);
             // 
             // modificacionBajaToolStripMenuItem2
             // 
@@ -312,6 +314,7 @@
             this.passLinkLabel.TabIndex = 3;
             this.passLinkLabel.TabStop = true;
             this.passLinkLabel.Text = "Cambiar contraseña";
+            this.passLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.passLinkLabel_LinkClicked);
             // 
             // closeSessionLink
             // 
@@ -322,6 +325,7 @@
             this.closeSessionLink.TabIndex = 4;
             this.closeSessionLink.TabStop = true;
             this.closeSessionLink.Text = "Cerrar sesión";
+            this.closeSessionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.closeSessionLink_LinkClicked);
             // 
             // panelSession
             // 

@@ -39,13 +39,13 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificacionBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionBajaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.desbloquearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotelesConMasReservasCanceladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,23 +146,24 @@
             // 
             this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoClienteToolStripMenuItem,
-            this.modificacionBajaToolStripMenuItem});
+            this.consultarClienteToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // nuevoClienteToolStripMenuItem
             // 
             this.nuevoClienteToolStripMenuItem.Name = "nuevoClienteToolStripMenuItem";
-            this.nuevoClienteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.nuevoClienteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.nuevoClienteToolStripMenuItem.Text = "Nuevo Cliente";
             this.nuevoClienteToolStripMenuItem.Click += new System.EventHandler(this.nuevoClienteToolStripMenuItem_Click);
             // 
-            // modificacionBajaToolStripMenuItem
+            // consultarClienteToolStripMenuItem
             // 
-            this.modificacionBajaToolStripMenuItem.Name = "modificacionBajaToolStripMenuItem";
-            this.modificacionBajaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.modificacionBajaToolStripMenuItem.Text = "Modificacion - Baja";
+            this.consultarClienteToolStripMenuItem.Name = "consultarClienteToolStripMenuItem";
+            this.consultarClienteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.consultarClienteToolStripMenuItem.Text = "Consultar Cliente";
+            this.consultarClienteToolStripMenuItem.Click += new System.EventHandler(this.consultarClienteToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
@@ -171,7 +172,7 @@
             this.modificacionBajaToolStripMenuItem1,
             this.desbloquearUsuarioToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // nuevoUsuarioToolStripMenuItem
@@ -185,7 +186,7 @@
             // 
             this.modificacionBajaToolStripMenuItem1.Name = "modificacionBajaToolStripMenuItem1";
             this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
-            this.modificacionBajaToolStripMenuItem1.Text = "Modificacion - Baja";
+            this.modificacionBajaToolStripMenuItem1.Text = "Consultar Usuario";
             // 
             // desbloquearUsuarioToolStripMenuItem
             // 
@@ -196,22 +197,23 @@
             // rolToolStripMenuItem
             // 
             this.rolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultarRolToolStripMenuItem,
+            this.nuevoRolToolStripMenuItem,
             this.modificarRolToolStripMenuItem});
             this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
             this.rolToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.rolToolStripMenuItem.Text = "Roles";
             // 
-            // consultarRolToolStripMenuItem
+            // nuevoRolToolStripMenuItem
             // 
-            this.consultarRolToolStripMenuItem.Name = "consultarRolToolStripMenuItem";
-            this.consultarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.consultarRolToolStripMenuItem.Text = "Consultar Rol";
+            this.nuevoRolToolStripMenuItem.Name = "nuevoRolToolStripMenuItem";
+            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoRolToolStripMenuItem.Text = "Nuevo Rol";
+            this.nuevoRolToolStripMenuItem.Click += new System.EventHandler(this.nuevoRolToolStripMenuItem_Click);
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modificarRolToolStripMenuItem.Text = "Modificar Rol";
             // 
             // estadísticasToolStripMenuItem
@@ -379,7 +381,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoClienteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarClienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem1;
@@ -392,7 +394,7 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaHabitaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarRolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem desbloquearUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;

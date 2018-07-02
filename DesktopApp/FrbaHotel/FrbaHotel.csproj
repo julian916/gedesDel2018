@@ -63,17 +63,23 @@
     <Compile Include="AbmPersona\AltaPersonaForm.Designer.cs">
       <DependentUpon>AltaPersonaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmPersona\ConsultaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmPersona\ConsultaClienteForm.Designer.cs">
+      <DependentUpon>ConsultaClienteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRegimen\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmRegimen\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\AltaRolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\AltaRolForm.Designer.cs">
+      <DependentUpon>AltaRolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuario\AltaUsuarioForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,7 @@
     <Compile Include="Control\Habitacion_Ctrl.cs" />
     <Compile Include="Control\Hotel_Ctrl.cs" />
     <Compile Include="Control\Login_Ctrl.cs" />
+    <Compile Include="Control\Persona_Ctrl.cs" />
     <Compile Include="Control\Regimenes_Ctrl.cs" />
     <Compile Include="Control\Rol_Ctrl.cs" />
     <Compile Include="Control\TipoHabitacion_Ctrl.cs" />
@@ -109,9 +116,15 @@
     <Compile Include="Entidades\Info_Rol_X_Hotel.cs" />
     <Compile Include="Entidades\InfoGlobal.cs" />
     <Compile Include="Entidades\Paises.cs" />
+    <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\RegimenEstadia.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
+    <Compile Include="GD1C2018DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,7 +155,6 @@
     <Compile Include="Login\CambioPassForm.Designer.cs">
       <DependentUpon>CambioPassForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\InfoRolXHotel.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -150,12 +162,6 @@
     <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Login\SeleccionHotelLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\SeleccionHotelLoginForm.Designer.cs">
-      <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\SelHotelRolLoginForm.cs">
       <SubType>Form</SubType>
@@ -194,6 +200,12 @@
     <EmbeddedResource Include="AbmPersona\AltaPersonaForm.resx">
       <DependentUpon>AltaPersonaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmPersona\ConsultaClienteForm.resx">
+      <DependentUpon>ConsultaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
+      <DependentUpon>AltaRolForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\AltaUsuarioForm.resx">
       <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,9 +225,6 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\SeleccionHotelLoginForm.resx">
-      <DependentUpon>SeleccionHotelLoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Login\SelHotelRolLoginForm.resx">
       <DependentUpon>SelHotelRolLoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +240,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="GD1C2018DataSet.xsc">
+      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GD1C2018DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GD1C2018DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GD1C2018DataSet.xss">
+      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

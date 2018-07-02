@@ -77,7 +77,7 @@ namespace FrbaHotel.Control
                //agrego parametros al SP_NuevoRegimenXHotel
                spCommand.Parameters.Add(new SqlParameter("@idHotel", id_nuevoHotel));
                spCommand.Parameters.Add(new SqlParameter("@descripcion", descripcion));
-             
+               spCommand.ExecuteNonQuery();
            }
 
            connection.Close();
@@ -105,11 +105,13 @@ namespace FrbaHotel.Control
                    hotelEncontrado.calle = Convert.ToString(row["calle"]);
                    hotelEncontrado.nro_calle = int.Parse(row["nro_calle"].ToString());
                    hotelEncontrado.cant_estrellas = int.Parse(row["cant_estrellas"].ToString());
-                   hotelEncontrado.recarga_estrella = decimal.Parse(row["recarga_estrella"].ToString());
+                   hotelEncontrado.recarga_estrella = decimal.Parse(row["recarga_estrellas"].ToString());
                    hotelEncontrado.email = Convert.ToString(row["email"]);
                    hotelEncontrado.telefono = Convert.ToString(row["telefono"]);
                    hotelEncontrado.pais = Convert.ToString(row["pais"]);
-                   hotelEncontrado.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+                   if (row["fecha_creacion"] != DBNull.Value) {
+                       hotelEncontrado.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+                   }
 
                }
            }

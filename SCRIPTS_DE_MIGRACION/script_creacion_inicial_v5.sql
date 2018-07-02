@@ -525,7 +525,7 @@ Print 'Inicio de migracion de datos'
 			,depto
 			,'ARGENTINA' 
 			,fecha_nac
-			,1
+			,2
 
 	from #temp_clientes
 	where cantDocumentos=1 and cantEmail=1
@@ -560,7 +560,7 @@ Print 'Inicio de migracion de datos'
 			,depto
 			,'ARGENTINA' 
 			,fecha_nac
-			,1
+			,2
 			,'Inconsistente'
 	from #temp_clientes 
 	where cantDocumentos>1 or cantEmail>1

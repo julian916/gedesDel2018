@@ -97,6 +97,7 @@
             this.salirBtn.TabIndex = 5;
             this.salirBtn.Text = "Salir";
             this.salirBtn.UseVisualStyleBackColor = true;
+            this.salirBtn.Click += new System.EventHandler(this.salirBtn_Click);
             // 
             // buttonGuest
             // 

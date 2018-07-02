@@ -44,6 +44,8 @@ namespace FrbaHotel.Login
                 panelRol.Enabled = false;
                 rolesComboBox.SelectedText = rolesAsignados.First().nombre;
                 id_RolSeleccionado = rolesAsignados.First().id_rol;
+                panelDireccion.Enabled = true;
+                this.cargarHotelSesion();
             }
             else
             {
@@ -60,7 +62,8 @@ namespace FrbaHotel.Login
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            
+            this.DialogResult = DialogResult.OK;
+            this.Close();
        
         }
 
@@ -102,6 +105,12 @@ namespace FrbaHotel.Login
             panelDireccion.Enabled = false;
             btnOK.Enabled = true;
             btnOK.Focus();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
     }

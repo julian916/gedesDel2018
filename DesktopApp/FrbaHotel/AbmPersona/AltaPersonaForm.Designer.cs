@@ -54,12 +54,14 @@
             this.label16 = new System.Windows.Forms.Label();
             this.localidadBox = new System.Windows.Forms.TextBox();
             this.calleBox = new System.Windows.Forms.TextBox();
-            this.nroCalleBox = new System.Windows.Forms.TextBox();
-            this.pisoBox = new System.Windows.Forms.TextBox();
             this.depBox = new System.Windows.Forms.TextBox();
             this.Aceptar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.comboPais = new System.Windows.Forms.ComboBox();
+            this.nroCalleBox = new System.Windows.Forms.NumericUpDown();
+            this.pisoBox = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nroCalleBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -280,20 +282,6 @@
             this.calleBox.Size = new System.Drawing.Size(121, 20);
             this.calleBox.TabIndex = 26;
             // 
-            // nroCalleBox
-            // 
-            this.nroCalleBox.Location = new System.Drawing.Point(377, 247);
-            this.nroCalleBox.Name = "nroCalleBox";
-            this.nroCalleBox.Size = new System.Drawing.Size(121, 20);
-            this.nroCalleBox.TabIndex = 27;
-            // 
-            // pisoBox
-            // 
-            this.pisoBox.Location = new System.Drawing.Point(107, 282);
-            this.pisoBox.Name = "pisoBox";
-            this.pisoBox.Size = new System.Drawing.Size(121, 20);
-            this.pisoBox.TabIndex = 28;
-            // 
             // depBox
             // 
             this.depBox.Location = new System.Drawing.Point(377, 282);
@@ -328,17 +316,36 @@
             this.comboPais.Size = new System.Drawing.Size(121, 21);
             this.comboPais.TabIndex = 32;
             // 
+            // nroCalleBox
+            // 
+            this.nroCalleBox.Location = new System.Drawing.Point(377, 247);
+            this.nroCalleBox.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nroCalleBox.Name = "nroCalleBox";
+            this.nroCalleBox.Size = new System.Drawing.Size(120, 20);
+            this.nroCalleBox.TabIndex = 33;
+            // 
+            // pisoBox
+            // 
+            this.pisoBox.Location = new System.Drawing.Point(107, 285);
+            this.pisoBox.Name = "pisoBox";
+            this.pisoBox.Size = new System.Drawing.Size(120, 20);
+            this.pisoBox.TabIndex = 34;
+            // 
             // AltaPersonaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(523, 396);
+            this.Controls.Add(this.pisoBox);
+            this.Controls.Add(this.nroCalleBox);
             this.Controls.Add(this.comboPais);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Aceptar);
             this.Controls.Add(this.depBox);
-            this.Controls.Add(this.pisoBox);
-            this.Controls.Add(this.nroCalleBox);
             this.Controls.Add(this.calleBox);
             this.Controls.Add(this.localidadBox);
             this.Controls.Add(this.label16);
@@ -366,8 +373,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AltaPersonaForm";
-            this.Text = "Datos nuevos";
+            this.Text = "Complete sus datos";
             this.Load += new System.EventHandler(this.AltaPersonaForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nroCalleBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisoBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,12 +410,12 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox localidadBox;
         private System.Windows.Forms.TextBox calleBox;
-        private System.Windows.Forms.TextBox nroCalleBox;
-        private System.Windows.Forms.TextBox pisoBox;
         private System.Windows.Forms.TextBox depBox;
         private System.Windows.Forms.Button Aceptar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboPais;
+        private System.Windows.Forms.NumericUpDown nroCalleBox;
+        private System.Windows.Forms.NumericUpDown pisoBox;
 
     }
 }

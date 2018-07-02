@@ -39,5 +39,52 @@ namespace FrbaHotel.Control
 
             return rolesAsignados;
         }
+
+        public void altaRol(Rol nuevoRol)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaRol", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_AltaRol
+            spCommand.Parameters.Add(new SqlParameter("@nombre", nuevoRol.nombre));
+            DataTable nuevoRolTable = new DataTable();
+            nuevoRolTable.Load(spCommand.ExecuteReader());
+            int id_nuevoRol = 0;
+            if (nuevoRolTable != null && nuevoRolTable.Rows != null)
+            {
+                foreach (DataRow row in nuevoRolTable.Rows)
+                {
+                    id_nuevoRol = int.Parse(row["id_rol"].ToString());
+                }
+            }
+            if (id_nuevoRol!=0){
+                connection.Close();
+                throw new System.ArgumentException("Error al crear nuevo Rol. Reintentelo");
+            }
+            connection.Close();
+            this.agregarFuncionalidesARol(id_nuevoRol, nuevoRol.lista_funcionalidades);
+            
+        }
+
+        private void agregarFuncionalidesARol(int id_nuevoRol, List<Funcionalidad> funcionalidades)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_NuevoFuncionalidadXRol", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+
+            foreach (Funcionalidad func in funcionalidades)
+            {
+                spCommand.Parameters.Clear();
+                //agrego parametros al SP_NuevoFuncionalidadXRol
+                spCommand.Parameters.Add(new SqlParameter("@idHotel", id_nuevoRol));
+                spCommand.Parameters.Add(new SqlParameter("@idFuncionalidad", func.id_funcionalidad));
+                spCommand.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
     }
 }

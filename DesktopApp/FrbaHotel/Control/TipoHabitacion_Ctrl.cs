@@ -15,7 +15,7 @@ namespace FrbaHotel.Control
         public DataTable getAll()
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
-            SqlCommand scTipos = new SqlCommand("CUATROGDD2018.SP_getAll_TiposHabitaciones", sqlConnection);
+            SqlCommand scTipos = new SqlCommand("CUATROGDD2018.SP_GetAll_TiposHabitaciones", sqlConnection);
             DataTable dtTipos = new DataTable();
             sqlConnection.Open();
             dtTipos.Load(scTipos.ExecuteReader());

@@ -31,10 +31,10 @@ namespace FrbaHotel.AbmPersona
             InitializeComponent();
         }
 
-        public AltaPersonaForm(Persona persona)
+        public AltaPersonaForm(Persona persona,int id_usuarioCambio)
         {
             InitializeComponent();
-            idUsuario = InfoGlobal.id_usuarioGUEST;
+            idUsuario = id_usuarioCambio;
             //se modifican los datos, se carga el formulario con los datos de persona
             comboTipoDni.SelectedText = persona.tipo_documento;
             dniBox.Text = persona.nro_documento.ToString();

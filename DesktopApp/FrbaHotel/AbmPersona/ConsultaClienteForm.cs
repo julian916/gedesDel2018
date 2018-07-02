@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmPersona
 {
     public partial class ConsultaClienteForm : Form
     {
+        private Persona_Ctrl personaCtrl = new Persona_Ctrl();
         public ConsultaClienteForm()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace FrbaHotel.AbmPersona
 
         private void buscarBtn_Click(object sender, EventArgs e)
         {
-            Persona_Ctrl personaCtrl = new Persona_Ctrl();
+           
             Persona clienteABuscar = new Persona();
             clienteABuscar.apellido = apellidoBox.Text;
             clienteABuscar.nombre = nombreBox.Text;
@@ -53,11 +54,12 @@ namespace FrbaHotel.AbmPersona
             if (clientesEncontrados.Count == 0)
             {
                 MessageBox.Show("No se encontraron resultados.");
+                newClienteBtn.Enabled = true;
             }
             else
             {
+
                 dataClientesEncontrados.DataSource = clientesEncontrados;
-                newClienteBtn.Enabled = true;
                 modificarBtn.Enabled = true;
             }
 
@@ -77,13 +79,44 @@ namespace FrbaHotel.AbmPersona
             {
                 foreach (DataGridViewRow row in dataClientesEncontrados.SelectedRows)
                 {
-                    AltaPersonaForm editForm = new AltaPersonaForm((Persona)row.DataBoundItem);
+                    Persona personaSeleccionada = (Persona)row.DataBoundItem;
+                    if (personaSeleccionada.estado == "Inconsistente")
+                    {
+                        MessageBox.Show("El cliente se encuentra en un estado Inconsistente.\nModifique Tipo Documento, Nro Documento y/o Email para habilitarlo");
+                    }
+                    
+                    AltaPersonaForm editForm = new AltaPersonaForm(personaSeleccionada, InfoGlobal.id_usuarioGUEST);
                     editForm.ShowDialog();
                 }
             }
             else
             {
                 MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
+            }
+        }
+
+        private void dataClientesEncontrados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == dataClientesEncontrados.Columns[7].Index)
+                {
+                    //obtengo la fila del cliente a deshabilitar
+                    Persona cliente = (Persona)dataClientesEncontrados.Rows[e.RowIndex].DataBoundItem;
+                    if (cliente.estado != "Inconsistente")
+                    {
+                        personaCtrl.habilitarDeshabilitarCliente(cliente);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente se encuentra en un estado Inconsistente.\n No se puede habilitar ni desahabilitar.");
+                    }
+                    
+                }
+            }
+            catch (Exception exc){
+                MessageBox.Show(exc.Message);
             }
         }
 

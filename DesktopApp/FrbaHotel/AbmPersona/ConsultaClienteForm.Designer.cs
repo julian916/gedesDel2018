@@ -56,7 +56,7 @@
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deshabilitarCliente = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cambiarEstadoCliente = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataClientesEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
@@ -104,12 +104,13 @@
             this.apellidoDataGridViewTextBoxColumn,
             this.telefonoDataGridViewTextBoxColumn,
             this.estadoDataGridViewTextBoxColumn,
-            this.deshabilitarCliente});
+            this.cambiarEstadoCliente});
             this.dataClientesEncontrados.DataSource = this.personasBindingSource;
             this.dataClientesEncontrados.Location = new System.Drawing.Point(78, 190);
             this.dataClientesEncontrados.Name = "dataClientesEncontrados";
-            this.dataClientesEncontrados.Size = new System.Drawing.Size(842, 150);
+            this.dataClientesEncontrados.Size = new System.Drawing.Size(856, 150);
             this.dataClientesEncontrados.TabIndex = 2;
+            this.dataClientesEncontrados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataClientesEncontrados_CellContentClick);
             // 
             // gD1C2018DataSet
             // 
@@ -288,11 +289,13 @@
             this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             // 
-            // deshabilitarCliente
+            // cambiarEstadoCliente
             // 
-            this.deshabilitarCliente.HeaderText = "Deshabilitar";
-            this.deshabilitarCliente.Name = "deshabilitarCliente";
-            this.deshabilitarCliente.ReadOnly = true;
+            this.cambiarEstadoCliente.FillWeight = 115F;
+            this.cambiarEstadoCliente.HeaderText = "Deshabilitar/Habilitar";
+            this.cambiarEstadoCliente.Name = "cambiarEstadoCliente";
+            this.cambiarEstadoCliente.ReadOnly = true;
+            this.cambiarEstadoCliente.Width = 115;
             // 
             // ConsultaClienteForm
             // 
@@ -306,6 +309,7 @@
             this.Controls.Add(this.buscarBtn);
             this.Controls.Add(this.panel1);
             this.Name = "ConsultaClienteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar clientes";
             this.Load += new System.EventHandler(this.ConsultaClienteForm_Load);
             this.panel1.ResumeLayout(false);
@@ -346,6 +350,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn deshabilitarCliente;
+        private System.Windows.Forms.DataGridViewButtonColumn cambiarEstadoCliente;
     }
 }

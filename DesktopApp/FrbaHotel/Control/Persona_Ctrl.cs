@@ -17,9 +17,7 @@ namespace FrbaHotel.Control
              if (this.esAltaDeCliente(idUsuario))
             {
                 this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email);
-            };
-
-
+            }
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             DataTable dataPersonas = new DataTable("datosPersona");
 
@@ -63,7 +61,7 @@ namespace FrbaHotel.Control
 
         private void validarDatosPersona(string tipo, int dni, string emailPer)
         {
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ValidarDatosPersona", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             spCommand.Parameters.Clear();
@@ -145,6 +143,24 @@ namespace FrbaHotel.Control
             persona.estado = row["estado"].ToString();
             persona.id_usuario = int.Parse(row["id_usuario"].ToString());
             return persona;
+        }
+
+        public void habilitarDeshabilitarCliente(Persona cliente)
+        {
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_HabilitarDeshabilitarCliente", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            spCommand.Parameters.Clear();
+            spCommand.Parameters.Add(new SqlParameter("@idPersona", cliente.id_persona));
+
+            sqlConnection.Open();
+
+            int filasAfectadas = spCommand.ExecuteNonQuery();
+            if (filasAfectadas==0){
+                sqlConnection.Close();
+                throw new System.ArgumentException("No se pudo cambiar estado del cliente. Reintentelo");
+            }
+            sqlConnection.Close();
         }
     }
 }

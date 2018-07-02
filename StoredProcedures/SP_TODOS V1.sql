@@ -7,17 +7,17 @@ GO
 
 
 /* ALTA HABITACION */
-	CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHabitacion]
-		@idTipoHabitacion int,
-		@idHotel int, 
-		@piso numeric(18, 0), 
-		@frente nvarchar(50), 
-		@nroHab numeric(18, 0), 
-		@comodidades varchar(255)
-	AS
-		INSERT INTO [CUATROGDD2018].[Habitaciones] ( id_tipo_habitacion, id_hotel, piso, frente, nro_habitacion, comodidades)
-		VALUES ( @idTipoHabitacion, @idHotel, @piso, @frente, @nroHab, @comodidades)
-	GO
+CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHabitacion]
+	@idTipoHabitacion int,
+	@idHotel int, 
+	@piso numeric(18, 0), 
+	@frente nvarchar(50), 
+	@nroHab numeric(18, 0), 
+	@comodidades varchar(255)
+AS
+	INSERT INTO [CUATROGDD2018].[Habitaciones] ( id_tipo_habitacion, id_hotel, piso, frente, nro_habitacion, comodidades)
+	VALUES ( @idTipoHabitacion, @idHotel, @piso, @frente, @nroHab, @comodidades)
+GO
 
 /* ALTA HOTEL */
 CREATE PROCEDURE [CUATROGDD2018].[SP_Alta_Hotel]
@@ -390,11 +390,7 @@ BEGIN
 END
 GO
 
-/*##########################################################################################################*/
-/*										OTROS SP													*/
-/*##########################################################################################################*/
-
-/*SP DESHABILITAR UN USUARIO */
+/*SP UPDATE- DESHABILITAR UN USUARIO */
 
 CREATE PROCEDURE CUATROGDD2018.SP_bloquerUsuario 
 	@idUsuario int
@@ -402,10 +398,9 @@ AS
 	UPDATE CUATROGDD2018.Usuarios  
 	SET habilitado = 'False' 
 	WHERE id_usuario = @idUsuario;  
-
 GO
 
-/* SP HABILITAR O DESHABILITAR CLIENTE */
+/* SP UPDATE- HABILITAR O DESHABILITAR CLIENTE */
 
 CREATE PROCEDURE [CUATROGDD2018].[SP_HabilitarDeshabilitarCliente] 
 	@idPersona int
@@ -417,9 +412,13 @@ BEGIN
 						ELSE estado
 						END
 	WHERE CUATROGDD2018.Personas.id_persona=@idPersona	
-
 END
 GO
+
+/*##########################################################################################################*/
+/*										OTROS SP													*/
+/*##########################################################################################################*/
+
 
 /* SP BUSCAR CLIENTE */
 

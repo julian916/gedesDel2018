@@ -382,7 +382,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	SELECT DISTINCT  Habitacion_Tipo_Codigo
 					,Habitacion_Tipo_Descripcion
 					,Habitacion_Tipo_Porcentual
-	FROM [dbo].[Tabla_Maestra]
+	FROM [gd_esquema].[Maestra]
 	GO
 	
 	/*Insertar Hoteles*/
@@ -403,7 +403,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 				,Hotel_CantEstrella
 				,Hotel_Recarga_Estrella
 				,'Argentina'
-	FROM [dbo].[Tabla_Maestra]
+	FROM [gd_esquema].[Maestra]
 	GO
 
 	INSERT INTO [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] (id_usuario,id_rol,id_hotel) VALUES (3,4,1);
@@ -438,7 +438,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 			  ,Habitacion_Piso
 			  ,Habitacion_Frente
 			  ,Habitacion_Tipo_Codigo
-		FROM [dbo].[Tabla_Maestra]
+		FROM [gd_esquema].[Maestra]
 		GROUP BY Hotel_Calle
 				,Hotel_Nro_Calle
 				,Habitacion_Numero
@@ -477,7 +477,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 				,precio_base)
 	SELECT DISTINCT Regimen_Descripcion
 					,Regimen_Precio
-		FROM [dbo].[Tabla_Maestra]
+		FROM [gd_esquema].[Maestra]
 		ORDER BY Regimen_Descripcion
 	GO
 	
@@ -492,7 +492,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 		SELECT Hotel_Calle
 			  ,Hotel_Nro_Calle
 			  ,Regimen_Descripcion 
-		FROM [dbo].[Tabla_Maestra]
+		FROM [gd_esquema].[Maestra]
 		GROUP BY Hotel_Calle
 				,Hotel_Nro_Calle
 				,Regimen_Descripcion
@@ -525,7 +525,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 				Consumible_Codigo
 				,Consumible_Descripcion
 				,Consumible_Precio
-	FROM [dbo].[Tabla_Maestra]
+	FROM [gd_esquema].[Maestra]
 	WHERE Consumible_Codigo IS NOT NULL
 	ORDER BY Consumible_Codigo
 	GO
@@ -544,7 +544,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 				,Cliente_Depto as depto
 				,row_number() OVER(PARTITION BY Cliente_Pasaporte_Nro ORDER BY Cliente_Mail) AS cantDocumentos
 				,row_number() OVER(PARTITION BY [Cliente_Mail] ORDER BY Cliente_Mail) AS cantEmail
-	  FROM [dbo].[Tabla_Maestra]
+	  FROM [gd_esquema].[Maestra]
 	  GROUP BY	Cliente_Pasaporte_Nro
 				,Cliente_Mail
 				,Cliente_Nombre
@@ -646,7 +646,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 			,DATEADD(day,Reserva_Cant_Noches,Reserva_Fecha_Inicio) as  fecha_hasta
 			, 1 as id_estado_reserva
 			,''
-	FROM [dbo].[Tabla_Maestra] 
+	FROM [gd_esquema].[Maestra] 
 	inner join [CUATROGDD2018].Personas per
 	on Cliente_Pasaporte_Nro=per.nro_documento and Cliente_Mail=per.email
 	inner join  [CUATROGDD2018].Regimenes_Estadia re
@@ -659,7 +659,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	/*Insertar Habitaciones por Reserva*/
 	select id_reserva, Habitacion_Numero,Habitacion_Piso,Hotel_Nro_Calle
 	INTO #temp_infoReservas 
-	from [dbo].[Tabla_Maestra]
+	from [gd_esquema].[Maestra]
 	Inner join [CUATROGDD2018].[Reservas] 
 	on id_reserva=Reserva_Codigo
 	group by id_reserva,Habitacion_Numero,Habitacion_Piso,Hotel_Nro_Calle
@@ -696,7 +696,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 			,Estadia_Cant_Noches
 			,1
 			,1
-	FROM [dbo].[Tabla_Maestra] ma
+	FROM [gd_esquema].[Maestra] ma
 	JOIN [CUATROGDD2018].[Habitacion_X_Reserva] hr
 	on ma.Reserva_Codigo=hr.id_reserva
 	where  Estadia_Fecha_Inicio is  not null 
@@ -715,7 +715,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 			,Consumible_Codigo
 			,Item_Factura_Monto
 			,Item_Factura_Cantidad
-	from [dbo].[Tabla_Maestra]
+	from [gd_esquema].[Maestra]
 	inner join [CUATROGDD2018].[Hoteles]
 	on Hotel_Nro_Calle= nro_calle 
 	inner join [CUATROGDD2018].[Habitaciones]
@@ -729,7 +729,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	/*Insertar Estadia por Persona*/
 	INSERT INTO [CUATROGDD2018].[Estadia_X_Persona] ( id_estadia, id_persona)
 	select distinct e.id_estadia, p.id_persona
-	from [dbo].[Tabla_Maestra] m
+	from [gd_esquema].[Maestra] m
 	inner join [CUATROGDD2018].[Personas] p
 	on Cliente_Pasaporte_Nro=nro_documento and Cliente_Mail=email
 	inner join [CUATROGDD2018].[Reservas] r
@@ -768,7 +768,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 		  ,Estadia_Cant_Noches
 		  ,sum(Consumible_Precio) as total_consumible
 	INTO #TEMP_FACTURA     
-	FROM [dbo].[Tabla_Maestra]
+	FROM [gd_esquema].[Maestra]
 	WHERE Factura_Nro IS NOT NULL
 	GROUP BY [Reserva_Codigo]
 		  ,Estadia_Fecha_Inicio

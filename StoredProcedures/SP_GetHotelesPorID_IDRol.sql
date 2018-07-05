@@ -5,8 +5,9 @@ CREATE PROCEDURE [CUATROGDD2018].[SP_GetHotelesPorID_IDRol]
 	@idRol int
 AS
 BEGIN
-	SELECT * FROM [CUATROGDD2018].[Hoteles] H
+	SELECT H.* FROM [CUATROGDD2018].[Hoteles] H
 	INNER JOIN [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] UHR ON UHR.id_Hotel=H.id_Hotel 
 	WHERE UHR.id_usuario = @idUsuario
+	ORDER BY H.nombre
 END
 GO

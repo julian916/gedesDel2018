@@ -105,5 +105,11 @@ namespace FrbaHotel.Login
 
         }
 
+        private void salirBtn_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
     }
 }

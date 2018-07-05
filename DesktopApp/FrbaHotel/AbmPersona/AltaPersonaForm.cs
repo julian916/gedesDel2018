@@ -1,4 +1,5 @@
-﻿using FrbaHotel.Entidades;
+﻿using FrbaHotel.Control;
+using FrbaHotel.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,74 +17,80 @@ namespace FrbaHotel.AbmPersona
 {
     public partial class AltaPersonaForm : Form
     {
-        public Nullable<int> idUsuario;
-        public string emailPersona="";
-        public string tipoDNI;
-        public string nroDocumento;
-
-        public AltaPersonaForm(Nullable<int> idUsuario, string email, string tipoDNI, string nro)
+        int idUsuario;
+        string emailPersona="";
+        string tipoDNI;
+        string nroDocumento;
+        bool esModificacion=false;
+        int id_persona;
+        
+        public AltaPersonaForm(int  idUsuario, string email, string tipoDNI, string nroString)
         {
             this.emailPersona = email;
             this.idUsuario = idUsuario;
             this.tipoDNI = tipoDNI;
-            this.nroDocumento = nro;
+            this.nroDocumento = nroString;
             InitializeComponent();
         }
 
+        public AltaPersonaForm(Persona persona,int id_usuarioCambio)
+        {
+            InitializeComponent();
+            esModificacion = true;
+            idUsuario = id_usuarioCambio;
+            //se modifican los datos, se carga el formulario con los datos de persona
+            comboTipoDni.SelectedText = persona.tipo_documento;
+            dniBox.Text = persona.nro_documento.ToString();
+            nombreBox.Text = persona.nombre;
+            apellidoBox.Text = persona.apellido;
+            emailBox.Text = persona.email;
+            telBox.Text = persona.telefono.ToString();
+            comboNacionalidad.SelectedText = persona.nacionalidad;
+            calleBox.Text = persona.direccion;
+            nroCalleBox.Value = persona.nro_calle;
+            pisoBox.Value = persona.piso;
+            depBox.Text = persona.departamento;
+            localidadBox.Text = persona.localidad;
+            fechaBox.Value = persona.fecha_nacimiento;
+            id_persona = persona.id_persona;
+ 
+        }
 
         private void Aceptar_Click(object sender, EventArgs e) {
-           
 
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
-                        
-            //creo un DataTable para obtener los datos de la persona y pasarlo como parametro al storedProcedure de alta
-            DataTable dataPersonas = new DataTable("datosPersona");         
-
-            dataPersonas.Columns.Add("tipo_documento", typeof(string));
-            dataPersonas.Columns.Add("nro_documento", typeof(Int32));
-            dataPersonas.Columns.Add("email", typeof(string));
-            dataPersonas.Columns.Add("nombre", typeof(string));
-            dataPersonas.Columns.Add("apellido", typeof(string));
-            dataPersonas.Columns.Add("telefono", typeof(Int64));
-            dataPersonas.Columns.Add("nacionalidad", typeof(string));
-            dataPersonas.Columns.Add("calle", typeof(string));
-            dataPersonas.Columns.Add("nro_calle", typeof(string));
-            dataPersonas.Columns.Add("piso", typeof(string));
-            dataPersonas.Columns.Add("departamento", typeof(string));
-            dataPersonas.Columns.Add("localidad", typeof(string));
-            dataPersonas.Columns.Add("pais", typeof(string));
-            dataPersonas.Columns.Add("fecha_nacimiento", typeof(DateTime));
-            dataPersonas.Columns.Add("id_usuario", typeof(Int32));
-
-            //cargo las columnas con los datos ingresados
-            dataPersonas.Rows.Add(comboTipoDni.SelectedValue, dniBox.Text, emailPersona, nombreBox.Text, apellidoBox.Text,
-                telBox.Text, comboNacionalidad.SelectedValue,calleBox.Text,nroCalleBox.Text, pisoBox.Text,
-                depBox.Text,localidadBox.Text,comboPais.Text,fechaBox.Value.Date,idUsuario);
-            if (this.esAltaDeCliente() )
-            {
-                this.validarDatosPersona(comboTipoDni.SelectedValue.ToString(),Convert.ToInt32(dniBox.Text),emailBox.Text,sqlConnection);
-            };
-            
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_altaPersona", sqlConnection);
-            spCommand.CommandType = CommandType.StoredProcedure;
-            sqlConnection.Open();
-            spCommand.Parameters.Clear();
-            
-            SqlParameter parametroDatosPersona = new SqlParameter();
-            //The parameter for the SP must be of SqlDbType.Structured 
-            parametroDatosPersona.ParameterName = "@datosIngresadosPersona";
-            parametroDatosPersona.SqlDbType = System.Data.SqlDbType.Structured;
-            parametroDatosPersona.Value = dataPersonas;
-            spCommand.Parameters.Add(parametroDatosPersona);
+            Persona_Ctrl personaCtrl = new Persona_Ctrl();
+            Persona nuevaPersona = new Persona();
+            nuevaPersona.tipo_documento = (string)comboTipoDni.SelectedValue;
+            nuevaPersona.nro_documento = Convert.ToInt32(dniBox.Text);
+            nuevaPersona.email = emailBox.Text;
+            nuevaPersona.nombre = nombreBox.Text;
+            nuevaPersona.apellido = apellidoBox.Text;
+            nuevaPersona.telefono = Int32.Parse(telBox.Text);
+            nuevaPersona.nacionalidad = (string)comboNacionalidad.SelectedValue;
+            nuevaPersona.direccion = calleBox.Text;
+            nuevaPersona.nro_calle = (int)nroCalleBox.Value;
+            nuevaPersona.piso = (int)pisoBox.Value;
+            nuevaPersona.departamento = depBox.Text;
+            nuevaPersona.localidad = localidadBox.Text;
+            nuevaPersona.pais = (string)comboPais.SelectedValue;
+            nuevaPersona.fecha_nacimiento = fechaBox.Value;  
 
             try
             {
-                int filasAfectadas = spCommand.ExecuteNonQuery();
-                if (filasAfectadas == 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
+                int filasAfectadas;
+                if (esModificacion)
+                {
+                    nuevaPersona.id_persona = id_persona;
+                    filasAfectadas = personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                }
+                else {
+                    filasAfectadas = personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                }
+                
+                if (filasAfectadas > 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
                 {
                     MessageBox.Show("Registrado ingresado correctamente.");
                     this.Hide();
-                    
                 }
                 else
                 {
@@ -95,49 +102,7 @@ namespace FrbaHotel.AbmPersona
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                MessageBox.Show("Error al cargar datos personales. Reintentelo. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            finally
-            {
-                // Cierro la Conexión.
-                sqlConnection.Close();
-            }
-
-        }
-
-        private void validarDatosPersona(string tipo,int dni,string emailPer, SqlConnection conSql)
-            {
- 	            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_validarDatosPersona", conSql);
-                spCommand.CommandType = CommandType.StoredProcedure;
-                spCommand.Parameters.Clear();
-                spCommand.Parameters.Add(new SqlParameter("@tipoDNI", tipo));
-                spCommand.Parameters.Add(new SqlParameter("@nroDNI", dni));
-                spCommand.Parameters.Add(new SqlParameter("@emailPer", emailPer));
-            
-                try
-                {
-                    int esValido = (int)spCommand.ExecuteScalar(); // es valido si es 1
-                    if (esValido != 1)
-                    {
-          
-                      throw new System.ArgumentException("Existe un cliente con la misma identificacion. Reingrese los campos en blanco");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    MessageBox.Show("Error al cargar datos personales del Cliente. Reintentelo. ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                finally
-                {
-                    // Cierro la Conexión.
-                    conSql.Close();
-                }
-         }
-
-        private bool esAltaDeCliente()
-        {
-            return idUsuario == InfoGlobal.id_usuarioGUEST;
         }
 
         private void AltaPersonaForm_Load(object sender, EventArgs e)
@@ -146,7 +111,8 @@ namespace FrbaHotel.AbmPersona
             comboTipoDni.DataSource = new TiposDocumentos().getAll();
             comboNacionalidad.DataSource = new Paises().getAll();
             comboPais.DataSource = new Paises().getAll();
-            if (esAltaDeCliente()) { //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
+            if (idUsuario!=InfoGlobal.id_usuarioGUEST)
+            { //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
                 emailBox.ReadOnly=true;
                 comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
                 dniBox.ReadOnly = true;
@@ -155,9 +121,12 @@ namespace FrbaHotel.AbmPersona
                 dniBox.Text= nroDocumento;
 
             };
-            
         }
 
-  
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
     }
 }

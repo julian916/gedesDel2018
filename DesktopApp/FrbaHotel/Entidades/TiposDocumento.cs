@@ -12,6 +12,7 @@ namespace FrbaHotel.Entidades
         
         public TiposDocumentos()
         {
+            listTiposDocumentos.Add("");
             listTiposDocumentos.Add("DNI");
             listTiposDocumentos.Add("LE");
             listTiposDocumentos.Add("Carnet Ext");

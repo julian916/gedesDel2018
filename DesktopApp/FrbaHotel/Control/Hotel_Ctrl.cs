@@ -77,7 +77,7 @@ namespace FrbaHotel.Control
                //agrego parametros al SP_NuevoRegimenXHotel
                spCommand.Parameters.Add(new SqlParameter("@idHotel", id_nuevoHotel));
                spCommand.Parameters.Add(new SqlParameter("@descripcion", descripcion));
-             
+               spCommand.ExecuteNonQuery();
            }
 
            connection.Close();
@@ -105,11 +105,13 @@ namespace FrbaHotel.Control
                    hotelEncontrado.calle = Convert.ToString(row["calle"]);
                    hotelEncontrado.nro_calle = int.Parse(row["nro_calle"].ToString());
                    hotelEncontrado.cant_estrellas = int.Parse(row["cant_estrellas"].ToString());
-                   hotelEncontrado.recarga_estrella = decimal.Parse(row["recarga_estrella"].ToString());
+                   hotelEncontrado.recarga_estrella = decimal.Parse(row["recarga_estrellas"].ToString());
                    hotelEncontrado.email = Convert.ToString(row["email"]);
                    hotelEncontrado.telefono = Convert.ToString(row["telefono"]);
                    hotelEncontrado.pais = Convert.ToString(row["pais"]);
-                   hotelEncontrado.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+                   if (row["fecha_creacion"] != DBNull.Value) {
+                       hotelEncontrado.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+                   }
 
                }
            }
@@ -118,7 +120,7 @@ namespace FrbaHotel.Control
            return hotelEncontrado;
        }
 
-       internal List<Hotel> obtenerHotelesPorID_IDRol(int id_usuario, int id_RolSeleccionado)
+       public List<Hotel> obtenerHotelesPorID_IDRol(int id_usuario, int id_RolSeleccionado)
        {
            var hotelesAsignados = new List<Hotel>();
            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
@@ -145,5 +147,48 @@ namespace FrbaHotel.Control
 
            return hotelesAsignados;
        }
+
+       public List<Hotel> getAllHoteles()
+       {
+           var todosLosHoteles = new List<Hotel>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllHoteles", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_GetAllHoteles
+
+           DataTable hotelesTable = new DataTable();
+           hotelesTable.Load(spCommand.ExecuteReader());
+           if (hotelesTable != null && hotelesTable.Rows != null)
+           {
+               foreach (DataRow row in hotelesTable.Rows)
+               {
+                   Hotel hotel = this.BuidHotel(row);
+                   todosLosHoteles.Add(hotel);
+               }
+           }
+
+           return todosLosHoteles;
+       }
+
+       private Hotel BuidHotel(DataRow row)
+       {
+           Hotel hotel = new Hotel();
+           hotel.id_hotel = Convert.ToInt32(row["id_hotel"].ToString());
+           hotel.nombre = Convert.ToString(row["nombre"]);
+           hotel.calle = Convert.ToString(row["domicilio"]);
+           hotel.cant_estrellas = Convert.ToInt32(row["cant_estrellas"]);
+           hotel.ciudad = Convert.ToString(row["ciudad"]);
+           hotel.email = Convert.ToString(row["email"]);
+           hotel.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+           hotel.nro_calle = Convert.ToInt32(row["nro_calle"]);
+           hotel.pais = Convert.ToString(row["pais"]);
+           hotel.recarga_estrella = Convert.ToInt32(row["recarga_estrella"]);
+           hotel.telefono = Convert.ToString(row["telefono"]);
+           return hotel;
+       }
+
+      
     }
 }

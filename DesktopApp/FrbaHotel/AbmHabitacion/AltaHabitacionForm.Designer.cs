@@ -34,7 +34,6 @@
             this.pisoNumericBox = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.tipoHabitacionCombo = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.frenteBox = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comodidadesBox = new System.Windows.Forms.TextBox();
@@ -97,23 +96,16 @@
             this.tipoHabitacionCombo.Size = new System.Drawing.Size(121, 21);
             this.tipoHabitacionCombo.TabIndex = 8;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(108, 175);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Vista a Frente";
-            // 
             // frenteBox
             // 
             this.frenteBox.AutoSize = true;
-            this.frenteBox.Location = new System.Drawing.Point(259, 175);
+            this.frenteBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.frenteBox.Location = new System.Drawing.Point(111, 175);
             this.frenteBox.Name = "frenteBox";
-            this.frenteBox.Size = new System.Drawing.Size(80, 17);
+            this.frenteBox.Size = new System.Drawing.Size(91, 17);
             this.frenteBox.TabIndex = 10;
-            this.frenteBox.Text = "checkBox1";
+            this.frenteBox.Text = "Vista a Frente";
+            this.frenteBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.frenteBox.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -148,7 +140,7 @@
             // 
             this.infoHotelBox.AutoSize = true;
             this.infoHotelBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoHotelBox.Location = new System.Drawing.Point(280, 14);
+            this.infoHotelBox.Location = new System.Drawing.Point(173, 14);
             this.infoHotelBox.Name = "infoHotelBox";
             this.infoHotelBox.Size = new System.Drawing.Size(41, 13);
             this.infoHotelBox.TabIndex = 3;
@@ -182,6 +174,7 @@
             this.cancelarButton.TabIndex = 15;
             this.cancelarButton.Text = "Cancelar";
             this.cancelarButton.UseVisualStyleBackColor = true;
+            this.cancelarButton.Click += new System.EventHandler(this.cancelarButton_Click);
             // 
             // AltaHabitacionForm
             // 
@@ -194,7 +187,6 @@
             this.Controls.Add(this.comodidadesBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.frenteBox);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.tipoHabitacionCombo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pisoNumericBox);
@@ -221,7 +213,6 @@
         private System.Windows.Forms.NumericUpDown pisoNumericBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox tipoHabitacionCombo;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox frenteBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox comodidadesBox;

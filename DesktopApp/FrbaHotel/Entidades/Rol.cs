@@ -11,6 +11,11 @@ namespace FrbaHotel.Entidades
         public int id_rol { get; set; }
         public string nombre { get; set; }
         public bool habilitado { get; set; }
-        
+        public List<Funcionalidad> lista_funcionalidades { get; set; }
+
+        public Rol()
+        {
+            lista_funcionalidades = new List<Funcionalidad>();
+        }
     }
 }

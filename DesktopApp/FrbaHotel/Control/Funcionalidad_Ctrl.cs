@@ -65,5 +65,27 @@ namespace FrbaHotel.Control
             func.descripcion_funcionalidad = Convert.ToString(row["descripcion"]);
             return func;
         }
+
+        public List<Funcionalidad> getAllFuncionalidades()
+        {
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllFuncionalidades", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            var lista_funcionalidades = new List<Funcionalidad>();
+            DataTable resultTable = new DataTable();
+            resultTable.Load(spCommand.ExecuteReader());
+
+            if (resultTable != null && resultTable.Rows != null)
+            {
+                foreach (DataRow row in resultTable.Rows)
+                {
+                    var funcionalidad = BuildFuncionalidad(row);
+                    lista_funcionalidades.Add(funcionalidad);
+                }
+            }
+
+            return lista_funcionalidades;
+        }
     }
 }

@@ -59,6 +59,7 @@ namespace FrbaHotel.AbmHabitacion
                 if (habCtrl.altaHabitacion(nuevaHabitacion) == 1)
                 {
                     MessageBox.Show("Se registró correctamente");
+                    this.Close();
                 }
                 else {
                     MessageBox.Show("Error. No se registró");
@@ -75,6 +76,13 @@ namespace FrbaHotel.AbmHabitacion
         private bool tieneCamposObligatorios()
         {
             return pisoNumericBox.Value != 0 && numHabBox.Value != 0 && tipoHabitacionCombo.SelectedValue != null;
+        }
+
+        private void cancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            
         }
     }
 }

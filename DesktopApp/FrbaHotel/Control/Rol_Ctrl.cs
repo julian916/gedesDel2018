@@ -86,5 +86,37 @@ namespace FrbaHotel.Control
 
             connection.Close();
         }
+
+        public List<Rol> getAllValidos()
+        {
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllRolesValidos", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            var lista_Roles = new List<Rol>();
+            DataTable resultTable = new DataTable();
+            resultTable.Load(spCommand.ExecuteReader());
+
+            if (resultTable != null && resultTable.Rows != null)
+            {
+                foreach (DataRow row in resultTable.Rows)
+                {
+                    var funcionalidad = BuildRol(row);
+                    lista_Roles.Add(funcionalidad);
+                }
+            }
+
+            return lista_Roles;
+        }
+
+        private Rol BuildRol(DataRow row)
+        {
+            Rol nuevoRol = new Rol();
+            nuevoRol.id_rol = Convert.ToInt32(row["id_rol"]);
+            nuevoRol.nombre = Convert.ToString(row["nonbre"]);
+            nuevoRol.habilitado = Convert.ToBoolean(row["habilitado"]);
+
+            return nuevoRol;
+        }
     }
 }

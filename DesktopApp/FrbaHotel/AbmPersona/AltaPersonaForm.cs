@@ -17,11 +17,13 @@ namespace FrbaHotel.AbmPersona
 {
     public partial class AltaPersonaForm : Form
     {
-        public int idUsuario;
-        public string emailPersona="";
-        public string tipoDNI;
-        public string nroDocumento;
-
+        int idUsuario;
+        string emailPersona="";
+        string tipoDNI;
+        string nroDocumento;
+        bool esModificacion=false;
+        int id_persona;
+        
         public AltaPersonaForm(int  idUsuario, string email, string tipoDNI, string nroString)
         {
             this.emailPersona = email;
@@ -34,6 +36,7 @@ namespace FrbaHotel.AbmPersona
         public AltaPersonaForm(Persona persona,int id_usuarioCambio)
         {
             InitializeComponent();
+            esModificacion = true;
             idUsuario = id_usuarioCambio;
             //se modifican los datos, se carga el formulario con los datos de persona
             comboTipoDni.SelectedText = persona.tipo_documento;
@@ -49,6 +52,7 @@ namespace FrbaHotel.AbmPersona
             depBox.Text = persona.departamento;
             localidadBox.Text = persona.localidad;
             fechaBox.Value = persona.fecha_nacimiento;
+            id_persona = persona.id_persona;
  
         }
 
@@ -73,8 +77,17 @@ namespace FrbaHotel.AbmPersona
 
             try
             {
-                int filasAfectadas= personaCtrl.altaPersona(nuevaPersona, idUsuario);
-                if (filasAfectadas == 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
+                int filasAfectadas;
+                if (esModificacion)
+                {
+                    nuevaPersona.id_persona = id_persona;
+                    filasAfectadas = personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                }
+                else {
+                    filasAfectadas = personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                }
+                
+                if (filasAfectadas > 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
                 {
                     MessageBox.Show("Registrado ingresado correctamente.");
                     this.Hide();
@@ -108,6 +121,12 @@ namespace FrbaHotel.AbmPersona
                 dniBox.Text= nroDocumento;
 
             };
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
         }
     }
 }

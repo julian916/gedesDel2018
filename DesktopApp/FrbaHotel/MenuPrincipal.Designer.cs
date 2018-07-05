@@ -43,7 +43,6 @@
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionBajaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.desbloquearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,8 +168,7 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoUsuarioToolStripMenuItem,
-            this.modificacionBajaToolStripMenuItem1,
-            this.desbloquearUsuarioToolStripMenuItem});
+            this.modificacionBajaToolStripMenuItem1});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
@@ -187,12 +185,7 @@
             this.modificacionBajaToolStripMenuItem1.Name = "modificacionBajaToolStripMenuItem1";
             this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
             this.modificacionBajaToolStripMenuItem1.Text = "Consultar Usuario";
-            // 
-            // desbloquearUsuarioToolStripMenuItem
-            // 
-            this.desbloquearUsuarioToolStripMenuItem.Name = "desbloquearUsuarioToolStripMenuItem";
-            this.desbloquearUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.desbloquearUsuarioToolStripMenuItem.Text = "Desbloquear Usuario";
+            this.modificacionBajaToolStripMenuItem1.Click += new System.EventHandler(this.modificacionBajaToolStripMenuItem1_Click);
             // 
             // rolToolStripMenuItem
             // 
@@ -206,14 +199,14 @@
             // nuevoRolToolStripMenuItem
             // 
             this.nuevoRolToolStripMenuItem.Name = "nuevoRolToolStripMenuItem";
-            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nuevoRolToolStripMenuItem.Text = "Nuevo Rol";
             this.nuevoRolToolStripMenuItem.Click += new System.EventHandler(this.nuevoRolToolStripMenuItem_Click);
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.modificarRolToolStripMenuItem.Text = "Modificar Rol";
             // 
             // estadísticasToolStripMenuItem
@@ -396,7 +389,6 @@
         private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desbloquearUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelesConMasConsumiblesFacturadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotelesConMásDíasSinServicioToolStripMenuItem;

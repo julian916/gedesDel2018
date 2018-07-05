@@ -81,17 +81,23 @@
     <Compile Include="AbmRol\AltaRolForm.Designer.cs">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmUsuario\AltaUsuarioForm.cs">
+    <Compile Include="AbmUsuario\AltaModUsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmUsuario\AltaUsuarioForm.Designer.cs">
-      <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
+    <Compile Include="AbmUsuario\AltaModUsuarioForm.Designer.cs">
+      <DependentUpon>AltaModUsuarioForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmUsuario\ModBajaUsuarioForm.cs">
+    <Compile Include="AbmUsuario\InfoUsuariosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmUsuario\ModBajaUsuarioForm.Designer.cs">
-      <DependentUpon>ModBajaUsuarioForm.cs</DependentUpon>
+    <Compile Include="AbmUsuario\InfoUsuariosForm.Designer.cs">
+      <DependentUpon>InfoUsuariosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuario\ValidacionPersonaUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuario\ValidacionPersonaUserForm.Designer.cs">
+      <DependentUpon>ValidacionPersonaUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -120,11 +126,7 @@
     <Compile Include="Entidades\RegimenEstadia.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
-    <Compile Include="GD1C2018DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,11 +208,14 @@
     <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
       <DependentUpon>AltaRolForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmUsuario\AltaUsuarioForm.resx">
-      <DependentUpon>AltaUsuarioForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmUsuario\AltaModUsuarioForm.resx">
+      <DependentUpon>AltaModUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmUsuario\ModBajaUsuarioForm.resx">
-      <DependentUpon>ModBajaUsuarioForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmUsuario\InfoUsuariosForm.resx">
+      <DependentUpon>InfoUsuariosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuario\ValidacionPersonaUserForm.resx">
+      <DependentUpon>ValidacionPersonaUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
@@ -240,17 +245,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="GD1C2018DataSet.xsc">
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GD1C2018DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GD1C2018DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GD1C2018DataSet.xss">
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

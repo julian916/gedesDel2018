@@ -88,6 +88,8 @@ namespace FrbaHotel.AbmPersona
                     AltaPersonaForm editForm = new AltaPersonaForm(personaSeleccionada, InfoGlobal.id_usuarioGUEST);
                     editForm.ShowDialog();
                 }
+                this.Dispose();
+                this.Close();
             }
             else
             {

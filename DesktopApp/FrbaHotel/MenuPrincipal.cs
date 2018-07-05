@@ -101,7 +101,7 @@ namespace FrbaHotel
 
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaUsuarioForm usuarioAlta = new AltaUsuarioForm();
+            AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
             usuarioAlta.Show();
         }
 
@@ -164,6 +164,13 @@ namespace FrbaHotel
         {
             ConsultaClienteForm consultaPersona = new ConsultaClienteForm();
             consultaPersona.Show();
+        }
+
+        private void modificacionBajaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            InfoUsuariosForm modUsuario = new InfoUsuariosForm();
+            modUsuario.Show();
+
         }
 
       

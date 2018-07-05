@@ -14,11 +14,31 @@ namespace FrbaHotel.Control
     {
         public int altaPersona(Persona nuevaPersona, int idUsuario)
         {
-             if (this.esAltaDeCliente(idUsuario))
+            if (idUsuario == InfoGlobal.id_usuarioGUEST)
             {
                 this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email);
             }
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
+           
+
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaPersona", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            spCommand.Parameters.Clear();
+
+            SqlParameter parametroDatosPersona = new SqlParameter();
+            parametroDatosPersona.ParameterName = "@datosIngresadosPersona";
+            parametroDatosPersona.SqlDbType = System.Data.SqlDbType.Structured;
+            parametroDatosPersona.Value = dataPersonas;
+            spCommand.Parameters.Add(parametroDatosPersona);
+
+            int filasAfectadas = spCommand.ExecuteNonQuery();
+            return filasAfectadas;
+        }
+
+        private DataTable generarTablaDatosPersona(Persona nuevaPersona, int idUsuario)
+        {
             DataTable dataPersonas = new DataTable("datosPersona");
 
             dataPersonas.Columns.Add("tipo_documento", typeof(string));
@@ -38,28 +58,15 @@ namespace FrbaHotel.Control
             dataPersonas.Columns.Add("id_usuario", typeof(Int32));
 
             //cargo las columnas con los datos ingresados
-            dataPersonas.Rows.Add( nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email,nuevaPersona.nombre,
-                                    nuevaPersona.apellido,nuevaPersona.telefono,nuevaPersona.nacionalidad,nuevaPersona.direccion,
-                                    nuevaPersona.nro_calle,nuevaPersona.piso,nuevaPersona.departamento,nuevaPersona.localidad,nuevaPersona.pais,
-                                    nuevaPersona.fecha_nacimiento,idUsuario);
-                
-           
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaPersona", sqlConnection);
-            spCommand.CommandType = CommandType.StoredProcedure;
-            sqlConnection.Open();
-            spCommand.Parameters.Clear();
+            dataPersonas.Rows.Add(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email, nuevaPersona.nombre,
+                                    nuevaPersona.apellido, nuevaPersona.telefono, nuevaPersona.nacionalidad, nuevaPersona.direccion,
+                                    nuevaPersona.nro_calle, nuevaPersona.piso, nuevaPersona.departamento, nuevaPersona.localidad, nuevaPersona.pais,
+                                    nuevaPersona.fecha_nacimiento, idUsuario);
 
-            SqlParameter parametroDatosPersona = new SqlParameter();
-            parametroDatosPersona.ParameterName = "@datosIngresadosPersona";
-            parametroDatosPersona.SqlDbType = System.Data.SqlDbType.Structured;
-            parametroDatosPersona.Value = dataPersonas;
-            spCommand.Parameters.Add(parametroDatosPersona);
-
-            int filasAfectadas = spCommand.ExecuteNonQuery();
-            return filasAfectadas;
+            return dataPersonas;
         }
 
-        private void validarDatosPersona(string tipo, int dni, string emailPer)
+        public void validarDatosPersona(string tipo, int dni, string emailPer)
         {
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ValidarDatosPersona", sqlConnection);
@@ -78,12 +85,6 @@ namespace FrbaHotel.Control
             }
 
             sqlConnection.Close();
-        }
-
-
-        private bool esAltaDeCliente(int idUsuario)
-        {
-            return idUsuario == InfoGlobal.id_usuarioGUEST;
         }
 
         public List<Persona> buscarCliente(Persona clienteABuscar)
@@ -161,6 +162,32 @@ namespace FrbaHotel.Control
                 throw new System.ArgumentException("No se pudo cambiar estado del cliente. Reintentelo");
             }
             sqlConnection.Close();
+        }
+
+        public int modificarPersona(Persona nuevaPersona, int idUsuario)
+        {
+            if (idUsuario == InfoGlobal.id_usuarioGUEST)
+            {
+                this.validarDatosPersona(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email);
+            }
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
+
+
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ModificarPersona", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            spCommand.Parameters.Clear();
+
+            SqlParameter parametroDatosPersona = new SqlParameter();
+            parametroDatosPersona.ParameterName = "@datosIngresadosPersona";
+            parametroDatosPersona.SqlDbType = System.Data.SqlDbType.Structured;
+            parametroDatosPersona.Value = dataPersonas;
+            spCommand.Parameters.Add(parametroDatosPersona);
+            spCommand.Parameters.Add(new SqlParameter("@idPersona", nuevaPersona.id_persona));
+
+            int filasAfectadas = spCommand.ExecuteNonQuery();
+            return filasAfectadas;
         }
     }
 }

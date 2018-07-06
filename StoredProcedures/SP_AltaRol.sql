@@ -1,0 +1,21 @@
+CREATE PROCEDURE [CUATROGDD2018].[SP_AltaRol]
+	@nombre varchar(50),
+	@id bit out
+	
+AS
+BEGIN
+	IF EXISTS (SELECT 1 FROM [CUATROGDD2018].[Roles] WHERE [nombre]=@nombre)
+		BEGIN
+			SET @id=-1
+			RETURN
+		END
+	ELSE 
+		BEGIN
+			INSERT INTO [CUATROGDD2018].[Roles] (nombre)
+			VALUES (@nombre)
+
+			SELECT @id=SCOPE_IDENTITY() FROM [CUATROGDD2018].[Roles]
+			RETURN
+		END	
+END
+GO

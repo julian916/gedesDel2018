@@ -43,7 +43,7 @@ BEGIN
 	BEGIN
 			--Habilitar hotel
 			UPDATE [CUATROGDD2018].[Hoteles]
-			SET [habilitado]='False'
+			SET [habilitado]='True'
 			FROM [CUATROGDD2018].[Hoteles] H
 			inner join [CUATROGDD2018].[Historial_Cierres] HC
 			on H.[id_hotel]=HC.[id_hotel] AND H.[id_hotel]=@id_hotel

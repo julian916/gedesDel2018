@@ -229,7 +229,7 @@ Print 'Creacion de tablas'
 		fecha_inicio datetime,
 		cant_noches numeric(18,0) null,
 		id_usuario_checkIn int not null,
-		id_usuario_checkOut int not null, /* recepcionistas */
+		id_usuario_checkOut int null, /* recepcionistas */
 		id_habitacion int not null,
 		id_reserva int not null,
 		FOREIGN KEY (id_habitacion) REFERENCES [CUATROGDD2018].[Habitaciones] ( id_habitacion ),

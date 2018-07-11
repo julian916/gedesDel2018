@@ -12,16 +12,23 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    public partial class AltaHabitacionForm : Form
+    public partial class AltaEditHabForm : Form
     {
-        private int id_hotel_logueado;
+        private int id_hotel_logueado=DatosSesion.id_hotel;
+
         private Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
         private Habitacion_Ctrl habCtrl = new Habitacion_Ctrl();
+        private Habitacion habitacionAModificar;
 
-        public AltaHabitacionForm(int id_hotel)
+        public AltaEditHabForm()
         {
             InitializeComponent();
-            id_hotel_logueado = id_hotel;
+        }
+
+        public AltaEditHabForm(Habitacion habitacionSeleccionada)
+        {
+            InitializeComponent();
+            this.habitacionAModificar = habitacionSeleccionada;
         }
 
         private void AltaHabitacionForm_Load(object sender, EventArgs e)
@@ -49,21 +56,32 @@ namespace FrbaHotel.AbmHabitacion
             if (this.tieneCamposObligatorios())
             {
                 var nuevaHabitacion = new Habitacion();
-                nuevaHabitacion.piso=(int)pisoNumericBox.Value;
-                nuevaHabitacion.nro_habitacion=(int)numHabBox.Value;
-                nuevaHabitacion.frente=frenteBox.Checked;
-                nuevaHabitacion.comodidades=comodidadesBox.Text;
-                nuevaHabitacion.id_hotel=id_hotel_logueado;
-                nuevaHabitacion.id_tipo_habitacion=(int)tipoHabitacionCombo.SelectedValue;
+                nuevaHabitacion.piso = (int)pisoNumericBox.Value;
+                nuevaHabitacion.nro_habitacion = (int)numHabBox.Value;
+                nuevaHabitacion.frente = habCtrl.stringFrenteTo(frenteBox.Checked);
+                nuevaHabitacion.comodidades = comodidadesBox.Text;
+                nuevaHabitacion.id_hotel = id_hotel_logueado;
+                nuevaHabitacion.id_tipo_habitacion = (int)tipoHabitacionCombo.SelectedValue;
 
-                if (habCtrl.altaHabitacion(nuevaHabitacion) == 1)
+                try
                 {
-                    MessageBox.Show("Se registró correctamente");
+                    if (this.esModificacion())
+                    {
+                        tipoHabitacionCombo.Enabled = false;
+                        habCtrl.modificarHabitacion(nuevaHabitacion);
+                        MessageBox.Show("Se modificó correctamente la habitación");
+                    }
+                    else
+                    {
+                        habCtrl.altaHabitacion(nuevaHabitacion);
+                        MessageBox.Show("Se agregó correctamente la habitación");
+                    }
                     this.Close();
                 }
-                else {
-                    MessageBox.Show("Error. No se registró");
-                };
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }                
             }
             else
             {
@@ -71,6 +89,11 @@ namespace FrbaHotel.AbmHabitacion
 
             }
             
+        }
+
+        private bool esModificacion()
+        {
+            return habitacionAModificar != null;
         }
 
         private bool tieneCamposObligatorios()

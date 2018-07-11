@@ -62,7 +62,7 @@ namespace FrbaHotel
             panelReservas.Enabled = true;
 
             menuStrip1.Enabled = true;
-            BindingList<Funcionalidad> f = DatosSesion.funcionalidades;
+            List<Funcionalidad> f = DatosSesion.funcionalidades;
             newReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
             updateReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
             cancelReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Cancelar Reserva");
@@ -102,7 +102,10 @@ namespace FrbaHotel
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
-            usuarioAlta.Show();
+            if (usuarioAlta.continuarAltaMod) {
+                usuarioAlta.Show();
+            }
+            
         }
 
         private void modicarDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,13 +131,13 @@ namespace FrbaHotel
 
         private void altaHotelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaHotelForm hotelForm = new AltaHotelForm(DatosSesion.id_usuario, DatosSesion.id_rol);
+            AltaHotelForm hotelForm = new AltaHotelForm();
             hotelForm.ShowDialog();
         }
 
         private void nuevaHabitaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaHabitacionForm habForm = new AltaHabitacionForm(DatosSesion.id_hotel);
+            AltaEditHabForm habForm = new AltaEditHabForm();
             habForm.ShowDialog();
         }
 
@@ -143,6 +146,7 @@ namespace FrbaHotel
             CambioPassForm cambioPass = new CambioPassForm();
             cambioPass.ShowDialog();
         }
+
 
         private void closeSessionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -156,21 +160,33 @@ namespace FrbaHotel
         
         private void nuevoRolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaRolForm rolForm = new AltaRolForm();
+            AltaEditRolForm rolForm = new AltaEditRolForm();
             rolForm.ShowDialog();
         }
 
         private void consultarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConsultaClienteForm consultaPersona = new ConsultaClienteForm();
-            consultaPersona.Show();
+            consultaPersona.ShowDialog();
         }
 
         private void modificacionBajaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             InfoUsuariosForm modUsuario = new InfoUsuariosForm();
-            modUsuario.Show();
+            modUsuario.ShowDialog();
 
+        }
+
+        private void modificacionBajaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ConsultaHabitaciones consultaHab = new ConsultaHabitaciones();
+            consultaHab.ShowDialog();
+        }
+
+        private void modificToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaHotelForm consultaHoteles = new ConsultaHotelForm();
+            consultaHoteles.ShowDialog();
         }
 
       

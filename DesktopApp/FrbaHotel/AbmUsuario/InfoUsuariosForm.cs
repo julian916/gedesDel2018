@@ -43,6 +43,7 @@ namespace FrbaHotel.AbmUsuario
                 {
                     MessageBox.Show("No se encontraron resultados.");
                     newUserBtn.Enabled = true;
+                    panelUsername.Enabled = false;
                 }
                 else
                 {
@@ -59,7 +60,7 @@ namespace FrbaHotel.AbmUsuario
         {
             Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
             List<Usuario> usuariosEncontrados = new List<Usuario>();
-            usuariosEncontrados = usuarioCtrl.getAllUsers();
+            usuariosEncontrados = usuarioCtrl.getAllUsers_IdHotel(DatosSesion.id_hotel);
             if (usuariosEncontrados.Count == 0)
             {
                 MessageBox.Show("No se encontraron resultados.");
@@ -69,6 +70,9 @@ namespace FrbaHotel.AbmUsuario
             {
 
                 dataGridUsers.DataSource = usuariosEncontrados;
+                //oculto la columna de Contraseña
+                dataGridUsers.Columns[2].Visible = false;
+                dataGridUsers.Columns[4].Visible = false;
                 updateUserBtn.Enabled = true;
                 newUserBtn.Enabled = false;
             }

@@ -15,15 +15,20 @@ namespace FrbaHotel.ABMHotel
     public partial class AltaHotelForm : Form
     {
         private int id_nuevoHotel;
-        private int id_usuarioParaHotel;
-        private int id_rolDeUsuario;
+        private int id_usuarioParaHotel=DatosSesion.id_usuario;
+        private int id_rolDeUsuario=DatosSesion.id_rol;
         private Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
-
-        public AltaHotelForm(int idUsuario, int idRol)
+        private Hotel hotel;
+        
+        public AltaHotelForm()
         {
             InitializeComponent();
-            id_usuarioParaHotel = idUsuario;
-            id_rolDeUsuario = idRol;
+        }
+
+        public AltaHotelForm(Hotel hotel)
+        {
+            InitializeComponent();
+            this.hotel = hotel;
         }
 
         private void AltaHotelForm_Load(object sender, EventArgs e)

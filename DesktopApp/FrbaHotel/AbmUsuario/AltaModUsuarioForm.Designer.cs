@@ -44,21 +44,23 @@
             this.selectRolBtn = new System.Windows.Forms.Button();
             this.hotelListBox = new System.Windows.Forms.CheckedListBox();
             this.hotelPanel = new System.Windows.Forms.Panel();
-            this.confirmRol = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.updateRolBtn = new System.Windows.Forms.Button();
+            this.confirmHoteles = new System.Windows.Forms.Button();
+            this.panelRolXHotel = new System.Windows.Forms.Panel();
             this.deleteRolBtn = new System.Windows.Forms.Button();
             this.newRolBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.continuarRolBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.rolPanel.SuspendLayout();
             this.hotelPanel.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelRolXHotel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(191, 58);
+            this.label1.Location = new System.Drawing.Point(151, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
@@ -67,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(191, 96);
+            this.label2.Location = new System.Drawing.Point(151, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 1;
@@ -76,7 +78,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(191, 142);
+            this.label3.Location = new System.Drawing.Point(151, 133);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 2;
@@ -84,14 +86,14 @@
             // 
             // userTextBox
             // 
-            this.userTextBox.Location = new System.Drawing.Point(300, 58);
+            this.userTextBox.Location = new System.Drawing.Point(260, 49);
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(179, 20);
             this.userTextBox.TabIndex = 3;
             // 
             // passTextBox
             // 
-            this.passTextBox.Location = new System.Drawing.Point(300, 96);
+            this.passTextBox.Location = new System.Drawing.Point(260, 87);
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.PasswordChar = '*';
             this.passTextBox.Size = new System.Drawing.Size(179, 20);
@@ -99,7 +101,7 @@
             // 
             // pass2TextBox
             // 
-            this.pass2TextBox.Location = new System.Drawing.Point(300, 135);
+            this.pass2TextBox.Location = new System.Drawing.Point(260, 126);
             this.pass2TextBox.Name = "pass2TextBox";
             this.pass2TextBox.PasswordChar = '*';
             this.pass2TextBox.Size = new System.Drawing.Size(179, 20);
@@ -109,7 +111,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(253, 26);
+            this.label4.Location = new System.Drawing.Point(257, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(166, 15);
             this.label4.TabIndex = 6;
@@ -133,6 +135,7 @@
             this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "Cancelar";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // comboRoles
             // 
@@ -190,7 +193,7 @@
             // 
             // hotelPanel
             // 
-            this.hotelPanel.Controls.Add(this.confirmRol);
+            this.hotelPanel.Controls.Add(this.confirmHoteles);
             this.hotelPanel.Controls.Add(this.label5);
             this.hotelPanel.Controls.Add(this.hotelListBox);
             this.hotelPanel.Location = new System.Drawing.Point(332, 16);
@@ -198,37 +201,27 @@
             this.hotelPanel.Size = new System.Drawing.Size(334, 152);
             this.hotelPanel.TabIndex = 22;
             // 
-            // confirmRol
+            // confirmHoteles
             // 
-            this.confirmRol.Location = new System.Drawing.Point(129, 120);
-            this.confirmRol.Name = "confirmRol";
-            this.confirmRol.Size = new System.Drawing.Size(132, 23);
-            this.confirmRol.TabIndex = 27;
-            this.confirmRol.Text = "Confirmar Rol";
-            this.confirmRol.UseVisualStyleBackColor = true;
-            this.confirmRol.Click += new System.EventHandler(this.confirmRol_Click);
+            this.confirmHoteles.Location = new System.Drawing.Point(129, 120);
+            this.confirmHoteles.Name = "confirmHoteles";
+            this.confirmHoteles.Size = new System.Drawing.Size(132, 23);
+            this.confirmHoteles.TabIndex = 27;
+            this.confirmHoteles.Text = "Confirmar Hoteles";
+            this.confirmHoteles.UseVisualStyleBackColor = true;
+            this.confirmHoteles.Click += new System.EventHandler(this.confirmRol_Click);
             // 
-            // panel3
+            // panelRolXHotel
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.updateRolBtn);
-            this.panel3.Controls.Add(this.deleteRolBtn);
-            this.panel3.Controls.Add(this.newRolBtn);
-            this.panel3.Controls.Add(this.rolPanel);
-            this.panel3.Controls.Add(this.hotelPanel);
-            this.panel3.Location = new System.Drawing.Point(12, 210);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(694, 193);
-            this.panel3.TabIndex = 24;
-            // 
-            // updateRolBtn
-            // 
-            this.updateRolBtn.Location = new System.Drawing.Point(108, 165);
-            this.updateRolBtn.Name = "updateRolBtn";
-            this.updateRolBtn.Size = new System.Drawing.Size(132, 23);
-            this.updateRolBtn.TabIndex = 26;
-            this.updateRolBtn.Text = "Modificar Rol";
-            this.updateRolBtn.UseVisualStyleBackColor = true;
+            this.panelRolXHotel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelRolXHotel.Controls.Add(this.deleteRolBtn);
+            this.panelRolXHotel.Controls.Add(this.newRolBtn);
+            this.panelRolXHotel.Controls.Add(this.rolPanel);
+            this.panelRolXHotel.Controls.Add(this.hotelPanel);
+            this.panelRolXHotel.Location = new System.Drawing.Point(12, 210);
+            this.panelRolXHotel.Name = "panelRolXHotel";
+            this.panelRolXHotel.Size = new System.Drawing.Size(694, 193);
+            this.panelRolXHotel.TabIndex = 24;
             // 
             // deleteRolBtn
             // 
@@ -238,6 +231,7 @@
             this.deleteRolBtn.TabIndex = 25;
             this.deleteRolBtn.Text = "Desasignar Rol";
             this.deleteRolBtn.UseVisualStyleBackColor = true;
+            this.deleteRolBtn.Click += new System.EventHandler(this.deleteRolBtn_Click);
             // 
             // newRolBtn
             // 
@@ -247,6 +241,7 @@
             this.newRolBtn.TabIndex = 23;
             this.newRolBtn.Text = "Nuevo Rol";
             this.newRolBtn.UseVisualStyleBackColor = true;
+            this.newRolBtn.Click += new System.EventHandler(this.newRolBtn_Click);
             // 
             // label7
             // 
@@ -258,22 +253,41 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Permisos";
             // 
+            // continuarRolBtn
+            // 
+            this.continuarRolBtn.Location = new System.Drawing.Point(485, 84);
+            this.continuarRolBtn.Name = "continuarRolBtn";
+            this.continuarRolBtn.Size = new System.Drawing.Size(141, 23);
+            this.continuarRolBtn.TabIndex = 26;
+            this.continuarRolBtn.Text = "Continuar con roles";
+            this.continuarRolBtn.UseVisualStyleBackColor = true;
+            this.continuarRolBtn.Click += new System.EventHandler(this.continuarRolBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.continuarRolBtn);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.userTextBox);
+            this.panel1.Controls.Add(this.passTextBox);
+            this.panel1.Controls.Add(this.pass2TextBox);
+            this.panel1.Location = new System.Drawing.Point(12, 16);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(694, 175);
+            this.panel1.TabIndex = 27;
+            // 
             // AltaModUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 444);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panelRolXHotel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.pass2TextBox);
-            this.Controls.Add(this.passTextBox);
-            this.Controls.Add(this.userTextBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "AltaModUsuarioForm";
             this.Text = "Alta - Modificacion Usuario";
             this.Load += new System.EventHandler(this.AltaModUsuarioForm_Load);
@@ -281,7 +295,9 @@
             this.rolPanel.PerformLayout();
             this.hotelPanel.ResumeLayout(false);
             this.hotelPanel.PerformLayout();
-            this.panel3.ResumeLayout(false);
+            this.panelRolXHotel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,11 +321,12 @@
         private System.Windows.Forms.Button selectRolBtn;
         private System.Windows.Forms.CheckedListBox hotelListBox;
         private System.Windows.Forms.Panel hotelPanel;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelRolXHotel;
         private System.Windows.Forms.Button newRolBtn;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button updateRolBtn;
         private System.Windows.Forms.Button deleteRolBtn;
-        private System.Windows.Forms.Button confirmRol;
+        private System.Windows.Forms.Button confirmHoteles;
+        private System.Windows.Forms.Button continuarRolBtn;
+        private System.Windows.Forms.Panel panel1;
     }
 }

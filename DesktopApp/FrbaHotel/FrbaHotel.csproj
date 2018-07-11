@@ -45,17 +45,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmHabitacion\AltaHabitacionForm.cs">
+    <Compile Include="AbmHabitacion\AltaEditHabForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHabitacion\AltaHabitacionForm.Designer.cs">
-      <DependentUpon>AltaHabitacionForm.cs</DependentUpon>
+    <Compile Include="AbmHabitacion\AltaEditHabForm.Designer.cs">
+      <DependentUpon>AltaEditHabForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHabitacion\ConsultaHabitaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\ConsultaHabitaciones.Designer.cs">
+      <DependentUpon>ConsultaHabitaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="ABMHotel\AltaHotelForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABMHotel\AltaHotelForm.Designer.cs">
       <DependentUpon>AltaHotelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMHotel\BajaHotelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMHotel\BajaHotelForm.Designer.cs">
+      <DependentUpon>BajaHotelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMHotel\ConsultaHotelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMHotel\ConsultaHotelForm.Designer.cs">
+      <DependentUpon>ConsultaHotelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmPersona\AltaPersonaForm.cs">
       <SubType>Form</SubType>
@@ -75,11 +93,17 @@
     <Compile Include="AbmRegimen\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\AltaRolForm.cs">
+    <Compile Include="AbmRol\AltaEditRolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\AltaRolForm.Designer.cs">
-      <DependentUpon>AltaRolForm.cs</DependentUpon>
+    <Compile Include="AbmRol\AltaEditRolForm.Designer.cs">
+      <DependentUpon>AltaEditRolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\ConsultaRolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ConsultaRolForm.Designer.cs">
+      <DependentUpon>ConsultaRolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuario\AltaModUsuarioForm.cs">
       <SubType>Form</SubType>
@@ -193,11 +217,17 @@
     </Compile>
     <Compile Include="Repositorios\RepositorioHoteles.cs" />
     <Compile Include="Repositorios\RepositorioRoles.cs" />
-    <EmbeddedResource Include="AbmHabitacion\AltaHabitacionForm.resx">
-      <DependentUpon>AltaHabitacionForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmHabitacion\AltaEditHabForm.resx">
+      <DependentUpon>AltaEditHabForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\ConsultaHabitaciones.resx">
+      <DependentUpon>ConsultaHabitaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMHotel\AltaHotelForm.resx">
       <DependentUpon>AltaHotelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMHotel\ConsultaHotelForm.resx">
+      <DependentUpon>ConsultaHotelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmPersona\AltaPersonaForm.resx">
       <DependentUpon>AltaPersonaForm.cs</DependentUpon>
@@ -205,8 +235,11 @@
     <EmbeddedResource Include="AbmPersona\ConsultaClienteForm.resx">
       <DependentUpon>ConsultaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\AltaRolForm.resx">
-      <DependentUpon>AltaRolForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmRol\AltaEditRolForm.resx">
+      <DependentUpon>AltaEditRolForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ConsultaRolForm.resx">
+      <DependentUpon>ConsultaRolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\AltaModUsuarioForm.resx">
       <DependentUpon>AltaModUsuarioForm.cs</DependentUpon>

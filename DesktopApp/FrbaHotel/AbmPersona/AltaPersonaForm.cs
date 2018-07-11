@@ -36,9 +36,16 @@ namespace FrbaHotel.AbmPersona
         public AltaPersonaForm(Persona persona,int id_usuarioCambio)
         {
             InitializeComponent();
-            esModificacion = true;
+            if (persona.id_persona != 0)
+            {
+                esModificacion = true;
+            }
+            else {
+                esModificacion = false;
+                id_persona = persona.id_persona;
+            }      
             idUsuario = id_usuarioCambio;
-            //se modifican los datos, se carga el formulario con los datos de persona
+            //se carga el formulario con los datos de persona
             comboTipoDni.SelectedText = persona.tipo_documento;
             dniBox.Text = persona.nro_documento.ToString();
             nombreBox.Text = persona.nombre;
@@ -52,8 +59,7 @@ namespace FrbaHotel.AbmPersona
             depBox.Text = persona.departamento;
             localidadBox.Text = persona.localidad;
             fechaBox.Value = persona.fecha_nacimiento;
-            id_persona = persona.id_persona;
- 
+            
         }
 
         private void Aceptar_Click(object sender, EventArgs e) {
@@ -77,27 +83,17 @@ namespace FrbaHotel.AbmPersona
 
             try
             {
-                int filasAfectadas;
                 if (esModificacion)
                 {
                     nuevaPersona.id_persona = id_persona;
-                    filasAfectadas = personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                    personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                    MessageBox.Show("Se modificaron correctamente los datos.");
                 }
                 else {
-                    filasAfectadas = personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                    personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                    MessageBox.Show("Registro ingresado correctamente.");
                 }
                 
-                if (filasAfectadas > 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
-                {
-                    MessageBox.Show("Registrado ingresado correctamente.");
-                    this.Hide();
-                }
-                else
-                {
-                    emailBox.Clear();
-                    dniBox.Clear();
-                    throw new System.ArgumentException("Existe registro con igual Nro de documento y/o mail");
-                }
             }
             catch (Exception ex)
             {

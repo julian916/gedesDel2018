@@ -99,20 +99,7 @@ namespace FrbaHotel.Control
                foreach (DataRow row in dtHotel.Rows)
                {
 
-                   hotelEncontrado.id_hotel = int.Parse(row["id_hotel"].ToString());
-                   hotelEncontrado.nombre = Convert.ToString(row["nombre"]);
-                   hotelEncontrado.ciudad = Convert.ToString(row["ciudad"]);
-                   hotelEncontrado.calle = Convert.ToString(row["calle"]);
-                   hotelEncontrado.nro_calle = int.Parse(row["nro_calle"].ToString());
-                   hotelEncontrado.cant_estrellas = int.Parse(row["cant_estrellas"].ToString());
-                   hotelEncontrado.recarga_estrella = decimal.Parse(row["recarga_estrellas"].ToString());
-                   hotelEncontrado.email = Convert.ToString(row["email"]);
-                   hotelEncontrado.telefono = Convert.ToString(row["telefono"]);
-                   hotelEncontrado.pais = Convert.ToString(row["pais"]);
-                   if (row["fecha_creacion"] != DBNull.Value) {
-                       hotelEncontrado.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
-                   }
-
+                   hotelEncontrado = this.BuidHotel(row);
                }
            }
            
@@ -177,18 +164,36 @@ namespace FrbaHotel.Control
            Hotel hotel = new Hotel();
            hotel.id_hotel = Convert.ToInt32(row["id_hotel"].ToString());
            hotel.nombre = Convert.ToString(row["nombre"]);
-           hotel.calle = Convert.ToString(row["domicilio"]);
+           hotel.calle = Convert.ToString(row["calle"]);
            hotel.cant_estrellas = Convert.ToInt32(row["cant_estrellas"]);
            hotel.ciudad = Convert.ToString(row["ciudad"]);
            hotel.email = Convert.ToString(row["email"]);
-           hotel.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
            hotel.nro_calle = Convert.ToInt32(row["nro_calle"]);
            hotel.pais = Convert.ToString(row["pais"]);
-           hotel.recarga_estrella = Convert.ToInt32(row["recarga_estrella"]);
+           hotel.recarga_estrella = Convert.ToInt32(row["recarga_estrellas"]);
            hotel.telefono = Convert.ToString(row["telefono"]);
+           if (row["fecha_creacion"] != DBNull.Value)
+           {
+               hotel.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
+           }
            return hotel;
        }
 
-      
+
+
+       internal List<string> getAllCiudadesDeHoteles(int id_Usuario)
+       {
+           throw new NotImplementedException();
+       }
+
+       internal List<string> getAllPaisesDeHoteles(int id_Usuario)
+       {
+           throw new NotImplementedException();
+       }
+
+       internal List<Hotel> getHotelesFiltrados(int id_Usuario, object p1, string p2, object p3, decimal p4)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

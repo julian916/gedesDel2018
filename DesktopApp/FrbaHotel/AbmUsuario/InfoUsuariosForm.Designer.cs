@@ -36,8 +36,6 @@
             this.allUserBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
-            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.newUserBtn = new System.Windows.Forms.Button();
             this.updateUserBtn = new System.Windows.Forms.Button();
             this.cancelarBtn = new System.Windows.Forms.Button();
@@ -112,25 +110,14 @@
             // 
             // dataGridUsers
             // 
+            this.dataGridUsers.AllowUserToAddRows = false;
+            this.dataGridUsers.AllowUserToDeleteRows = false;
             this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.username,
-            this.habilitado});
             this.dataGridUsers.Location = new System.Drawing.Point(31, 217);
             this.dataGridUsers.Name = "dataGridUsers";
+            this.dataGridUsers.ReadOnly = true;
             this.dataGridUsers.Size = new System.Drawing.Size(334, 156);
             this.dataGridUsers.TabIndex = 4;
-            // 
-            // username
-            // 
-            this.username.HeaderText = "Nombre usuario";
-            this.username.Name = "username";
-            // 
-            // habilitado
-            // 
-            this.habilitado.HeaderText = "Esta Habilitado";
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
             // 
             // newUserBtn
             // 
@@ -199,8 +186,6 @@
         private System.Windows.Forms.Button newUserBtn;
         private System.Windows.Forms.Button updateUserBtn;
         private System.Windows.Forms.Button cancelarBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn username;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn habilitado;
 
 
     }

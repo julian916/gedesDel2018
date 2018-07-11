@@ -14,10 +14,7 @@ namespace FrbaHotel.Control
     {
         public int altaPersona(Persona nuevaPersona, int idUsuario)
         {
-            if (idUsuario == InfoGlobal.id_usuarioGUEST)
-            {
-                this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email);
-            }
+            this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email);      
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
            
@@ -166,10 +163,7 @@ namespace FrbaHotel.Control
 
         public int modificarPersona(Persona nuevaPersona, int idUsuario)
         {
-            if (idUsuario == InfoGlobal.id_usuarioGUEST)
-            {
-                this.validarDatosPersona(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email);
-            }
+            this.validarDatosPersona(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email);
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
 
@@ -188,6 +182,31 @@ namespace FrbaHotel.Control
 
             int filasAfectadas = spCommand.ExecuteNonQuery();
             return filasAfectadas;
+        }
+
+        public Persona getPersona_ConIDUser(int id_usuario)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetPersona_IDUsuario", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscarCliente
+            spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuario));
+
+            List<Persona> usuariosEncontrado = new List<Persona>();
+            DataTable clientesTable = new DataTable();
+            clientesTable.Load(spCommand.ExecuteReader());
+            if (clientesTable != null && clientesTable.Rows != null)
+            {
+                foreach (DataRow row in clientesTable.Rows)
+                {
+                    Persona personaEncontrado = this.BuildPersona(row);
+                    usuariosEncontrado.Add(personaEncontrado);
+                }
+            }
+
+            return usuariosEncontrado.ElementAt(0);
         }
     }
 }

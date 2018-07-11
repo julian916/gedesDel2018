@@ -100,15 +100,16 @@
             // altaHotelToolStripMenuItem
             // 
             this.altaHotelToolStripMenuItem.Name = "altaHotelToolStripMenuItem";
-            this.altaHotelToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.altaHotelToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.altaHotelToolStripMenuItem.Text = "Nuevo Hotel";
             this.altaHotelToolStripMenuItem.Click += new System.EventHandler(this.altaHotelToolStripMenuItem_Click);
             // 
             // modificToolStripMenuItem
             // 
             this.modificToolStripMenuItem.Name = "modificToolStripMenuItem";
-            this.modificToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.modificToolStripMenuItem.Text = "Modificacion - Baja";
+            this.modificToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.modificToolStripMenuItem.Text = "Consulta Hoteles";
+            this.modificToolStripMenuItem.Click += new System.EventHandler(this.modificToolStripMenuItem_Click);
             // 
             // aBMHabitacionToolStripMenuItem
             // 
@@ -122,15 +123,16 @@
             // nuevaHabitaciónToolStripMenuItem
             // 
             this.nuevaHabitaciónToolStripMenuItem.Name = "nuevaHabitaciónToolStripMenuItem";
-            this.nuevaHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.nuevaHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.nuevaHabitaciónToolStripMenuItem.Text = "Nueva habitación";
             this.nuevaHabitaciónToolStripMenuItem.Click += new System.EventHandler(this.nuevaHabitaciónToolStripMenuItem_Click);
             // 
             // modificacionBajaToolStripMenuItem2
             // 
             this.modificacionBajaToolStripMenuItem2.Name = "modificacionBajaToolStripMenuItem2";
-            this.modificacionBajaToolStripMenuItem2.Size = new System.Drawing.Size(177, 22);
-            this.modificacionBajaToolStripMenuItem2.Text = "Modificacion - Baja";
+            this.modificacionBajaToolStripMenuItem2.Size = new System.Drawing.Size(191, 22);
+            this.modificacionBajaToolStripMenuItem2.Text = "Consulta habitaciones";
+            this.modificacionBajaToolStripMenuItem2.Click += new System.EventHandler(this.modificacionBajaToolStripMenuItem2_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -176,14 +178,14 @@
             // nuevoUsuarioToolStripMenuItem
             // 
             this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
             this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
             // 
             // modificacionBajaToolStripMenuItem1
             // 
             this.modificacionBajaToolStripMenuItem1.Name = "modificacionBajaToolStripMenuItem1";
-            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
+            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.modificacionBajaToolStripMenuItem1.Text = "Consultar Usuario";
             this.modificacionBajaToolStripMenuItem1.Click += new System.EventHandler(this.modificacionBajaToolStripMenuItem1_Click);
             // 
@@ -199,15 +201,15 @@
             // nuevoRolToolStripMenuItem
             // 
             this.nuevoRolToolStripMenuItem.Name = "nuevoRolToolStripMenuItem";
-            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.nuevoRolToolStripMenuItem.Text = "Nuevo Rol";
             this.nuevoRolToolStripMenuItem.Click += new System.EventHandler(this.nuevoRolToolStripMenuItem_Click);
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.modificarRolToolStripMenuItem.Text = "Modificar Rol";
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.modificarRolToolStripMenuItem.Text = "ConsultarRoles";
             // 
             // estadísticasToolStripMenuItem
             // 

@@ -51,7 +51,7 @@ namespace FrbaHotel.AbmUsuario
         private void CancelarBtn_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-            this.Close();
+
         }
     }
 }

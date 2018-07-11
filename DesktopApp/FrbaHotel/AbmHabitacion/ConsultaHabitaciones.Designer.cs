@@ -1,0 +1,230 @@
+﻿namespace FrbaHotel.AbmHabitacion
+{
+    partial class ConsultaHabitaciones
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.infoHabBox = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridHabitaciones = new System.Windows.Forms.DataGridView();
+            this.newHabBtn = new System.Windows.Forms.Button();
+            this.modificarBtn = new System.Windows.Forms.Button();
+            this.Cancelar = new System.Windows.Forms.Button();
+            this.id_habitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_TipoHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comodidades = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inhabilitarBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabitaciones)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.infoHabBox);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(22, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(642, 44);
+            this.panel1.TabIndex = 14;
+            // 
+            // infoHabBox
+            // 
+            this.infoHabBox.AutoSize = true;
+            this.infoHabBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoHabBox.Location = new System.Drawing.Point(173, 14);
+            this.infoHabBox.Name = "infoHabBox";
+            this.infoHabBox.Size = new System.Drawing.Size(41, 13);
+            this.infoHabBox.TabIndex = 3;
+            this.infoHabBox.Text = "label2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "El cambio se realizará en el Hotel: ";
+            // 
+            // dataGridHabitaciones
+            // 
+            this.dataGridHabitaciones.AllowUserToAddRows = false;
+            this.dataGridHabitaciones.AllowUserToDeleteRows = false;
+            this.dataGridHabitaciones.AllowUserToOrderColumns = true;
+            this.dataGridHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridHabitaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_habitacion,
+            this.numero,
+            this.piso,
+            this.frente,
+            this.id_TipoHabitacion,
+            this.habilitado,
+            this.comodidades,
+            this.id_hotel,
+            this.inhabilitarBtn});
+            this.dataGridHabitaciones.Location = new System.Drawing.Point(22, 62);
+            this.dataGridHabitaciones.Name = "dataGridHabitaciones";
+            this.dataGridHabitaciones.ReadOnly = true;
+            this.dataGridHabitaciones.Size = new System.Drawing.Size(642, 197);
+            this.dataGridHabitaciones.TabIndex = 15;
+            // 
+            // newHabBtn
+            // 
+            this.newHabBtn.Location = new System.Drawing.Point(98, 271);
+            this.newHabBtn.Name = "newHabBtn";
+            this.newHabBtn.Size = new System.Drawing.Size(75, 23);
+            this.newHabBtn.TabIndex = 16;
+            this.newHabBtn.Text = "Nuevo";
+            this.newHabBtn.UseVisualStyleBackColor = true;
+            this.newHabBtn.Click += new System.EventHandler(this.newHabBtn_Click);
+            // 
+            // modificarBtn
+            // 
+            this.modificarBtn.Location = new System.Drawing.Point(304, 271);
+            this.modificarBtn.Name = "modificarBtn";
+            this.modificarBtn.Size = new System.Drawing.Size(75, 23);
+            this.modificarBtn.TabIndex = 17;
+            this.modificarBtn.Text = "Modificar";
+            this.modificarBtn.UseVisualStyleBackColor = true;
+            this.modificarBtn.Click += new System.EventHandler(this.modificarBtn_Click);
+            // 
+            // Cancelar
+            // 
+            this.Cancelar.Location = new System.Drawing.Point(512, 271);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(75, 23);
+            this.Cancelar.TabIndex = 18;
+            this.Cancelar.Text = "Cancelar";
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
+            // id_habitacion
+            // 
+            this.id_habitacion.HeaderText = "ID_Habitacion";
+            this.id_habitacion.Name = "id_habitacion";
+            this.id_habitacion.ReadOnly = true;
+            this.id_habitacion.Visible = false;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "Número";
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            // 
+            // piso
+            // 
+            this.piso.HeaderText = "Piso";
+            this.piso.Name = "piso";
+            this.piso.ReadOnly = true;
+            // 
+            // frente
+            // 
+            this.frente.HeaderText = "Tiene frente";
+            this.frente.Name = "frente";
+            this.frente.ReadOnly = true;
+            // 
+            // id_TipoHabitacion
+            // 
+            this.id_TipoHabitacion.HeaderText = "Codigo Tipo_Hab";
+            this.id_TipoHabitacion.Name = "id_TipoHabitacion";
+            this.id_TipoHabitacion.ReadOnly = true;
+            // 
+            // habilitado
+            // 
+            this.habilitado.HeaderText = "Esta habilitado";
+            this.habilitado.Name = "habilitado";
+            this.habilitado.ReadOnly = true;
+            // 
+            // comodidades
+            // 
+            this.comodidades.HeaderText = "Comodidades";
+            this.comodidades.Name = "comodidades";
+            this.comodidades.ReadOnly = true;
+            this.comodidades.Visible = false;
+            // 
+            // id_hotel
+            // 
+            this.id_hotel.HeaderText = "ID_Hotel";
+            this.id_hotel.Name = "id_hotel";
+            this.id_hotel.ReadOnly = true;
+            this.id_hotel.Visible = false;
+            // 
+            // inhabilitarBtn
+            // 
+            this.inhabilitarBtn.HeaderText = "Inhabilitar/Habilitar";
+            this.inhabilitarBtn.Name = "inhabilitarBtn";
+            this.inhabilitarBtn.ReadOnly = true;
+            // 
+            // ConsultaHabitaciones
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(681, 306);
+            this.Controls.Add(this.Cancelar);
+            this.Controls.Add(this.modificarBtn);
+            this.Controls.Add(this.newHabBtn);
+            this.Controls.Add(this.dataGridHabitaciones);
+            this.Controls.Add(this.panel1);
+            this.Name = "ConsultaHabitaciones";
+            this.Text = "Consultar habitaciones";
+            this.Load += new System.EventHandler(this.ConsultaHabitaciones_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabitaciones)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label infoHabBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridHabitaciones;
+        private System.Windows.Forms.Button newHabBtn;
+        private System.Windows.Forms.Button modificarBtn;
+        private System.Windows.Forms.Button Cancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_habitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn piso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_TipoHabitacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comodidades;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_hotel;
+        private System.Windows.Forms.DataGridViewButtonColumn inhabilitarBtn;
+    }
+}

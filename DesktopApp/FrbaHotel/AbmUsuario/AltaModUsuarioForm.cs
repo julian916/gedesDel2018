@@ -20,24 +20,30 @@ namespace FrbaHotel.AbmUsuario
         int nro_documento;
         string email;
         string tipo_documento;
-        Usuario userActual = new Usuario();
+        Usuario userActual;
+        Usuario userConCambios=new Usuario();
+        Rol_Ctrl rolCtrl = new Rol_Ctrl();
         int id_RolSeleccionado;
         List<Hotel> hotelesDeUsuario_Rol = new List<Hotel>();
         List<Hotel> todosLosHoteles = new List<Hotel>();
         Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
         Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
-
+        Persona_Ctrl personaCtrl = new Persona_Ctrl();
+        public Boolean continuarAltaMod;
         public AltaModUsuarioForm(Usuario user)
         {
             userActual = user;
+            if (esModificacion()) {
+                userConCambios = user;
+            }
             InitializeComponent();
-            this.validarDatosPrincipalesPersona();
-            hotelPanel.Enabled = false;
+            continuarAltaMod = this.validarDatosPrincipalesPersona();
+            panelRolXHotel.Enabled = false;
+            acceptButton.Enabled = false;
         }
 
         private void getAllRoles()
         {
-            Rol_Ctrl rolCtrl = new Rol_Ctrl();
 
             comboRoles.DisplayMember = "nombre";
             comboRoles.ValueMember = "id_rol";
@@ -45,22 +51,25 @@ namespace FrbaHotel.AbmUsuario
         }
 
 
-        private void validarDatosPrincipalesPersona()
+        private Boolean validarDatosPrincipalesPersona()
         {
+            Boolean esValido;
+
             ValidacionPersonaUserForm validarForm = new ValidacionPersonaUserForm();
-            validarForm.ShowDialog();
             if (validarForm.ShowDialog(this) == DialogResult.OK)
             {
                 nro_documento = validarForm.nro_documento;
                 email = validarForm.email;
                 tipo_documento = validarForm.tipo_documento;
+                esValido = true;
                 
             }
             else
             {
                 MessageBox.Show("Operacion cancelada");
-                this.Close();
+                esValido = false;
             }
+            return esValido;
         }
 
         private void verificar_Contrasenias()
@@ -77,8 +86,35 @@ namespace FrbaHotel.AbmUsuario
         {
             try
             {
-                verificar_campos_obligatorios();
-                usuarioCtrl.ingresar_NuevoUsuario(userActual);
+                if (this.esModificacion())
+                {
+                    usuarioCtrl.modificar_Usuario(userActual,userConCambios);
+                    MessageBox.Show("Se modificó el usuario correctamente");
+                    var confirmResult = MessageBox.Show("¿Desea modificar datos personales del usuario?",
+                                     "Cambios datos personales",
+                                     MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        Persona datosPersona= personaCtrl.getPersona_ConIDUser(userActual.id_usuario);
+                        AltaPersonaForm formEditPersona = new AltaPersonaForm(datosPersona, userActual.id_usuario);  
+                    }
+                    this.Dispose();
+                    this.Close();
+
+                }
+                else
+                {
+                    usuarioCtrl.ingresar_NuevoUsuario(userConCambios);
+                    MessageBox.Show("Se ingresó el usuario correctamente. A continuacion se ingresaran los datos personales");
+                    Persona nuevaPersonaPrevio = new Persona();
+                    nuevaPersonaPrevio.tipo_documento = tipo_documento;
+                    nuevaPersonaPrevio.nro_documento = nro_documento;
+                    nuevaPersonaPrevio.email = email;
+                    AltaPersonaForm formNewPersona = new AltaPersonaForm(nuevaPersonaPrevio,userActual.id_usuario);  
+                    this.Dispose();
+                    this.Close();
+                }
+                
                 
             }
             catch (Exception ex)
@@ -89,9 +125,9 @@ namespace FrbaHotel.AbmUsuario
 
         }
 
-        private void verificar_campos_obligatorios()
+        private bool esModificacion()
         {
-           //TODO
+            return userActual != null;
         }
 
         private void selectRolBtn_Click(object sender, EventArgs e)
@@ -136,47 +172,113 @@ namespace FrbaHotel.AbmUsuario
         private void confirmRol_Click(object sender, EventArgs e)
         {
             List<Hotel>hotelesSeleccionados = this.getHotelesSeleccionados(hotelListBox.CheckedItems.Cast<string>().ToList());
-            usuarioCtrl.nuevoRolYHoteles(id_RolSeleccionado, hotelesSeleccionados,userActual);
-            const string message = "¿Desea agregar un nuevo rol al usuario?";
-            const string caption = "Continuar gestión roles";
-            var result = MessageBox.Show(message, caption,
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-            {
-                hotelPanel.Enabled = false;
-                rolPanel.Enabled = true;
-            }
-            else {
-                hotelPanel.Enabled = false;
-                rolPanel.Enabled = false;
-                acceptButton.Focus();
-                acceptButton.Enabled = true;
-            }
+            usuarioCtrl.nuevoRolYHoteles(id_RolSeleccionado, hotelesSeleccionados, userConCambios);
+            panelRolXHotel.Enabled = false;
+            acceptButton.Enabled = true;
+            acceptButton.Focus();
         }
 
         private List<Hotel> getHotelesSeleccionados(List<string> nombresHoteles)
         {
-            return (List<Hotel>)todosLosHoteles.Where(hotel => nombresHoteles.Contains(hotel.nombre));
+            return (todosLosHoteles.Where(hotel => nombresHoteles.Contains(hotel.nombre))).ToList();
         }
 
         private void AltaModUsuarioForm_Load(object sender, EventArgs e)
         {
-            if (userActual == null)
+         
+            if (!esModificacion())
             {
                 newRolBtn.Visible = false;
-                updateRolBtn.Visible = false;
                 deleteRolBtn.Visible = false;
-                this.getAllRoles();
             }
             else {
                 userTextBox.ReadOnly = true;
-                rolPanel.Enabled = false;
                 userTextBox.Text = userActual.username;
                 passTextBox.Text = userActual.password;
+                pass2TextBox.Text = userActual.password;
             }
         }
 
-       
+        private void getRolesParaUsuario(int idUsuario)
+        {
+            comboRoles.DisplayMember = "nombre";
+            comboRoles.ValueMember = "id_rol";
+            comboRoles.DataSource = rolCtrl.obtenerRolesPorID(idUsuario);
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+        private void continuarRolBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(userTextBox.Text) && String.IsNullOrEmpty(passTextBox.Text) && String.IsNullOrEmpty(pass2TextBox.Text))
+                {
+                    throw new System.ArgumentException("Debe ingresar todos los campos");
+                }
+                this.verificar_Contrasenias();
+                if (this.esModificacion())
+                {
+                    usuarioCtrl.validarUsername(userTextBox.Text);
+                    newRolBtn.Visible = true;
+                    deleteRolBtn.Visible = true;
+                    //updateRolBtn.Visible=true;
+                    this.getRolesParaUsuario(userActual.id_usuario);
+                }
+                else {
+                    this.getAllRoles();
+                }
+                userConCambios.username = userTextBox.Text;
+                userConCambios.password = Encriptacion.getHashSha256(passTextBox.Text);
+                panelRolXHotel.Enabled = true;
+                panel1.Enabled = false;
+                
+            }
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message);
+            }
+            
+            
+        }
+
+        private void newRolBtn_Click(object sender, EventArgs e)
+        {
+            this.cargarNuevosRolesParaUser(userConCambios);
+            this.selectRolBtn.Visible= true;
+            newRolBtn.Enabled = false;
+            deleteRolBtn.Enabled = false;
+            //TODO : que me carguen los roles validos que todavia no tenga asignado el usuario
+            //bloquean los botones
+
+        }
+
+        private void cargarNuevosRolesParaUser(Usuario userConCambios)
+        {
+            comboRoles.DisplayMember = "nombre";
+            comboRoles.ValueMember = "id_rol";
+            comboRoles.DataSource = rolCtrl.getNuevosRoles_User(userConCambios);
+        }
+
+    
+        private void deleteRolBtn_Click(object sender, EventArgs e)
+        {
+            //tODO: se selecciona el rol qe se desea designar. no se habilita el de hoteles, se da solo a aceptar o cancelar
+            //bloquean los botones
+            id_RolSeleccionado = (int)comboRoles.SelectedValue;
+            usuarioCtrl.desasignarRolAUser(id_RolSeleccionado,userConCambios);
+            panelRolXHotel.Enabled = false;
+            acceptButton.Enabled = true;
+        }
+
+        private void updateRolBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: se selecciona el rol que se desea modificar: se habilitan los hoteles., se habilita el confirmar.
+            //bloquean botones
+        }
+
     }
 }

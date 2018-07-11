@@ -22,7 +22,7 @@ namespace FrbaHotel.Login
         private string username;
         private int id_rol;
         private int id_hotel;
-        private BindingList<Funcionalidad> funcionalidades;
+        private List<Funcionalidad> funcionalidades;
 
         public string connectionString;
         public LoginForm()

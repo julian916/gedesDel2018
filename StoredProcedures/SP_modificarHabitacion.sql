@@ -1,4 +1,4 @@
-CREATE PROCEDURE [CUATROGDD2018].[SP_modificarHabitacion] @idHab int, @piso numeric(18, 0), @nroHab numeric(18, 0), 
+CREATE PROCEDURE [CUATROGDD2018].[SP_ModificarHabitacion] @idHab int, @piso numeric(18, 0), @nroHab numeric(18, 0), 
 				@frente nvarchar(50), @comodidades varchar(255)
 AS
 	UPDATE [CUATROGDD2018].[Habitaciones]

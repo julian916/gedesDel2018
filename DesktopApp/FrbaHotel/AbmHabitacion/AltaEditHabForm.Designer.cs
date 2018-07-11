@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmHabitacion
 {
-    partial class AltaHabitacionForm
+    partial class AltaEditHabForm
     {
         /// <summary>
         /// Required designer variable.
@@ -194,7 +194,7 @@
             this.Controls.Add(this.numHabBox);
             this.Controls.Add(this.label2);
             this.Name = "AltaHabitacionForm";
-            this.Text = "Ingrese nueva habitacion";
+            this.Text = "Alta / Edicion Habitacion";
             this.Load += new System.EventHandler(this.AltaHabitacionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numHabBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pisoNumericBox)).EndInit();

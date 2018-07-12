@@ -12,9 +12,13 @@ namespace FrbaHotel.Control
 {
     public class Hotel_Ctrl
     {
-       public int insertar_Hotel(Hotel nuevoHotel,int id_usuarioParaHotel,int id_rol, List<String> descripcionesRegimenes){
+        int id_usuarioParaHotel = DatosSesion.id_usuario;
+        int id_rol = DatosSesion.id_rol;
+        Regimenes_Ctrl regimenCtrl = new Regimenes_Ctrl();
+
+       public void insertar_Hotel(Hotel nuevoHotel){
            
-           SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaHotel", connection);
            spCommand.CommandType = CommandType.StoredProcedure;
            connection.Open();
@@ -32,57 +36,19 @@ namespace FrbaHotel.Control
            spCommand.Parameters.Add(new SqlParameter("@ciudad", nuevoHotel.ciudad));
            spCommand.Parameters.Add(new SqlParameter("@pais", nuevoHotel.pais));
            spCommand.Parameters.Add(new SqlParameter("@fecha_creacion", nuevoHotel.fecha_creacion));
-           SqlDataReader dataReader = spCommand.ExecuteReader();
+           int id_nuevoHotel = (int)spCommand.ExecuteScalar();
+           if (id_nuevoHotel>0)
+           {
+               foreach (RegimenEstadia regimen in nuevoHotel.lista_Regimenes)
+               {
+                   this.agregarRegimenAHotel(nuevoHotel.id_hotel, regimen.id_regimen);
+               }
+           }
+           else {
+               throw new System.ArgumentException("No se pudo registrar el hotel, intente nuevamente");
+           }
            
-           DataTable resultTable = new DataTable();
-           if (dataReader.HasRows)
-           {
-               int count = 0;
-               while (dataReader.Read())
-               {
-                   DataRow row = resultTable.NewRow();
-                   for (int i = 0; i < dataReader.FieldCount; i++)
-                   {
-                       if (count == 0)
-                           resultTable.Columns.Add(dataReader.GetName(i));
-
-                       row[i] = dataReader[i];
-                   }
-                   resultTable.Rows.Add(row);
-                   count++;
-               }
-           }
-           int id_nuevoHotel = 0;
-           if (resultTable != null && resultTable.Rows != null)
-           {
-               foreach (DataRow row in resultTable.Rows)
-               {
-                   id_nuevoHotel = int.Parse(row["id_hotel"].ToString());        
-               }
-           }
-           connection.Close();
-           this.agregarRegimenes(id_nuevoHotel, descripcionesRegimenes);
-           return id_nuevoHotel;
        }
-
-       private void agregarRegimenes(int id_nuevoHotel, List<string> descripcionesRegimenes)
-       {
-           SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
-           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_NuevoRegimenXHotel", connection);
-           spCommand.CommandType = CommandType.StoredProcedure;
-           connection.Open();
-
-           foreach (string descripcion in descripcionesRegimenes) {
-               spCommand.Parameters.Clear();
-               //agrego parametros al SP_NuevoRegimenXHotel
-               spCommand.Parameters.Add(new SqlParameter("@idHotel", id_nuevoHotel));
-               spCommand.Parameters.Add(new SqlParameter("@descripcion", descripcion));
-               spCommand.ExecuteNonQuery();
-           }
-
-           connection.Close();
-       }
-
 
        public Hotel getHotelPorID(int id_hotel_logueado)
        {
@@ -131,7 +97,7 @@ namespace FrbaHotel.Control
                    hotelesAsignados.Add(hotelAsignado);
                }
            }
-
+           connection.Close();
            return hotelesAsignados;
        }
 
@@ -155,7 +121,7 @@ namespace FrbaHotel.Control
                    todosLosHoteles.Add(hotel);
                }
            }
-
+           connection.Close();
            return todosLosHoteles;
        }
 
@@ -176,24 +142,175 @@ namespace FrbaHotel.Control
            {
                hotel.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
            }
+
            return hotel;
        }
 
-
-
-       internal List<string> getAllCiudadesDeHoteles(int id_Usuario)
+       public string obtenerNombreHotel(int id_hotel_logueado)
        {
-           throw new NotImplementedException();
+           Hotel hotel = this.getHotelPorID(id_hotel_logueado);
+           return hotel.nombre;
+       }
+
+       public List<string> getAllCiudadesDeHoteles(int id_Usuario)
+       {
+           List<string> stringCiudades = new List<string>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarHotelesCiudades", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_DarHotelesCiudades
+           spCommand.Parameters.Add(new SqlParameter("@idUsu", id_Usuario));
+           DataTable hotelesTable = new DataTable();
+           hotelesTable.Load(spCommand.ExecuteReader());
+           if (hotelesTable != null && hotelesTable.Rows != null)
+           {
+               foreach (DataRow row in hotelesTable.Rows)
+               {
+                   stringCiudades.Add(Convert.ToString(row["ciudad"]));
+               }
+           }
+           connection.Close();
+           return stringCiudades;
        }
 
        internal List<string> getAllPaisesDeHoteles(int id_Usuario)
        {
-           throw new NotImplementedException();
+           List<string> stringPaises = new List<string>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarHotelesPaises", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_DarHotelesPaises
+           spCommand.Parameters.Add(new SqlParameter("@idUsu", id_Usuario));
+           DataTable hotelesTable = new DataTable();
+           hotelesTable.Load(spCommand.ExecuteReader());
+           if (hotelesTable != null && hotelesTable.Rows != null)
+           {
+               foreach (DataRow row in hotelesTable.Rows)
+               {
+                   stringPaises.Add(Convert.ToString(row["pais"]));
+               }
+           }
+           connection.Close();
+           return stringPaises;
        }
 
-       internal List<Hotel> getHotelesFiltrados(int id_Usuario, object p1, string p2, object p3, decimal p4)
+       internal List<Hotel> getHotelesFiltrados(int id_Usuario, string ciudad, string nombre, string pais, int cantidadDias)
        {
-           throw new NotImplementedException();
+           var hotelesFiltrados = new List<Hotel>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_FiltrarHotelesPorCampos", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_FiltrarHotelesPorCampos
+           spCommand.Parameters.Add(new SqlParameter("@idUsu", id_Usuario));
+           spCommand.Parameters.Add(new SqlParameter("@cantEstrellas", cantidadDias));
+           spCommand.Parameters.Add(new SqlParameter("@ciudad", ciudad));
+           spCommand.Parameters.Add(new SqlParameter("@pais", pais));
+           spCommand.Parameters.Add(new SqlParameter("@nombre", nombre));
+           DataTable hotelesTable = new DataTable();
+           hotelesTable.Load(spCommand.ExecuteReader());
+           if (hotelesTable != null && hotelesTable.Rows != null)
+           {
+               foreach (DataRow row in hotelesTable.Rows)
+               {
+                   Hotel hotel = this.BuidHotel(row);
+                   List<RegimenEstadia> regimenesDeHotel = regimenCtrl.getRegimenes_IDHotel(hotel.id_hotel);
+                   hotel.lista_Regimenes = regimenesDeHotel;
+                   hotelesFiltrados.Add(hotel);
+               }
+           }
+           connection.Close();
+           return hotelesFiltrados;
+       }
+
+       public string habInhHotel(int id_hotel_DarBaja, Nullable<System.DateTime> fechaInicio, int diasCierre, string comentarios)
+       {
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_HabInhabHotel", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           spCommand.Parameters.Clear();
+           spCommand.Parameters.Add(new SqlParameter("@id_hotel", id_hotel_DarBaja));
+           spCommand.Parameters.Add(new SqlParameter("@fechaInicio", fechaInicio));
+           spCommand.Parameters.Add(new SqlParameter("@diasCierre", diasCierre));
+           spCommand.Parameters.Add(new SqlParameter("@comentario", comentarios));
+           connection.Open();
+           string mensaje = (string)spCommand.ExecuteScalar();
+           connection.Close();
+           return mensaje;
+       }
+
+       public void modificar_Hotel(Hotel nuevoHotel, Hotel hotelPrevio)
+       {
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ModificarHotel", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_ModificarHotel
+           spCommand.Parameters.Add(new SqlParameter("@id_hotel", nuevoHotel.id_hotel));
+           spCommand.Parameters.Add(new SqlParameter("@nombre", nuevoHotel.nombre));
+           spCommand.Parameters.Add(new SqlParameter("@pais", nuevoHotel.pais));
+           spCommand.Parameters.Add(new SqlParameter("@ciudad", nuevoHotel.ciudad));
+           spCommand.Parameters.Add(new SqlParameter("@calle", nuevoHotel.calle));
+           spCommand.Parameters.Add(new SqlParameter("@nro_calle", nuevoHotel.nro_calle));
+           spCommand.Parameters.Add(new SqlParameter("@cant_estrellas", nuevoHotel.cant_estrellas));
+           spCommand.Parameters.Add(new SqlParameter("@recarga_estrellas", nuevoHotel.recarga_estrella));
+           spCommand.Parameters.Add(new SqlParameter("@email", nuevoHotel.email));
+           spCommand.Parameters.Add(new SqlParameter("@telefono", nuevoHotel.telefono));
+           if (spCommand.ExecuteNonQuery() >= 1) { 
+                //modifico los regimenes asociados al hotel
+               foreach (RegimenEstadia nuevoRegimen in nuevoHotel.lista_Regimenes)
+               {
+                   if (!(hotelPrevio.lista_Regimenes.Contains(nuevoRegimen)))
+                   {
+                       this.agregarRegimenAHotel(hotelPrevio.id_hotel, nuevoRegimen.id_regimen);
+                       
+                   }
+
+               }
+               foreach (RegimenEstadia regimenPrevio in hotelPrevio.lista_Regimenes)
+               {
+                   if (!(nuevoHotel.lista_Regimenes.Contains(regimenPrevio)))
+                   {
+                       this.quitarRegimenAHotel(hotelPrevio.id_hotel, regimenPrevio.id_regimen);
+                   }
+
+               }
+           
+           }
+       }
+
+       private void quitarRegimenAHotel(int id_hotel, int id_regimen)
+       {
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_QuitarRegimenDeHotel", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_QuitarRegimenDeHotel
+           spCommand.Parameters.Add(new SqlParameter("@idHotel", id_hotel));
+           spCommand.Parameters.Add(new SqlParameter("@idRegimen", id_regimen));
+           spCommand.ExecuteNonQuery();
+           connection.Close();
+       }
+
+       private void agregarRegimenAHotel(int id_hotel, int id_regimen)
+       {
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_InsertarNuevoRegimenXHotel", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+            //agrego parametros al SP_NuevoRegimenXHotel
+           spCommand.Parameters.Add(new SqlParameter("@idHotel", id_hotel));
+           spCommand.Parameters.Add(new SqlParameter("@idRegimen", id_regimen));
+            spCommand.ExecuteNonQuery();
+           connection.Close();
        }
     }
 }

@@ -4,6 +4,7 @@ using FrbaHotel.AbmPersona;
 using FrbaHotel.AbmRol;
 using FrbaHotel.AbmUsuario;
 using FrbaHotel.Entidades;
+using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
 using System;
 using System.Collections.Generic;
@@ -84,7 +85,7 @@ namespace FrbaHotel
             ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
             menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Rol");
 
-            ToolStripItem menu_estadisticas = itemsMenu.Find("estadísticasToolStripMenuItem", true)[0];
+            ToolStripItem menu_estadisticas = itemsMenu.Find("listaEstadisticasToolStripMenuItem_Click", true)[0];
             menu_estadisticas.Enabled = f.Any(func => func.descripcion_funcionalidad == "Listado Estadistico");
                 
 
@@ -187,6 +188,12 @@ namespace FrbaHotel
         {
             ConsultaHotelForm consultaHoteles = new ConsultaHotelForm();
             consultaHoteles.ShowDialog();
+        }
+
+        private void listaEstadisticasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListadoEstadisticoForm estadisticas = new ListadoEstadisticoForm();
+            estadisticas.ShowDialog();
         }
 
       

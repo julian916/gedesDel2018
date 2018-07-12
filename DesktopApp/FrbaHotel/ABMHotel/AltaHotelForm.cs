@@ -14,12 +14,12 @@ namespace FrbaHotel.ABMHotel
 {
     public partial class AltaHotelForm : Form
     {
-        private int id_nuevoHotel;
+        List<RegimenEstadia> todosLosRegimenes = new List<RegimenEstadia>();
         private int id_usuarioParaHotel=DatosSesion.id_usuario;
         private int id_rolDeUsuario=DatosSesion.id_rol;
         private Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
-        private Hotel hotel;
-        
+        private Hotel hotelPrevio;
+        private bool esModificacion;
         public AltaHotelForm()
         {
             InitializeComponent();
@@ -28,7 +28,8 @@ namespace FrbaHotel.ABMHotel
         public AltaHotelForm(Hotel hotel)
         {
             InitializeComponent();
-            this.hotel = hotel;
+            this.hotelPrevio = hotel;
+            esModificacion = true;
         }
 
         private void AltaHotelForm_Load(object sender, EventArgs e)
@@ -36,6 +37,17 @@ namespace FrbaHotel.ABMHotel
             this.cargarRegimenesEstadia();
             this.cargarCantidadEstrellas();
             paisCombo.DataSource = new Paises().getAll();
+            if (esModificacion) {
+                nombreBox.Text = hotelPrevio.nombre;
+                calleBox.Text = hotelPrevio.calle;
+                nroCalleBoxNumeric.Value = hotelPrevio.nro_calle;
+                ciudadBox.Text = hotelPrevio.ciudad;
+                paisCombo.Text = hotelPrevio.pais;
+                cantidadEstreBox.Text = hotelPrevio.cant_estrellas.ToString();
+                recargaEstrellaBox.Value = hotelPrevio.cant_estrellas;
+                telBox.Text = hotelPrevio.telefono;
+                emailBox.Text = hotelPrevio.email;
+            }
         }
 
         private void cargarCantidadEstrellas()
@@ -50,7 +62,8 @@ namespace FrbaHotel.ABMHotel
         private void cargarRegimenesEstadia()
         {
             Regimenes_Ctrl ctrlRegimenes = new Regimenes_Ctrl();
-            foreach (RegimenEstadia reg in ctrlRegimenes.getAllRegimenes())
+            todosLosRegimenes = ctrlRegimenes.getAllRegimenes();
+            foreach (RegimenEstadia reg in todosLosRegimenes)
             {
                 regimenesCheckList.Items.Add(reg.descripcion);
             }
@@ -58,8 +71,11 @@ namespace FrbaHotel.ABMHotel
 
         private void crearHotelButton_Click(object sender, EventArgs e)
         {
-            if (this.tieneCamposObligatorios())
+            try
             {
+                if (!this.tieneCamposObligatorios()) {
+                    throw new System.ArgumentException("Faltan campos obligatorios");
+                }
                 var nuevoHotel = new Hotel();
                 nuevoHotel.nombre = nombreBox.Text;
                 nuevoHotel.calle = calleBox.Text;
@@ -70,14 +86,28 @@ namespace FrbaHotel.ABMHotel
                 nuevoHotel.recarga_estrella = decimal.Parse(recargaEstrellaBox.Value.ToString());
                 nuevoHotel.telefono = telBox.Text;
                 nuevoHotel.email = emailBox.Text;
-                id_nuevoHotel = hotelCtrl.insertar_Hotel(nuevoHotel, id_usuarioParaHotel, id_rolDeUsuario, regimenesCheckList.CheckedItems.Cast<string>().ToList());
-            }
-            else
-            {
-                MessageBox.Show("Falta completar datos.");
+                nuevoHotel.lista_Regimenes=this.getRegimenesSeleccionados(regimenesCheckList.CheckedItems.Cast<string>().ToList());
+                if (esModificacion)
+                {
+                    hotelCtrl.insertar_Hotel(nuevoHotel);
+                    MessageBox.Show("Se creó correctamente el nuevo hotel.");
+                }
+                else
+                {
+                    hotelCtrl.modificar_Hotel(nuevoHotel, hotelPrevio);
+                    MessageBox.Show("Se modificó correctamente el hotel.");
+                }
 
             }
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message);
+            }
+        }
 
+        private List<RegimenEstadia> getRegimenesSeleccionados(List<string> descripciones)
+        {
+            
+            return (todosLosRegimenes.Where(reg => descripciones.Contains(reg.descripcion))).ToList();
         }
 
         private bool tieneCamposObligatorios()

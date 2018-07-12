@@ -40,18 +40,6 @@
             this.dataGridHoteles = new System.Windows.Forms.DataGridView();
             this.ciudadComboBox = new System.Windows.Forms.ComboBox();
             this.paisComboBox = new System.Windows.Forms.ComboBox();
-            this.id_hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nro_calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cant_estrellas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.recarga_estrellas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_creacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.newBtn = new System.Windows.Forms.Button();
             this.updateBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -158,19 +146,6 @@
             this.dataGridHoteles.AllowUserToDeleteRows = false;
             this.dataGridHoteles.AllowUserToOrderColumns = true;
             this.dataGridHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHoteles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_hotel,
-            this.nombre,
-            this.calle,
-            this.nro_calle,
-            this.telefono,
-            this.ciudad,
-            this.pais,
-            this.cant_estrellas,
-            this.recarga_estrellas,
-            this.habilitado,
-            this.email,
-            this.fecha_creacion});
             this.dataGridHoteles.Location = new System.Drawing.Point(13, 222);
             this.dataGridHoteles.Name = "dataGridHoteles";
             this.dataGridHoteles.ReadOnly = true;
@@ -193,85 +168,11 @@
             this.paisComboBox.Size = new System.Drawing.Size(259, 21);
             this.paisComboBox.TabIndex = 11;
             // 
-            // id_hotel
-            // 
-            this.id_hotel.HeaderText = "ID_Hotel";
-            this.id_hotel.Name = "id_hotel";
-            this.id_hotel.ReadOnly = true;
-            this.id_hotel.Visible = false;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // calle
-            // 
-            this.calle.HeaderText = "Calle";
-            this.calle.Name = "calle";
-            this.calle.ReadOnly = true;
-            // 
-            // nro_calle
-            // 
-            this.nro_calle.HeaderText = "Número calle";
-            this.nro_calle.Name = "nro_calle";
-            this.nro_calle.ReadOnly = true;
-            // 
-            // telefono
-            // 
-            this.telefono.HeaderText = "Teléfono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
-            // 
-            // ciudad
-            // 
-            this.ciudad.HeaderText = "Ciudad";
-            this.ciudad.Name = "ciudad";
-            this.ciudad.ReadOnly = true;
-            // 
-            // pais
-            // 
-            this.pais.HeaderText = "País";
-            this.pais.Name = "pais";
-            this.pais.ReadOnly = true;
-            // 
-            // cant_estrellas
-            // 
-            this.cant_estrellas.HeaderText = "Cantidad Estrellas";
-            this.cant_estrellas.Name = "cant_estrellas";
-            this.cant_estrellas.ReadOnly = true;
-            // 
-            // recarga_estrellas
-            // 
-            this.recarga_estrellas.HeaderText = "Recarga Estrellas";
-            this.recarga_estrellas.Name = "recarga_estrellas";
-            this.recarga_estrellas.ReadOnly = true;
-            // 
-            // habilitado
-            // 
-            this.habilitado.HeaderText = "Está habilitado";
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "E-mail";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
-            // fecha_creacion
-            // 
-            this.fecha_creacion.HeaderText = "Fecha de Creacion";
-            this.fecha_creacion.Name = "fecha_creacion";
-            this.fecha_creacion.ReadOnly = true;
-            this.fecha_creacion.Visible = false;
-            // 
             // newBtn
             // 
             this.newBtn.Location = new System.Drawing.Point(178, 458);
             this.newBtn.Name = "newBtn";
-            this.newBtn.Size = new System.Drawing.Size(75, 23);
+            this.newBtn.Size = new System.Drawing.Size(103, 23);
             this.newBtn.TabIndex = 2;
             this.newBtn.Text = "Nuevo";
             this.newBtn.UseVisualStyleBackColor = true;
@@ -281,7 +182,7 @@
             // 
             this.updateBtn.Location = new System.Drawing.Point(332, 458);
             this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(75, 23);
+            this.updateBtn.Size = new System.Drawing.Size(103, 23);
             this.updateBtn.TabIndex = 3;
             this.updateBtn.Text = "Modificar";
             this.updateBtn.UseVisualStyleBackColor = true;
@@ -289,9 +190,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(653, 458);
+            this.button4.Location = new System.Drawing.Point(625, 458);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(103, 23);
             this.button4.TabIndex = 4;
             this.button4.Text = "Cancelar";
             this.button4.UseVisualStyleBackColor = true;
@@ -299,11 +200,11 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(494, 458);
+            this.deleteBtn.Location = new System.Drawing.Point(476, 458);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteBtn.Size = new System.Drawing.Size(103, 23);
             this.deleteBtn.TabIndex = 5;
-            this.deleteBtn.Text = "Dar de baja";
+            this.deleteBtn.Text = "Habilitar/Inhabilitar";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
@@ -343,18 +244,6 @@
         private System.Windows.Forms.DataGridView dataGridHoteles;
         private System.Windows.Forms.ComboBox paisComboBox;
         private System.Windows.Forms.ComboBox ciudadComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_hotel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn calle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nro_calle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ciudad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pais;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cant_estrellas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn recarga_estrellas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_creacion;
         private System.Windows.Forms.Button newBtn;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button button4;

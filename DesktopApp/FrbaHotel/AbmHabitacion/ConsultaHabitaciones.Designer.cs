@@ -35,14 +35,6 @@
             this.newHabBtn = new System.Windows.Forms.Button();
             this.modificarBtn = new System.Windows.Forms.Button();
             this.Cancelar = new System.Windows.Forms.Button();
-            this.id_habitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.piso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_TipoHabitacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comodidades = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inhabilitarBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHabitaciones)).BeginInit();
@@ -86,14 +78,6 @@
             this.dataGridHabitaciones.AllowUserToOrderColumns = true;
             this.dataGridHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridHabitaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_habitacion,
-            this.numero,
-            this.piso,
-            this.frente,
-            this.id_TipoHabitacion,
-            this.habilitado,
-            this.comodidades,
-            this.id_hotel,
             this.inhabilitarBtn});
             this.dataGridHabitaciones.Location = new System.Drawing.Point(22, 62);
             this.dataGridHabitaciones.Name = "dataGridHabitaciones";
@@ -131,57 +115,6 @@
             this.Cancelar.UseVisualStyleBackColor = true;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
-            // id_habitacion
-            // 
-            this.id_habitacion.HeaderText = "ID_Habitacion";
-            this.id_habitacion.Name = "id_habitacion";
-            this.id_habitacion.ReadOnly = true;
-            this.id_habitacion.Visible = false;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Número";
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            // 
-            // piso
-            // 
-            this.piso.HeaderText = "Piso";
-            this.piso.Name = "piso";
-            this.piso.ReadOnly = true;
-            // 
-            // frente
-            // 
-            this.frente.HeaderText = "Tiene frente";
-            this.frente.Name = "frente";
-            this.frente.ReadOnly = true;
-            // 
-            // id_TipoHabitacion
-            // 
-            this.id_TipoHabitacion.HeaderText = "Codigo Tipo_Hab";
-            this.id_TipoHabitacion.Name = "id_TipoHabitacion";
-            this.id_TipoHabitacion.ReadOnly = true;
-            // 
-            // habilitado
-            // 
-            this.habilitado.HeaderText = "Esta habilitado";
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
-            // 
-            // comodidades
-            // 
-            this.comodidades.HeaderText = "Comodidades";
-            this.comodidades.Name = "comodidades";
-            this.comodidades.ReadOnly = true;
-            this.comodidades.Visible = false;
-            // 
-            // id_hotel
-            // 
-            this.id_hotel.HeaderText = "ID_Hotel";
-            this.id_hotel.Name = "id_hotel";
-            this.id_hotel.ReadOnly = true;
-            this.id_hotel.Visible = false;
-            // 
             // inhabilitarBtn
             // 
             this.inhabilitarBtn.HeaderText = "Inhabilitar/Habilitar";
@@ -217,14 +150,6 @@
         private System.Windows.Forms.Button newHabBtn;
         private System.Windows.Forms.Button modificarBtn;
         private System.Windows.Forms.Button Cancelar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_habitacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn piso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn frente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_TipoHabitacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comodidades;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_hotel;
         private System.Windows.Forms.DataGridViewButtonColumn inhabilitarBtn;
     }
 }

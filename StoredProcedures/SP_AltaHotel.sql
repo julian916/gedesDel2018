@@ -24,9 +24,7 @@ BEGIN
 	INSERT INTO  [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] ( id_hotel, id_usuario, id_rol)
 	VALUES(@idHotel,@idUsuario, @idRol)
 
-	SELECT *
-	FROM [CUATROGDD2018].[Hoteles] H
-	WHERE H.id_hotel = @idHotel
+	SELECT @idHotel 
 			
 END
 GO

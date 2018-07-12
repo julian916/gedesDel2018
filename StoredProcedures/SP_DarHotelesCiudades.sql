@@ -9,7 +9,7 @@ BEGIN
 	ON h.id_hotel=uxh.id_hotel
 	INNER JOIN [CUATROGDD2018].[Roles] r
 	On uxh.id_rol=r.id_rol
-	WHERE uxh.id_usuario=@idUsu and r.nombre='Administrador'
+	WHERE uxh.id_usuario=@idUsu
 	GROUP BY h.ciudad
 	
 END

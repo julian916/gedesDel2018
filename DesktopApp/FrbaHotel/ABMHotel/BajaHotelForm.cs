@@ -26,5 +26,33 @@ namespace FrbaHotel.ABMHotel
         {
             infoHotelBox.Text = hotelCtrl.obtenerNombreHotel(id_hotel_DarBaja);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+        private void darDeBajaBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String mensaje = hotelCtrl.habInhHotel(id_hotel_DarBaja, fechaInicioBaja.Value, (int)cantidadDiasBox.Value, detalleBox.Text);
+                if (mensaje == "")
+                {
+                    MessageBox.Show("El hotel se dió de baja correctamente");
+                }
+                else {
+                    MessageBox.Show(mensaje);
+                }
+                this.Dispose();
+                this.Close();
+            }
+            catch (Exception exc) {
+
+                MessageBox.Show(exc.Message);
+            }
+        }
+
     }
 }

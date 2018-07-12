@@ -46,12 +46,6 @@
             this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hotelesConMasReservasCanceladasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hotelesConMásDíasSinServicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habitacionesMasOcupadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clienteConMayorCantidadDePuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.panelReservas = new System.Windows.Forms.Panel();
             this.cancelReservaButton = new System.Windows.Forms.Button();
@@ -61,6 +55,7 @@
             this.closeSessionLink = new System.Windows.Forms.LinkLabel();
             this.panelSession = new System.Windows.Forms.Panel();
             this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
+            this.listaEstadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelReservas.SuspendLayout();
             this.panelSession.SuspendLayout();
@@ -72,10 +67,10 @@
             this.administracionHotelToolStripMenuItem,
             this.toolStripMenuItem1,
             this.rolToolStripMenuItem,
-            this.estadísticasToolStripMenuItem});
+            this.listaEstadisticasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(906, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -211,66 +206,25 @@
             this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.modificarRolToolStripMenuItem.Text = "ConsultarRoles";
             // 
-            // estadísticasToolStripMenuItem
-            // 
-            this.estadísticasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hotelesConMasReservasCanceladasToolStripMenuItem,
-            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem,
-            this.hotelesConMásDíasSinServicioToolStripMenuItem,
-            this.habitacionesMasOcupadasToolStripMenuItem,
-            this.clienteConMayorCantidadDePuntosToolStripMenuItem});
-            this.estadísticasToolStripMenuItem.Name = "estadísticasToolStripMenuItem";
-            this.estadísticasToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.estadísticasToolStripMenuItem.Text = "Estadísticas";
-            // 
-            // hotelesConMasReservasCanceladasToolStripMenuItem
-            // 
-            this.hotelesConMasReservasCanceladasToolStripMenuItem.Name = "hotelesConMasReservasCanceladasToolStripMenuItem";
-            this.hotelesConMasReservasCanceladasToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
-            this.hotelesConMasReservasCanceladasToolStripMenuItem.Text = "Hoteles con más reservas canceladas";
-            // 
-            // hotelesConMasConsumiblesFacturadosToolStripMenuItem
-            // 
-            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Name = "hotelesConMasConsumiblesFacturadosToolStripMenuItem";
-            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
-            this.hotelesConMasConsumiblesFacturadosToolStripMenuItem.Text = "Hoteles con más consumibles facturados";
-            // 
-            // hotelesConMásDíasSinServicioToolStripMenuItem
-            // 
-            this.hotelesConMásDíasSinServicioToolStripMenuItem.Name = "hotelesConMásDíasSinServicioToolStripMenuItem";
-            this.hotelesConMásDíasSinServicioToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
-            this.hotelesConMásDíasSinServicioToolStripMenuItem.Text = "Hoteles con más días sin Servicio";
-            // 
-            // habitacionesMasOcupadasToolStripMenuItem
-            // 
-            this.habitacionesMasOcupadasToolStripMenuItem.Name = "habitacionesMasOcupadasToolStripMenuItem";
-            this.habitacionesMasOcupadasToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
-            this.habitacionesMasOcupadasToolStripMenuItem.Text = "Habitaciones mas ocupadas";
-            // 
-            // clienteConMayorCantidadDePuntosToolStripMenuItem
-            // 
-            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Name = "clienteConMayorCantidadDePuntosToolStripMenuItem";
-            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
-            this.clienteConMayorCantidadDePuntosToolStripMenuItem.Text = "Clientes con más puntos";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(308, 82);
+            this.label1.Location = new System.Drawing.Point(272, 118);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 39);
+            this.label1.Size = new System.Drawing.Size(405, 39);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Bienvenido";
+            this.label1.Text = "Bienvenido a FRBA Hotel";
             // 
             // panelReservas
             // 
             this.panelReservas.AutoSize = true;
+            this.panelReservas.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panelReservas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelReservas.Controls.Add(this.cancelReservaButton);
             this.panelReservas.Controls.Add(this.updateReservaButton);
             this.panelReservas.Controls.Add(this.newReservaButton);
-            this.panelReservas.Location = new System.Drawing.Point(124, 195);
+            this.panelReservas.Location = new System.Drawing.Point(190, 184);
             this.panelReservas.Name = "panelReservas";
             this.panelReservas.Size = new System.Drawing.Size(572, 100);
             this.panelReservas.TabIndex = 2;
@@ -328,7 +282,7 @@
             // 
             this.panelSession.Controls.Add(this.closeSessionLink);
             this.panelSession.Controls.Add(this.passLinkLabel);
-            this.panelSession.Location = new System.Drawing.Point(537, 65);
+            this.panelSession.Location = new System.Drawing.Point(643, 27);
             this.panelSession.Name = "panelSession";
             this.panelSession.Size = new System.Drawing.Size(233, 56);
             this.panelSession.TabIndex = 5;
@@ -336,7 +290,7 @@
             // inicioSesionLink
             // 
             this.inicioSesionLink.AutoSize = true;
-            this.inicioSesionLink.Location = new System.Drawing.Point(679, 335);
+            this.inicioSesionLink.Location = new System.Drawing.Point(795, 422);
             this.inicioSesionLink.Name = "inicioSesionLink";
             this.inicioSesionLink.Size = new System.Drawing.Size(65, 13);
             this.inicioSesionLink.TabIndex = 5;
@@ -344,11 +298,19 @@
             this.inicioSesionLink.Text = "Inicio sesión";
             this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
             // 
+            // listaEstadisticasToolStripMenuItem
+            // 
+            this.listaEstadisticasToolStripMenuItem.Name = "listaEstadisticasToolStripMenuItem";
+            this.listaEstadisticasToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.listaEstadisticasToolStripMenuItem.Text = "Lista Estadisticas";
+            this.listaEstadisticasToolStripMenuItem.Click += new System.EventHandler(this.listaEstadisticasToolStripMenuItem_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 366);
+            this.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.ClientSize = new System.Drawing.Size(906, 477);
             this.Controls.Add(this.inicioSesionLink);
             this.Controls.Add(this.panelSession);
             this.Controls.Add(this.panelReservas);
@@ -388,14 +350,8 @@
         private System.Windows.Forms.ToolStripMenuItem aBMHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevaHabitaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMasConsumiblesFacturadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMásDíasSinServicioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clienteConMayorCantidadDePuntosToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelReservas;
         private System.Windows.Forms.Button cancelReservaButton;
@@ -405,5 +361,6 @@
         private System.Windows.Forms.LinkLabel closeSessionLink;
         private System.Windows.Forms.Panel panelSession;
         private System.Windows.Forms.LinkLabel inicioSesionLink;
+        private System.Windows.Forms.ToolStripMenuItem listaEstadisticasToolStripMenuItem;
     }
 }

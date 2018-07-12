@@ -39,9 +39,10 @@ namespace FrbaHotel.ABMHotel
 
         private void filtrarBtn_Click(object sender, EventArgs e)
         {
-            List<Hotel> hotelesEncontrados = hotelCtrl.getHotelesFiltrados(id_Usuario, ciudadComboBox.SelectedValue, nombreBox.Text, paisComboBox.SelectedValue, estrellasBox.Value);
+            List<Hotel> hotelesEncontrados = hotelCtrl.getHotelesFiltrados(id_Usuario,ciudadComboBox.Text.ToString(), nombreBox.Text, (string)paisComboBox.Text.ToString(), (int)estrellasBox.Value);
             dataGridHoteles.DataSource = hotelesEncontrados;
             updateBtn.Enabled = true;
+            deleteBtn.Enabled = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -57,8 +58,16 @@ namespace FrbaHotel.ABMHotel
                 foreach (DataGridViewRow row in dataGridHoteles.SelectedRows)
                 {
                     Hotel hotel = (Hotel)row.DataBoundItem;
-                    BajaHotelForm bajaForm = new BajaHotelForm(hotel.id_hotel);
-                    bajaForm.ShowDialog();
+                    if (hotel.habilitado)
+                    {
+                        BajaHotelForm bajaForm = new BajaHotelForm(hotel.id_hotel);
+                        bajaForm.ShowDialog();
+                    }
+                    else {
+                        hotelCtrl.habInhHotel(hotel.id_hotel,null, 0, "");
+                        MessageBox.Show("Se habilitó correctamente el hotel");
+                    }
+                    
                 }
                 this.Dispose();
                 this.Close();

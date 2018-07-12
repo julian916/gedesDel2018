@@ -33,9 +33,7 @@ namespace FrbaHotel.AbmHabitacion
             
             infoHabBox.Text = this.obtenerNombreHotel(id_hotel_sesion);
             List<Habitacion> habitacionesDeHotel = habitacionCtrl.getHabitacionesDeHotel(id_hotel_sesion);
-            foreach ( Habitacion hab in habitacionesDeHotel){
-                dataGridHabitaciones.Rows.Add(hab.id_habitacion,hab.nro_habitacion,hab.piso, hab.frente, hab.id_tipo_habitacion,hab.habilitado,hab.comodidades,hab.id_hotel);
-            }
+            dataGridHabitaciones.DataSource = habitacionesDeHotel;
         }
 
         private string obtenerNombreHotel(int id_hotel_logueado)

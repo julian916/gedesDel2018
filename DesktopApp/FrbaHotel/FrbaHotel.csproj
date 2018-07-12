@@ -226,6 +226,9 @@
     <EmbeddedResource Include="ABMHotel\AltaHotelForm.resx">
       <DependentUpon>AltaHotelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABMHotel\BajaHotelForm.resx">
+      <DependentUpon>BajaHotelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABMHotel\ConsultaHotelForm.resx">
       <DependentUpon>ConsultaHotelForm.cs</DependentUpon>
     </EmbeddedResource>

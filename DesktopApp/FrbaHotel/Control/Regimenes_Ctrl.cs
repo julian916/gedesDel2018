@@ -13,37 +13,18 @@ namespace FrbaHotel.Control
 {
     public partial class Regimenes_Ctrl
     {
-        public BindingList<RegimenEstadia> getAllRegimenes()
+        public List<RegimenEstadia> getAllRegimenes()
         {
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_getAllRegimenes", sqlConnection);
             spCommand.CommandType = CommandType.StoredProcedure;
             sqlConnection.Open();
-            var lista_regimenes = new BindingList<RegimenEstadia>();
-            SqlDataReader dataReader = spCommand.ExecuteReader();
-            DataTable resultTable = new DataTable();
-            if (dataReader.HasRows)
-            {
-                int count = 0;
-                while (dataReader.Read())
-                {
-                    DataRow row = resultTable.NewRow();
-                    for (int i = 0; i < dataReader.FieldCount; i++)
-                    {
-                        if (count == 0)
-                            resultTable.Columns.Add(dataReader.GetName(i));
-
-                        row[i] = dataReader[i];
-                    }
-                    resultTable.Rows.Add(row);
-                    count++;
-                }
-            }
-            dataReader.Close();
-
-            if (resultTable != null && resultTable.Rows != null)
-            {
-                foreach (DataRow row in resultTable.Rows)
+            var lista_regimenes = new List<RegimenEstadia>();
+            DataTable regimenesTable = new DataTable();
+           regimenesTable.Load(spCommand.ExecuteReader());
+           if (regimenesTable != null && regimenesTable.Rows != null)
+           {
+               foreach (DataRow row in regimenesTable.Rows)
                 {
                     var regimen = BuildRegimen(row);
                     lista_regimenes.Add(regimen);
@@ -62,5 +43,27 @@ namespace FrbaHotel.Control
             return regimen;
         }
 
+
+        public List<RegimenEstadia> getRegimenes_IDHotel(int id_hotel)
+        {
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetRegimenPorHotel_DeIdHotel", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            spCommand.Parameters.Add(new SqlParameter("@idHotel", id_hotel));
+            var lista_regimenes = new List<RegimenEstadia>();
+            DataTable regimenesTable = new DataTable();
+            regimenesTable.Load(spCommand.ExecuteReader());
+            if (regimenesTable != null && regimenesTable.Rows != null)
+            {
+                foreach (DataRow row in regimenesTable.Rows)
+                {
+                    var regimen = BuildRegimen(row);
+                    lista_regimenes.Add(regimen);
+                }
+            }
+
+            return lista_regimenes;
+        }
     }
 }

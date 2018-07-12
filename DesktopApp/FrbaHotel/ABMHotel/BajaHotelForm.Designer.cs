@@ -32,15 +32,15 @@
             this.infoHotelBox = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.fechaInicioBaja = new System.Windows.Forms.DateTimePicker();
+            this.detalleBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.darDeBajaBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.cantidadDiasBox = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantidadDiasBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -83,21 +83,21 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "Fecha Inicio de Baja";
             // 
-            // dateTimePicker1
+            // fechaInicioBaja
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(190, 67);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 16;
+            this.fechaInicioBaja.Location = new System.Drawing.Point(190, 67);
+            this.fechaInicioBaja.Name = "fechaInicioBaja";
+            this.fechaInicioBaja.Size = new System.Drawing.Size(200, 20);
+            this.fechaInicioBaja.TabIndex = 16;
             // 
-            // textBox1
+            // detalleBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(190, 142);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(200, 71);
-            this.textBox1.TabIndex = 19;
+            this.detalleBox.Location = new System.Drawing.Point(190, 142);
+            this.detalleBox.Multiline = true;
+            this.detalleBox.Name = "detalleBox";
+            this.detalleBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.detalleBox.Size = new System.Drawing.Size(200, 71);
+            this.detalleBox.TabIndex = 19;
             // 
             // label4
             // 
@@ -108,14 +108,15 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "Detalle";
             // 
-            // button1
+            // darDeBajaBtn
             // 
-            this.button1.Location = new System.Drawing.Point(190, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Dar de Baja";
-            this.button1.UseVisualStyleBackColor = true;
+            this.darDeBajaBtn.Location = new System.Drawing.Point(190, 226);
+            this.darDeBajaBtn.Name = "darDeBajaBtn";
+            this.darDeBajaBtn.Size = new System.Drawing.Size(75, 23);
+            this.darDeBajaBtn.TabIndex = 21;
+            this.darDeBajaBtn.Text = "Dar de Baja";
+            this.darDeBajaBtn.UseVisualStyleBackColor = true;
+            this.darDeBajaBtn.Click += new System.EventHandler(this.darDeBajaBtn_Click);
             // 
             // button2
             // 
@@ -125,6 +126,7 @@
             this.button2.TabIndex = 22;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -135,23 +137,23 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "Cantidad de días";
             // 
-            // numericUpDown1
+            // cantidadDiasBox
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(190, 106);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.cantidadDiasBox.Location = new System.Drawing.Point(190, 106);
+            this.cantidadDiasBox.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.cantidadDiasBox.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 24;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.cantidadDiasBox.Name = "cantidadDiasBox";
+            this.cantidadDiasBox.Size = new System.Drawing.Size(120, 20);
+            this.cantidadDiasBox.TabIndex = 24;
+            this.cantidadDiasBox.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -162,13 +164,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 261);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.cantidadDiasBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.darDeBajaBtn);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.detalleBox);
+            this.Controls.Add(this.fechaInicioBaja);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Name = "BajaHotelForm";
@@ -176,7 +178,7 @@
             this.Load += new System.EventHandler(this.BajaHotelForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cantidadDiasBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,12 +190,12 @@
         private System.Windows.Forms.Label infoHotelBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker fechaInicioBaja;
+        private System.Windows.Forms.TextBox detalleBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button darDeBajaBtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown cantidadDiasBox;
     }
 }

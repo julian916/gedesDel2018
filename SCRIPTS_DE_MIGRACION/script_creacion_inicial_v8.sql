@@ -151,7 +151,7 @@ Print 'Creacion de tablas'
 		[piso] [numeric](18, 0) NOT NULL,
 		[nro_habitacion] [numeric](18, 0) NOT NULL,
 		[frente] [nvarchar] (50) NOT NULL,
-		[comodidades] [varchar](255) NULL,
+		[comodidades] [varchar](255) NOT NULL DEFAULT('No informado'),
 		[habilitado] bit NOT NULL DEFAULT('True'),
 		[id_hotel] [int] NOT NULL,
 		[id_tipo_habitacion] [int] NOT NULL,
@@ -639,7 +639,8 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 				,fecha_desde
 				,fecha_hasta
 				,id_estado_reserva
-				,fecha_reserva)
+				,fecha_reserva
+				,cantidad_noches )
 	SELECT Reserva_Codigo as id_reserva
 			,id_persona
 			,id_regimen
@@ -647,13 +648,14 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 			,DATEADD(day,Reserva_Cant_Noches,Reserva_Fecha_Inicio) as  fecha_hasta
 			, 1 as id_estado_reserva
 			,''
+			,Reserva_Cant_Noches
 	FROM [gd_esquema].[Maestra] 
 	inner join [CUATROGDD2018].Personas per
 	on Cliente_Pasaporte_Nro=per.nro_documento and Cliente_Mail=per.email
 	inner join  [CUATROGDD2018].Regimenes_Estadia re
 	on Regimen_Descripcion=re.descripcion
 	WHERE Reserva_Codigo is not null
-	GROUP BY Reserva_Codigo,id_persona,id_regimen,Reserva_Fecha_Inicio,DATEADD(day,Reserva_Cant_Noches,Reserva_Fecha_Inicio)
+	GROUP BY Reserva_Codigo,id_persona,id_regimen,Reserva_Fecha_Inicio,DATEADD(day,Reserva_Cant_Noches,Reserva_Fecha_Inicio), Reserva_Cant_Noches
 	order by Reserva_Codigo
 	GO
 

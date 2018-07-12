@@ -85,7 +85,7 @@ namespace FrbaHotel
             ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
             menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Rol");
 
-            ToolStripItem menu_estadisticas = itemsMenu.Find("listaEstadisticasToolStripMenuItem_Click", true)[0];
+            ToolStripItem menu_estadisticas = itemsMenu.Find("listaEstadisticasToolStripMenuItem", true)[0];
             menu_estadisticas.Enabled = f.Any(func => func.descripcion_funcionalidad == "Listado Estadistico");
                 
 

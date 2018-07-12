@@ -39,6 +39,8 @@
             this.comboCalles = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.tipoHabBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboCiudad
@@ -48,7 +50,7 @@
             "Hotel 1",
             "Hotel 2",
             "Hotel 3"});
-            this.comboCiudad.Location = new System.Drawing.Point(142, 74);
+            this.comboCiudad.Location = new System.Drawing.Point(197, 75);
             this.comboCiudad.Name = "comboCiudad";
             this.comboCiudad.Size = new System.Drawing.Size(165, 21);
             this.comboCiudad.TabIndex = 0;
@@ -71,7 +73,7 @@
             // 
             // fechaDesdeCalendar
             // 
-            this.fechaDesdeCalendar.Location = new System.Drawing.Point(59, 138);
+            this.fechaDesdeCalendar.Location = new System.Drawing.Point(62, 167);
             this.fechaDesdeCalendar.Name = "fechaDesdeCalendar";
             this.fechaDesdeCalendar.ShowToday = false;
             this.fechaDesdeCalendar.ShowTodayCircle = false;
@@ -80,7 +82,7 @@
             // 
             // fechaHastaCalendar
             // 
-            this.fechaHastaCalendar.Location = new System.Drawing.Point(404, 138);
+            this.fechaHastaCalendar.Location = new System.Drawing.Point(469, 167);
             this.fechaHastaCalendar.Name = "fechaHastaCalendar";
             this.fechaHastaCalendar.ShowToday = false;
             this.fechaHastaCalendar.ShowTodayCircle = false;
@@ -94,7 +96,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(61, 112);
+            this.label2.Location = new System.Drawing.Point(64, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 17);
             this.label2.TabIndex = 4;
@@ -108,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(401, 112);
+            this.label3.Location = new System.Drawing.Point(466, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 17);
             this.label3.TabIndex = 5;
@@ -124,13 +126,13 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(59, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 25);
+            this.label4.Size = new System.Drawing.Size(143, 25);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Nueva Reserva";
+            this.label4.Text = "Búsqueda dis";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(498, 331);
+            this.button1.Location = new System.Drawing.Point(569, 339);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 32);
             this.button1.TabIndex = 7;
@@ -141,7 +143,7 @@
             // comboCalles
             // 
             this.comboCalles.FormattingEnabled = true;
-            this.comboCalles.Location = new System.Drawing.Point(404, 73);
+            this.comboCalles.Location = new System.Drawing.Point(469, 71);
             this.comboCalles.Name = "comboCalles";
             this.comboCalles.Size = new System.Drawing.Size(242, 21);
             this.comboCalles.TabIndex = 9;
@@ -154,7 +156,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(344, 75);
+            this.label6.Location = new System.Drawing.Point(404, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 17);
             this.label6.TabIndex = 10;
@@ -173,11 +175,31 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Buscar Hotel";
             // 
+            // tipoHabBox
+            // 
+            this.tipoHabBox.FormattingEnabled = true;
+            this.tipoHabBox.Location = new System.Drawing.Point(197, 111);
+            this.tipoHabBox.Name = "tipoHabBox";
+            this.tipoHabBox.Size = new System.Drawing.Size(165, 21);
+            this.tipoHabBox.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.Location = new System.Drawing.Point(56, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Tipo de Habitación";
+            // 
             // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 383);
+            this.ClientSize = new System.Drawing.Size(935, 383);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tipoHabBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboCalles);
@@ -210,5 +232,7 @@
         private System.Windows.Forms.ComboBox comboCalles;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox tipoHabBox;
+        private System.Windows.Forms.Label label5;
     }
 }

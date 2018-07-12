@@ -10,17 +10,28 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using FrbaHotel.GenerarModificacionReserva;
+using FrbaHotel.Control;
 
 namespace FrbaHotel.GenerarModificarReserva
 {
     public partial class GenerarReserva : Form
     {
         private Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles();
+        TipoHabitacion_Ctrl tipoHabCtrl = new TipoHabitacion_Ctrl();
         public GenerarReserva()
         {
             InitializeComponent();
+            this.cargarTiposHabitacion();
             fechaDesdeCalendar.MinDate = DateTime.Now;
             fechaHastaCalendar.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+        }
+
+        private void cargarTiposHabitacion()
+        {
+            
+            tipoHabBox.DisplayMember = "descripcion";
+            tipoHabBox.ValueMember = "id_tipo_habitacion";
+            tipoHabBox.DataSource = tipoHabCtrl.getAll();
         }
 
         private void Label1_Click(object sender, EventArgs e)

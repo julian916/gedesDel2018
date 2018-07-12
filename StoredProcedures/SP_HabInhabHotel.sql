@@ -31,7 +31,7 @@ BEGIN
 				WHERE [id_hotel]=@id_hotel;
 
 				INSERT [CUATROGDD2018].[Historial_Cierres](
-						[id_hotel],[fecha_desde],[detalle_cierre],[dias_cierre])
+						[id_hotel],[fecha_desde],[detalle_cierre],[cant_diasBaja])
 				VALUES (@id_hotel,@fechaInicio,@comentario,@diasCierre)
 
 				SET @MENSAJE=''

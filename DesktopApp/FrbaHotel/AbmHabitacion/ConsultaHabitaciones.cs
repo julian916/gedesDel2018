@@ -68,27 +68,33 @@ namespace FrbaHotel.AbmHabitacion
             this.Close();
         }
 
-        private void dataGridHabitaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void inhHabBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (dataGridHabitaciones.DataSource != null && dataGridHabitaciones.SelectedRows.Count > 0)
             {
-                if (e.ColumnIndex == dataGridHabitaciones.Columns[5].Index)
+                foreach (DataGridViewRow row in dataGridHabitaciones.SelectedRows)
                 {
-                    //obtengo la fila del cliente a deshabilitar
-                    Habitacion habSeleccionada = (Habitacion)dataGridHabitaciones.Rows[e.RowIndex].DataBoundItem;
+                    Habitacion habSeleccionada = (Habitacion)row.DataBoundItem;
                     Habitacion_Ctrl habCtrl = new Habitacion_Ctrl();
                     string mensaje = habCtrl.inhabilitarHabilitarHabitacion(habSeleccionada);
                     if (mensaje == "")
                     {
                         MessageBox.Show("Se realizó el cambio");
+                        this.Dispose();
+                        this.Close();
                     }
-                    else {
+                    else
+                    {
                         MessageBox.Show(mensaje);
                     }
                 }
+               
             }
-            catch (Exception exc){
-                MessageBox.Show(exc.Message);
+            else
+            {
+                MessageBox.Show("No se selecciono habitacion. Seleccione una fila de la tabla");
             }
         }
     }

@@ -53,7 +53,7 @@ namespace FrbaHotel.Control
             var lista_Habitaciones = new List<Habitacion>();
             DataTable resultTable = new DataTable();
             resultTable.Load(spCommand.ExecuteReader());
-
+            sqlConnection.Close();
             if (resultTable != null && resultTable.Rows != null)
             {
                 foreach (DataRow row in resultTable.Rows)
@@ -68,17 +68,20 @@ namespace FrbaHotel.Control
 
         public Habitacion BuildHabitacion(DataRow row)
         {
+            TipoHabitacion_Ctrl tipoHabCtrl = new TipoHabitacion_Ctrl();
             Habitacion habitacion = new Habitacion();
-            habitacion.id_hotel = Convert.ToInt32(row["id_habitacion"]);
+            habitacion.id_habitacion = Convert.ToInt32(row["id_habitacion"]);
             habitacion.nro_habitacion = Convert.ToInt32(row["nro_habitacion"]);
             habitacion.piso = Convert.ToInt32(row["piso"]);
             habitacion.frente = Convert.ToString(row["frente"]);
             habitacion.comodidades = Convert.ToString(row["comodidades"]);
             habitacion.id_tipo_habitacion = Convert.ToInt32(row["id_tipo_habitacion"]);
+            habitacion.desc_tipo_habitacion = (tipoHabCtrl.getTipoHabitacion_ConID(habitacion.id_tipo_habitacion)).descripcion;
             habitacion.id_hotel = Convert.ToInt32(row["id_hotel"]);
             habitacion.habilitado = Convert.ToBoolean(row["habilitado"]);
             return habitacion;
         }
+
 
         public string stringFrenteTo(bool frente)
         {
@@ -97,17 +100,30 @@ namespace FrbaHotel.Control
         public void modificarHabitacion(Habitacion nuevaHabitacion)
         {
             SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaHabitacion", connection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ModificarHabitacion", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             connection.Open();
             spCommand.Parameters.Clear();
-            spCommand.Parameters.Add(new SqlParameter("@idHab", nuevaHabitacion.id_tipo_habitacion));
+            spCommand.Parameters.Add(new SqlParameter("@idHab", nuevaHabitacion.id_habitacion));
             spCommand.Parameters.Add(new SqlParameter("@piso", nuevaHabitacion.piso));
             spCommand.Parameters.Add(new SqlParameter("@nroHab", nuevaHabitacion.nro_habitacion));
             spCommand.Parameters.Add(new SqlParameter("@frente", nuevaHabitacion.frente));
             spCommand.Parameters.Add(new SqlParameter("@comodidades", nuevaHabitacion.comodidades));
 
             spCommand.ExecuteNonQuery();
+        }
+
+        public bool getBoolForStringFrente(string frenteString)
+        {
+            bool result;
+            if (frenteString == "S")
+            {
+                result= true;
+            }
+            else {
+                result= false;
+            }
+            return result;
         }
     }
 }

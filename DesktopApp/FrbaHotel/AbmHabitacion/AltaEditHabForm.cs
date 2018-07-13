@@ -23,18 +23,22 @@ namespace FrbaHotel.AbmHabitacion
         public AltaEditHabForm()
         {
             InitializeComponent();
+            infoHotelBox.Text = this.obtenerNombreHotel(id_hotel_logueado);
+            this.cargarTiposHabitaciones();
         }
 
         public AltaEditHabForm(Habitacion habitacionSeleccionada)
         {
             InitializeComponent();
-            this.habitacionAModificar = habitacionSeleccionada;
-        }
-
-        private void AltaHabitacionForm_Load(object sender, EventArgs e)
-        {
-            infoHotelBox.Text=this.obtenerNombreHotel(id_hotel_logueado);
+            infoHotelBox.Text = this.obtenerNombreHotel(id_hotel_logueado);
             this.cargarTiposHabitaciones();
+            this.habitacionAModificar = habitacionSeleccionada;
+            pisoNumericBox.Value = habitacionSeleccionada.piso;
+            numHabBox.Value = habitacionSeleccionada.nro_habitacion;
+            frenteBox.Checked = habCtrl.getBoolForStringFrente(habitacionSeleccionada.frente);
+            comodidadesBox.Text = habitacionSeleccionada.comodidades;
+            tipoHabitacionCombo.SelectedValue = habitacionSeleccionada.id_tipo_habitacion;
+  
         }
 
         private void cargarTiposHabitaciones()
@@ -67,7 +71,9 @@ namespace FrbaHotel.AbmHabitacion
                 {
                     if (this.esModificacion())
                     {
-                        tipoHabitacionCombo.Enabled = false;
+
+                        tipoHabitacionCombo.Enabled = true ;
+                        nuevaHabitacion.id_habitacion = habitacionAModificar.id_habitacion;
                         habCtrl.modificarHabitacion(nuevaHabitacion);
                         MessageBox.Show("Se modificó correctamente la habitación");
                     }
@@ -98,7 +104,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private bool tieneCamposObligatorios()
         {
-            return pisoNumericBox.Value != 0 && numHabBox.Value != 0 && tipoHabitacionCombo.SelectedValue != null;
+            return pisoNumericBox.Value != 0 && tipoHabitacionCombo.SelectedValue != null;
         }
 
         private void cancelarButton_Click(object sender, EventArgs e)

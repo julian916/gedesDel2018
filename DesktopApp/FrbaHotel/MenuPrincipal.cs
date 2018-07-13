@@ -224,6 +224,12 @@ namespace FrbaHotel
 
         }
 
+        private void modificarRolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaRolForm consultaRol = new ConsultaRolForm();
+            consultaRol.ShowDialog();
+        }
+
       
     }
 }

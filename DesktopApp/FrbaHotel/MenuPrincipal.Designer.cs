@@ -206,8 +206,9 @@
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.modificarRolToolStripMenuItem.Text = "ConsultarRoles";
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.modificarRolToolStripMenuItem.Text = "Consultar Roles";
+            this.modificarRolToolStripMenuItem.Click += new System.EventHandler(this.modificarRolToolStripMenuItem_Click);
             // 
             // listaEstadisticasToolStripMenuItem
             // 

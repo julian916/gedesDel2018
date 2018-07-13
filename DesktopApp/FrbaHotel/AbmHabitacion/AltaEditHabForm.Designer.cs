@@ -195,7 +195,7 @@
             this.Controls.Add(this.label2);
             this.Name = "AltaHabitacionForm";
             this.Text = "Alta / Edicion Habitacion";
-            this.Load += new System.EventHandler(this.AltaHabitacionForm_Load);
+
             ((System.ComponentModel.ISupportInitialize)(this.numHabBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pisoNumericBox)).EndInit();
             this.panel1.ResumeLayout(false);

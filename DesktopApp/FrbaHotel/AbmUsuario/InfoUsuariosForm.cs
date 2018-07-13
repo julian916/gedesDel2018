@@ -38,7 +38,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
                 List<Usuario> usuariosEncontrados = new List<Usuario>();
-                usuariosEncontrados = usuarioCtrl.buscarUserPorUsername(userBox.Text);
+                usuariosEncontrados = usuarioCtrl.buscarUserPorUsername(userBox.Text,DatosSesion.id_hotel);
                 if (usuariosEncontrados.Count == 0)
                 {
                     MessageBox.Show("No se encontraron resultados.");
@@ -108,6 +108,11 @@ namespace FrbaHotel.AbmUsuario
         {
             this.Dispose();
             this.Close();
+        }
+
+        private void panelUsername_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
     }

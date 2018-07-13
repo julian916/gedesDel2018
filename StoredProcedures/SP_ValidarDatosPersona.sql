@@ -1,11 +1,16 @@
 USE [GD1C2018]
 GO
-CREATE PROCEDURE [CUATROGDD2018].[SP_ValidarDatosPersona] @tipoDNI nvarchar(50),@nroDNI numeric(18,0),@emailPer nvarchar (255)
+CREATE PROCEDURE [CUATROGDD2018].[SP_ValidarDatosPersona]  @tipoDNI nvarchar(50),@nroDNI numeric(18,0),@emailPer nvarchar (255),@idPersona int
 AS
 BEGIN
 	DECLARE @esValido bit
 	SET @esValido='True'
-	IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE (tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer)
-			SET @esValido = 'False'
+	if @idPersona = 0
+	  
+		IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE (tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer)
+				SET @esValido = 'False'
+	ELSE
+		IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE ((tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer ) AND NOT id_persona=@idPersona) 
+				SET @esValido = 'False'
 	SELECT @esValido
 END

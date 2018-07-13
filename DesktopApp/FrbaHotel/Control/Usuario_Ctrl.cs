@@ -27,7 +27,7 @@ namespace FrbaHotel.Control
             connection.Close();
         }
 
-        public List<Usuario> buscarUserPorUsername(string username)
+        public List<Usuario> buscarUserPorUsername(string username, int id_hotel)
         {
             SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetUserPorUsername", connection);
@@ -36,7 +36,7 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Clear();
             //agrego parametros al SP_GetUserPorUsername
             spCommand.Parameters.Add(new SqlParameter("@username", username));
-            spCommand.Parameters.Add(new SqlParameter("@idHotel", username));
+            spCommand.Parameters.Add(new SqlParameter("@idHotel", id_hotel));
             List<Usuario> usuariosEncontrados = new List<Usuario>();
             DataTable usuariosTable = new DataTable();
             usuariosTable.Load(spCommand.ExecuteReader());

@@ -16,6 +16,7 @@ if @idTipoHab !=0
 		  ,ha.nro_habitacion
 		  ,case when ha.frente='S' then 'Al frente' else 'Interno' end as ubicacion 
 		  ,ha.comodidades
+		  ,ha.id_tipo_habitacion
 		  ,th.descripcion as tipo_habitacion
 	FROM [CUATROGDD2018].[Hoteles] h
 	inner join [CUATROGDD2018].[Regimen_X_Hotel] rxh on h.id_hotel=rxh.id_hotel and rxh.id_hotel=@idhotel
@@ -53,6 +54,7 @@ else
 		  ,ha.nro_habitacion
 		  ,case when ha.frente='S' then 'Al frente' else 'Interno' end as ubicacion 
 		  ,ha.comodidades
+		  ,ha.id_tipo_habitacion
 		  ,th.descripcion as tipo_habitacion	
 	FROM [CUATROGDD2018].[Hoteles] h
 	inner join [CUATROGDD2018].[Regimen_X_Hotel] rxh on h.id_hotel=rxh.id_hotel and rxh.id_hotel=@idhotel

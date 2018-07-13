@@ -19,7 +19,7 @@ namespace FrbaHotel.ABMHotel
         private int id_rolDeUsuario=DatosSesion.id_rol;
         private Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
         private Hotel hotelPrevio;
-        private bool esModificacion;
+        private bool esModificacion=false;
         public AltaHotelForm()
         {
             InitializeComponent();
@@ -89,13 +89,14 @@ namespace FrbaHotel.ABMHotel
                 nuevoHotel.lista_Regimenes=this.getRegimenesSeleccionados(regimenesCheckList.CheckedItems.Cast<string>().ToList());
                 if (esModificacion)
                 {
-                    hotelCtrl.insertar_Hotel(nuevoHotel);
-                    MessageBox.Show("Se creó correctamente el nuevo hotel.");
+                    hotelCtrl.modificar_Hotel(nuevoHotel, hotelPrevio);
+                    MessageBox.Show("Se modificó correctamente el hotel.");
                 }
                 else
                 {
-                    hotelCtrl.modificar_Hotel(nuevoHotel, hotelPrevio);
-                    MessageBox.Show("Se modificó correctamente el hotel.");
+                    hotelCtrl.insertar_Hotel(nuevoHotel);
+                    MessageBox.Show("Se creó correctamente el nuevo hotel.");
+                    
                 }
 
             }

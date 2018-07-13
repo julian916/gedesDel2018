@@ -66,7 +66,7 @@ namespace FrbaHotel.Control
             return lista_Habitaciones;
         }
 
-        private Habitacion BuildHabitacion(DataRow row)
+        public Habitacion BuildHabitacion(DataRow row)
         {
             Habitacion habitacion = new Habitacion();
             habitacion.id_hotel = Convert.ToInt32(row["id_habitacion"]);

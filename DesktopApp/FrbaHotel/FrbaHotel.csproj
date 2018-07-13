@@ -105,11 +105,11 @@
     <Compile Include="AbmRol\ConsultaRolForm.Designer.cs">
       <DependentUpon>ConsultaRolForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmUsuario\AltaModUsuarioForm.cs">
+    <Compile Include="AbmUsuario\AltaModUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmUsuario\AltaModUsuarioForm.Designer.cs">
-      <DependentUpon>AltaModUsuarioForm.cs</DependentUpon>
+    <Compile Include="AbmUsuario\AltaModUsuario.Designer.cs">
+      <DependentUpon>AltaModUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuario\InfoUsuariosForm.cs">
       <SubType>Form</SubType>
@@ -123,11 +123,11 @@
     <Compile Include="AbmUsuario\ValidacionPersonaUserForm.Designer.cs">
       <DependentUpon>ValidacionPersonaUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.cs">
+    <Compile Include="CancelarReserva\CancelarReservaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CancelarReserva\CancelarReservaForm.Designer.cs">
+      <DependentUpon>CancelarReservaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\Estadistica_Ctrl.cs" />
     <Compile Include="Control\Funcionalidad_Ctrl.cs" />
@@ -150,8 +150,10 @@
     <Compile Include="Entidades\Paises.cs" />
     <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\RegimenEstadia.cs" />
+    <Compile Include="Entidades\Reserva.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
+    <Compile Include="Entidades\Tipo_Habitacion.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
       <SubType>Form</SubType>
@@ -159,17 +161,17 @@
     <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\IngresarHuespedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IngresarHuespedForm.Designer.cs">
+      <DependentUpon>IngresarHuespedForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.Designer.cs">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\ListadoEstadisticoForm.cs">
       <SubType>Form</SubType>
@@ -246,8 +248,8 @@
     <EmbeddedResource Include="AbmRol\ConsultaRolForm.resx">
       <DependentUpon>ConsultaRolForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmUsuario\AltaModUsuarioForm.resx">
-      <DependentUpon>AltaModUsuarioForm.cs</DependentUpon>
+    <EmbeddedResource Include="AbmUsuario\AltaModUsuario.resx">
+      <DependentUpon>AltaModUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\InfoUsuariosForm.resx">
       <DependentUpon>InfoUsuariosForm.cs</DependentUpon>
@@ -255,8 +257,14 @@
     <EmbeddedResource Include="AbmUsuario\ValidacionPersonaUserForm.resx">
       <DependentUpon>ValidacionPersonaUserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CancelarReserva\CancelarReservaForm.resx">
+      <DependentUpon>CancelarReservaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IngresarHuespedForm.resx">
+      <DependentUpon>IngresarHuespedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\RegimenYHabitacion.resx">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>

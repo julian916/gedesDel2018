@@ -1,6 +1,6 @@
-﻿namespace FrbaHotel.AbmPersona
+﻿namespace FrbaHotel.GenerarModificacionReserva
 {
-    partial class ConsultaClienteForm
+    partial class IngresarHuespedForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.apellidoBox = new System.Windows.Forms.TextBox();
             this.nombreBox = new System.Windows.Forms.TextBox();
@@ -41,9 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buscarBtn = new System.Windows.Forms.Button();
-            this.newClienteBtn = new System.Windows.Forms.Button();
-            this.cancelarBtn = new System.Windows.Forms.Button();
             this.dataClientesEncontrados = new System.Windows.Forms.DataGridView();
             this.tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nro_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,12 +48,12 @@
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitarDeshabilitarBtn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.personasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cancelarBtn = new System.Windows.Forms.Button();
+            this.newClienteBtn = new System.Windows.Forms.Button();
+            this.buscarBtn = new System.Windows.Forms.Button();
+            this.seleccionarBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataClientesEncontrados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,10 +70,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(127, 25);
+            this.panel1.Location = new System.Drawing.Point(64, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(743, 130);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // apellidoBox
             // 
@@ -170,36 +166,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Filtrar búsqueda";
             // 
-            // buscarBtn
-            // 
-            this.buscarBtn.Location = new System.Drawing.Point(795, 161);
-            this.buscarBtn.Name = "buscarBtn";
-            this.buscarBtn.Size = new System.Drawing.Size(75, 23);
-            this.buscarBtn.TabIndex = 1;
-            this.buscarBtn.Text = "Buscar";
-            this.buscarBtn.UseVisualStyleBackColor = true;
-            this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
-            // 
-            // newClienteBtn
-            // 
-            this.newClienteBtn.Location = new System.Drawing.Point(256, 371);
-            this.newClienteBtn.Name = "newClienteBtn";
-            this.newClienteBtn.Size = new System.Drawing.Size(116, 23);
-            this.newClienteBtn.TabIndex = 3;
-            this.newClienteBtn.Text = "Nuevo Cliente";
-            this.newClienteBtn.UseVisualStyleBackColor = true;
-            this.newClienteBtn.Click += new System.EventHandler(this.newClienteBtn_Click);
-            // 
-            // cancelarBtn
-            // 
-            this.cancelarBtn.Location = new System.Drawing.Point(607, 371);
-            this.cancelarBtn.Name = "cancelarBtn";
-            this.cancelarBtn.Size = new System.Drawing.Size(116, 23);
-            this.cancelarBtn.TabIndex = 5;
-            this.cancelarBtn.Text = "Cancelar";
-            this.cancelarBtn.UseVisualStyleBackColor = true;
-            this.cancelarBtn.Click += new System.EventHandler(this.cancelarBtn_Click);
-            // 
             // dataClientesEncontrados
             // 
             this.dataClientesEncontrados.AllowUserToAddRows = false;
@@ -213,13 +179,12 @@
             this.apellido,
             this.email,
             this.telefono,
-            this.estado,
-            this.habilitarDeshabilitarBtn});
-            this.dataClientesEncontrados.Location = new System.Drawing.Point(66, 190);
+            this.estado});
+            this.dataClientesEncontrados.Location = new System.Drawing.Point(46, 208);
             this.dataClientesEncontrados.Name = "dataClientesEncontrados";
             this.dataClientesEncontrados.ReadOnly = true;
-            this.dataClientesEncontrados.Size = new System.Drawing.Size(867, 150);
-            this.dataClientesEncontrados.TabIndex = 6;
+            this.dataClientesEncontrados.Size = new System.Drawing.Size(782, 150);
+            this.dataClientesEncontrados.TabIndex = 7;
             // 
             // tipo_documento
             // 
@@ -263,43 +228,63 @@
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             // 
-            // habilitarDeshabilitarBtn
+            // cancelarBtn
             // 
-            this.habilitarDeshabilitarBtn.FillWeight = 110F;
-            this.habilitarDeshabilitarBtn.HeaderText = "Habilitar/Deshabilitar";
-            this.habilitarDeshabilitarBtn.Name = "habilitarDeshabilitarBtn";
-            this.habilitarDeshabilitarBtn.ReadOnly = true;
-            this.habilitarDeshabilitarBtn.Width = 110;
+            this.cancelarBtn.Location = new System.Drawing.Point(589, 394);
+            this.cancelarBtn.Name = "cancelarBtn";
+            this.cancelarBtn.Size = new System.Drawing.Size(116, 23);
+            this.cancelarBtn.TabIndex = 10;
+            this.cancelarBtn.Text = "Cancelar";
+            this.cancelarBtn.UseVisualStyleBackColor = true;
+            this.cancelarBtn.Click += new System.EventHandler(this.cancelarBtn_Click);
             // 
-            // button1
+            // newClienteBtn
             // 
-            this.button1.Location = new System.Drawing.Point(425, 371);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.newClienteBtn.Location = new System.Drawing.Point(203, 394);
+            this.newClienteBtn.Name = "newClienteBtn";
+            this.newClienteBtn.Size = new System.Drawing.Size(116, 23);
+            this.newClienteBtn.TabIndex = 9;
+            this.newClienteBtn.Text = "Nuevo Cliente";
+            this.newClienteBtn.UseVisualStyleBackColor = true;
+            this.newClienteBtn.Click += new System.EventHandler(this.newClienteBtn_Click);
             // 
-            // ConsultaClienteForm
+            // buscarBtn
+            // 
+            this.buscarBtn.Location = new System.Drawing.Point(697, 166);
+            this.buscarBtn.Name = "buscarBtn";
+            this.buscarBtn.Size = new System.Drawing.Size(75, 23);
+            this.buscarBtn.TabIndex = 8;
+            this.buscarBtn.Text = "Buscar";
+            this.buscarBtn.UseVisualStyleBackColor = true;
+            this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
+            // 
+            // seleccionarBtn
+            // 
+            this.seleccionarBtn.Location = new System.Drawing.Point(391, 394);
+            this.seleccionarBtn.Name = "seleccionarBtn";
+            this.seleccionarBtn.Size = new System.Drawing.Size(116, 23);
+            this.seleccionarBtn.TabIndex = 11;
+            this.seleccionarBtn.Text = "Seleccionar";
+            this.seleccionarBtn.UseVisualStyleBackColor = true;
+            this.seleccionarBtn.Click += new System.EventHandler(this.seleccionarBtn_Click);
+            // 
+            // IngresarHuespedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 420);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataClientesEncontrados);
+            this.ClientSize = new System.Drawing.Size(876, 446);
+            this.Controls.Add(this.seleccionarBtn);
             this.Controls.Add(this.cancelarBtn);
             this.Controls.Add(this.newClienteBtn);
             this.Controls.Add(this.buscarBtn);
+            this.Controls.Add(this.dataClientesEncontrados);
             this.Controls.Add(this.panel1);
-            this.Name = "ConsultaClienteForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Consultar clientes";
-            this.Load += new System.EventHandler(this.ConsultaClienteForm_Load);
+            this.Name = "IngresarHuespedForm";
+            this.Text = "IngresarHuespedForm";
+            this.Load += new System.EventHandler(this.IngresarHuespedForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataClientesEncontrados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,8 +292,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buscarBtn;
-        private System.Windows.Forms.BindingSource personasBindingSource;
         private System.Windows.Forms.TextBox apellidoBox;
         private System.Windows.Forms.TextBox nombreBox;
         private System.Windows.Forms.Label label6;
@@ -320,16 +303,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button newClienteBtn;
-        private System.Windows.Forms.Button modificarBtn;
-        private System.Windows.Forms.Button cancelarBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipodocumentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nrodocumentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataClientesEncontrados;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo_documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn nro_documento;
@@ -338,7 +311,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewButtonColumn habilitarDeshabilitarBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cancelarBtn;
+        private System.Windows.Forms.Button newClienteBtn;
+        private System.Windows.Forms.Button buscarBtn;
+        private System.Windows.Forms.Button seleccionarBtn;
     }
 }

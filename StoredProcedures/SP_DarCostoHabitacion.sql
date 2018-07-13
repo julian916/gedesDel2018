@@ -51,7 +51,7 @@ GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_DarCostoHabitacion] 
 	@idhotel int,
 	@idTipoHab int,
-	@idRegimen date
+	@idRegimen int
 AS
 BEGIN
 	SELECT [CUATROGDD2018].[Fn_DarCostoXNoche](@idRegimen,@idTipoHab)+[CUATROGDD2018].[Fn_DarRecargaHotel](@idhotel)

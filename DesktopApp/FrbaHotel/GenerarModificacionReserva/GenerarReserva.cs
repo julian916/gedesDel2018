@@ -11,61 +11,42 @@ using System.Data.SqlClient;
 using System.Configuration;
 using FrbaHotel.GenerarModificacionReserva;
 using FrbaHotel.Control;
+using FrbaHotel.Entidades;
 
 namespace FrbaHotel.GenerarModificarReserva
 {
     public partial class GenerarReserva : Form
     {
-        private Repositorios.RepositorioHoteles repoHoteles = new Repositorios.RepositorioHoteles();
+        
         TipoHabitacion_Ctrl tipoHabCtrl = new TipoHabitacion_Ctrl();
+        Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
+        int codigoReserva;
         public GenerarReserva()
         {
             InitializeComponent();
             this.cargarTiposHabitacion();
+            this.cargarHoteles();
             fechaDesdeCalendar.MinDate = DateTime.Now;
             fechaHastaCalendar.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
         }
 
+        private void cargarHoteles()
+        {
+            comboHoteles.DisplayMember = "nombre";
+            comboHoteles.ValueMember = "id_hotel";
+            comboHoteles.DataSource = hotelCtrl.getAllHoteles();
+        }
+
         private void cargarTiposHabitacion()
         {
-            
+            Tipo_Habitacion tipoDefault = new Tipo_Habitacion();
+            tipoDefault.id_tipo_habitacion = 0;
+            tipoDefault.descripcion = "Todos";
+            List<Tipo_Habitacion> tiposHabitacion= tipoHabCtrl.getAll();
+            tiposHabitacion.Add(tipoDefault);
             tipoHabBox.DisplayMember = "descripcion";
             tipoHabBox.ValueMember = "id_tipo_habitacion";
-            tipoHabBox.DataSource = tipoHabCtrl.getAll();
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CiudadesCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show("No se selecciono hotel" + comboCiudad.SelectedValue.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            comboCalles.DisplayMember = "calles";
-            comboCalles.ValueMember = "id_Hotel";
-            comboCalles.DataSource = repoHoteles.getCalles(comboCiudad.SelectedValue.ToString());
-        }
-
-        private void GenerarReserva_Load(object sender, EventArgs e)
-        {
-            comboCiudad.DisplayMember = "ciudad";
-            comboCiudad.ValueMember = "ciudad";
-            comboCiudad.DataSource = repoHoteles.getCiudades();
-        }
-
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FechaHastaCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
+            tipoHabBox.DataSource = tiposHabitacion;
         }
 
         private void FechaDesdeCalendar_DateChanged(object sender, DateRangeEventArgs e)
@@ -75,50 +56,41 @@ namespace FrbaHotel.GenerarModificarReserva
 
         private void buscarDisponibilidad_Click(object sender, EventArgs e)
         {
-            if (comboCalles.SelectedItem == null)
+            try
             {
-                MessageBox.Show("No se selecciono hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            else
-            {
+                if (comboHoteles.SelectedItem == null)
+                {
+                    throw new System.ArgumentException("No se seleccionó hotel");
+                }
                 if (fechaDesdeCalendar.SelectionEnd >= fechaHastaCalendar.SelectionEnd)
                 {
-                    MessageBox.Show("La fecha hasta debe ser mayor a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                }
-                else
-                {
-                    int idHotel = int.Parse(comboCalles.SelectedValue.ToString());
-                    DateTime fechaDesde = fechaDesdeCalendar.SelectionEnd;
-                    DateTime fechaHasta = fechaHastaCalendar.SelectionEnd;
-                    int idRegimen = 1;
-
-                    try
-                    {
-                        var habitacionesDisponibles = repoHoteles.obtenerHabitacionesDisponibles(idHotel, fechaDesde, fechaHasta,idRegimen);
-                        if(habitacionesDisponibles.Rows.Count > 0)
-                        {
-                            //Tiene registros
-
-                            //RegimenYHabitaciones obj = new AltaPersonaForm(idUsuario, mailBox.Text);
-                            //if (obj == null)
-                            //{
-                            //    obj.Parent = this;
-                            //}
-                            //obj.Show();
-                            //this.Hide();
-                        } else
-                        {
-                            //No tiene registros
-                            MessageBox.Show("La opcion seleccionada no tiene disponibilidad", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                        }
-                        
-                    } catch(Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Error comprobandoDisponibilidad: " + ex.Message);
-                        MessageBox.Show("Error al comprobar la disponibilidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    }
+                    throw new System.ArgumentException("La fecha hasta debe ser mayor a la de inicio");
                 }
 
+                int idHotel = (int)comboHoteles.SelectedValue;
+                DateTime fechaDesde = fechaDesdeCalendar.SelectionEnd;
+                DateTime fechaHasta = fechaHastaCalendar.SelectionEnd;
+                List<Habitacion> habitacionesDisponibles = hotelCtrl.obtenerHabitacionesDisponibles(idHotel, fechaDesde, fechaHasta,(int)tipoHabBox.SelectedValue);
+                if(habitacionesDisponibles.Count>0) {
+                    //abrir ventana de habitaciones disponibles
+                    RegimenYHabitaciones regHabForm = new RegimenYHabitaciones(habitacionesDisponibles, fechaDesde, fechaHasta);
+                    if (regHabForm.ShowDialog(this) == DialogResult.OK)
+					{
+                        codigoReserva = regHabForm.id_reserva;
+                        MessageBox.Show("Se generó correctamente la reserva./n El número de reserva es " + codigoReserva.ToString());
+
+					}
+					else
+					{
+						MessageBox.Show("Operacion cancelada");
+					}
+                
+                }else{
+                    MessageBox.Show("La opcion seleccionada no tiene disponibilidad");
+                }
+
+            } catch (Exception exc) {
+                MessageBox.Show(exc.Message); 
             }
         }
     }

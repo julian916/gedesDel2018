@@ -73,30 +73,6 @@ namespace FrbaHotel.AbmPersona
             altaPersona.Show();
         }
 
-        private void modificarBtn_Click(object sender, EventArgs e)
-        {
-            if (dataClientesEncontrados.DataSource != null && dataClientesEncontrados.SelectedRows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dataClientesEncontrados.SelectedRows)
-                {
-                    Persona personaSeleccionada = (Persona)row.DataBoundItem;
-                    if (personaSeleccionada.estado == "Inconsistente")
-                    {
-                        MessageBox.Show("El cliente se encuentra en un estado Inconsistente.\nModifique Tipo Documento, Nro Documento y/o Email para habilitarlo");
-                    }
-                    
-                    AltaPersonaForm editForm = new AltaPersonaForm(personaSeleccionada, InfoGlobal.id_usuarioGUEST);
-                    editForm.ShowDialog();
-                }
-                this.Dispose();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
-            }
-        }
-
         private void dataClientesEncontrados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -119,6 +95,30 @@ namespace FrbaHotel.AbmPersona
             }
             catch (Exception exc){
                 MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataClientesEncontrados.DataSource != null && dataClientesEncontrados.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataClientesEncontrados.SelectedRows)
+                {
+                    Persona personaSeleccionada = (Persona)row.DataBoundItem;
+                    if (personaSeleccionada.estado == "Inconsistente")
+                    {
+                        MessageBox.Show("El cliente se encuentra en un estado Inconsistente.\nModifique Tipo Documento, Nro Documento y/o Email para habilitarlo");
+                    }
+
+                    AltaPersonaForm editForm = new AltaPersonaForm(personaSeleccionada, InfoGlobal.id_usuarioGUEST);
+                    editForm.ShowDialog();
+                }
+                this.Dispose();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
             }
         }
 

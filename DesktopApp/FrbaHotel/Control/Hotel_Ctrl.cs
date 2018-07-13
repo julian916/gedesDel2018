@@ -15,7 +15,7 @@ namespace FrbaHotel.Control
         int id_usuarioParaHotel = DatosSesion.id_usuario;
         int id_rol = DatosSesion.id_rol;
         Regimenes_Ctrl regimenCtrl = new Regimenes_Ctrl();
-
+        Habitacion_Ctrl habCtrl = new Habitacion_Ctrl();
        public void insertar_Hotel(Hotel nuevoHotel){
            
            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
@@ -311,6 +311,58 @@ namespace FrbaHotel.Control
            spCommand.Parameters.Add(new SqlParameter("@idRegimen", id_regimen));
             spCommand.ExecuteNonQuery();
            connection.Close();
+       }
+
+       public List<Habitacion> obtenerHabitacionesDisponibles(int idHotel, DateTime fechaDesde, DateTime fechaHasta, int id_tipoHab)
+       {
+           List<Habitacion> habitacionesEncontrados = new List<Habitacion>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarHabitacionesDisponibles", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_NuevoRegimenXHotel
+           spCommand.Parameters.Add(new SqlParameter("@idhotel", idHotel));
+           spCommand.Parameters.Add(new SqlParameter("@idTipoHab", id_tipoHab));
+           spCommand.Parameters.Add(new SqlParameter("@fechaInicio", fechaDesde));
+           spCommand.Parameters.Add(new SqlParameter("@fechaFin", fechaHasta));
+           DataTable habTable = new DataTable();
+           habTable.Load(spCommand.ExecuteReader());
+           if (habTable != null && habTable.Rows != null)
+           {
+               foreach (DataRow row in habTable.Rows)
+               {
+                   Habitacion habitacion = new Habitacion();
+                   habitacion.id_habitacion = Convert.ToInt32(row["id_habitacion"]);
+                   habitacion.nro_habitacion = Convert.ToInt32(row["nro_habitacion"]);
+                   habitacion.piso = Convert.ToInt32(row["piso"]);
+                   habitacion.frente = Convert.ToString(row["ubicacion"]);
+                   habitacion.comodidades = Convert.ToString(row["comodidades"]);
+                   habitacion.id_tipo_habitacion = Convert.ToInt32(row["id_tipo_habitacion"]);
+                   habitacion.desc_tipo_habitacion = Convert.ToString(row["tipo_habitacion"]);
+                   habitacion.id_hotel = idHotel;
+                   habitacionesEncontrados.Add(habitacion);
+               }
+           }
+           connection.Close();
+           return habitacionesEncontrados;
+       }
+
+       public decimal getCostoPorDiaHabitacion(int hotelReserva, int id_regimenSeleccionado, int id_tipoHab)
+       {
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarCostoHabitacion", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_DarCostoHabitacion
+           spCommand.Parameters.Add(new SqlParameter("@idHotel", hotelReserva));
+           spCommand.Parameters.Add(new SqlParameter("@idTipoHab", id_tipoHab));
+           spCommand.Parameters.Add(new SqlParameter("@idRegimen", id_regimenSeleccionado));
+           decimal costoPorDia = (decimal)spCommand.ExecuteScalar();
+
+           connection.Close();
+           return costoPorDia;
        }
     }
 }

@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmUsuario
 {
-    public partial class AltaModUsuarioForm : Form
+    public partial class AltaModUsuario : Form
     {
         int nro_documento;
         string email;
@@ -30,7 +30,7 @@ namespace FrbaHotel.AbmUsuario
         Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
         Persona_Ctrl personaCtrl = new Persona_Ctrl();
         public Boolean continuarAltaMod;
-        public AltaModUsuarioForm(Usuario user)
+        public AltaModUsuario(Usuario user)
         {
             userActual = user;
             if (esModificacion()) {

@@ -3,7 +3,9 @@ using FrbaHotel.ABMHotel;
 using FrbaHotel.AbmPersona;
 using FrbaHotel.AbmRol;
 using FrbaHotel.AbmUsuario;
+using FrbaHotel.CancelarReserva;
 using FrbaHotel.Entidades;
+using FrbaHotel.GenerarModificarReserva;
 using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
 using System;
@@ -85,6 +87,10 @@ namespace FrbaHotel
             ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
             menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Rol");
 
+            ToolStripItem menu_estadias = itemsMenu.Find("estadíasToolStripMenuItem", true)[0];
+            menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "Registrar Estadia");
+
+
             ToolStripItem menu_estadisticas = itemsMenu.Find("listaEstadisticasToolStripMenuItem", true)[0];
             menu_estadisticas.Enabled = f.Any(func => func.descripcion_funcionalidad == "Listado Estadistico");
                 
@@ -102,7 +108,7 @@ namespace FrbaHotel
 
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
+            AltaModUsuario usuarioAlta = new AltaModUsuario(null);
             if (usuarioAlta.continuarAltaMod) {
                 usuarioAlta.Show();
             }
@@ -194,6 +200,28 @@ namespace FrbaHotel
         {
             ListadoEstadisticoForm estadisticas = new ListadoEstadisticoForm();
             estadisticas.ShowDialog();
+        }
+
+        private void updateReservaButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelReservaButton_Click(object sender, EventArgs e)
+        {
+            CancelarReservaForm cancelRes = new CancelarReservaForm();
+            cancelRes.ShowDialog();
+        }
+
+        private void newReservaButton_Click(object sender, EventArgs e)
+        {
+            GenerarReserva reservas = new GenerarReserva();
+            reservas.ShowDialog();
+        }
+
+        private void nuevaEstadíaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
       

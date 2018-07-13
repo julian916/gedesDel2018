@@ -86,7 +86,7 @@ namespace FrbaHotel.AbmUsuario
                 {
                     Usuario usuarioSeleccionado = (Usuario)row.DataBoundItem;
                     Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
-                    AltaModUsuarioForm editForm = new AltaModUsuarioForm(usuarioSeleccionado);
+                    AltaModUsuario editForm = new AltaModUsuario(usuarioSeleccionado);
                     editForm.ShowDialog();
                 }
                 this.Dispose();
@@ -100,7 +100,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void newUserBtn_Click(object sender, EventArgs e)
         {
-            AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
+            AltaModUsuario usuarioAlta = new AltaModUsuario(null);
             usuarioAlta.Show();
         }
 

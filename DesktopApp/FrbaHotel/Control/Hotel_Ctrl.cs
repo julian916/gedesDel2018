@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace FrbaHotel.Control
        public void insertar_Hotel(Hotel nuevoHotel){
            
            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaHotel", connection);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_Alta_Hotel", connection);
            spCommand.CommandType = CommandType.StoredProcedure;
            connection.Open();
            spCommand.Parameters.Clear();
@@ -35,13 +36,15 @@ namespace FrbaHotel.Control
            spCommand.Parameters.Add(new SqlParameter("@cant_estrellas", nuevoHotel.cant_estrellas));
            spCommand.Parameters.Add(new SqlParameter("@ciudad", nuevoHotel.ciudad));
            spCommand.Parameters.Add(new SqlParameter("@pais", nuevoHotel.pais));
-           spCommand.Parameters.Add(new SqlParameter("@fecha_creacion", nuevoHotel.fecha_creacion));
+
+           spCommand.Parameters.Add(new SqlParameter("@fecha_creacion", Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"])));
+           
            int id_nuevoHotel = (int)spCommand.ExecuteScalar();
            if (id_nuevoHotel>0)
            {
                foreach (RegimenEstadia regimen in nuevoHotel.lista_Regimenes)
                {
-                   this.agregarRegimenAHotel(nuevoHotel.id_hotel, regimen.id_regimen);
+                   this.agregarRegimenAHotel(id_nuevoHotel, regimen.id_regimen);
                }
            }
            else {
@@ -53,7 +56,7 @@ namespace FrbaHotel.Control
        public Hotel getHotelPorID(int id_hotel_logueado)
        {
            Hotel hotelEncontrado = new Hotel();
-           SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetHotelPorID", connection);
            spCommand.CommandType = CommandType.StoredProcedure;
            spCommand.Parameters.Add(new SqlParameter("@idHotel", id_hotel_logueado));
@@ -136,8 +139,9 @@ namespace FrbaHotel.Control
            hotel.email = Convert.ToString(row["email"]);
            hotel.nro_calle = Convert.ToInt32(row["nro_calle"]);
            hotel.pais = Convert.ToString(row["pais"]);
+           hotel.habilitado = Convert.ToBoolean(row["habilitado"]);
            hotel.recarga_estrella = Convert.ToInt32(row["recarga_estrellas"]);
-           hotel.telefono = Convert.ToString(row["telefono"]);
+           hotel.telefono = Convert.ToInt32(row["telefono"]);
            if (row["fecha_creacion"] != DBNull.Value)
            {
                hotel.fecha_creacion = Convert.ToDateTime(row["fecha_creacion"]);
@@ -266,7 +270,7 @@ namespace FrbaHotel.Control
                 //modifico los regimenes asociados al hotel
                foreach (RegimenEstadia nuevoRegimen in nuevoHotel.lista_Regimenes)
                {
-                   if (!(hotelPrevio.lista_Regimenes.Contains(nuevoRegimen)))
+                   if (!(hotelPrevio.lista_Regimenes.Exists(regPrevio => regPrevio.id_regimen == nuevoRegimen.id_regimen)))
                    {
                        this.agregarRegimenAHotel(hotelPrevio.id_hotel, nuevoRegimen.id_regimen);
                        
@@ -275,7 +279,7 @@ namespace FrbaHotel.Control
                }
                foreach (RegimenEstadia regimenPrevio in hotelPrevio.lista_Regimenes)
                {
-                   if (!(nuevoHotel.lista_Regimenes.Contains(regimenPrevio)))
+                   if (!(nuevoHotel.lista_Regimenes.Exists(nuevoReg => nuevoReg.id_regimen == regimenPrevio.id_regimen)))
                    {
                        this.quitarRegimenAHotel(hotelPrevio.id_hotel, regimenPrevio.id_regimen);
                    }

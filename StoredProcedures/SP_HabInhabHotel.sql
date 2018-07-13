@@ -19,7 +19,7 @@ BEGIN
 						WHERE (@fechaInicio BETWEEN [fecha_inicio] AND ([fecha_inicio]+[cant_noches]))
 						or (@fechaHasta BETWEEN [fecha_inicio] AND ([fecha_inicio]+[cant_noches])))
 			BEGIN
-				SET @MENSAJE='El hotel no se podrá cerrar entre las fechas '++@fechaInicio++' y '++@fechaHasta++'. Existen Reservas/Estadias en ese periodo'
+				SET @MENSAJE='El hotel no se podrá cerrar entre las fechas las fechas seleccionadas. Existen Reservas/Estadias en ese periodo'
 				SELECT @MENSAJE
 				RETURN
 			END

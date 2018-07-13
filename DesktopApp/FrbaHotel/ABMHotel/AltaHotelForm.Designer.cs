@@ -239,7 +239,7 @@
             this.crearHotelButton.Name = "crearHotelButton";
             this.crearHotelButton.Size = new System.Drawing.Size(75, 23);
             this.crearHotelButton.TabIndex = 55;
-            this.crearHotelButton.Text = "Crear Hotel";
+            this.crearHotelButton.Text = "Confirmar";
             this.crearHotelButton.UseVisualStyleBackColor = true;
             this.crearHotelButton.Click += new System.EventHandler(this.crearHotelButton_Click);
             // 
@@ -251,6 +251,7 @@
             this.button2.TabIndex = 56;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AltaHotelForm
             // 
@@ -280,7 +281,7 @@
             this.Controls.Add(this.calleBox);
             this.Controls.Add(this.ciudadBox);
             this.Name = "AltaHotelForm";
-            this.Text = "Ingrese nuevo hotel";
+            this.Text = "Ingrese datos del hotel";
             this.Load += new System.EventHandler(this.AltaHotelForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.recargaEstrellaBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nroCalleBoxNumeric)).EndInit();

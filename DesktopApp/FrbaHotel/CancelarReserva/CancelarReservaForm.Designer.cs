@@ -106,6 +106,7 @@
             this.cancelResBtn.TabIndex = 8;
             this.cancelResBtn.Text = "Cancelar Reserva";
             this.cancelResBtn.UseVisualStyleBackColor = true;
+            this.cancelResBtn.Click += new System.EventHandler(this.cancelResBtn_Click);
             // 
             // cancelBtn
             // 

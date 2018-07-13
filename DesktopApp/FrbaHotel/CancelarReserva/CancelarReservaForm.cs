@@ -3,6 +3,7 @@ using FrbaHotel.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace FrbaHotel.CancelarReserva
         public CancelarReservaForm()
         {
             InitializeComponent();
+            fechaCancelacionBox.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -39,6 +41,11 @@ namespace FrbaHotel.CancelarReserva
                 MessageBox.Show(exc.Message);
 
             }
+        }
+
+        private void cancelResBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

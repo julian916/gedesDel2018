@@ -26,8 +26,8 @@ namespace FrbaHotel.GenerarModificarReserva
             InitializeComponent();
             this.cargarTiposHabitacion();
             this.cargarHoteles();
-            fechaDesdeCalendar.MinDate = DateTime.Now;
-            fechaHastaCalendar.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1);
+            fechaDesdeCalendar.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
+            fechaHastaCalendar.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]).AddDays(1) ;
         }
 
         private void cargarHoteles()

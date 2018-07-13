@@ -45,8 +45,39 @@ namespace FrbaHotel.ABMHotel
                 paisCombo.Text = hotelPrevio.pais;
                 cantidadEstreBox.Text = hotelPrevio.cant_estrellas.ToString();
                 recargaEstrellaBox.Value = hotelPrevio.cant_estrellas;
-                telBox.Text = hotelPrevio.telefono;
+                telBox.Text = Convert.ToString(hotelPrevio.telefono);
                 emailBox.Text = hotelPrevio.email;
+                this.seleccionarRegDeHotel(hotelPrevio);
+            }
+        }
+        private void seleccionarRegDeHotel(Hotel hotelSeleccionado)
+        {
+            List<string> nombresReg = new List<string>();
+
+            foreach (RegimenEstadia regEst in hotelSeleccionado.lista_Regimenes)
+            {
+                nombresReg.Add(regEst.descripcion);
+            }
+            //mostrar las funcionalidades del rol
+            for (int count = 0; count < regimenesCheckList.Items.Count; count++)
+            {
+                if (nombresReg.Contains(regimenesCheckList.Items[count].ToString()))
+                {
+                    regimenesCheckList.SetItemChecked(count, true);
+                }
+                else {
+                    regimenesCheckList.SetItemChecked(count, false);
+                }
+            }
+        }
+
+        private void cargarRegimenesEstadiaDeHotel()
+        {
+            Regimenes_Ctrl ctrlRegimenes = new Regimenes_Ctrl();
+            todosLosRegimenes = ctrlRegimenes.getRegimenes_IDHotel(hotelPrevio.id_hotel);
+            foreach (RegimenEstadia reg in todosLosRegimenes)
+            {
+                regimenesCheckList.Items.Add(reg.descripcion);
             }
         }
 
@@ -81,14 +112,15 @@ namespace FrbaHotel.ABMHotel
                 nuevoHotel.calle = calleBox.Text;
                 nuevoHotel.nro_calle = int.Parse(nroCalleBoxNumeric.Value.ToString());
                 nuevoHotel.ciudad = ciudadBox.Text;
-                nuevoHotel.pais = paisCombo.SelectedText;
+                nuevoHotel.pais = paisCombo.Text;
                 nuevoHotel.cant_estrellas = int.Parse(cantidadEstreBox.Text.ToString());
                 nuevoHotel.recarga_estrella = decimal.Parse(recargaEstrellaBox.Value.ToString());
-                nuevoHotel.telefono = telBox.Text;
+                nuevoHotel.telefono = Convert.ToInt32(telBox.Text);
                 nuevoHotel.email = emailBox.Text;
                 nuevoHotel.lista_Regimenes=this.getRegimenesSeleccionados(regimenesCheckList.CheckedItems.Cast<string>().ToList());
                 if (esModificacion)
                 {
+                    nuevoHotel.id_hotel = hotelPrevio.id_hotel;
                     hotelCtrl.modificar_Hotel(nuevoHotel, hotelPrevio);
                     MessageBox.Show("Se modificó correctamente el hotel.");
                 }
@@ -98,6 +130,8 @@ namespace FrbaHotel.ABMHotel
                     MessageBox.Show("Se creó correctamente el nuevo hotel.");
                     
                 }
+                this.Dispose();
+                this.Close();
 
             }
             catch (Exception exc) {
@@ -116,6 +150,12 @@ namespace FrbaHotel.ABMHotel
             return nombreBox.SelectedText != null && calleBox.SelectedText != null && ciudadBox.SelectedText != null && nroCalleBoxNumeric.Value != 0
                 && cantidadEstreBox.SelectedItem != null && recargaEstrellaBox.Value !=0 && emailBox.SelectedText !=null 
                 && regimenesCheckList.CheckedItems.Count != 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
         }
         
 

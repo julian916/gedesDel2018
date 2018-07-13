@@ -11,7 +11,7 @@ BEGIN
 
 if @idTipoHab !=0
  begin
-	SELECT ha.id_habitacion
+	SELECT distinct ha.id_habitacion
 		  ,ha.piso
 		  ,ha.nro_habitacion
 		  ,case when ha.frente='S' then 'Al frente' else 'Interno' end as ubicacion 
@@ -49,7 +49,7 @@ if @idTipoHab !=0
  end
 else 
  begin
-	SELECT ha.id_habitacion
+	SELECT distinct ha.id_habitacion
 		  ,ha.piso
 		  ,ha.nro_habitacion
 		  ,case when ha.frente='S' then 'Al frente' else 'Interno' end as ubicacion 

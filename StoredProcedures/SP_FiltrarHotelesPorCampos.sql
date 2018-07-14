@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_FiltrarHotelesPorCampos') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_FiltrarHotelesPorCampos
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_FiltrarHotelesPorCampos]
 	@idUsu int,
 	@cantEstrellas numeric(18,0),

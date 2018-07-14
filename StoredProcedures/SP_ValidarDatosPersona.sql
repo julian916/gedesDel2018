@@ -1,4 +1,5 @@
-USE [GD1C2018]
+IF OBJECT_ID('CUATROGDD2018.SP_ValidarDatosPersona') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_ValidarDatosPersona
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_ValidarDatosPersona]  @tipoDNI nvarchar(50),@nroDNI numeric(18,0),@emailPer nvarchar (255),@idPersona int
 AS
@@ -17,3 +18,4 @@ BEGIN
 		end
 	SELECT @esValido
 END
+GO

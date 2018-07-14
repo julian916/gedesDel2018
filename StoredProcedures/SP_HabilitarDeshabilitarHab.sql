@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_HabilitarDeshabilitarHab') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_HabilitarDeshabilitarHab
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_HabilitarDeshabilitarHab]
 	@idHabitacion int
 AS
@@ -43,3 +46,4 @@ BEGIN
 		RETURN
 	END
 END
+GO

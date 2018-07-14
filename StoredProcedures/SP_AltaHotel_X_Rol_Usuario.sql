@@ -1,10 +1,6 @@
-USE [GD1C2018]
-GO
-
 IF OBJECT_ID('CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario', 'P') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_AltaHotel_X_Rol__Usuario
+    DROP PROCEDURE CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario
 GO
-
 CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHotel_X_Rol_Usuario] @idUsuario int, @idRol int, @idHotel int
 AS
 BEGIN
@@ -12,3 +8,4 @@ BEGIN
 	VALUES (@idHotel,@idRol,@idUsuario)
 	
 END
+GO

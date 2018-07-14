@@ -34,7 +34,17 @@ namespace FrbaHotel.GenerarModificarReserva
         {
             comboHoteles.DisplayMember = "nombre";
             comboHoteles.ValueMember = "id_hotel";
-            comboHoteles.DataSource = hotelCtrl.getAllHoteles();
+            if (DatosSesion.esGuest())
+            {
+                comboHoteles.DataSource = hotelCtrl.getAllHoteles();
+            }
+            else {
+                comboHoteles.DataSource = hotelCtrl.getHotelPorID(DatosSesion.id_hotel);
+                comboHoteles.Enabled = false;
+                comboHoteles.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+
+            
         }
 
         private void cargarTiposHabitacion()

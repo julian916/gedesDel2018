@@ -16,7 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class IngresarHuespedForm : Form
     {
         private Persona_Ctrl personaCtrl = new Persona_Ctrl();
-        public Persona clientePrincipal = new Persona();
+        public Persona clienteSeleccionado = new Persona();
         public IngresarHuespedForm()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     foreach (DataGridViewRow row in dataClientesEncontrados.SelectedRows)
                     {
-                        clientePrincipal = (Persona)row.DataBoundItem;
+                        clienteSeleccionado = (Persona)row.DataBoundItem;
                     }
                     this.DialogResult = DialogResult.OK;
                     this.Close();

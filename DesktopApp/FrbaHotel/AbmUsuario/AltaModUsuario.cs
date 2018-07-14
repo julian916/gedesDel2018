@@ -34,6 +34,7 @@ namespace FrbaHotel.AbmUsuario
         public AltaModUsuario() {
             InitializeComponent();
             modificarPassBtn.Visible = false;
+            panelRolXHotel.Enabled = false;
             continuarAltaMod = this.validarDatosPrincipalesPersona();
             newRolBtn.Visible = false;
             deleteRolBtn.Visible = false;

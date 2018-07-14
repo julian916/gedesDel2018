@@ -16,10 +16,12 @@ namespace FrbaHotel.Entidades
         public int id_habitacion { get; set; }
         public int id_reserva { get; set; }
         public List<Persona> huespedes { get; set; }
+        public List<Consumible> consumibles { get; set; }
 
         public Estadia()
         {
             huespedes = new List<Persona>();
+            consumibles = new List<Consumible>();
         }
 
     }

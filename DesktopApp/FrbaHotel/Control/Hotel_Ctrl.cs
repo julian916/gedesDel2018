@@ -367,5 +367,31 @@ namespace FrbaHotel.Control
            connection.Close();
            return costoPorDia;
        }
+
+       internal object getAllHotelesPorUsuario(int id_usuarioLogueado)
+       {
+           var hotelesDeUsuario = new List<Hotel>();
+           SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllHoteles_PorUsuario", connection);
+           spCommand.CommandType = CommandType.StoredProcedure;
+           connection.Open();
+           spCommand.Parameters.Clear();
+           //agrego parametros al SP_GetHotelesPorID_IDRol
+           spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuarioLogueado));
+           
+
+           DataTable hotelesTable = new DataTable();
+           hotelesTable.Load(spCommand.ExecuteReader());
+           if (hotelesTable != null && hotelesTable.Rows != null)
+           {
+               foreach (DataRow row in hotelesTable.Rows)
+               {
+                   Hotel hotelAsignado = this.BuidHotel(row);
+                   hotelesDeUsuario.Add(hotelAsignado);
+               }
+           }
+           connection.Close();
+           return hotelesDeUsuario;
+       }
     }
 }

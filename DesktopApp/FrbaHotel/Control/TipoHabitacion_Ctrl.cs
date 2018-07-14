@@ -45,7 +45,7 @@ namespace FrbaHotel.Control
             tipo.id_tipo_habitacion = Convert.ToInt32(row["id_tipo_habitacion"]);
             tipo.descripcion = Convert.ToString(row["descripcion"]);
             tipo.porcentual = Convert.ToInt32(row["porcentual"]);
-            tipo.cant_Huespedes = Convert.ToInt32(row["cant_Huespedes"]);
+            tipo.cant_Huespedes = Convert.ToInt32(row["cant_huespedes"]);
             return tipo;
         }
 

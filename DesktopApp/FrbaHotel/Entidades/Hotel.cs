@@ -19,7 +19,6 @@ namespace FrbaHotel.Entidades
         public decimal recarga_estrella { get; set; }
         public int telefono { get; set; }
         public string email { get; set; }
-        public bool habilitado { get; set; }
         public DateTime fecha_creacion { get; set; }
         public List<RegimenEstadia> lista_Regimenes { get; set; }
 

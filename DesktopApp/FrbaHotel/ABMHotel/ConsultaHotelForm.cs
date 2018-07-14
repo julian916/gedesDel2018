@@ -65,16 +65,10 @@ namespace FrbaHotel.ABMHotel
                 foreach (DataGridViewRow row in dataGridHoteles.SelectedRows)
                 {
                     Hotel hotel = (Hotel)row.DataBoundItem;
-                    if (hotel.habilitado)
-                    {
-                        BajaHotelForm bajaForm = new BajaHotelForm(hotel.id_hotel);
-                        bajaForm.ShowDialog();
-                    }
-                    else {
-                        hotelCtrl.habInhHotel(hotel.id_hotel,null, 0, "");
-                        MessageBox.Show("Se habilitó correctamente el hotel");
-                    }
                     
+                    BajaHotelForm bajaForm = new BajaHotelForm(hotel.id_hotel);
+                    bajaForm.ShowDialog();
+                     
                 }
                 this.Dispose();
                 this.Close();

@@ -139,7 +139,6 @@ namespace FrbaHotel.Control
            hotel.email = Convert.ToString(row["email"]);
            hotel.nro_calle = Convert.ToInt32(row["nro_calle"]);
            hotel.pais = Convert.ToString(row["pais"]);
-           hotel.habilitado = Convert.ToBoolean(row["habilitado"]);
            hotel.recarga_estrella = Convert.ToInt32(row["recarga_estrellas"]);
            hotel.telefono = Convert.ToInt32(row["telefono"]);
            if (row["fecha_creacion"] != DBNull.Value)

@@ -43,13 +43,13 @@
             this.buscarResBtn = new System.Windows.Forms.Button();
             this.regCheckInBtn = new System.Windows.Forms.Button();
             this.cancelarBtn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridHuesped = new System.Windows.Forms.DataGridView();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nro_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addHuespedBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHuesped)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -190,21 +190,21 @@
             this.cancelarBtn.Text = "Cancelar";
             this.cancelarBtn.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridHuesped
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridHuesped.AllowUserToAddRows = false;
+            this.dataGridHuesped.AllowUserToDeleteRows = false;
+            this.dataGridHuesped.AllowUserToOrderColumns = true;
+            this.dataGridHuesped.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridHuesped.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
             this.apellido,
             this.nro_documento});
-            this.dataGridView1.Location = new System.Drawing.Point(31, 258);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(337, 178);
-            this.dataGridView1.TabIndex = 6;
+            this.dataGridHuesped.Location = new System.Drawing.Point(31, 258);
+            this.dataGridHuesped.Name = "dataGridHuesped";
+            this.dataGridHuesped.ReadOnly = true;
+            this.dataGridHuesped.Size = new System.Drawing.Size(337, 178);
+            this.dataGridHuesped.TabIndex = 6;
             // 
             // nombre
             // 
@@ -239,7 +239,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 514);
             this.Controls.Add(this.addHuespedBtn);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridHuesped);
             this.Controls.Add(this.cancelarBtn);
             this.Controls.Add(this.regCheckInBtn);
             this.Controls.Add(this.buscarResBtn);
@@ -250,7 +250,7 @@
             this.Text = "Ingrese los datos de la estadía";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHuesped)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,7 +273,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridHuesped;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn nro_documento;

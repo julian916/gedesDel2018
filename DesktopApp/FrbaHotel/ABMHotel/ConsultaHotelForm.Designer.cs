@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.paisComboBox = new System.Windows.Forms.ComboBox();
+            this.ciudadComboBox = new System.Windows.Forms.ComboBox();
+            this.filtrarBtn = new System.Windows.Forms.Button();
+            this.estrellasBox = new System.Windows.Forms.NumericUpDown();
+            this.nombreBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.nombreBox = new System.Windows.Forms.TextBox();
-            this.estrellasBox = new System.Windows.Forms.NumericUpDown();
-            this.filtrarBtn = new System.Windows.Forms.Button();
             this.dataGridHoteles = new System.Windows.Forms.DataGridView();
-            this.ciudadComboBox = new System.Windows.Forms.ComboBox();
-            this.paisComboBox = new System.Windows.Forms.ComboBox();
             this.newBtn = new System.Windows.Forms.Button();
             this.updateBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -65,6 +65,60 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(550, 180);
             this.panel1.TabIndex = 0;
+            // 
+            // paisComboBox
+            // 
+            this.paisComboBox.FormattingEnabled = true;
+            this.paisComboBox.Location = new System.Drawing.Point(222, 114);
+            this.paisComboBox.Name = "paisComboBox";
+            this.paisComboBox.Size = new System.Drawing.Size(259, 21);
+            this.paisComboBox.TabIndex = 11;
+            // 
+            // ciudadComboBox
+            // 
+            this.ciudadComboBox.FormattingEnabled = true;
+            this.ciudadComboBox.Location = new System.Drawing.Point(222, 87);
+            this.ciudadComboBox.Name = "ciudadComboBox";
+            this.ciudadComboBox.Size = new System.Drawing.Size(259, 21);
+            this.ciudadComboBox.TabIndex = 10;
+            // 
+            // filtrarBtn
+            // 
+            this.filtrarBtn.Location = new System.Drawing.Point(406, 145);
+            this.filtrarBtn.Name = "filtrarBtn";
+            this.filtrarBtn.Size = new System.Drawing.Size(75, 23);
+            this.filtrarBtn.TabIndex = 9;
+            this.filtrarBtn.Text = "Filtrar";
+            this.filtrarBtn.UseVisualStyleBackColor = true;
+            this.filtrarBtn.Click += new System.EventHandler(this.filtrarBtn_Click);
+            // 
+            // estrellasBox
+            // 
+            this.estrellasBox.Location = new System.Drawing.Point(222, 60);
+            this.estrellasBox.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.estrellasBox.Name = "estrellasBox";
+            this.estrellasBox.Size = new System.Drawing.Size(120, 20);
+            this.estrellasBox.TabIndex = 6;
+            // 
+            // nombreBox
+            // 
+            this.nombreBox.Location = new System.Drawing.Point(222, 34);
+            this.nombreBox.Name = "nombreBox";
+            this.nombreBox.Size = new System.Drawing.Size(259, 20);
+            this.nombreBox.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(72, 110);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "País";
             // 
             // label4
             // 
@@ -102,44 +156,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese parámetros de búsqueda";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(72, 110);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "País";
-            // 
-            // nombreBox
-            // 
-            this.nombreBox.Location = new System.Drawing.Point(222, 34);
-            this.nombreBox.Name = "nombreBox";
-            this.nombreBox.Size = new System.Drawing.Size(259, 20);
-            this.nombreBox.TabIndex = 5;
-            // 
-            // estrellasBox
-            // 
-            this.estrellasBox.Location = new System.Drawing.Point(222, 60);
-            this.estrellasBox.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.estrellasBox.Name = "estrellasBox";
-            this.estrellasBox.Size = new System.Drawing.Size(120, 20);
-            this.estrellasBox.TabIndex = 6;
-            // 
-            // filtrarBtn
-            // 
-            this.filtrarBtn.Location = new System.Drawing.Point(406, 145);
-            this.filtrarBtn.Name = "filtrarBtn";
-            this.filtrarBtn.Size = new System.Drawing.Size(75, 23);
-            this.filtrarBtn.TabIndex = 9;
-            this.filtrarBtn.Text = "Filtrar";
-            this.filtrarBtn.UseVisualStyleBackColor = true;
-            this.filtrarBtn.Click += new System.EventHandler(this.filtrarBtn_Click);
-            // 
             // dataGridHoteles
             // 
             this.dataGridHoteles.AllowUserToAddRows = false;
@@ -151,22 +167,6 @@
             this.dataGridHoteles.ReadOnly = true;
             this.dataGridHoteles.Size = new System.Drawing.Size(927, 208);
             this.dataGridHoteles.TabIndex = 1;
-            // 
-            // ciudadComboBox
-            // 
-            this.ciudadComboBox.FormattingEnabled = true;
-            this.ciudadComboBox.Location = new System.Drawing.Point(222, 87);
-            this.ciudadComboBox.Name = "ciudadComboBox";
-            this.ciudadComboBox.Size = new System.Drawing.Size(259, 21);
-            this.ciudadComboBox.TabIndex = 10;
-            // 
-            // paisComboBox
-            // 
-            this.paisComboBox.FormattingEnabled = true;
-            this.paisComboBox.Location = new System.Drawing.Point(222, 114);
-            this.paisComboBox.Name = "paisComboBox";
-            this.paisComboBox.Size = new System.Drawing.Size(259, 21);
-            this.paisComboBox.TabIndex = 11;
             // 
             // newBtn
             // 
@@ -204,7 +204,7 @@
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(103, 23);
             this.deleteBtn.TabIndex = 5;
-            this.deleteBtn.Text = "Habilitar/Inhabilitar";
+            this.deleteBtn.Text = "Baja Temporal";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 

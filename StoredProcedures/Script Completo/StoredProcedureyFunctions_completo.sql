@@ -44,24 +44,24 @@ END
 GO
 ----------------------------------------------------
 --Creo tipo de dato tabla para tener info de la persona, y pasarlo como parametro
-CREATE TYPE CUATROGDD2018.datosPersonaType AS TABLE
-(
-	tipoDocumento nvarchar(50) not null,
-	nroDocumento int not null,
-	emailPers nvarchar(255) not null,
-	nombre nvarchar (255),
-	apellido nvarchar (255),
-	telPerso int,
-	nacionPer nvarchar (255),
-	callePer nvarchar (255),
-	nroCalle nvarchar(50),
-	pisoPer nvarchar(50),
-	deptoPer nvarchar(50),
-	localidadPer nvarchar(255),
-	paisPer nvarchar(255),
-	fechaPer datetime not null,
-	idUsu int
-) 
+--CREATE TYPE CUATROGDD2018.datosPersonaType AS TABLE
+--(
+--	tipoDocumento nvarchar(50) not null,
+--	nroDocumento int not null,
+--	emailPers nvarchar(255) not null,
+--	nombre nvarchar (255),
+--	apellido nvarchar (255),
+--	telPerso int,
+--	nacionPer nvarchar (255),
+--	callePer nvarchar (255),
+--	nroCalle nvarchar(50),
+--	pisoPer nvarchar(50),
+--	deptoPer nvarchar(50),
+--	localidadPer nvarchar(255),
+--	paisPer nvarchar(255),
+--	fechaPer datetime not null,
+--	idUsu int
+--) 
 
 IF OBJECT_ID('CUATROGDD2018.SP_altaPersona', 'P') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_altaPersona
@@ -106,7 +106,7 @@ BEGIN
 	
 END
 --------------------------------------------------------------------------
-IF OBJECT_ID('CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario', 'P') IS NOT NULL
+IF OBJECT_ID('CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHotel_X_Rol_Usuario] 
@@ -541,7 +541,7 @@ END
 ----------------------------------------------------------
 --FUNCION QUE DEVUELVE RECARGA DE HOTEL
 IF OBJECT_ID('CUATROGDD2018.Fn_DarRecargaHotel') IS NOT NULL
-    DROP FUNCTION CUATROGDD2018.Fn_DarRecargaHotel
+    DROP FUNCTION [CUATROGDD2018].[Fn_DarRecargaHotel]
 GO
 CREATE FUNCTION [CUATROGDD2018].[Fn_DarRecargaHotel] (@idHotel int)
 RETURNS numeric(18,2)
@@ -813,7 +813,7 @@ BEGIN
 END
 ---------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_GetAllHabitacion_PorHotel') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_GetAllHabitacion_PorHotel
+    DROP PROCEDURE [CUATROGDD2018].[SP_GetAllHabitacion_PorHotel]
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_GetAllHabitacion_PorHotel]
 	@idHotel int
@@ -825,7 +825,7 @@ BEGIN
 END
 ---------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_GetAllFuncionalidades') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_GetAllFuncionalidades
+    DROP PROCEDURE [CUATROGDD2018].[SP_GetAllFuncionalidades]
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_GetAllFuncionalidades]
 AS
@@ -1201,7 +1201,7 @@ Begin
 End
 --------------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_QuitarRegimenDeHotel') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_QuitarRegimenDeHotel
+    DROP PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel]
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel](	
 	@idHotel int,
@@ -1293,7 +1293,7 @@ BEGIN
 END
 --------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_VerificarUsuario') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_VerificarUsuario
+    DROP PROCEDURE [CUATROGDD2018].[SP_VerificarUsuario]
 GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_VerificarUsuario] @usuario varchar(255), @idUsuario int
 AS

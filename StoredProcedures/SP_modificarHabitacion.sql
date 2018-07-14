@@ -1,7 +1,7 @@
 IF OBJECT_ID('CUATROGDD2018.SP_ModificarHabitacion') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_ModificarHabitacion
 GO
-CREATE PROCEDURE [CUATROGDD2018].[SP_ModificarHabitacion] (
+CREATE PROCEDURE [CUATROGDD2018].[SP_ModificarHabitacion] 
 		@idHab int
 		,@piso numeric(18, 0)
 		,@nroHab numeric(18, 0)

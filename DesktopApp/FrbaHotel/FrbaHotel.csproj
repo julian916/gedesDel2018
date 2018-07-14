@@ -127,23 +127,17 @@
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\TiposDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
-    <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
+    <Compile Include="GenerarModificacionReserva\AltaModificarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
-      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\AltaModificarReserva.Designer.cs">
+      <DependentUpon>AltaModificarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerarModificacionReserva\RegimenYHabitacion.Designer.cs">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -217,8 +211,8 @@
     <EmbeddedResource Include="AbmUsuario\ValidacionPersonaUserForm.resx">
       <DependentUpon>ValidacionPersonaUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
-      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarModificacionReserva\AltaModificarReserva.resx">
+      <DependentUpon>AltaModificarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\RegimenYHabitacion.resx">
       <DependentUpon>RegimenYHabitacion.cs</DependentUpon>

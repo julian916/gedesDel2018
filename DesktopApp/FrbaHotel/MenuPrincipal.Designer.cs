@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelReservas = new System.Windows.Forms.Panel();
+            this.cancelReservaButton = new System.Windows.Forms.Button();
+            this.updateReservaButton = new System.Windows.Forms.Button();
+            this.newReservaButton = new System.Windows.Forms.Button();
+            this.passLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.closeSessionLink = new System.Windows.Forms.LinkLabel();
+            this.panelSession = new System.Windows.Forms.Panel();
+            this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
             this.administracionHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaHotelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,32 +60,103 @@
             this.hotelesConMásDíasSinServicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.habitacionesMasOcupadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clienteConMayorCantidadDePuntosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelReservas = new System.Windows.Forms.Panel();
-            this.cancelReservaButton = new System.Windows.Forms.Button();
-            this.updateReservaButton = new System.Windows.Forms.Button();
-            this.newReservaButton = new System.Windows.Forms.Button();
-            this.passLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.closeSessionLink = new System.Windows.Forms.LinkLabel();
-            this.panelSession = new System.Windows.Forms.Panel();
-            this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panelReservas.SuspendLayout();
             this.panelSession.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // label1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.administracionHotelToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.rolToolStripMenuItem,
-            this.estadísticasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(308, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(187, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Bienvenido";
+            // 
+            // panelReservas
+            // 
+            this.panelReservas.AutoSize = true;
+            this.panelReservas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelReservas.Controls.Add(this.cancelReservaButton);
+            this.panelReservas.Controls.Add(this.updateReservaButton);
+            this.panelReservas.Controls.Add(this.newReservaButton);
+            this.panelReservas.Location = new System.Drawing.Point(124, 195);
+            this.panelReservas.Name = "panelReservas";
+            this.panelReservas.Size = new System.Drawing.Size(572, 100);
+            this.panelReservas.TabIndex = 2;
+            // 
+            // cancelReservaButton
+            // 
+            this.cancelReservaButton.Location = new System.Drawing.Point(383, 18);
+            this.cancelReservaButton.Name = "cancelReservaButton";
+            this.cancelReservaButton.Size = new System.Drawing.Size(139, 65);
+            this.cancelReservaButton.TabIndex = 2;
+            this.cancelReservaButton.Text = "Cancelar reserva";
+            this.cancelReservaButton.UseVisualStyleBackColor = true;
+            // 
+            // updateReservaButton
+            // 
+            this.updateReservaButton.Location = new System.Drawing.Point(217, 18);
+            this.updateReservaButton.Name = "updateReservaButton";
+            this.updateReservaButton.Size = new System.Drawing.Size(139, 65);
+            this.updateReservaButton.TabIndex = 1;
+            this.updateReservaButton.Text = "Modificar reserva";
+            this.updateReservaButton.UseVisualStyleBackColor = true;
+            // 
+            // newReservaButton
+            // 
+            this.newReservaButton.Location = new System.Drawing.Point(54, 18);
+            this.newReservaButton.Name = "newReservaButton";
+            this.newReservaButton.Size = new System.Drawing.Size(139, 65);
+            this.newReservaButton.TabIndex = 0;
+            this.newReservaButton.Text = "Generar reserva";
+            this.newReservaButton.UseVisualStyleBackColor = true;
+            this.newReservaButton.Click += new System.EventHandler(this.button_GenerarReserva_Click);
+            // 
+            // passLinkLabel
+            // 
+            this.passLinkLabel.AutoSize = true;
+            this.passLinkLabel.Location = new System.Drawing.Point(18, 17);
+            this.passLinkLabel.Name = "passLinkLabel";
+            this.passLinkLabel.Size = new System.Drawing.Size(101, 13);
+            this.passLinkLabel.TabIndex = 3;
+            this.passLinkLabel.TabStop = true;
+            this.passLinkLabel.Text = "Cambiar contraseña";
+            this.passLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.passLinkLabel_LinkClicked);
+            // 
+            // closeSessionLink
+            // 
+            this.closeSessionLink.AutoSize = true;
+            this.closeSessionLink.Location = new System.Drawing.Point(142, 17);
+            this.closeSessionLink.Name = "closeSessionLink";
+            this.closeSessionLink.Size = new System.Drawing.Size(68, 13);
+            this.closeSessionLink.TabIndex = 4;
+            this.closeSessionLink.TabStop = true;
+            this.closeSessionLink.Text = "Cerrar sesión";
+            this.closeSessionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.closeSessionLink_LinkClicked);
+            // 
+            // panelSession
+            // 
+            this.panelSession.Controls.Add(this.closeSessionLink);
+            this.panelSession.Controls.Add(this.passLinkLabel);
+            this.panelSession.Location = new System.Drawing.Point(537, 65);
+            this.panelSession.Name = "panelSession";
+            this.panelSession.Size = new System.Drawing.Size(233, 56);
+            this.panelSession.TabIndex = 5;
+            // 
+            // inicioSesionLink
+            // 
+            this.inicioSesionLink.AutoSize = true;
+            this.inicioSesionLink.Location = new System.Drawing.Point(679, 335);
+            this.inicioSesionLink.Name = "inicioSesionLink";
+            this.inicioSesionLink.Size = new System.Drawing.Size(65, 13);
+            this.inicioSesionLink.TabIndex = 5;
+            this.inicioSesionLink.TabStop = true;
+            this.inicioSesionLink.Text = "Inicio sesión";
+            this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
             // 
             // administracionHotelToolStripMenuItem
             // 
@@ -147,7 +226,7 @@
             this.nuevoClienteToolStripMenuItem,
             this.consultarClienteToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // nuevoClienteToolStripMenuItem
@@ -170,20 +249,20 @@
             this.nuevoUsuarioToolStripMenuItem,
             this.modificacionBajaToolStripMenuItem1});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // nuevoUsuarioToolStripMenuItem
             // 
             this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
             this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
             // 
             // modificacionBajaToolStripMenuItem1
             // 
             this.modificacionBajaToolStripMenuItem1.Name = "modificacionBajaToolStripMenuItem1";
-            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(183, 22);
+            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.modificacionBajaToolStripMenuItem1.Text = "Consultar Usuario";
             this.modificacionBajaToolStripMenuItem1.Click += new System.EventHandler(this.modificacionBajaToolStripMenuItem1_Click);
             // 
@@ -251,150 +330,47 @@
             this.clienteConMayorCantidadDePuntosToolStripMenuItem.Size = new System.Drawing.Size(291, 22);
             this.clienteConMayorCantidadDePuntosToolStripMenuItem.Text = "Clientes con más puntos";
             // 
-            // label1
+            // menuStrip1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(308, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Bienvenido";
-            // 
-            // panelReservas
-            // 
-            this.panelReservas.AutoSize = true;
-            this.panelReservas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelReservas.Controls.Add(this.cancelReservaButton);
-            this.panelReservas.Controls.Add(this.updateReservaButton);
-            this.panelReservas.Controls.Add(this.newReservaButton);
-            this.panelReservas.Location = new System.Drawing.Point(124, 195);
-            this.panelReservas.Name = "panelReservas";
-            this.panelReservas.Size = new System.Drawing.Size(572, 100);
-            this.panelReservas.TabIndex = 2;
-            // 
-            // cancelReservaButton
-            // 
-            this.cancelReservaButton.Location = new System.Drawing.Point(383, 18);
-            this.cancelReservaButton.Name = "cancelReservaButton";
-            this.cancelReservaButton.Size = new System.Drawing.Size(139, 65);
-            this.cancelReservaButton.TabIndex = 2;
-            this.cancelReservaButton.Text = "Cancelar reserva";
-            this.cancelReservaButton.UseVisualStyleBackColor = true;
-            // 
-            // updateReservaButton
-            // 
-            this.updateReservaButton.Location = new System.Drawing.Point(217, 18);
-            this.updateReservaButton.Name = "updateReservaButton";
-            this.updateReservaButton.Size = new System.Drawing.Size(139, 65);
-            this.updateReservaButton.TabIndex = 1;
-            this.updateReservaButton.Text = "Modificar reserva";
-            this.updateReservaButton.UseVisualStyleBackColor = true;
-            // 
-            // newReservaButton
-            // 
-            this.newReservaButton.Location = new System.Drawing.Point(54, 18);
-            this.newReservaButton.Name = "newReservaButton";
-            this.newReservaButton.Size = new System.Drawing.Size(139, 65);
-            this.newReservaButton.TabIndex = 0;
-            this.newReservaButton.Text = "Generar reserva";
-            this.newReservaButton.UseVisualStyleBackColor = true;
-            // 
-            // passLinkLabel
-            // 
-            this.passLinkLabel.AutoSize = true;
-            this.passLinkLabel.Location = new System.Drawing.Point(18, 17);
-            this.passLinkLabel.Name = "passLinkLabel";
-            this.passLinkLabel.Size = new System.Drawing.Size(101, 13);
-            this.passLinkLabel.TabIndex = 3;
-            this.passLinkLabel.TabStop = true;
-            this.passLinkLabel.Text = "Cambiar contraseña";
-            this.passLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.passLinkLabel_LinkClicked);
-            // 
-            // closeSessionLink
-            // 
-            this.closeSessionLink.AutoSize = true;
-            this.closeSessionLink.Location = new System.Drawing.Point(142, 17);
-            this.closeSessionLink.Name = "closeSessionLink";
-            this.closeSessionLink.Size = new System.Drawing.Size(68, 13);
-            this.closeSessionLink.TabIndex = 4;
-            this.closeSessionLink.TabStop = true;
-            this.closeSessionLink.Text = "Cerrar sesión";
-            this.closeSessionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.closeSessionLink_LinkClicked);
-            // 
-            // panelSession
-            // 
-            this.panelSession.Controls.Add(this.closeSessionLink);
-            this.panelSession.Controls.Add(this.passLinkLabel);
-            this.panelSession.Location = new System.Drawing.Point(537, 65);
-            this.panelSession.Name = "panelSession";
-            this.panelSession.Size = new System.Drawing.Size(233, 56);
-            this.panelSession.TabIndex = 5;
-            // 
-            // inicioSesionLink
-            // 
-            this.inicioSesionLink.AutoSize = true;
-            this.inicioSesionLink.Location = new System.Drawing.Point(679, 335);
-            this.inicioSesionLink.Name = "inicioSesionLink";
-            this.inicioSesionLink.Size = new System.Drawing.Size(65, 13);
-            this.inicioSesionLink.TabIndex = 5;
-            this.inicioSesionLink.TabStop = true;
-            this.inicioSesionLink.Text = "Inicio sesión";
-            this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administracionHotelToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.rolToolStripMenuItem,
+            this.estadísticasToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Stretch = false;
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 366);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(884, 376);
             this.Controls.Add(this.inicioSesionLink);
             this.Controls.Add(this.panelSession);
             this.Controls.Add(this.panelReservas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(900, 414);
             this.Name = "MenuPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuPrincipal - FRBA Hotel";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.panelReservas.ResumeLayout(false);
             this.panelSession.ResumeLayout(false);
             this.panelSession.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoClienteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarClienteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem administracionHotelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aBMHotelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem altaHotelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aBMHabitacionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevaHabitaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoRolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMasConsumiblesFacturadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hotelesConMásDíasSinServicioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clienteConMayorCantidadDePuntosToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelReservas;
         private System.Windows.Forms.Button cancelReservaButton;
@@ -404,5 +380,29 @@
         private System.Windows.Forms.LinkLabel closeSessionLink;
         private System.Windows.Forms.Panel panelSession;
         private System.Windows.Forms.LinkLabel inicioSesionLink;
+        private System.Windows.Forms.ToolStripMenuItem administracionHotelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBMHotelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem altaHotelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBMHabitacionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaHabitaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificacionBajaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoRolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarRolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMasReservasCanceladasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMasConsumiblesFacturadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hotelesConMásDíasSinServicioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem habitacionesMasOcupadasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clienteConMayorCantidadDePuntosToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }

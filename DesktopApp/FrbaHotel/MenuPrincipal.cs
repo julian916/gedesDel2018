@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Reservas;
 
 namespace FrbaHotel
 {
@@ -112,7 +113,7 @@ namespace FrbaHotel
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-          
+
             this.WindowState = FormWindowState.Maximized;
             this.MinimumSize = this.Size;
             this.MaximumSize = this.Size;
@@ -173,6 +174,17 @@ namespace FrbaHotel
 
         }
 
-      
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void button_GenerarReserva_Click(object sender, EventArgs e)
+        {
+            GenerarModificarReserva gmr = new GenerarModificarReserva();
+            gmr.ShowDialog();
+            //FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen amr = new FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen(Sesion.id_hotel, Sesion.user_id);
+
+        }
     }
 }

@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_EliminarFuncionalidadXRol') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_EliminarFuncionalidadXRol
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_EliminarFuncionalidadXRol]
 	@idRol int,
 	@idFuncionalidad int

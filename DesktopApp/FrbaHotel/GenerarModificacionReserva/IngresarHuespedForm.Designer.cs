@@ -41,13 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataClientesEncontrados = new System.Windows.Forms.DataGridView();
-            this.tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nro_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cancelarBtn = new System.Windows.Forms.Button();
             this.newClienteBtn = new System.Windows.Forms.Button();
             this.buscarBtn = new System.Windows.Forms.Button();
@@ -172,61 +165,11 @@
             this.dataClientesEncontrados.AllowUserToDeleteRows = false;
             this.dataClientesEncontrados.AllowUserToOrderColumns = true;
             this.dataClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataClientesEncontrados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tipo_documento,
-            this.nro_documento,
-            this.nombre,
-            this.apellido,
-            this.email,
-            this.telefono,
-            this.estado});
             this.dataClientesEncontrados.Location = new System.Drawing.Point(46, 208);
             this.dataClientesEncontrados.Name = "dataClientesEncontrados";
             this.dataClientesEncontrados.ReadOnly = true;
             this.dataClientesEncontrados.Size = new System.Drawing.Size(782, 150);
             this.dataClientesEncontrados.TabIndex = 7;
-            // 
-            // tipo_documento
-            // 
-            this.tipo_documento.HeaderText = "Tipo Documento";
-            this.tipo_documento.Name = "tipo_documento";
-            this.tipo_documento.ReadOnly = true;
-            // 
-            // nro_documento
-            // 
-            this.nro_documento.HeaderText = "Nro Documento";
-            this.nro_documento.Name = "nro_documento";
-            this.nro_documento.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
-            // telefono
-            // 
-            this.telefono.HeaderText = "Teléfono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
             // 
             // cancelarBtn
             // 
@@ -304,13 +247,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataClientesEncontrados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipo_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nro_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.Button cancelarBtn;
         private System.Windows.Forms.Button newClienteBtn;
         private System.Windows.Forms.Button buscarBtn;

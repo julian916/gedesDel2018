@@ -41,6 +41,7 @@
             this.aceptarBtn = new System.Windows.Forms.Button();
             this.fechaFactBox = new System.Windows.Forms.DateTimePicker();
             this.Nro_Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consumible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridFactura)).BeginInit();
@@ -132,6 +133,7 @@
             this.dataGridFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nro_Item,
+            this.consumible,
             this.detalle,
             this.monto});
             this.dataGridFactura.Location = new System.Drawing.Point(74, 161);
@@ -163,6 +165,12 @@
             this.Nro_Item.HeaderText = "Nro_Item";
             this.Nro_Item.Name = "Nro_Item";
             this.Nro_Item.ReadOnly = true;
+            // 
+            // consumible
+            // 
+            this.consumible.HeaderText = "Consumible";
+            this.consumible.Name = "consumible";
+            this.consumible.ReadOnly = true;
             // 
             // detalle
             // 
@@ -218,6 +226,7 @@
         private System.Windows.Forms.DataGridView dataGridFactura;
         private System.Windows.Forms.DateTimePicker fechaFactBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn consumible;
         private System.Windows.Forms.DataGridViewTextBoxColumn detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
     }

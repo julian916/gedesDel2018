@@ -39,7 +39,9 @@ namespace FrbaHotel.GenerarModificarReserva
                 comboHoteles.DataSource = hotelCtrl.getAllHoteles();
             }
             else {
-                comboHoteles.DataSource = hotelCtrl.getHotelPorID(DatosSesion.id_hotel);
+                List<Hotel> listHotel = new List<Hotel>();
+                listHotel.Add(hotelCtrl.getHotelPorID(DatosSesion.id_hotel));
+                comboHoteles.DataSource = listHotel;
                 comboHoteles.Enabled = false;
                 comboHoteles.DropDownStyle = ComboBoxStyle.DropDownList;
             }

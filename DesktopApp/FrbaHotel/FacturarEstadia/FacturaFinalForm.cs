@@ -72,17 +72,18 @@ namespace FrbaHotel.FacturarEstadia
             fechaFactBox.Value = facturaFinal.fecha;
             montoTotalBox.Text = Convert.ToString(facturaFinal.precio_total);
 
-            //estadiaRelacionada.consumibles = consumForm.estadia.consumibles;
-            //foreach (Consumible consumible in estadiaRelacionada.consumibles)
-            //{
-            //    for (int i = 0; i < dataGridConsumibles.Rows.Count; i++)
-            //    {
-            //        var row = this.dataGridConsumibles.Rows[i];
-            //        row.Cells["Consumible"].Value = consumible.descripcion;
-            //        row.Cells["Cantidad"].Value = consumible.cantidad;
-            //        row.Cells["Precio Acumulado"].Value = consumible.cantidad * consumible.precio;
-            //    }
-            //}
+            estadiaFinal.consumibles = estadiaFinal.consumibles;
+            foreach (Consumible consumible in estadiaFinal.consumibles)
+            {
+                for (int i = 0; i < dataGridFactura.Rows.Count; i++)
+                {
+                    var row = this.dataGridFactura.Rows[i];
+                    row.Cells["Nro_Item"].Value = i;
+                    row.Cells["Consumible"].Value = consumible.descripcion;
+                    row.Cells["Cantidad"].Value = consumible.cantidad;
+                    row.Cells["Precio Acumulado"].Value = consumible.cantidad * consumible.precio;
+                }
+            }
         }
 
         private void aceptarBtn_Click(object sender, EventArgs e)

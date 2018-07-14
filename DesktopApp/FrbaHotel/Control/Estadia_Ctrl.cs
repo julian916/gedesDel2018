@@ -104,7 +104,7 @@ namespace FrbaHotel.Control
             }
             foreach (Consumible consumible in estadiaCheckOUT.consumibles)
             {
-                SqlCommand spCom = new SqlCommand("CUATROGDD2018.SP_InsertarConsumibleXEstadia", connection);
+                SqlCommand spCom = new SqlCommand("CUATROGDD2018.SP_InsertarConsubleXEstadia", connection);
                 spCom.CommandType = CommandType.StoredProcedure;
                 connection.Open();
                 spCom.Parameters.Clear();
@@ -121,12 +121,46 @@ namespace FrbaHotel.Control
 
         internal List<Forma_de_Pago> getAllMetodosPagos()
         {
-            throw new NotImplementedException();
+            var metodosPago = new List<Forma_de_Pago>();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllMetodoPago", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_GetAllHoteles
+
+            DataTable metodosTable = new DataTable();
+            metodosTable.Load(spCommand.ExecuteReader());
+            if (metodosTable != null && metodosTable.Rows != null)
+            {
+                foreach (DataRow row in metodosTable.Rows)
+                {
+                    Forma_de_Pago forma = new Forma_de_Pago();
+                    forma.id_forma_depago = Convert.ToInt32(row["id_forma_depago"].ToString());
+                    forma.descripcion = Convert.ToString(row["descripcion"]);
+                    metodosPago.Add(forma);
+                }
+            }
+            connection.Close();
+            return metodosPago;
         }
 
-        internal decimal getMontoTotalEstadia(int p)
+        internal decimal getMontoTotalEstadia(int id_estadia)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.CalcularMontoTotalFactura", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_NuevaReserva
+
+            spCommand.Parameters.Add(new SqlParameter("@idEstadia", id_estadia));
+            decimal montoTotal = (decimal)spCommand.ExecuteScalar();
+
+            connection.Close();
+
+            return montoTotal;
+
         }
 
         internal int facturarEstadia(Factura facturaFinal)

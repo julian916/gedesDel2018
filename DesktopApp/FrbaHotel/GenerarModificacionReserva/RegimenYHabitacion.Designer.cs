@@ -59,9 +59,13 @@
             // 
             // dataGridHabDisp
             // 
+            this.dataGridHabDisp.AllowUserToAddRows = false;
+            this.dataGridHabDisp.AllowUserToDeleteRows = false;
+            this.dataGridHabDisp.AllowUserToOrderColumns = true;
             this.dataGridHabDisp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridHabDisp.Location = new System.Drawing.Point(19, 40);
             this.dataGridHabDisp.Name = "dataGridHabDisp";
+            this.dataGridHabDisp.ReadOnly = true;
             this.dataGridHabDisp.Size = new System.Drawing.Size(590, 150);
             this.dataGridHabDisp.TabIndex = 1;
             // 

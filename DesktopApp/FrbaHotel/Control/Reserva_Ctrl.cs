@@ -186,5 +186,15 @@ namespace FrbaHotel.Control
 
             connection.Close();
         }
+
+        internal bool esReservaAptaParaCheckOut(Reserva reservaSeleccionada)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string getEstadoReserva(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

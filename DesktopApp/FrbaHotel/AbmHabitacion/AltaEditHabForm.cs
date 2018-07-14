@@ -40,6 +40,7 @@ namespace FrbaHotel.AbmHabitacion
             comodidadesBox.Text = habitacionSeleccionada.comodidades;
             tipoHabitacionCombo.SelectedValue = habitacionSeleccionada.id_tipo_habitacion;
             tipoHabitacionCombo.Enabled = false;
+            tipoHabitacionCombo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cargarTiposHabitaciones()

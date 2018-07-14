@@ -137,7 +137,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             IngresarHuespedForm clienteForm = new IngresarHuespedForm();
             if (clienteForm.ShowDialog(this) == DialogResult.OK)
             {
-                cliente_reserva = clienteForm.clientePrincipal;
+                cliente_reserva = clienteForm.clienteSeleccionado;
                 confirmResBtn.Enabled = true;
                 confirmResBtn.Focus();
             }

@@ -34,6 +34,7 @@ namespace FrbaHotel.AbmUsuario
         public AltaModUsuario() {
             InitializeComponent();
             modificarPassBtn.Visible = false;
+            panelRolXHotel.Enabled = false;
             continuarAltaMod = this.validarDatosPrincipalesPersona();
             newRolBtn.Visible = false;
             deleteRolBtn.Visible = false;
@@ -240,6 +241,11 @@ namespace FrbaHotel.AbmUsuario
                     this.getRolesParaUsuario(userPrevio.id_usuario);
                 }
                 else {
+                    this.verificar_Contrasenias();
+                    //validacion de un alta
+                    usuarioCtrl.validarUsername(userTextBox.Text,0);
+                    userConCambios.username = userTextBox.Text;
+                    userConCambios.password = Encriptacion.getHashSha256(passTextBox.Text);
                     this.getAllRoles();
                 }
                 panelRolXHotel.Enabled = true;

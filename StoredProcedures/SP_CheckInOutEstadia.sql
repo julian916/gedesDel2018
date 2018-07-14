@@ -12,7 +12,7 @@ BEGIN
 	IF EXISTS (SELECT 1 FROM [CUATROGDD2018].[Estadias] WHERE [id_estadia]=@id and [id_usuario_checkOut] is null)
 		BEGIN
 			UPDATE [CUATROGDD2018].[Estadias]
-			SET [cant_noches]=@fecha-[fecha_inicio]
+			SET [cant_noches]=DATEDIFF(DAY,[fecha_inicio],@fecha)
 				,[id_usuario_checkOut]=@idUsuario
 			where [id_estadia]=@id
 

@@ -157,5 +157,28 @@ namespace FrbaHotel.GenerarModificacionReserva
             totalBox.Text = costoTotal.ToString("#.##");
 
         }
+
+        private void confirmCambiosBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridHabActuales.Rows.Count==0){
+                    throw new System.ArgumentException("Debe ingresar al menos una habitación a la reserva");
+                }
+                reservaConCambio.id_reserva = reservaPrevia.id_reserva;
+                reservaCtrl.modificar_reserva(reservaConCambio, reservaPrevia);
+                MessageBox.Show("Se modificó correctamente el hotel.");
+            }
+            catch (Exception exc) {
+
+                MessageBox.Show(exc.Message); 
+            }
+        }
+
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
     }
 }

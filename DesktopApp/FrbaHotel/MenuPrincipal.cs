@@ -9,6 +9,7 @@ using FrbaHotel.GenerarModificacionReserva;
 using FrbaHotel.GenerarModificarReserva;
 using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
+using FrbaHotel.RegistrarEstadia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -232,7 +233,8 @@ namespace FrbaHotel
 
         private void nuevaEstadíaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CheckINForm checkInForm = new CheckINForm();
+            checkInForm.ShowDialog();
         }
 
         private void modificarRolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,9 +243,10 @@ namespace FrbaHotel
             consultaRol.ShowDialog();
         }
 
-        private void habilitarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void checkOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CheckOUTForm checkOutForm = new CheckOUTForm();
+            checkOutForm.ShowDialog();
         }
 
       

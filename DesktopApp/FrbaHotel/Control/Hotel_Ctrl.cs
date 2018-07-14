@@ -235,7 +235,7 @@ namespace FrbaHotel.Control
        public string habInhHotel(int id_hotel_DarBaja, Nullable<System.DateTime> fechaInicio, int diasCierre, string comentarios)
        {
            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_HabInhabHotel", connection);
+           SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_CierreTempHotel", connection);
            spCommand.CommandType = CommandType.StoredProcedure;
            spCommand.Parameters.Clear();
            spCommand.Parameters.Add(new SqlParameter("@id_hotel", id_hotel_DarBaja));

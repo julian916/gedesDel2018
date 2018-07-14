@@ -29,21 +29,25 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.fechaInicioBox = new System.Windows.Forms.DateTimePicker();
             this.fechaFinBox = new System.Windows.Forms.DateTimePicker();
+            this.fechaInicioBox = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridHabActuales = new System.Windows.Forms.DataGridView();
-            this.dataGridHabDispon = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
+            this.quitarHabBtn = new System.Windows.Forms.Button();
+            this.agregarHabBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridHabDispon = new System.Windows.Forms.DataGridView();
+            this.dataGridHabActuales = new System.Windows.Forms.DataGridView();
             this.cambiarFechasBtn = new System.Windows.Forms.Button();
             this.confirmarHab = new System.Windows.Forms.Button();
             this.cambiarRegBtn = new System.Windows.Forms.Button();
-            this.agregarHabBtn = new System.Windows.Forms.Button();
-            this.quitarHabBtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.infoUsername = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.infoClienteBox = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.infoHotelBox = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.Cancelar = new System.Windows.Forms.Button();
@@ -55,18 +59,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.regimenComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.infoClienteBox = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.infoUsername = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tipoHabBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabActuales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHabDispon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabActuales)).BeginInit();
             this.panel3.SuspendLayout();
             this.panelRegimenes.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -83,14 +83,19 @@
             this.panel1.Size = new System.Drawing.Size(358, 109);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // fechaFinBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fecha Inicio";
+            this.fechaFinBox.Location = new System.Drawing.Point(125, 59);
+            this.fechaFinBox.Name = "fechaFinBox";
+            this.fechaFinBox.Size = new System.Drawing.Size(200, 20);
+            this.fechaFinBox.TabIndex = 3;
+            // 
+            // fechaInicioBox
+            // 
+            this.fechaInicioBox.Location = new System.Drawing.Point(125, 27);
+            this.fechaInicioBox.Name = "fechaInicioBox";
+            this.fechaInicioBox.Size = new System.Drawing.Size(200, 20);
+            this.fechaInicioBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -101,19 +106,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Fecha Fin";
             // 
-            // fechaInicioBox
+            // label1
             // 
-            this.fechaInicioBox.Location = new System.Drawing.Point(125, 27);
-            this.fechaInicioBox.Name = "fechaInicioBox";
-            this.fechaInicioBox.Size = new System.Drawing.Size(200, 20);
-            this.fechaInicioBox.TabIndex = 2;
-            // 
-            // fechaFinBox
-            // 
-            this.fechaFinBox.Location = new System.Drawing.Point(125, 59);
-            this.fechaFinBox.Name = "fechaFinBox";
-            this.fechaFinBox.Size = new System.Drawing.Size(200, 20);
-            this.fechaFinBox.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Fecha Inicio";
             // 
             // panel2
             // 
@@ -128,6 +128,52 @@
             this.panel2.Size = new System.Drawing.Size(692, 197);
             this.panel2.TabIndex = 1;
             // 
+            // quitarHabBtn
+            // 
+            this.quitarHabBtn.Location = new System.Drawing.Point(99, 160);
+            this.quitarHabBtn.Name = "quitarHabBtn";
+            this.quitarHabBtn.Size = new System.Drawing.Size(118, 23);
+            this.quitarHabBtn.TabIndex = 7;
+            this.quitarHabBtn.Text = "Quitar habitación";
+            this.quitarHabBtn.UseVisualStyleBackColor = true;
+            this.quitarHabBtn.Click += new System.EventHandler(this.quitarHabBtn_Click);
+            // 
+            // agregarHabBtn
+            // 
+            this.agregarHabBtn.Location = new System.Drawing.Point(459, 160);
+            this.agregarHabBtn.Name = "agregarHabBtn";
+            this.agregarHabBtn.Size = new System.Drawing.Size(131, 23);
+            this.agregarHabBtn.TabIndex = 6;
+            this.agregarHabBtn.Text = "Agregar Habitación";
+            this.agregarHabBtn.UseVisualStyleBackColor = true;
+            this.agregarHabBtn.Click += new System.EventHandler(this.agregarHabBtn_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(362, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Habitaciones Disponibles";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Habitaciones de reserva";
+            // 
+            // dataGridHabDispon
+            // 
+            this.dataGridHabDispon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridHabDispon.Location = new System.Drawing.Point(362, 37);
+            this.dataGridHabDispon.Name = "dataGridHabDispon";
+            this.dataGridHabDispon.Size = new System.Drawing.Size(297, 117);
+            this.dataGridHabDispon.TabIndex = 3;
+            // 
             // dataGridHabActuales
             // 
             this.dataGridHabActuales.AllowUserToAddRows = false;
@@ -139,32 +185,6 @@
             this.dataGridHabActuales.ReadOnly = true;
             this.dataGridHabActuales.Size = new System.Drawing.Size(272, 117);
             this.dataGridHabActuales.TabIndex = 2;
-            // 
-            // dataGridHabDispon
-            // 
-            this.dataGridHabDispon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHabDispon.Location = new System.Drawing.Point(362, 37);
-            this.dataGridHabDispon.Name = "dataGridHabDispon";
-            this.dataGridHabDispon.Size = new System.Drawing.Size(297, 117);
-            this.dataGridHabDispon.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Habitaciones de reserva";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(362, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Habitaciones Disponibles";
             // 
             // cambiarFechasBtn
             // 
@@ -195,26 +215,6 @@
             this.cambiarRegBtn.Text = "Cambiar Régimen";
             this.cambiarRegBtn.UseVisualStyleBackColor = true;
             // 
-            // agregarHabBtn
-            // 
-            this.agregarHabBtn.Location = new System.Drawing.Point(459, 160);
-            this.agregarHabBtn.Name = "agregarHabBtn";
-            this.agregarHabBtn.Size = new System.Drawing.Size(131, 23);
-            this.agregarHabBtn.TabIndex = 6;
-            this.agregarHabBtn.Text = "Agregar Habitación";
-            this.agregarHabBtn.UseVisualStyleBackColor = true;
-            this.agregarHabBtn.Click += new System.EventHandler(this.agregarHabBtn_Click);
-            // 
-            // quitarHabBtn
-            // 
-            this.quitarHabBtn.Location = new System.Drawing.Point(99, 160);
-            this.quitarHabBtn.Name = "quitarHabBtn";
-            this.quitarHabBtn.Size = new System.Drawing.Size(118, 23);
-            this.quitarHabBtn.TabIndex = 7;
-            this.quitarHabBtn.Text = "Quitar habitación";
-            this.quitarHabBtn.UseVisualStyleBackColor = true;
-            this.quitarHabBtn.Click += new System.EventHandler(this.quitarHabBtn_Click);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -229,6 +229,46 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(876, 44);
             this.panel3.TabIndex = 14;
+            // 
+            // infoUsername
+            // 
+            this.infoUsername.AutoSize = true;
+            this.infoUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoUsername.Location = new System.Drawing.Point(764, 14);
+            this.infoUsername.Name = "infoUsername";
+            this.infoUsername.Size = new System.Drawing.Size(41, 13);
+            this.infoUsername.TabIndex = 7;
+            this.infoUsername.Text = "label2";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(649, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(98, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Usuario de cambio:";
+            // 
+            // infoClienteBox
+            // 
+            this.infoClienteBox.AutoSize = true;
+            this.infoClienteBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoClienteBox.Location = new System.Drawing.Point(501, 14);
+            this.infoClienteBox.Name = "infoClienteBox";
+            this.infoClienteBox.Size = new System.Drawing.Size(41, 13);
+            this.infoClienteBox.TabIndex = 5;
+            this.infoClienteBox.Text = "label2";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(387, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Cliente asignado:";
             // 
             // infoHotelBox
             // 
@@ -258,6 +298,7 @@
             this.Cancelar.TabIndex = 4;
             this.Cancelar.Text = "Cancelar";
             this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
             // confirmCambiosBtn
             // 
@@ -267,6 +308,7 @@
             this.confirmCambiosBtn.TabIndex = 15;
             this.confirmCambiosBtn.Text = "Confirmar Cambios";
             this.confirmCambiosBtn.UseVisualStyleBackColor = true;
+            this.confirmCambiosBtn.Click += new System.EventHandler(this.confirmCambiosBtn_Click);
             // 
             // panelRegimenes
             // 
@@ -326,7 +368,6 @@
             this.regimenComboBox.Name = "regimenComboBox";
             this.regimenComboBox.Size = new System.Drawing.Size(138, 21);
             this.regimenComboBox.TabIndex = 1;
-
             // 
             // label8
             // 
@@ -336,46 +377,6 @@
             this.label8.Size = new System.Drawing.Size(105, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Seleccione Régimen";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(387, 14);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Cliente asignado:";
-            // 
-            // infoClienteBox
-            // 
-            this.infoClienteBox.AutoSize = true;
-            this.infoClienteBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoClienteBox.Location = new System.Drawing.Point(501, 14);
-            this.infoClienteBox.Name = "infoClienteBox";
-            this.infoClienteBox.Size = new System.Drawing.Size(41, 13);
-            this.infoClienteBox.TabIndex = 5;
-            this.infoClienteBox.Text = "label2";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(649, 14);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(98, 13);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Usuario de cambio:";
-            // 
-            // infoUsername
-            // 
-            this.infoUsername.AutoSize = true;
-            this.infoUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoUsername.Location = new System.Drawing.Point(764, 14);
-            this.infoUsername.Name = "infoUsername";
-            this.infoUsername.Size = new System.Drawing.Size(41, 13);
-            this.infoUsername.TabIndex = 7;
-            this.infoUsername.Text = "label2";
             // 
             // label10
             // 
@@ -436,8 +437,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabActuales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHabDispon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridHabActuales)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panelRegimenes.ResumeLayout(false);

@@ -58,7 +58,7 @@
             this.closeSessionLink = new System.Windows.Forms.LinkLabel();
             this.panelSession = new System.Windows.Forms.Panel();
             this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
-            this.habilitarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelReservas.SuspendLayout();
             this.panelSession.SuspendLayout();
@@ -169,8 +169,7 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoUsuarioToolStripMenuItem,
-            this.modificacionBajaToolStripMenuItem1,
-            this.habilitarUsuarioToolStripMenuItem});
+            this.modificacionBajaToolStripMenuItem1});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
@@ -215,7 +214,8 @@
             // estadíasToolStripMenuItem
             // 
             this.estadíasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevaEstadíaToolStripMenuItem});
+            this.nuevaEstadíaToolStripMenuItem,
+            this.checkOUTToolStripMenuItem});
             this.estadíasToolStripMenuItem.Name = "estadíasToolStripMenuItem";
             this.estadíasToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.estadíasToolStripMenuItem.Text = "Estadías";
@@ -223,8 +223,8 @@
             // nuevaEstadíaToolStripMenuItem
             // 
             this.nuevaEstadíaToolStripMenuItem.Name = "nuevaEstadíaToolStripMenuItem";
-            this.nuevaEstadíaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.nuevaEstadíaToolStripMenuItem.Text = "Nueva Estadía";
+            this.nuevaEstadíaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevaEstadíaToolStripMenuItem.Text = "Check IN";
             this.nuevaEstadíaToolStripMenuItem.Click += new System.EventHandler(this.nuevaEstadíaToolStripMenuItem_Click);
             // 
             // listaEstadisticasToolStripMenuItem
@@ -329,12 +329,12 @@
             this.inicioSesionLink.Text = "Inicio sesión";
             this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
             // 
-            // habilitarUsuarioToolStripMenuItem
+            // checkOUTToolStripMenuItem
             // 
-            this.habilitarUsuarioToolStripMenuItem.Name = "habilitarUsuarioToolStripMenuItem";
-            this.habilitarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.habilitarUsuarioToolStripMenuItem.Text = "Des/Habilitar Usuario";
-            this.habilitarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.habilitarUsuarioToolStripMenuItem_Click);
+            this.checkOUTToolStripMenuItem.Name = "checkOUTToolStripMenuItem";
+            this.checkOUTToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.checkOUTToolStripMenuItem.Text = "Check OUT";
+            this.checkOUTToolStripMenuItem.Click += new System.EventHandler(this.checkOUTToolStripMenuItem_Click);
             // 
             // MenuPrincipal
             // 
@@ -395,6 +395,6 @@
         private System.Windows.Forms.ToolStripMenuItem listaEstadisticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estadíasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevaEstadíaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem habilitarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkOUTToolStripMenuItem;
     }
 }

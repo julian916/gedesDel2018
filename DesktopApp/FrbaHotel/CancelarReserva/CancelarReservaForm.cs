@@ -30,6 +30,11 @@ namespace FrbaHotel.CancelarReserva
 
         private void CancelarReservaForm_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void cancelResBtn_Click(object sender, EventArgs e)
+        {
             try
             {
                 Reserva_Ctrl reservaCtrl = new Reserva_Ctrl();
@@ -37,15 +42,11 @@ namespace FrbaHotel.CancelarReserva
                 reservaCtrl.cancelarReserva(id_reserva, motivoBox.Text, fechaCancelacionBox.Value, DatosSesion.id_usuario);
                 MessageBox.Show("Se canceló correctamente la reserva");
             }
-            catch (Exception exc) {
+            catch (Exception exc)
+            {
                 MessageBox.Show(exc.Message);
 
             }
-        }
-
-        private void cancelResBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

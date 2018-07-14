@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.RegistrarEstadia
 {
-    public partial class Form1 : Form
+    public partial class CheckINForm : Form
     {
-        public Form1()
+        public CheckINForm()
         {
             InitializeComponent();
+            panel1.Enabled = false;
+
+        }
+
+        private void buscarResBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

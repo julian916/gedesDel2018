@@ -56,6 +56,7 @@ namespace FrbaHotel.AbmRol
             Rol_Ctrl rolCtrl = new Rol_Ctrl();
             Rol nuevoRol = new Rol();
             nuevoRol.nombre = nombreRolBox.Text;
+            nuevoRol.habilitado = habilitadoBox.Checked;
             nuevoRol.lista_funcionalidades = this.getFuncSeleccionadas(funcListBox.CheckedItems.Cast<string>().ToList());
                     
             try {
@@ -69,6 +70,8 @@ namespace FrbaHotel.AbmRol
                     rolCtrl.altaRol(nuevoRol);
                     MessageBox.Show("Se generó correctamente el nuevo rol");
                 }
+                this.Dispose();
+                this.Close();
             } 
             catch (Exception exc){
                 MessageBox.Show(exc.Message);

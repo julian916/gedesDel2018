@@ -45,7 +45,7 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Clear();
             //agrego parametros al SP_InsertarReservaXHabitacion
             spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
-            spCommand.Parameters.Add(new SqlParameter("@idHab", id_habitacion));
+            spCommand.Parameters.Add(new SqlParameter("@idHabitacion", id_habitacion));
             spCommand.ExecuteNonQuery();
             
             connection.Close();
@@ -129,6 +129,62 @@ namespace FrbaHotel.Control
             }
             connection.Close();
             return habitacionesEncontrados;
+        }
+
+        public void modificar_reserva(Reserva reservaConCambio, Reserva reservaPrevia)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ModificarReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_ModificarReserva
+
+
+            spCommand.Parameters.Add(new SqlParameter("@idRegimen", reservaConCambio.id_regimen));
+            spCommand.Parameters.Add(new SqlParameter("@fechaDesde", reservaConCambio.fecha_desde));
+            spCommand.Parameters.Add(new SqlParameter("@fechaHasta", reservaConCambio.fecha_hasta));
+            spCommand.Parameters.Add(new SqlParameter("@cantNoches", reservaConCambio.cantidad_noches));
+
+            int filasAfectadas = (int)spCommand.ExecuteNonQuery();
+            if (!(filasAfectadas > 0))
+            {
+                throw new System.ArgumentException("No se pudo modi la reserva, intente nuevamente");
+            }
+            //verifico las habitaciones de la reserva
+
+            foreach (Habitacion nuevaHabitacion in reservaConCambio.habitacionesReserva)
+            {
+                if (!(reservaPrevia.habitacionesReserva.Exists(habPrevia => habPrevia.id_habitacion == nuevaHabitacion.id_habitacion)))
+                {
+                    this.nuevaHabitacion_X_Reserva(reservaConCambio.id_reserva, nuevaHabitacion.id_habitacion);
+
+                }
+
+            }
+            foreach (Habitacion habPrevia in reservaPrevia.habitacionesReserva)
+            {
+                if (!(reservaConCambio.habitacionesReserva.Exists(habNueva => habNueva.id_habitacion == habPrevia.id_habitacion)))
+                {
+                    this.quitarHabitacion_X_Reserva(reservaConCambio.id_reserva, habPrevia.id_habitacion);
+                }
+
+            }
+        }
+
+        private void quitarHabitacion_X_Reserva(int id_reserva, int id_habitacion)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_QuitarReservaXHabitacion", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_InsertarReservaXHabitacion
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
+            spCommand.Parameters.Add(new SqlParameter("@idHabitacion", id_habitacion));
+            spCommand.ExecuteNonQuery();
+
+            connection.Close();
         }
     }
 }

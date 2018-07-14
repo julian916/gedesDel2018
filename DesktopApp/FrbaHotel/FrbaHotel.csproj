@@ -142,6 +142,7 @@
     <Compile Include="Control\Usuario_Ctrl.cs" />
     <Compile Include="Entidades\DatosSesion.cs" />
     <Compile Include="Entidades\Encriptacion.cs" />
+    <Compile Include="Entidades\Estadia.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Habitacion.cs" />
     <Compile Include="Entidades\Hotel.cs" />
@@ -225,11 +226,17 @@
     <Compile Include="RegistrarConsumible\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.cs">
+    <Compile Include="RegistrarEstadia\CheckINForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\CheckINForm.Designer.cs">
+      <DependentUpon>CheckINForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CheckOUTForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CheckOUTForm.Designer.cs">
+      <DependentUpon>CheckOUTForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositorios\RepositorioHoteles.cs" />
     <Compile Include="Repositorios\RepositorioRoles.cs" />
@@ -312,6 +319,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarEstadia\CheckINForm.resx">
+      <DependentUpon>CheckINForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

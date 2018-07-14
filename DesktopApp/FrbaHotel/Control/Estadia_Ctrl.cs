@@ -49,7 +49,7 @@ namespace FrbaHotel.Control
         {
             Estadia estadia = new Estadia();
             SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetEstadia_IDReserva", connection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarEstadiaPorCodReserva", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
             connection.Open();
@@ -123,7 +123,7 @@ namespace FrbaHotel.Control
         {
             var metodosPago = new List<Forma_de_Pago>();
             SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllMetodoPago", connection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllMediosDePagos", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             connection.Open();
             spCommand.Parameters.Clear();
@@ -168,9 +168,21 @@ namespace FrbaHotel.Control
             throw new NotImplementedException();
         }
 
-        internal int getPuntosObtenidos(int p)
+        internal int getPuntosObtenidos(int id_estadia)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetPuntosObtenidos", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_GetPuntosObtenidos
+
+            spCommand.Parameters.Add(new SqlParameter("@idEstadia", id_estadia));
+            int puntos = (int)spCommand.ExecuteScalar();
+
+            connection.Close();
+
+            return puntos;
         }
     }
 }

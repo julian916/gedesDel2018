@@ -37,31 +37,31 @@ namespace FrbaHotel.ListadoEstadistico
 
         private void linkHotelResCanc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DataTable resultTable = estadisticaCtrl.getTopHotelesMasReservasCanceladas();
+            DataTable resultTable = estadisticaCtrl.getTopHotelesMasReservasCanceladas(Convert.ToInt32(anioComboBox.Text),(int)trimestreBox.Value);
             dataGridEstadistica.DataSource = resultTable;
         }
 
         private void linkMayorConsum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DataTable resultTable = estadisticaCtrl.getTopHotelesMasConsumiblesFact();
+            DataTable resultTable = estadisticaCtrl.getTopHotelesMasConsumiblesFact(Convert.ToInt32(anioComboBox.Text), (int)trimestreBox.Value);
             dataGridEstadistica.DataSource = resultTable;
         }
 
         private void linkHotelDiasSinServ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DataTable resultTable = estadisticaCtrl.getTopHotelesMasDiasSinServ();
+            DataTable resultTable = estadisticaCtrl.getTopHotelesMasDiasSinServ(Convert.ToInt32(anioComboBox.Text), (int)trimestreBox.Value);
             dataGridEstadistica.DataSource = resultTable;
         }
 
         private void linkHabSolicitadas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DataTable resultTable = estadisticaCtrl.getTopHabitacionSolicitadas();
+            DataTable resultTable = estadisticaCtrl.getTopHabitacionSolicitadas(Convert.ToInt32(anioComboBox.Text), (int)trimestreBox.Value);
             dataGridEstadistica.DataSource = resultTable;
         }
 
         private void linkClientePuntos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DataTable resultTable = estadisticaCtrl.getTopClientesConMasPuntos();
+            DataTable resultTable = estadisticaCtrl.getTopClientesConMasPuntos(Convert.ToInt32(anioComboBox.Text), (int)trimestreBox.Value);
             dataGridEstadistica.DataSource = resultTable;
         }
     }

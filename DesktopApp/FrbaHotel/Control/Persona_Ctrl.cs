@@ -209,5 +209,30 @@ namespace FrbaHotel.Control
 
             return usuariosEncontrado.ElementAt(0);
         }
+
+        public Persona getPersona_IDPersona(int id_persona)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarDatosPersona", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_DarDatosPersona
+            spCommand.Parameters.Add(new SqlParameter("@idPersona", id_persona));
+
+            Persona personaEncontrado = new Persona();
+            DataTable clientesTable = new DataTable();
+            clientesTable.Load(spCommand.ExecuteReader());
+            if (clientesTable != null && clientesTable.Rows != null)
+            {
+                foreach (DataRow row in clientesTable.Rows)
+                {
+                    personaEncontrado = this.BuildPersona(row);
+                    
+                }
+            }
+
+            return personaEncontrado;
+        }
     }
 }

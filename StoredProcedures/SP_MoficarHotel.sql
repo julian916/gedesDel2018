@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_ModificarHotel') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_ModificarHotel
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_ModificarHotel]
 (	
 	@id_hotel int,

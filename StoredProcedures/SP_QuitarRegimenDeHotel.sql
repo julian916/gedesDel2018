@@ -1,8 +1,7 @@
 IF OBJECT_ID('CUATROGDD2018.SP_QuitarRegimenDeHotel') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_QuitarRegimenDeHotel
 GO
-CREATE PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel]
-(	
+CREATE PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel](	
 	@idHotel int,
 	@idRegimen int
 )
@@ -13,3 +12,4 @@ BEGIN
 	set [habilitado]='False'
 	where [id_regimen]=@idRegimen and [id_hotel]=@idHotel
 END
+GO

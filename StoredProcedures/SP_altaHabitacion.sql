@@ -1,7 +1,7 @@
 IF OBJECT_ID('CUATROGDD2018.SP_AltaHabitacion') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_AltaHabitacion
 GO
-CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHabitacion] (
+CREATE PROCEDURE [CUATROGDD2018].[SP_AltaHabitacion] 
 		@idTipoHabitacion int
 		,@idHotel int
 		,@piso numeric(18, 0)

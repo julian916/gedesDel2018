@@ -1,6 +1,3 @@
-USE [GD1C2018]
-GO
-
 IF OBJECT_ID('CUATROGDD2018.SP_ModificarUsuario', 'P') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_ModificarUsuario
 GO
@@ -14,3 +11,4 @@ BEGIN
 	WHERE id_usuario=@idUsuario
 	
 END
+GO

@@ -31,7 +31,7 @@ BEGIN
 	and (h.ciudad = @ciudad OR @ciudad IS NULL OR @ciudad = '')
 	and (h.cant_estrellas = @cantEstrellas OR @cantEstrellas IS NULL OR @cantEstrellas = 0)
 	and (h.pais = @pais OR @pais IS NULL OR @pais = '')
-	and (h.pais = @nombre OR @nombre IS NULL OR @nombre = '')
+	and (h.nombre = @nombre OR @nombre IS NULL OR @nombre = '')
 	
 END
 GO

@@ -5,6 +5,7 @@ using FrbaHotel.AbmRol;
 using FrbaHotel.AbmUsuario;
 using FrbaHotel.CancelarReserva;
 using FrbaHotel.Entidades;
+using FrbaHotel.GenerarModificacionReserva;
 using FrbaHotel.GenerarModificarReserva;
 using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
@@ -206,7 +207,15 @@ namespace FrbaHotel
 
         private void updateReservaButton_Click(object sender, EventArgs e)
         {
-
+            ModificarReservaForm modReserva = new ModificarReservaForm();
+            if (modReserva.reservaPrevia != null)
+            {
+                modReserva.Show();
+            }
+            else {
+                MessageBox.Show("No existe reserva con el código ingresado");
+            }
+          
         }
 
         private void cancelReservaButton_Click(object sender, EventArgs e)

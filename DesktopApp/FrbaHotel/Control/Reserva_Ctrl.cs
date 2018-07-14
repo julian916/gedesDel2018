@@ -51,19 +51,84 @@ namespace FrbaHotel.Control
             connection.Close();
         }
 
-        internal int validarIDReserva(int p)
+        public void cancelarReserva(int id_reserva, string motivo, DateTime fechaInicio, int id_usuario)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_CancelarReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_InsertarReservaXHabitacion
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
+            spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuario));
+            spCommand.Parameters.Add(new SqlParameter("@fecha", fechaInicio));
+            spCommand.Parameters.Add(new SqlParameter("@motivo", motivo));
+            spCommand.ExecuteNonQuery();
+
+            connection.Close();
         }
 
-        internal void cancelarReserva(int id_reserva, string p1, DateTime dateTime, int p2)
+        public Reserva getReservaConID(int id_reserva)
         {
-            throw new NotImplementedException();
+            Reserva reserva = new Reserva();
+            
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_BuscaReservaPorId", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscaReservaPorId
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
+            DataTable habTable = new DataTable();
+            habTable.Load(spCommand.ExecuteReader());
+            if (habTable != null && habTable.Rows != null)
+            {
+                foreach (DataRow row in habTable.Rows)
+                {
+                    
+                    reserva.id_reserva = Convert.ToInt32(row["id_reserva"]);
+                    reserva.id_persona = Convert.ToInt32(row["id_persona"]);
+                    reserva.id_regimen = Convert.ToInt32(row["id_regimen"]);
+                    reserva.id_estado_reserva = Convert.ToInt32(row["id_estado_reserva"]);
+                    reserva.fecha_desde = Convert.ToDateTime(row["fecha_desde"]);
+                    reserva.fecha_hasta = Convert.ToDateTime(row["fecha_hasta"]);
+                    reserva.fecha_reserva = Convert.ToDateTime(row["fecha_reserva"]);
+                    reserva.cantidad_noches = Convert.ToInt32(row["cantidad_noches"]);
+                }
+            }
+            connection.Close();
+            return reserva;
         }
 
-        internal Reserva buscaReserva_PorID(int p)
+        public List<Habitacion> getHabitacionesDeReserva(int cod_reserva)
         {
-            throw new NotImplementedException();
+            List<Habitacion> habitacionesEncontrados = new List<Habitacion>();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_BuscarHabitacionPorReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_GetHabitacionesPorIDRes
+            spCommand.Parameters.Add(new SqlParameter("@id_reserva", cod_reserva));
+            DataTable habTable = new DataTable();
+            habTable.Load(spCommand.ExecuteReader());
+            if (habTable != null && habTable.Rows != null)
+            {
+                foreach (DataRow row in habTable.Rows)
+                {
+                    Habitacion habitacion = new Habitacion();
+                    habitacion.id_habitacion = Convert.ToInt32(row["id_habitacion"]);
+                    habitacion.nro_habitacion = Convert.ToInt32(row["nro_habitacion"]);
+                    habitacion.piso = Convert.ToInt32(row["piso"]);
+                    habitacion.frente = Convert.ToString(row["ubicacion"]);
+                    habitacion.comodidades = Convert.ToString(row["comodidades"]);
+                    habitacion.id_tipo_habitacion = Convert.ToInt32(row["th.descripcion"]);
+                    habitacion.desc_tipo_habitacion = Convert.ToString(row["tipo_habitacion"]);                    
+                    habitacionesEncontrados.Add(habitacion);
+                }
+            }
+            connection.Close();
+            return habitacionesEncontrados;
         }
     }
 }

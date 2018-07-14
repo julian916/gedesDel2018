@@ -33,9 +33,9 @@ namespace FrbaHotel.CancelarReserva
             try
             {
                 Reserva_Ctrl reservaCtrl = new Reserva_Ctrl();
-                Reserva reserva = reservaCtrl.buscaReserva_PorID(Convert.ToInt32(codResBox.Text));
+                Reserva reserva = reservaCtrl.getReservaConID(Convert.ToInt32(codResBox.Text));
                 reservaCtrl.cancelarReserva(id_reserva, motivoBox.Text, fechaCancelacionBox.Value, DatosSesion.id_usuario);
-                    
+                MessageBox.Show("Se canceló correctamente la reserva");
             }
             catch (Exception exc) {
                 MessageBox.Show(exc.Message);

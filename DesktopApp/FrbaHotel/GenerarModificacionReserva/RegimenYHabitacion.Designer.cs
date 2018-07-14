@@ -32,17 +32,17 @@
             this.dataGridHabDisp = new System.Windows.Forms.DataGridView();
             this.confirmHab = new System.Windows.Forms.Button();
             this.panelRegimenes = new System.Windows.Forms.Panel();
-            this.confirmResBtn = new System.Windows.Forms.Button();
+            this.clientePrincBtn = new System.Windows.Forms.Button();
+            this.totalBox = new System.Windows.Forms.MaskedTextBox();
+            this.precioPorDiaBox = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.regimenComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.confirmResBtn = new System.Windows.Forms.Button();
             this.modHabBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.panelHabitaciones = new System.Windows.Forms.Panel();
-            this.precioPorDiaBox = new System.Windows.Forms.MaskedTextBox();
-            this.totalBox = new System.Windows.Forms.MaskedTextBox();
-            this.clientePrincBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHabDisp)).BeginInit();
             this.panelRegimenes.SuspendLayout();
             this.panelHabitaciones.SuspendLayout();
@@ -90,15 +90,35 @@
             this.panelRegimenes.Size = new System.Drawing.Size(623, 113);
             this.panelRegimenes.TabIndex = 3;
             // 
-            // confirmResBtn
+            // clientePrincBtn
             // 
-            this.confirmResBtn.Location = new System.Drawing.Point(132, 422);
-            this.confirmResBtn.Name = "confirmResBtn";
-            this.confirmResBtn.Size = new System.Drawing.Size(136, 23);
-            this.confirmResBtn.TabIndex = 4;
-            this.confirmResBtn.Text = "Confirmar Reserva";
-            this.confirmResBtn.UseVisualStyleBackColor = true;
-            this.confirmResBtn.Click += new System.EventHandler(this.confirmResBtn_Click);
+            this.clientePrincBtn.Location = new System.Drawing.Point(381, 42);
+            this.clientePrincBtn.Name = "clientePrincBtn";
+            this.clientePrincBtn.Size = new System.Drawing.Size(188, 23);
+            this.clientePrincBtn.TabIndex = 10;
+            this.clientePrincBtn.Text = "Seleccionar Cliente Principal";
+            this.clientePrincBtn.UseVisualStyleBackColor = true;
+            this.clientePrincBtn.Click += new System.EventHandler(this.clientePrincBtn_Click);
+            // 
+            // totalBox
+            // 
+            this.totalBox.Culture = new System.Globalization.CultureInfo("es-US");
+            this.totalBox.Location = new System.Drawing.Point(146, 74);
+            this.totalBox.Mask = "$999999.00";
+            this.totalBox.Name = "totalBox";
+            this.totalBox.ReadOnly = true;
+            this.totalBox.Size = new System.Drawing.Size(138, 20);
+            this.totalBox.TabIndex = 9;
+            // 
+            // precioPorDiaBox
+            // 
+            this.precioPorDiaBox.Culture = new System.Globalization.CultureInfo("es-US");
+            this.precioPorDiaBox.Location = new System.Drawing.Point(146, 42);
+            this.precioPorDiaBox.Mask = "$999999.00";
+            this.precioPorDiaBox.Name = "precioPorDiaBox";
+            this.precioPorDiaBox.ReadOnly = true;
+            this.precioPorDiaBox.Size = new System.Drawing.Size(138, 20);
+            this.precioPorDiaBox.TabIndex = 8;
             // 
             // label4
             // 
@@ -136,6 +156,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Seleccione Régimen";
             // 
+            // confirmResBtn
+            // 
+            this.confirmResBtn.Location = new System.Drawing.Point(132, 422);
+            this.confirmResBtn.Name = "confirmResBtn";
+            this.confirmResBtn.Size = new System.Drawing.Size(136, 23);
+            this.confirmResBtn.TabIndex = 4;
+            this.confirmResBtn.Text = "Confirmar Reserva";
+            this.confirmResBtn.UseVisualStyleBackColor = true;
+            this.confirmResBtn.Click += new System.EventHandler(this.confirmResBtn_Click);
+            // 
             // modHabBtn
             // 
             this.modHabBtn.Location = new System.Drawing.Point(321, 196);
@@ -167,36 +197,6 @@
             this.panelHabitaciones.Name = "panelHabitaciones";
             this.panelHabitaciones.Size = new System.Drawing.Size(639, 247);
             this.panelHabitaciones.TabIndex = 6;
-            // 
-            // precioPorDiaBox
-            // 
-            this.precioPorDiaBox.Culture = new System.Globalization.CultureInfo("es-US");
-            this.precioPorDiaBox.Location = new System.Drawing.Point(146, 42);
-            this.precioPorDiaBox.Mask = "$999999.00";
-            this.precioPorDiaBox.Name = "precioPorDiaBox";
-            this.precioPorDiaBox.ReadOnly = true;
-            this.precioPorDiaBox.Size = new System.Drawing.Size(138, 20);
-            this.precioPorDiaBox.TabIndex = 8;
-            // 
-            // totalBox
-            // 
-            this.totalBox.Culture = new System.Globalization.CultureInfo("es-US");
-            this.totalBox.Location = new System.Drawing.Point(146, 74);
-            this.totalBox.Mask = "$999999.00";
-            this.totalBox.Name = "totalBox";
-            this.totalBox.ReadOnly = true;
-            this.totalBox.Size = new System.Drawing.Size(138, 20);
-            this.totalBox.TabIndex = 9;
-            // 
-            // clientePrincBtn
-            // 
-            this.clientePrincBtn.Location = new System.Drawing.Point(381, 42);
-            this.clientePrincBtn.Name = "clientePrincBtn";
-            this.clientePrincBtn.Size = new System.Drawing.Size(188, 23);
-            this.clientePrincBtn.TabIndex = 10;
-            this.clientePrincBtn.Text = "Seleccionar Cliente Principal";
-            this.clientePrincBtn.UseVisualStyleBackColor = true;
-            this.clientePrincBtn.Click += new System.EventHandler(this.clientePrincBtn_Click);
             // 
             // RegimenYHabitaciones
             // 

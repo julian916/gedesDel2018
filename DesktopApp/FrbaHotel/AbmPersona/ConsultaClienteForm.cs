@@ -23,7 +23,7 @@ namespace FrbaHotel.AbmPersona
         private void ConsultaClienteForm_Load(object sender, EventArgs e)
         {
             comboTipoDNI.DataSource = new TiposDocumentos().getAll();
-            modificarBtn.Enabled = false;
+            button1.Enabled = false;
             newClienteBtn.Enabled = false;
         }
 
@@ -58,9 +58,10 @@ namespace FrbaHotel.AbmPersona
             }
             else
             {
-
+                
                 dataClientesEncontrados.DataSource = clientesEncontrados;
-                modificarBtn.Enabled = true;
+                button1.Enabled = true;
+                
             }
 
         }
@@ -112,14 +113,43 @@ namespace FrbaHotel.AbmPersona
 
                     AltaPersonaForm editForm = new AltaPersonaForm(personaSeleccionada, InfoGlobal.id_usuarioGUEST);
                     editForm.ShowDialog();
+                    this.Dispose();
+                    this.Close();
                 }
-                this.Dispose();
-                this.Close();
+                
             }
             else
             {
                 MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
             }
+        }
+
+        private void inhHabPersonaBtn_Click(object sender, EventArgs e)
+        {
+            if (dataClientesEncontrados.DataSource != null && dataClientesEncontrados.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataClientesEncontrados.SelectedRows)
+                {
+                    Persona personaSeleccionada = (Persona)row.DataBoundItem;
+                    if (personaSeleccionada.estado != "Inconsistente")
+                    {
+                        personaCtrl.habilitarDeshabilitarCliente(personaSeleccionada);
+                        MessageBox.Show("Se inhabilito/habilito correctamente");
+                        this.Dispose();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El cliente se encuentra en un estado Inconsistente.\n No se puede habilitar ni desahabilitar.");
+                    }
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
+            }
+
         }
 
     }

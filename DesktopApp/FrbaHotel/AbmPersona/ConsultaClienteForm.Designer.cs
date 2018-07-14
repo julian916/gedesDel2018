@@ -45,16 +45,9 @@
             this.newClienteBtn = new System.Windows.Forms.Button();
             this.cancelarBtn = new System.Windows.Forms.Button();
             this.dataClientesEncontrados = new System.Windows.Forms.DataGridView();
-            this.tipo_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nro_documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitarDeshabilitarBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.personasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inhHabPersonaBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataClientesEncontrados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personasBindingSource)).BeginInit();
@@ -182,7 +175,7 @@
             // 
             // newClienteBtn
             // 
-            this.newClienteBtn.Location = new System.Drawing.Point(256, 371);
+            this.newClienteBtn.Location = new System.Drawing.Point(196, 371);
             this.newClienteBtn.Name = "newClienteBtn";
             this.newClienteBtn.Size = new System.Drawing.Size(116, 23);
             this.newClienteBtn.TabIndex = 3;
@@ -192,7 +185,7 @@
             // 
             // cancelarBtn
             // 
-            this.cancelarBtn.Location = new System.Drawing.Point(607, 371);
+            this.cancelarBtn.Location = new System.Drawing.Point(650, 371);
             this.cancelarBtn.Name = "cancelarBtn";
             this.cancelarBtn.Size = new System.Drawing.Size(116, 23);
             this.cancelarBtn.TabIndex = 5;
@@ -206,74 +199,15 @@
             this.dataClientesEncontrados.AllowUserToDeleteRows = false;
             this.dataClientesEncontrados.AllowUserToOrderColumns = true;
             this.dataClientesEncontrados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataClientesEncontrados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tipo_documento,
-            this.nro_documento,
-            this.nombre,
-            this.apellido,
-            this.email,
-            this.telefono,
-            this.estado,
-            this.habilitarDeshabilitarBtn});
             this.dataClientesEncontrados.Location = new System.Drawing.Point(66, 190);
             this.dataClientesEncontrados.Name = "dataClientesEncontrados";
             this.dataClientesEncontrados.ReadOnly = true;
             this.dataClientesEncontrados.Size = new System.Drawing.Size(867, 150);
             this.dataClientesEncontrados.TabIndex = 6;
             // 
-            // tipo_documento
-            // 
-            this.tipo_documento.HeaderText = "Tipo Documento";
-            this.tipo_documento.Name = "tipo_documento";
-            this.tipo_documento.ReadOnly = true;
-            // 
-            // nro_documento
-            // 
-            this.nro_documento.HeaderText = "Nro Documento";
-            this.nro_documento.Name = "nro_documento";
-            this.nro_documento.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // email
-            // 
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
-            // telefono
-            // 
-            this.telefono.HeaderText = "Teléfono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
-            // habilitarDeshabilitarBtn
-            // 
-            this.habilitarDeshabilitarBtn.FillWeight = 110F;
-            this.habilitarDeshabilitarBtn.HeaderText = "Habilitar/Deshabilitar";
-            this.habilitarDeshabilitarBtn.Name = "habilitarDeshabilitarBtn";
-            this.habilitarDeshabilitarBtn.ReadOnly = true;
-            this.habilitarDeshabilitarBtn.Width = 110;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(425, 371);
+            this.button1.Location = new System.Drawing.Point(358, 371);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 23);
             this.button1.TabIndex = 7;
@@ -281,11 +215,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // inhHabPersonaBtn
+            // 
+            this.inhHabPersonaBtn.Location = new System.Drawing.Point(510, 371);
+            this.inhHabPersonaBtn.Name = "inhHabPersonaBtn";
+            this.inhHabPersonaBtn.Size = new System.Drawing.Size(116, 23);
+            this.inhHabPersonaBtn.TabIndex = 8;
+            this.inhHabPersonaBtn.Text = "Inhabilitar/Habilitar";
+            this.inhHabPersonaBtn.UseVisualStyleBackColor = true;
+            this.inhHabPersonaBtn.Click += new System.EventHandler(this.inhHabPersonaBtn_Click);
+            // 
             // ConsultaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 420);
+            this.Controls.Add(this.inhHabPersonaBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataClientesEncontrados);
             this.Controls.Add(this.cancelarBtn);
@@ -331,14 +276,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataClientesEncontrados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipo_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nro_documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewButtonColumn habilitarDeshabilitarBtn;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button inhHabPersonaBtn;
     }
 }

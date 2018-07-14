@@ -307,7 +307,8 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	INSERT INTO [CUATROGDD2018].[Usuarios] (username,password)
 	VALUES ('GUEST','');
 	INSERT INTO [CUATROGDD2018].[Usuarios] (username,password)
-	VALUES ('admin', HASHBYTES('SHA2_256', 'w23e') );
+	--user :admin pass: w23e
+	VALUES ('admin', '52d77462b24987175c8d7dab901a5967e927ffc8d0b6e4a234e07a4aec5e3724' );
 
 	/*Insertar Roles*/
 	INSERT INTO [CUATROGDD2018].[Roles]([nombre])
@@ -332,6 +333,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	INSERT INTO [CUATROGDD2018].[Funcionalidades] (descripcion) VALUES ('Facturar estadia');
 	INSERT INTO [CUATROGDD2018].[Funcionalidades] (descripcion) VALUES ('Listado Estadistico');
 
+
 	--INSERTAR FUNCIONALIDADES X ROL
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (4,1);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (4,2);
@@ -344,7 +346,7 @@ Print 'Inicio de migracion de datos y carga de datos iniciales'
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (4,9);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (4,10);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (4,11);
-	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (3,3);
+		INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (3,3);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (3,6);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (3,7);
 	INSERT INTO [CUATROGDD2018].[Funcionalidad_X_Rol] (id_rol,id_funcionalidad) VALUES (3,8);

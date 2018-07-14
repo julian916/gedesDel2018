@@ -6,11 +6,14 @@ BEGIN
 	DECLARE @esValido bit
 	SET @esValido='True'
 	if @idPersona = 0
-	  
+	  begin
 		IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE (tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer)
 				SET @esValido = 'False'
+		end
 	ELSE
-		IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE ((tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer ) AND NOT id_persona=@idPersona) 
+		begin
+			IF EXISTS (SELECT * FROM CUATROGDD2018.Personas WHERE ((tipo_documento = @tipoDNI AND nro_documento=@nroDNI) OR email = @emailPer ) AND NOT id_persona=@idPersona) 
 				SET @esValido = 'False'
+		end
 	SELECT @esValido
 END

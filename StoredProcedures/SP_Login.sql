@@ -7,7 +7,7 @@ CREATE PROCEDURE [CUATROGDD2018].[SP_Login] @usuario varchar(255), @contras varc
 AS
 -- Selecciono el idUsuario con los valores ingresados, si no lo encuentra devuelve null
 	--Seteo como falsas las variable
-	SET  @loginCorrecto = 1
+	SET  @loginCorrecto = 0
 	SET @estaHabilitado = 1
 	SELECT @idUsuario=id_usuario 
 	FROM CUATROGDD2018.Usuarios
@@ -18,5 +18,5 @@ AS
 	WHERE username=@usuario 
 
 	IF @idUsuario IS NOT NULL
-		IF EXISTS (SELECT * FROM CUATROGDD2018.Usuarios WHERE username = @usuario AND password=HASHBYTES('SHA2_256', @contras) AND habilitado = 'True')
-			SET @loginCorrecto = 0
+		IF EXISTS (SELECT * FROM CUATROGDD2018.Usuarios WHERE username = @usuario AND password=@contras AND habilitado = 'True')
+			SET @loginCorrecto = 1

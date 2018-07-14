@@ -36,30 +36,32 @@ namespace FrbaHotel.AbmPersona
         public AltaPersonaForm(Persona persona,int id_usuarioCambio)
         {
             InitializeComponent();
+            comboTipoDni.DataSource = new TiposDocumentos().getAll();
             if (persona.id_persona != 0)
             {
+                //se carga el formulario con los datos de persona
                 esModificacion = true;
+                id_persona = persona.id_persona;
+                nombreBox.Text = persona.nombre;
+                apellidoBox.Text = persona.apellido;
+                telBox.Text = persona.telefono.ToString();
+                comboNacionalidad.SelectedText = persona.nacionalidad;
+                calleBox.Text = persona.direccion;
+                nroCalleBox.Value = persona.nro_calle;
+                pisoBox.Value = persona.piso;
+                depBox.Text = persona.departamento;
+                localidadBox.Text = persona.localidad;
+                fechaBox.Value = persona.fecha_nacimiento;
             }
             else {
                 esModificacion = false;
-                id_persona = persona.id_persona;
+                
             }      
             idUsuario = id_usuarioCambio;
-            //se carga el formulario con los datos de persona
-            comboTipoDni.SelectedText = persona.tipo_documento;
+            comboTipoDni.Text = persona.tipo_documento;
             dniBox.Text = persona.nro_documento.ToString();
-            nombreBox.Text = persona.nombre;
-            apellidoBox.Text = persona.apellido;
             emailBox.Text = persona.email;
-            telBox.Text = persona.telefono.ToString();
-            comboNacionalidad.SelectedText = persona.nacionalidad;
-            calleBox.Text = persona.direccion;
-            nroCalleBox.Value = persona.nro_calle;
-            pisoBox.Value = persona.piso;
-            depBox.Text = persona.departamento;
-            localidadBox.Text = persona.localidad;
-            fechaBox.Value = persona.fecha_nacimiento;
-            
+         
         }
 
         private void Aceptar_Click(object sender, EventArgs e) {
@@ -93,7 +95,8 @@ namespace FrbaHotel.AbmPersona
                     personaCtrl.altaPersona(nuevaPersona, idUsuario);
                     MessageBox.Show("Registro ingresado correctamente.");
                 }
-                
+                this.Dispose();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -104,18 +107,13 @@ namespace FrbaHotel.AbmPersona
         private void AltaPersonaForm_Load(object sender, EventArgs e)
         {
             //Cargo combo de tipos de dni
-            comboTipoDni.DataSource = new TiposDocumentos().getAll();
             comboNacionalidad.DataSource = new Paises().getAll();
             comboPais.DataSource = new Paises().getAll();
             if (idUsuario!=InfoGlobal.id_usuarioGUEST)
             { //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
                 emailBox.ReadOnly=true;
-                comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboTipoDni.Enabled = false ;
                 dniBox.ReadOnly = true;
-                emailBox.Text = emailPersona;
-                comboTipoDni.SelectedIndex = comboTipoDni.FindString(tipoDNI);
-                dniBox.Text= nroDocumento;
-
             };
         }
 

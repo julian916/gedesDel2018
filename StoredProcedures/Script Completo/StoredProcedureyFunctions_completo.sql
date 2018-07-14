@@ -105,6 +105,7 @@ BEGIN
 	FROM @datosIngresadosPersona
 	
 END
+GO
 --------------------------------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_AltaHotel_X_Rol_Usuario
@@ -219,6 +220,7 @@ BEGIN
 	ON hxr.id_habitacion=h.id_habitacion
 	WHERE r.id_reserva=@idReserva
 END
+GO
 -----------------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_BuscarCliente') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_BuscarCliente
@@ -537,7 +539,7 @@ else
 	order by ha.piso,ha.nro_habitacion
  end
 END
-
+GO
 ----------------------------------------------------------
 --FUNCION QUE DEVUELVE RECARGA DE HOTEL
 IF OBJECT_ID('CUATROGDD2018.Fn_DarRecargaHotel') IS NOT NULL
@@ -811,6 +813,7 @@ BEGIN
 	SELECT * FROM CUATROGDD2018.Hoteles
 	ORDER BY nombre
 END
+GO
 ---------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_GetAllHabitacion_PorHotel') IS NOT NULL
     DROP PROCEDURE [CUATROGDD2018].[SP_GetAllHabitacion_PorHotel]
@@ -823,6 +826,7 @@ BEGIN
 	WHERE  id_hotel = @idHotel
 	ORDER BY nro_habitacion
 END
+GO
 ---------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_GetAllFuncionalidades') IS NOT NULL
     DROP PROCEDURE [CUATROGDD2018].[SP_GetAllFuncionalidades]
@@ -1199,6 +1203,7 @@ Begin
 	Delete [CUATROGDD2018].[Usuario_X_Hotel_X_Rol]
 	where [id_usuario]=@idUsuario and [id_rol]=@idRol
 End
+GO
 --------------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_QuitarRegimenDeHotel') IS NOT NULL
     DROP PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel]
@@ -1291,6 +1296,7 @@ BEGIN
 	select id_regimen, descripcion 
 	from [CUATROGDD2018].[Regimenes_Estadia]
 END
+GO
 --------------------------------------------------
 IF OBJECT_ID('CUATROGDD2018.SP_VerificarUsuario') IS NOT NULL
     DROP PROCEDURE [CUATROGDD2018].[SP_VerificarUsuario]

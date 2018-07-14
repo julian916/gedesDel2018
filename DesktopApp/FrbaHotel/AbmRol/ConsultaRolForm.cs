@@ -24,8 +24,7 @@ namespace FrbaHotel.AbmRol
         {
             List<Rol> todosLosRoles = new List<Rol>();
             todosLosRoles = rolCtrl.getAllRoles();
-            dataGridRoles.Columns[3].Visible = false;
-            
+            dataGridRoles.DataSource = todosLosRoles;
         }
 
         private void nuevoRolBtn_Click(object sender, EventArgs e)
@@ -53,6 +52,12 @@ namespace FrbaHotel.AbmRol
             {
                 MessageBox.Show("No se selecciono rol. Seleccione una fila de la tabla");
             }
+        }
+
+        private void cancelarRolBtn_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
         }
     }
 }

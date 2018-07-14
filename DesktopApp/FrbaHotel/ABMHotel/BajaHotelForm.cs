@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FrbaHotel.ABMHotel
         {
             InitializeComponent();
             this.id_hotel_DarBaja = id_hotel;
+            fechaInicioBaja.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
         }
 
         private void BajaHotelForm_Load(object sender, EventArgs e)

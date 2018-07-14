@@ -38,9 +38,13 @@
             // 
             // dataGridRoles
             // 
+            this.dataGridRoles.AllowUserToAddRows = false;
+            this.dataGridRoles.AllowUserToDeleteRows = false;
+            this.dataGridRoles.AllowUserToOrderColumns = true;
             this.dataGridRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridRoles.Location = new System.Drawing.Point(33, 35);
             this.dataGridRoles.Name = "dataGridRoles";
+            this.dataGridRoles.ReadOnly = true;
             this.dataGridRoles.Size = new System.Drawing.Size(316, 150);
             this.dataGridRoles.TabIndex = 0;
             // 
@@ -72,6 +76,7 @@
             this.cancelarRolBtn.TabIndex = 3;
             this.cancelarRolBtn.Text = "Cancelar";
             this.cancelarRolBtn.UseVisualStyleBackColor = true;
+            this.cancelarRolBtn.Click += new System.EventHandler(this.cancelarRolBtn_Click);
             // 
             // label1
             // 

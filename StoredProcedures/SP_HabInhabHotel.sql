@@ -50,7 +50,7 @@ BEGIN
 			WHERE [fecha_hasta] is null;
 
 			UPDATE [CUATROGDD2018].[Historial_Cierres]
-			SET [fecha_hasta]=GETDATE()
+			SET [fecha_hasta]=HC.fecha_desde+cant_diasBaja
 			FROM [CUATROGDD2018].[Historial_Cierres] HC
 			inner join [CUATROGDD2018].[Hoteles] H
 			on HC.[id_hotel]=H.[id_hotel] and HC.[id_hotel]=@id_hotel

@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_QuitarRegimenDeHotel') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_QuitarRegimenDeHotel
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_QuitarRegimenDeHotel]
 (	
 	@idHotel int,

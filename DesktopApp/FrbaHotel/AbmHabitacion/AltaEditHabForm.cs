@@ -25,6 +25,7 @@ namespace FrbaHotel.AbmHabitacion
             InitializeComponent();
             infoHotelBox.Text = this.obtenerNombreHotel(id_hotel_logueado);
             this.cargarTiposHabitaciones();
+            tipoHabitacionCombo.Enabled = true;
         }
 
         public AltaEditHabForm(Habitacion habitacionSeleccionada)
@@ -38,7 +39,7 @@ namespace FrbaHotel.AbmHabitacion
             frenteBox.Checked = habCtrl.getBoolForStringFrente(habitacionSeleccionada.frente);
             comodidadesBox.Text = habitacionSeleccionada.comodidades;
             tipoHabitacionCombo.SelectedValue = habitacionSeleccionada.id_tipo_habitacion;
-  
+            tipoHabitacionCombo.Enabled = false;
         }
 
         private void cargarTiposHabitaciones()
@@ -72,14 +73,14 @@ namespace FrbaHotel.AbmHabitacion
                     if (this.esModificacion())
                     {
 
-                        tipoHabitacionCombo.Enabled = false ;
+                        
                         nuevaHabitacion.id_habitacion = habitacionAModificar.id_habitacion;
                         habCtrl.modificarHabitacion(nuevaHabitacion);
                         MessageBox.Show("Se modificó correctamente la habitación");
                     }
                     else
                     {
-                        tipoHabitacionCombo.Enabled = true;
+
                         habCtrl.altaHabitacion(nuevaHabitacion);
                         MessageBox.Show("Se agregó correctamente la habitación");
                     }

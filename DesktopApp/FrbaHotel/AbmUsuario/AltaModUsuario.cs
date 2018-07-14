@@ -20,7 +20,7 @@ namespace FrbaHotel.AbmUsuario
         int nro_documento;
         string email;
         string tipo_documento;
-        Usuario userActual;
+        Usuario userPrevio;
         Usuario userConCambios=new Usuario();
         Rol_Ctrl rolCtrl = new Rol_Ctrl();
         int id_RolSeleccionado;
@@ -30,16 +30,25 @@ namespace FrbaHotel.AbmUsuario
         Hotel_Ctrl hotelCtrl = new Hotel_Ctrl();
         Persona_Ctrl personaCtrl = new Persona_Ctrl();
         public Boolean continuarAltaMod;
+        public Boolean esModificacion = false;
+        public AltaModUsuario() {
+            InitializeComponent();
+            modificarPassBtn.Visible = false;
+            continuarAltaMod = this.validarDatosPrincipalesPersona();
+            newRolBtn.Visible = false;
+            deleteRolBtn.Visible = false;
+        }
+
         public AltaModUsuario(Usuario user)
         {
-            userActual = user;
-            if (esModificacion()) {
-                userConCambios = user;
-            }
-            InitializeComponent();
-            continuarAltaMod = this.validarDatosPrincipalesPersona();
+            InitializeComponent();  
+            userPrevio = user;
+            esModificacion = true;
             panelRolXHotel.Enabled = false;
             acceptButton.Enabled = false;
+            panel1.Enabled = false;
+            userTextBox.Text = userPrevio.username;
+
         }
 
         private void getAllRoles()
@@ -49,7 +58,6 @@ namespace FrbaHotel.AbmUsuario
             comboRoles.ValueMember = "id_rol";
             comboRoles.DataSource = rolCtrl.getAllValidos();
         }
-
 
         private Boolean validarDatosPrincipalesPersona()
         {
@@ -86,17 +94,17 @@ namespace FrbaHotel.AbmUsuario
         {
             try
             {
-                if (this.esModificacion())
+                if (esModificacion)
                 {
-                    usuarioCtrl.modificar_Usuario(userActual,userConCambios);
+                    usuarioCtrl.modificar_Usuario(userPrevio,userConCambios);
                     MessageBox.Show("Se modificó el usuario correctamente");
                     var confirmResult = MessageBox.Show("¿Desea modificar datos personales del usuario?",
                                      "Cambios datos personales",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        Persona datosPersona= personaCtrl.getPersona_ConIDUser(userActual.id_usuario);
-                        AltaPersonaForm formEditPersona = new AltaPersonaForm(datosPersona, userActual.id_usuario);  
+                        Persona datosPersona= personaCtrl.getPersona_ConIDUser(userPrevio.id_usuario);
+                        AltaPersonaForm formEditPersona = new AltaPersonaForm(datosPersona, userPrevio.id_usuario);  
                     }
                     this.Dispose();
                     this.Close();
@@ -104,13 +112,16 @@ namespace FrbaHotel.AbmUsuario
                 }
                 else
                 {
-                    usuarioCtrl.ingresar_NuevoUsuario(userConCambios);
+                    int idNuevoUsuario = usuarioCtrl.ingresar_NuevoUsuario(userConCambios);
                     MessageBox.Show("Se ingresó el usuario correctamente. A continuacion se ingresaran los datos personales");
                     Persona nuevaPersonaPrevio = new Persona();
                     nuevaPersonaPrevio.tipo_documento = tipo_documento;
                     nuevaPersonaPrevio.nro_documento = nro_documento;
                     nuevaPersonaPrevio.email = email;
-                    AltaPersonaForm formNewPersona = new AltaPersonaForm(nuevaPersonaPrevio,userActual.id_usuario);  
+                    this.Visible = false;
+
+                    AltaPersonaForm formNewPersona = new AltaPersonaForm(nuevaPersonaPrevio, idNuevoUsuario);
+                    formNewPersona.ShowDialog();
                     this.Dispose();
                     this.Close();
                 }
@@ -123,11 +134,6 @@ namespace FrbaHotel.AbmUsuario
                 
             }
 
-        }
-
-        private bool esModificacion()
-        {
-            return userActual != null;
         }
 
         private void selectRolBtn_Click(object sender, EventArgs e)
@@ -147,11 +153,12 @@ namespace FrbaHotel.AbmUsuario
                 hotelListBox.Items.Add(hotel.nombre);
 
             }
-            if (userActual != null)
+            if (userPrevio != null)
             {
                
                 List<string> nombresHoteles = new List<string>();
-                hotelesDeUsuario_Rol = hotelCtrl.obtenerHotelesPorID_IDRol(userActual.id_usuario,id_RolSeleccionado);
+                hotelesDeUsuario_Rol = hotelCtrl.obtenerHotelesPorID_IDRol(userPrevio.id_usuario,id_RolSeleccionado);
+                usuarioCtrl.nuevoRolYHoteles(id_RolSeleccionado,hotelesDeUsuario_Rol,userPrevio);
                 foreach (Hotel hotelUsuario in hotelesDeUsuario_Rol){
                     nombresHoteles.Add(hotelUsuario.nombre);
                 }
@@ -185,17 +192,25 @@ namespace FrbaHotel.AbmUsuario
 
         private void AltaModUsuarioForm_Load(object sender, EventArgs e)
         {
-         
-            if (!esModificacion())
+            if (esModificacion)
             {
-                newRolBtn.Visible = false;
-                deleteRolBtn.Visible = false;
-            }
-            else {
-                userTextBox.ReadOnly = true;
-                userTextBox.Text = userActual.username;
-                passTextBox.Text = userActual.password;
-                pass2TextBox.Text = userActual.password;
+                var confirmResult = MessageBox.Show("¿Desea modificar la username/contraseña del usuario?",
+                                     "Cambio contraseña",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    panel1.Enabled = true;
+                }
+                else
+                {
+                    panel1.Enabled = false;
+                    modificarPassBtn.Enabled = false;
+                    continuarRolBtn.Enabled = true;
+                    //el usuario con cambios tiene el username y el pass sin cambiar
+                    userConCambios.username = userPrevio.username;
+                    userConCambios.password = userPrevio.password;
+
+                }
             }
         }
 
@@ -216,24 +231,17 @@ namespace FrbaHotel.AbmUsuario
         {
             try
             {
-                if (String.IsNullOrEmpty(userTextBox.Text) && String.IsNullOrEmpty(passTextBox.Text) && String.IsNullOrEmpty(pass2TextBox.Text))
+               
+                if (esModificacion)
                 {
-                    throw new System.ArgumentException("Debe ingresar todos los campos");
-                }
-                this.verificar_Contrasenias();
-                if (this.esModificacion())
-                {
-                    usuarioCtrl.validarUsername(userTextBox.Text);
                     newRolBtn.Visible = true;
                     deleteRolBtn.Visible = true;
                     //updateRolBtn.Visible=true;
-                    this.getRolesParaUsuario(userActual.id_usuario);
+                    this.getRolesParaUsuario(userPrevio.id_usuario);
                 }
                 else {
                     this.getAllRoles();
                 }
-                userConCambios.username = userTextBox.Text;
-                userConCambios.password = Encriptacion.getHashSha256(passTextBox.Text);
                 panelRolXHotel.Enabled = true;
                 panel1.Enabled = false;
                 
@@ -278,6 +286,24 @@ namespace FrbaHotel.AbmUsuario
         {
             //TODO: se selecciona el rol que se desea modificar: se habilitan los hoteles., se habilita el confirmar.
             //bloquean botones
+        }
+
+        private void modificarPassBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.verificar_Contrasenias();
+                usuarioCtrl.validarUsername(userTextBox.Text, userPrevio.id_usuario);
+                userConCambios.username = userTextBox.Text;
+                
+                panel1.Enabled = false;
+                userConCambios.password = Encriptacion.getHashSha256(passTextBox.Text);
+                continuarRolBtn.Enabled = true ;
+            }
+            catch (Exception exc) {
+                MessageBox.Show(exc.Message);
+            
+            }
         }
 
     }

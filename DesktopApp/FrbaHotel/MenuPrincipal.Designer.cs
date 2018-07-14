@@ -46,6 +46,8 @@
             this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estadíasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaEstadíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaEstadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.panelReservas = new System.Windows.Forms.Panel();
@@ -56,8 +58,7 @@
             this.closeSessionLink = new System.Windows.Forms.LinkLabel();
             this.panelSession = new System.Windows.Forms.Panel();
             this.inicioSesionLink = new System.Windows.Forms.LinkLabel();
-            this.estadíasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevaEstadíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habilitarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelReservas.SuspendLayout();
             this.panelSession.SuspendLayout();
@@ -147,7 +148,7 @@
             this.nuevoClienteToolStripMenuItem,
             this.consultarClienteToolStripMenuItem});
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             // 
             // nuevoClienteToolStripMenuItem
@@ -168,22 +169,23 @@
             // 
             this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoUsuarioToolStripMenuItem,
-            this.modificacionBajaToolStripMenuItem1});
+            this.modificacionBajaToolStripMenuItem1,
+            this.habilitarUsuarioToolStripMenuItem});
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // nuevoUsuarioToolStripMenuItem
             // 
             this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
             this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
             // 
             // modificacionBajaToolStripMenuItem1
             // 
             this.modificacionBajaToolStripMenuItem1.Name = "modificacionBajaToolStripMenuItem1";
-            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
+            this.modificacionBajaToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.modificacionBajaToolStripMenuItem1.Text = "Consultar Usuario";
             this.modificacionBajaToolStripMenuItem1.Click += new System.EventHandler(this.modificacionBajaToolStripMenuItem1_Click);
             // 
@@ -199,7 +201,7 @@
             // nuevoRolToolStripMenuItem
             // 
             this.nuevoRolToolStripMenuItem.Name = "nuevoRolToolStripMenuItem";
-            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.nuevoRolToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.nuevoRolToolStripMenuItem.Text = "Nuevo Rol";
             this.nuevoRolToolStripMenuItem.Click += new System.EventHandler(this.nuevoRolToolStripMenuItem_Click);
             // 
@@ -209,6 +211,21 @@
             this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.modificarRolToolStripMenuItem.Text = "Consultar Roles";
             this.modificarRolToolStripMenuItem.Click += new System.EventHandler(this.modificarRolToolStripMenuItem_Click);
+            // 
+            // estadíasToolStripMenuItem
+            // 
+            this.estadíasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaEstadíaToolStripMenuItem});
+            this.estadíasToolStripMenuItem.Name = "estadíasToolStripMenuItem";
+            this.estadíasToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.estadíasToolStripMenuItem.Text = "Estadías";
+            // 
+            // nuevaEstadíaToolStripMenuItem
+            // 
+            this.nuevaEstadíaToolStripMenuItem.Name = "nuevaEstadíaToolStripMenuItem";
+            this.nuevaEstadíaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.nuevaEstadíaToolStripMenuItem.Text = "Nueva Estadía";
+            this.nuevaEstadíaToolStripMenuItem.Click += new System.EventHandler(this.nuevaEstadíaToolStripMenuItem_Click);
             // 
             // listaEstadisticasToolStripMenuItem
             // 
@@ -312,20 +329,12 @@
             this.inicioSesionLink.Text = "Inicio sesión";
             this.inicioSesionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.inicioSesionLink_LinkClicked);
             // 
-            // estadíasToolStripMenuItem
+            // habilitarUsuarioToolStripMenuItem
             // 
-            this.estadíasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevaEstadíaToolStripMenuItem});
-            this.estadíasToolStripMenuItem.Name = "estadíasToolStripMenuItem";
-            this.estadíasToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.estadíasToolStripMenuItem.Text = "Estadías";
-            // 
-            // nuevaEstadíaToolStripMenuItem
-            // 
-            this.nuevaEstadíaToolStripMenuItem.Name = "nuevaEstadíaToolStripMenuItem";
-            this.nuevaEstadíaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nuevaEstadíaToolStripMenuItem.Text = "Nueva Estadía";
-            this.nuevaEstadíaToolStripMenuItem.Click += new System.EventHandler(this.nuevaEstadíaToolStripMenuItem_Click);
+            this.habilitarUsuarioToolStripMenuItem.Name = "habilitarUsuarioToolStripMenuItem";
+            this.habilitarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.habilitarUsuarioToolStripMenuItem.Text = "Des/Habilitar Usuario";
+            this.habilitarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.habilitarUsuarioToolStripMenuItem_Click);
             // 
             // MenuPrincipal
             // 
@@ -386,5 +395,6 @@
         private System.Windows.Forms.ToolStripMenuItem listaEstadisticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estadíasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevaEstadíaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem habilitarUsuarioToolStripMenuItem;
     }
 }

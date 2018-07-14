@@ -39,6 +39,7 @@
             this.newUserBtn = new System.Windows.Forms.Button();
             this.updateUserBtn = new System.Windows.Forms.Button();
             this.cancelarBtn = new System.Windows.Forms.Button();
+            this.habInhUsuBtn = new System.Windows.Forms.Button();
             this.panelUsername.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.panelUsername.Controls.Add(this.buscarBtn);
             this.panelUsername.Controls.Add(this.userBox);
             this.panelUsername.Controls.Add(this.label1);
-            this.panelUsername.Location = new System.Drawing.Point(31, 109);
+            this.panelUsername.Location = new System.Drawing.Point(74, 111);
             this.panelUsername.Name = "panelUsername";
             this.panelUsername.Size = new System.Drawing.Size(334, 92);
             this.panelUsername.TabIndex = 0;
@@ -82,7 +83,7 @@
             // 
             // buscarUsernameBtn
             // 
-            this.buscarUsernameBtn.Location = new System.Drawing.Point(31, 66);
+            this.buscarUsernameBtn.Location = new System.Drawing.Point(74, 68);
             this.buscarUsernameBtn.Name = "buscarUsernameBtn";
             this.buscarUsernameBtn.Size = new System.Drawing.Size(137, 23);
             this.buscarUsernameBtn.TabIndex = 1;
@@ -92,7 +93,7 @@
             // 
             // allUserBtn
             // 
-            this.allUserBtn.Location = new System.Drawing.Point(228, 66);
+            this.allUserBtn.Location = new System.Drawing.Point(271, 68);
             this.allUserBtn.Name = "allUserBtn";
             this.allUserBtn.Size = new System.Drawing.Size(137, 23);
             this.allUserBtn.TabIndex = 2;
@@ -103,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 30);
+            this.label2.Location = new System.Drawing.Point(159, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 13);
             this.label2.TabIndex = 3;
@@ -117,7 +118,7 @@
             this.dataGridUsers.Location = new System.Drawing.Point(31, 217);
             this.dataGridUsers.Name = "dataGridUsers";
             this.dataGridUsers.ReadOnly = true;
-            this.dataGridUsers.Size = new System.Drawing.Size(334, 156);
+            this.dataGridUsers.Size = new System.Drawing.Size(411, 156);
             this.dataGridUsers.TabIndex = 4;
             // 
             // newUserBtn
@@ -132,9 +133,9 @@
             // 
             // updateUserBtn
             // 
-            this.updateUserBtn.Location = new System.Drawing.Point(162, 393);
+            this.updateUserBtn.Location = new System.Drawing.Point(144, 393);
             this.updateUserBtn.Name = "updateUserBtn";
-            this.updateUserBtn.Size = new System.Drawing.Size(75, 36);
+            this.updateUserBtn.Size = new System.Drawing.Size(80, 36);
             this.updateUserBtn.TabIndex = 6;
             this.updateUserBtn.Text = "Modificar Usuario";
             this.updateUserBtn.UseVisualStyleBackColor = true;
@@ -142,7 +143,7 @@
             // 
             // cancelarBtn
             // 
-            this.cancelarBtn.Location = new System.Drawing.Point(290, 393);
+            this.cancelarBtn.Location = new System.Drawing.Point(367, 393);
             this.cancelarBtn.Name = "cancelarBtn";
             this.cancelarBtn.Size = new System.Drawing.Size(75, 36);
             this.cancelarBtn.TabIndex = 7;
@@ -150,11 +151,22 @@
             this.cancelarBtn.UseVisualStyleBackColor = true;
             this.cancelarBtn.Click += new System.EventHandler(this.cancelarBtn_Click);
             // 
+            // habInhUsuBtn
+            // 
+            this.habInhUsuBtn.Location = new System.Drawing.Point(256, 393);
+            this.habInhUsuBtn.Name = "habInhUsuBtn";
+            this.habInhUsuBtn.Size = new System.Drawing.Size(75, 36);
+            this.habInhUsuBtn.TabIndex = 8;
+            this.habInhUsuBtn.Text = "Habilita - Inhabilitar";
+            this.habInhUsuBtn.UseVisualStyleBackColor = true;
+            this.habInhUsuBtn.Click += new System.EventHandler(this.habInhUsuBtn_Click);
+            // 
             // InfoUsuariosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 466);
+            this.ClientSize = new System.Drawing.Size(489, 466);
+            this.Controls.Add(this.habInhUsuBtn);
             this.Controls.Add(this.cancelarBtn);
             this.Controls.Add(this.updateUserBtn);
             this.Controls.Add(this.newUserBtn);
@@ -187,6 +199,7 @@
         private System.Windows.Forms.Button newUserBtn;
         private System.Windows.Forms.Button updateUserBtn;
         private System.Windows.Forms.Button cancelarBtn;
+        private System.Windows.Forms.Button habInhUsuBtn;
 
 
     }

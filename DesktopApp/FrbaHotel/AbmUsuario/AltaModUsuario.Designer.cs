@@ -51,6 +51,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.continuarRolBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.modificarPassBtn = new System.Windows.Forms.Button();
             this.rolPanel.SuspendLayout();
             this.hotelPanel.SuspendLayout();
             this.panelRolXHotel.SuspendLayout();
@@ -255,7 +256,7 @@
             // 
             // continuarRolBtn
             // 
-            this.continuarRolBtn.Location = new System.Drawing.Point(485, 84);
+            this.continuarRolBtn.Location = new System.Drawing.Point(524, 95);
             this.continuarRolBtn.Name = "continuarRolBtn";
             this.continuarRolBtn.Size = new System.Drawing.Size(141, 23);
             this.continuarRolBtn.TabIndex = 26;
@@ -266,7 +267,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.continuarRolBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
@@ -275,20 +275,32 @@
             this.panel1.Controls.Add(this.pass2TextBox);
             this.panel1.Location = new System.Drawing.Point(12, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(694, 175);
+            this.panel1.Size = new System.Drawing.Size(485, 157);
             this.panel1.TabIndex = 27;
             // 
-            // AltaModUsuarioForm
+            // modificarPassBtn
+            // 
+            this.modificarPassBtn.Location = new System.Drawing.Point(524, 60);
+            this.modificarPassBtn.Name = "modificarPassBtn";
+            this.modificarPassBtn.Size = new System.Drawing.Size(141, 23);
+            this.modificarPassBtn.TabIndex = 27;
+            this.modificarPassBtn.Text = "Modificar datos usuario";
+            this.modificarPassBtn.UseVisualStyleBackColor = true;
+            this.modificarPassBtn.Click += new System.EventHandler(this.modificarPassBtn_Click);
+            // 
+            // AltaModUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 444);
+            this.ClientSize = new System.Drawing.Size(725, 444);
+            this.Controls.Add(this.modificarPassBtn);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.continuarRolBtn);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panelRolXHotel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
-            this.Name = "AltaModUsuarioForm";
+            this.Name = "AltaModUsuario";
             this.Text = "Alta - Modificacion Usuario";
             this.Load += new System.EventHandler(this.AltaModUsuarioForm_Load);
             this.rolPanel.ResumeLayout(false);
@@ -328,5 +340,6 @@
         private System.Windows.Forms.Button confirmHoteles;
         private System.Windows.Forms.Button continuarRolBtn;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button modificarPassBtn;
     }
 }

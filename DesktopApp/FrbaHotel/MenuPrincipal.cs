@@ -39,10 +39,9 @@ namespace FrbaHotel
             {
                 //ActualizarStatusStrip();
                 habilitar_func_x_rol();
-     
+
                 //linkLabel_Login.Visible = false;
             }
-        
         }
         public void habilitar_func_x_rol()
         {
@@ -72,6 +71,13 @@ namespace FrbaHotel
 
             ToolStripItemCollection itemsMenu = menuStrip1.Items;
 
+            ToolStripItem menu_habUsu = itemsMenu.Find("habilitarUsuarioToolStripMenuItem", true)[0];
+            menu_habUsu.Visible = f.Any(func => func.descripcion_funcionalidad == "Habilitar Usuario");
+
+            ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
+            menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Usuario");
+
+
             ToolStripItem menu_Hotel = itemsMenu.Find("aBMHotelToolStripMenuItem", true)[0];
             menu_Hotel.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Hotel");
 
@@ -81,9 +87,7 @@ namespace FrbaHotel
             ToolStripItem menu_cliente = itemsMenu.Find("clientesToolStripMenuItem", true)[0];
             menu_cliente.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Clientes");
 
-            ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
-            menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Usuario");
-
+            
             ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
             menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Rol");
 
@@ -108,7 +112,7 @@ namespace FrbaHotel
 
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaModUsuario usuarioAlta = new AltaModUsuario(null);
+            AltaModUsuario usuarioAlta = new AltaModUsuario();
             if (usuarioAlta.continuarAltaMod) {
                 usuarioAlta.Show();
             }
@@ -131,9 +135,7 @@ namespace FrbaHotel
 
         private void inicioSesionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginForm login = new LoginForm();
-            login.Show();
-            this.Hide();
+            this.iniciar_sesion();
         }
 
         private void altaHotelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,6 +230,11 @@ namespace FrbaHotel
         {
             ConsultaRolForm consultaRol = new ConsultaRolForm();
             consultaRol.ShowDialog();
+        }
+
+        private void habilitarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
       

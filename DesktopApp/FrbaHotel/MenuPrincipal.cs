@@ -73,9 +73,7 @@ namespace FrbaHotel
 
             ToolStripItemCollection itemsMenu = menuStrip1.Items;
 
-            ToolStripItem menu_habUsu = itemsMenu.Find("habilitarUsuarioToolStripMenuItem", true)[0];
-            menu_habUsu.Visible = f.Any(func => func.descripcion_funcionalidad == "Habilitar Usuario");
-
+         
             ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
             menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Usuario");
 

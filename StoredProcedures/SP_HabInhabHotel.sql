@@ -10,7 +10,7 @@ BEGIN
 	DECLARE @MENSAJE varchar(255),@fechaHasta date;
 	set @fechaHasta = @fechaInicio+@diasCierre;
 
-	IF @comentario != NULL
+	IF @comentario != ''
 		BEGIN
 			IF EXISTS (SELECT 1 FROM [CUATROGDD2018].[Reservas] 
 					   WHERE (@fechaInicio BETWEEN [fecha_desde] AND [fecha_hasta]) 
@@ -19,7 +19,7 @@ BEGIN
 						WHERE (@fechaInicio BETWEEN [fecha_inicio] AND ([fecha_inicio]+[cant_noches]))
 						or (@fechaHasta BETWEEN [fecha_inicio] AND ([fecha_inicio]+[cant_noches])))
 			BEGIN
-				SET @MENSAJE='El hotel no se podrá cerrar entre las fechas las fechas seleccionadas. Existen Reservas/Estadias en ese periodo'
+				SET @MENSAJE='El hotel no se podrá cerrar en la fecha seleccionada. Existen Reservas/Estadias en ese periodo'
 				SELECT @MENSAJE
 				RETURN
 			END

@@ -11,6 +11,7 @@ namespace FrbaHotel.Entidades
     {
         public static string getHashSha256(string text)
         {
+            //Tenemos un pass hasheado desde SQL , el admin General. Las creadas aca, deben coincidir con sql
             byte[] bytes = Encoding.Unicode.GetBytes(text);
             SHA256Managed hashstring = new SHA256Managed();
             byte[] hash = hashstring.ComputeHash(bytes);

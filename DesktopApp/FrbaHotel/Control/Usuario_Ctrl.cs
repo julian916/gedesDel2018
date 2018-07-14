@@ -90,7 +90,7 @@ namespace FrbaHotel.Control
 
         }
 
-        public void ingresar_NuevoUsuario(Usuario userActual)
+        public int ingresar_NuevoUsuario(Usuario userActual )
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AltaUsuario", connection);
@@ -116,6 +116,7 @@ namespace FrbaHotel.Control
             }
 
             connection.Close();
+            return idUsuario;
         }
 
         public void modificar_Usuario(Usuario userActual,Usuario usuarioConCambios)
@@ -144,7 +145,8 @@ namespace FrbaHotel.Control
                         {
                             foreach (Hotel hotelPrevio in hotelesPrevios)
                             {
-                                if (!(idRol_Hoteles.Value.Contains(hotelPrevio)))
+                                
+                                if (!(idRol_Hoteles.Value.Exists(hotelCambios => hotelCambios.id_hotel == hotelPrevio.id_hotel)))
                                 {
                                     this.bajaHotel_A_Rol_De_Usuario(userActual.id_usuario, hotelPrevio.id_hotel, idRol_Hoteles.Key);
                                 }
@@ -152,7 +154,7 @@ namespace FrbaHotel.Control
                             }
                             foreach (Hotel hotelCambios in idRol_Hoteles.Value)
                             {
-                                if (!(hotelesPrevios.Contains(hotelCambios)))
+                                if (!(hotelesPrevios.Exists(hotelPrevio => hotelPrevio.id_hotel == hotelCambios.id_hotel)))
                                 {
                                     this.altaHotel_A_Rol_De_Usuario(userActual.id_usuario, hotelCambios.id_hotel, idRol_Hoteles.Key);
                                 }
@@ -198,7 +200,7 @@ namespace FrbaHotel.Control
             connection.Close();
         }
 
-        public void validarUsername(string username)
+        public void validarUsername(string username,int id_usuario)
         {
             SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_VerificarUsuario", connection);
@@ -207,6 +209,7 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Clear();
             //agrego parametros al SP_VerificarUsuario
             spCommand.Parameters.Add(new SqlParameter("@usuario", username));
+            spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuario));
             bool esValido =Convert.ToBoolean(spCommand.ExecuteScalar());
             connection.Close();
             if (!esValido) {
@@ -250,6 +253,19 @@ namespace FrbaHotel.Control
             }
 
             return usuariosEncontrados;
+        }
+
+        internal void habInhUsuario(Usuario usuarioSeleccionado)
+        {
+            SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_HabInhUsuario", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_NuevoRegimenXHotel
+            spCommand.Parameters.Add(new SqlParameter("@idUsuario", usuarioSeleccionado.id_usuario));
+            spCommand.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

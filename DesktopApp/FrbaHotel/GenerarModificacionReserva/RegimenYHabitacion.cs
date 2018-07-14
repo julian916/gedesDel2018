@@ -48,6 +48,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     Habitacion habitSeleccionada = (Habitacion)row.DataBoundItem;
                     habitacionesSeleccionadas.Add(habitSeleccionada);
+                    hotelReserva = habitSeleccionada.id_hotel;
                 }
                 panelRegimenes.Enabled = true;
                 dataGridHabDisp.Enabled = false;

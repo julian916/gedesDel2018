@@ -16,7 +16,7 @@ namespace FrbaHotel.Entidades
         public string desc_tipo_habitacion { get; set; }
         public bool habilitado { get; set; }
         public string comodidades { get; set; }
-        public decimal id_hotel { get; set; }
+        public int id_hotel { get; set; }
 
     }
 }

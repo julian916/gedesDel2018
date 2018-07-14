@@ -25,6 +25,7 @@ namespace FrbaHotel.AbmRol
             List<Rol> todosLosRoles = new List<Rol>();
             todosLosRoles = rolCtrl.getAllRoles();
             dataGridRoles.DataSource = todosLosRoles;
+
         }
 
         private void nuevoRolBtn_Click(object sender, EventArgs e)

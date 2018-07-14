@@ -36,7 +36,7 @@ BEGIN
 	JOIN [CUATROGDD2018].[Hoteles] ho
 	on ha.id_hotel=ho.id_hotel
 	WHERE r.id_estado_reserva in ( 3, 4, 5 ) and  @anio = YEAR(r.fecha_desde) and @trimestre=DATEPART(QUARTER,r.fecha_desde)
-	GROUP BY (ho.nombre)
+	GROUP BY ho.pais,ho.nombre
 	ORDER BY  [cantidad de reservas canceladas] DESC
 END
 GO
@@ -113,8 +113,8 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID('CUATROGDD2018.SP_TopClientesMasPuntos') IS NOT NULL
-    DROP PROCEDURE CUATROGDD2018.SP_TopClientesMasPuntos
+IF OBJECT_ID('CUATROGDD2018.SP_TopClientesConMasPuntos') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_TopClientesConMasPuntos
 GO
 /*Cliente con mayor cantidad de puntos, donde cada $20 en estadías vale 1
 puntos y cada $10 de consumibles es 1 punto, de la sumatoria de todas las

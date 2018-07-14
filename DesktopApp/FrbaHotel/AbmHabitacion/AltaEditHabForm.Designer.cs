@@ -176,7 +176,7 @@
             this.cancelarButton.UseVisualStyleBackColor = true;
             this.cancelarButton.Click += new System.EventHandler(this.cancelarButton_Click);
             // 
-            // AltaHabitacionForm
+            // AltaEditHabForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -193,9 +193,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numHabBox);
             this.Controls.Add(this.label2);
-            this.Name = "AltaHabitacionForm";
+            this.Name = "AltaEditHabForm";
             this.Text = "Alta / Edicion Habitacion";
-
             ((System.ComponentModel.ISupportInitialize)(this.numHabBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pisoNumericBox)).EndInit();
             this.panel1.ResumeLayout(false);

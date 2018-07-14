@@ -72,13 +72,14 @@ namespace FrbaHotel.AbmHabitacion
                     if (this.esModificacion())
                     {
 
-                        tipoHabitacionCombo.Enabled = true ;
+                        tipoHabitacionCombo.Enabled = false ;
                         nuevaHabitacion.id_habitacion = habitacionAModificar.id_habitacion;
                         habCtrl.modificarHabitacion(nuevaHabitacion);
                         MessageBox.Show("Se modificó correctamente la habitación");
                     }
                     else
                     {
+                        tipoHabitacionCombo.Enabled = true;
                         habCtrl.altaHabitacion(nuevaHabitacion);
                         MessageBox.Show("Se agregó correctamente la habitación");
                     }

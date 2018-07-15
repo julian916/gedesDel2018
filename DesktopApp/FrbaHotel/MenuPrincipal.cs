@@ -6,7 +6,6 @@ using FrbaHotel.AbmUsuario;
 using FrbaHotel.CancelarReserva;
 using FrbaHotel.Entidades;
 using FrbaHotel.GenerarModificacionReserva;
-using FrbaHotel.GenerarModificarReserva;
 using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
 using FrbaHotel.RegistrarEstadia;
@@ -224,11 +223,6 @@ namespace FrbaHotel
             cancelRes.ShowDialog();
         }
 
-        private void newReservaButton_Click(object sender, EventArgs e)
-        {
-            GenerarReserva reservas = new GenerarReserva();
-            reservas.ShowDialog();
-        }
 
         private void nuevaEstadíaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -255,8 +249,7 @@ namespace FrbaHotel
 
         private void button_GenerarReserva_Click(object sender, EventArgs e)
         {
-            GenerarModificarReserva gmr = new GenerarModificarReserva();
-            gmr.ShowDialog();
+            GenerarModificarReserva gmr = new GenerarModificarReserva();            
             //FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen amr = new FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen(Sesion.id_hotel, Sesion.user_id);
 
         }

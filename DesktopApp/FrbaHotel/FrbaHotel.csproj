@@ -182,9 +182,6 @@
     <Compile Include="GenerarModificacionReserva\CodReservaForm.Designer.cs">
       <DependentUpon>CodReservaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GenerarModificacionReserva\IngresarHuespedForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,9 +304,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\CodReservaForm.resx">
       <DependentUpon>CodReservaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
-      <DependentUpon>GenerarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\IngresarHuespedForm.resx">
       <DependentUpon>IngresarHuespedForm.cs</DependentUpon>

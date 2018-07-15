@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using FrbaHotel.Entidades;
+using System.ComponentModel;
 
 namespace FrbaHotel.Repositorios
 {
@@ -64,7 +66,7 @@ namespace FrbaHotel.Repositorios
                 }
             }
 
-            SqlCommand sqlCommand = new SqlCommand("sp_ObtenerCallesAPartirDeCiudad", this.sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("CUATROGDD2018.sp_ObtenerCallesAPartirDeCiudad", this.sqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
             sqlCommand.Parameters.Add(new SqlParameter("@ciudad", ciudad));
@@ -83,6 +85,36 @@ namespace FrbaHotel.Repositorios
             return dtCalles;
         }
 
+        public DataTable getTipoHabitaciones()
+        {
+            if (this.sqlConnection.State != ConnectionState.Open)
+            {
+                try
+                {
+                    this.sqlConnection.Open();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error open SqlConnection: " + ex.Message);
+                    MessageBox.Show("Error al conectase con la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+            }
+
+            SqlCommand scCiudades = new SqlCommand("CUATROGDD2018.SP_ObtenerTipoHabitaciones", sqlConnection);
+            DataTable dtTipoHabitaciones = new DataTable();
+            try
+            {
+                dtTipoHabitaciones.Load(scCiudades.ExecuteReader());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error executingReader: " + ex.Message);
+                MessageBox.Show("Error al obtener las ciudades", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            sqlConnection.Close();
+            return dtTipoHabitaciones;
+        }
+
         public DataTable getCiudades()
         {
             if (this.sqlConnection.State != ConnectionState.Open)
@@ -98,7 +130,7 @@ namespace FrbaHotel.Repositorios
                 }
             }
 
-            SqlCommand scCiudades = new SqlCommand("sp_ObtenerCiudades", sqlConnection);
+            SqlCommand scCiudades = new SqlCommand("CUATROGDD2018.sp_ObtenerCiudades", sqlConnection);
             DataTable dtCiudades = new DataTable();
             try
             {
@@ -113,9 +145,8 @@ namespace FrbaHotel.Repositorios
             return dtCiudades;
         }
 
-        public DataTable obtenerHabitacionesDisponibles(int idHotel, DateTime fechaDesde, DateTime fechaHasta, int idRegimen)
+        public BindingList<Habitacion> ObtenerHabitacionesDisponibles(int ID_Hotel_Habitaciones, int tipo_hab, DateTime fecha_ini, DateTime fecha_fin)
         {
-
             try
             {
                 this.sqlConnection.Open();
@@ -125,33 +156,34 @@ namespace FrbaHotel.Repositorios
                 System.Diagnostics.Debug.WriteLine("Error open SqlConnection: " + ex.Message);
                 MessageBox.Show("Error al conectase con la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-
-            SqlCommand sqlCommand = new SqlCommand("CUATROGDD2018.SP_DarHabitacionesDisponibles", sqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-
-            sqlCommand.Parameters.Add(new SqlParameter("@id_hotel", idHotel));
-            sqlCommand.Parameters.Add(new SqlParameter("@fechaDesde", fechaDesde));
-            sqlCommand.Parameters.Add(new SqlParameter("@fechaHasta", fechaHasta));
-            sqlCommand.Parameters.Add(new SqlParameter("@idRegimen", idRegimen));
+            SqlCommand scHabitaciones = new SqlCommand("CUATROGDD2018.sp_ObtenerCiudades", sqlConnection);
+            DataTable dtCiudades = new DataTable();
             
-            DataTable dtHabitaciones = new DataTable();
-            try
+            //var resultado = SqlDataAccess.ExecuteDataTableQuery(ConfigurationManager.ConnectionStrings["StringConexion"].ToString(),
+            //    "LOS_NULL.GETALLHABITACIONPORHOTELPORFECHAYCANTIDAD", SqlDataAccessArgs.CreateWith("@ID_HOTEL", ID_Hotel_Habitaciones)
+            //    .And("@ID_TIPO_HAB", tipo_hab).And("@FECHA_INI", fecha_ini).And("@FECHA_FIN", fecha_fin).Arguments);
+            var lista_habitaciones = new BindingList<Habitacion>();
+            DataTable resultado = null;
+            if (resultado != null && resultado.Rows != null)
             {
-                dtHabitaciones.Load(sqlCommand.ExecuteReader());
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error executingReader: " + ex.Message);
-                MessageBox.Show("Error al obtener las ciudades", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
-            sqlConnection.Close();
+                foreach (DataRow row in resultado.Rows)
+                {
+                    var habitacion = new Habitacion();
+                    habitacion.id_habitacion = int.Parse(row["ID_Habitacion"].ToString());
+                    habitacion.id_hotel = int.Parse(row["ID_Hotel"].ToString());
+                    habitacion.id_tipo_habitacion = int.Parse(row["Codigo_Tipo"].ToString());
+                    habitacion.nro_habitacion = int.Parse(row["Numero"].ToString());
+                    habitacion.piso = int.Parse(row["Piso"].ToString());
+                    habitacion.habilitado = Boolean.Parse(row["Baja_Logica"].ToString());
+                    habitacion.frente = (row["Frente"].ToString());
 
-            return dtHabitaciones;
-            //throw new NotImplementedException();
-            //TODO: Hacer consulta de disponibilidad
-            //Devolver booleano que indique si esta disponible el pedido de reserva
-
+                    lista_habitaciones.Add(habitacion);
+                }
+            }
+            return lista_habitaciones;
         }
+
+
 
     }
 }

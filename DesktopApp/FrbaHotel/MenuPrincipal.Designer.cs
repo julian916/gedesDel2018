@@ -287,7 +287,6 @@
             this.newReservaButton.TabIndex = 0;
             this.newReservaButton.Text = "Generar reserva";
             this.newReservaButton.UseVisualStyleBackColor = true;
-            this.newReservaButton.Click += new System.EventHandler(this.newReservaButton_Click);
             // 
             // passLinkLabel
             // 

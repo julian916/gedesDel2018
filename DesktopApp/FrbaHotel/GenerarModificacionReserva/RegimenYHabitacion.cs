@@ -33,11 +33,13 @@ namespace FrbaHotel.GenerarModificacionReserva
             fecha_desde = fechaDesde;
             fecha_hasta = fechaHasta;
             this.habitacionesDisponibles = habitaciones;
-            dataGridHabDisp.DataSource = habitacionesDisponibles;
             panelRegimenes.Enabled = false;
             confirmResBtn.Enabled = false;
             cantidadDiasReserva = Convert.ToInt32((fechaHasta - fechaDesde).TotalDays);
+            dataGridHabDisp.DataSource = habitacionesDisponibles;
         }
+
+
 
         private void confirmHab_Click(object sender, EventArgs e)
         {
@@ -95,6 +97,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                 nuevaReserva.fecha_hasta = fecha_hasta;
                 nuevaReserva.fecha_reserva = DateTime.Parse(ConfigurationManager.AppSettings["FechaSistema"].ToString());
                 nuevaReserva.cantidad_noches = cantidadDiasReserva;
+                nuevaReserva.id_hotel = hotelReserva;
+                nuevaReserva.id_usuario_reserva = DatosSesion.id_usuario;
                 id_reserva = reservaCtrl.nuevaReserva(nuevaReserva);
 
                 //luego de la carga, genero ReservaXHabitacion

@@ -17,6 +17,7 @@ namespace FrbaHotel.Entidades
         public DateTime fecha_hasta { get; set; }
         public int cantidad_noches { get; set; }
         public int id_hotel { get; set; }
+        public int id_usuario_reserva { get; set; }
         public List<Habitacion> habitacionesReserva { get; set; }
 
         public Reserva()

@@ -14,7 +14,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 {
     public partial class ModificarReservaForm : Form
     {
-        public Reserva reservaPrevia;
+        public Reserva reservaPrevia= new Reserva();
         int id_regimen_seleccionado;
         Regimenes_Ctrl ctrlRegimenes = new Regimenes_Ctrl();
         Reserva_Ctrl reservaCtrl = new Reserva_Ctrl();
@@ -38,8 +38,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             fechaInicioBox.Value = reservaPrevia.fecha_desde;
             fechaFinBox.Value = reservaPrevia.fecha_hasta;
             regimenComboBox.SelectedValue = reservaPrevia.id_regimen;
-            panelRegimenes.Enabled = false;
-            reservaConCambio.habitacionesReserva = reservaPrevia.habitacionesReserva;
+            panelRegimenes.Enabled = false;            
             this.cargarTiposHabitacion();
             this.cargarHabitacionesActuales();
             this.cargarHabitacionesDisponibles();
@@ -67,6 +66,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void cargarHabitacionesActuales()
         {
             reservaPrevia.habitacionesReserva = reservaCtrl.getHabitacionesDeReserva(reservaPrevia.id_reserva);
+            reservaConCambio.habitacionesReserva.AddRange(reservaPrevia.habitacionesReserva);
             dataGridHabActuales.DataSource = reservaPrevia.habitacionesReserva;
         }
 

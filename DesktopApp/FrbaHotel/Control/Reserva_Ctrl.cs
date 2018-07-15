@@ -20,14 +20,14 @@ namespace FrbaHotel.Control
             connection.Open();
             spCommand.Parameters.Clear();
             //agrego parametros al SP_NuevaReserva
-            
             spCommand.Parameters.Add(new SqlParameter("@idPersona", nuevaReserva.id_persona));
+            
             spCommand.Parameters.Add(new SqlParameter("@idRegimen", nuevaReserva.id_regimen));
             spCommand.Parameters.Add(new SqlParameter("@fechaReserva", nuevaReserva.fecha_reserva));
             spCommand.Parameters.Add(new SqlParameter("@fechaDesde", nuevaReserva.fecha_desde));
             spCommand.Parameters.Add(new SqlParameter("@fechaHasta", nuevaReserva.fecha_hasta));
             spCommand.Parameters.Add(new SqlParameter("@cantNoches", nuevaReserva.cantidad_noches));
-         
+            spCommand.Parameters.Add(new SqlParameter("@idUsu", nuevaReserva.id_usuario_reserva));
             int id_nuevaReserva = (int)spCommand.ExecuteScalar();
             if (!(id_nuevaReserva > 0))
             {
@@ -45,7 +45,7 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Clear();
             //agrego parametros al SP_InsertarReservaXHabitacion
             spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
-            spCommand.Parameters.Add(new SqlParameter("@idHabitacion", id_habitacion));
+            spCommand.Parameters.Add(new SqlParameter("@idHab", id_habitacion));
             spCommand.ExecuteNonQuery();
             
             connection.Close();
@@ -109,21 +109,15 @@ namespace FrbaHotel.Control
             connection.Open();
             spCommand.Parameters.Clear();
             //agrego parametros al SP_GetHabitacionesPorIDRes
-            spCommand.Parameters.Add(new SqlParameter("@id_reserva", cod_reserva));
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", cod_reserva));
             DataTable habTable = new DataTable();
             habTable.Load(spCommand.ExecuteReader());
             if (habTable != null && habTable.Rows != null)
             {
                 foreach (DataRow row in habTable.Rows)
                 {
-                    Habitacion habitacion = new Habitacion();
-                    habitacion.id_habitacion = Convert.ToInt32(row["id_habitacion"]);
-                    habitacion.nro_habitacion = Convert.ToInt32(row["nro_habitacion"]);
-                    habitacion.piso = Convert.ToInt32(row["piso"]);
-                    habitacion.frente = Convert.ToString(row["ubicacion"]);
-                    habitacion.comodidades = Convert.ToString(row["comodidades"]);
-                    habitacion.id_tipo_habitacion = Convert.ToInt32(row["th.descripcion"]);
-                    habitacion.desc_tipo_habitacion = Convert.ToString(row["tipo_habitacion"]);                    
+                    Habitacion_Ctrl habCtrl = new Habitacion_Ctrl();
+                    Habitacion habitacion = habCtrl.BuildHabitacion(row);                   
                     habitacionesEncontrados.Add(habitacion);
                 }
             }
@@ -189,12 +183,37 @@ namespace FrbaHotel.Control
 
         internal bool esReservaAptaParaCheckOut(Reserva reservaSeleccionada)
         {
-            throw new NotImplementedException();
+            //Reserva con ingreso, en curso
+            return reservaSeleccionada.id_estado_reserva == 7;
         }
 
-        internal string getEstadoReserva(int p)
+        internal string getEstadoReserva(int id_estado_reserva)
         {
-            throw new NotImplementedException();
+
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetEstadoReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscaReservaPorId
+            spCommand.Parameters.Add(new SqlParameter("@idEstado", id_estado_reserva));
+            string descripcionEstado = (string)spCommand.ExecuteScalar();
+            connection.Close();
+            return descripcionEstado;
+        }
+
+        internal int getIDHotelDeReserva(int id_reserva)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarIdHotelPorIdReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscaReservaPorId
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
+            int id_hotel = (int)spCommand.ExecuteScalar();
+            connection.Close();
+            return id_hotel;
         }
     }
 }

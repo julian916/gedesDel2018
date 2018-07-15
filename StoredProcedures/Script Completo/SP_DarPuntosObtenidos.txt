@@ -1,0 +1,24 @@
+IF OBJECT_ID('CUATROGDD2018.SP_DarPuntosObtenidos') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_DarPuntosObtenidos
+GO
+
+CREATE PROCEDURE [CUATROGDD2018].[SP_DarPuntosObtenidos] 
+		@idEstadia int
+AS
+Begin
+
+	select [CUATROGDD2018].[Fn_DarPuntos](th.porcentual,re.precio_base,1,e.cant_noches)
+	from [CUATROGDD2018].[Estadias] e
+	inner join [CUATROGDD2018].[Habitaciones] h
+	on e.id_habitacion=h.id_habitacion
+	inner join [CUATROGDD2018].[Tipo_Habitacion] th
+	on h.id_tipo_habitacion=th.id_tipo_habitacion
+	inner join [CUATROGDD2018].[Reservas] r
+	on e.id_reserva=r.id_reserva
+	inner join [CUATROGDD2018].[Regimenes_Estadia] re
+	on r.id_regimen=re.id_regimen
+	where e.id_estadia=@idEstadia
+		 
+End
+GO
+

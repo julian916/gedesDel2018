@@ -23,8 +23,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Reserva reservaEncontrada = reservaCtrl.getReservaConID(Convert.ToInt32(codReservaBox.Text));
-
+            reservaEncontrada = reservaCtrl.getReservaConID(Convert.ToInt32(codReservaBox.Text));
+            reservaEncontrada.id_hotel = reservaCtrl.getIDHotelDeReserva(reservaEncontrada.id_reserva);
             this.DialogResult = DialogResult.OK;
         }
 

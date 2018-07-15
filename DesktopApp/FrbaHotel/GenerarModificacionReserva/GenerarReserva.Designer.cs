@@ -68,7 +68,6 @@
             this.fechaHastaCalendar.ShowToday = false;
             this.fechaHastaCalendar.ShowTodayCircle = false;
             this.fechaHastaCalendar.TabIndex = 3;
-
             // 
             // label2
             // 
@@ -82,7 +81,6 @@
             this.label2.Size = new System.Drawing.Size(92, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Fecha Desde";
-
             // 
             // label3
             // 
@@ -96,7 +94,6 @@
             this.label3.Size = new System.Drawing.Size(88, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Fecha Hasta";
-            
             // 
             // label4
             // 
@@ -169,6 +166,7 @@
             this.Controls.Add(this.comboHoteles);
             this.Name = "GenerarReserva";
             this.Text = "Ingrese parámetros de búsqueda";
+
             this.ResumeLayout(false);
             this.PerformLayout();
 

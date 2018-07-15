@@ -105,5 +105,6 @@ namespace FrbaHotel.GenerarModificarReserva
                 MessageBox.Show(exc.Message); 
             }
         }
+
     }
 }

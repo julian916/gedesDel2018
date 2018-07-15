@@ -24,7 +24,9 @@ namespace FrbaHotel.ListadoEstadistico
         {
 
             int anio = estadisticaCtrl.getMenorAnioActividad();
-            for (int i = anio; i <= DateTime.Today.Year; i++) {
+            int anioMayor = estadisticaCtrl.getMayorAnioActividad();
+            for (int i = anio; i <= anioMayor; i++)
+            {
                 anioComboBox.Items.Add(i);
             }
         }

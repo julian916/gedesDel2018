@@ -14,7 +14,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 {
     public partial class ModificarReservaForm : Form
     {
-        public Reserva reservaPrevia;
+        public Reserva reservaPrevia= new Reserva();
         int id_regimen_seleccionado;
         Regimenes_Ctrl ctrlRegimenes = new Regimenes_Ctrl();
         Reserva_Ctrl reservaCtrl = new Reserva_Ctrl();

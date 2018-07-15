@@ -103,5 +103,16 @@ namespace FrbaHotel.Control
             resultTable.Load(spCommand.ExecuteReader());
             return resultTable;
         }
+
+        internal int getMayorAnioActividad()
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetMayorAnioActividad", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            int mayor = (int)spCommand.ExecuteScalar();
+            connection.Close();
+            return mayor;
+        }
     }
 }

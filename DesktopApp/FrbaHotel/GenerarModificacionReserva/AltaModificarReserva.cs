@@ -127,31 +127,7 @@ namespace FrbaHotel.Reservas
 
         private void recargar_tipo_habitacion()
         {
-            if (comoTipoHabitacion.SelectedItem != null)
-            {
-
-                dataGrid_Habitaciones.Rows.Clear();
-                dataGrid_Habitaciones.Refresh();
-
-                BindingList<Habitacion> habitaciones_disponibles = _HotelManager.GetAllHabitacionDisponiblesEnFechaYCantidad(
-                    ID_Hotel_global, tipo_h.codigo_tipo, DateTime.Parse(dateTimePicker_Inicio.Text.ToString()),
-                    DateTime.Parse(dateTimePicker_Fin.Text.ToString()));
-
-                foreach (Habitacion hab_dispo in habitaciones_disponibles)
-                {
-                    dataGridView_Habitaciones.Rows.Add(hab_dispo.id_habitacion, hab_dispo.id_hotel, hab_dispo.numero,
-                        hab_dispo.piso, hab_dispo.id_tipo_hab, hab_dispo.frente, hab_dispo.baja_logica);
-                }
-
-                if (dataGridView_Habitaciones.RowCount > 0)
-                {
-                    panel_Habitaciones.Enabled = true;
-                }
-                else
-                {
-                    panel_Habitaciones.Enabled = false;
-                }
-            }
+            
         }
 
         private void button_SeleccionarFecha_Click(object sender, EventArgs e)

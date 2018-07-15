@@ -115,6 +115,11 @@ namespace FrbaHotel.Repositorios
             return dtTipoHabitaciones;
         }
 
+        public DataTable obtenerHabitacionesDisponibles(int idHotel, DateTime fechaDesde, DateTime fechaHasta, int idRegimen)
+        {
+            throw new NotImplementedException();
+        }
+
         public DataTable getCiudades()
         {
             if (this.sqlConnection.State != ConnectionState.Open)
@@ -143,6 +148,11 @@ namespace FrbaHotel.Repositorios
             }
             sqlConnection.Close();
             return dtCiudades;
+        }
+
+        internal BindingList<Habitacion> GetAllHabitacionDisponiblesEnFechaYCantidad(object iD_Hotel_global, object codigo_tipo, DateTime dateTime1, DateTime dateTime2)
+        {
+            throw new NotImplementedException();
         }
 
         public BindingList<Habitacion> ObtenerHabitacionesDisponibles(int ID_Hotel_Habitaciones, int tipo_hab, DateTime fecha_ini, DateTime fecha_fin)

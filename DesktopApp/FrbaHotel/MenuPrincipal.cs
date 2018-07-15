@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Reservas;
+using FrbaHotel.GenerarModificarReserva;
 
 namespace FrbaHotel
 {
@@ -247,11 +248,10 @@ namespace FrbaHotel
 
         }
 
-        private void button_GenerarReserva_Click(object sender, EventArgs e)
+        private void newReservaButton_Click(object sender, EventArgs e)
         {
-            GenerarModificarReserva gmr = new GenerarModificarReserva();            
-            //FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen amr = new FrbaHotel.Generar_Modificar_Reserva.AltaModReservasScreen(Sesion.id_hotel, Sesion.user_id);
-
+            GenerarReserva gr = new GenerarReserva();
+            gr.ShowDialog();
         }
     }
 }

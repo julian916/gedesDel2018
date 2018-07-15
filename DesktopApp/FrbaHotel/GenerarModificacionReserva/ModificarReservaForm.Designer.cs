@@ -431,7 +431,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "ModificarReservaForm";
-            this.Text = "Modificar Reserva";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.ModificarReservaForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

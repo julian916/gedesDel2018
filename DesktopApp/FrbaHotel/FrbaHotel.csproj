@@ -161,6 +161,9 @@
     <Compile Include="Entidades\TiposDocumento.cs" />
     <Compile Include="Entidades\Tipo_Habitacion.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="GenerarModificacionReserva\AltaModificarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\AltaModificarReserva.Designer.cs">
       <DependentUpon>AltaModificarReserva.cs</DependentUpon>
     </Compile>
@@ -187,6 +190,12 @@
     </Compile>
     <Compile Include="GenerarModificacionReserva\IngresarHuespedForm.Designer.cs">
       <DependentUpon>IngresarHuespedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReserva.Designer.cs">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\ModificarReservaForm.cs">
       <SubType>Form</SubType>
@@ -307,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\IngresarHuespedForm.resx">
       <DependentUpon>IngresarHuespedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ModificarReservaForm.resx">
       <DependentUpon>ModificarReservaForm.cs</DependentUpon>

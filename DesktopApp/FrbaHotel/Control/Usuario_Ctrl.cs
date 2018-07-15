@@ -148,7 +148,7 @@ namespace FrbaHotel.Control
                                 
                                 if (!(idRol_Hoteles.Value.Exists(hotelCambios => hotelCambios.id_hotel == hotelPrevio.id_hotel)))
                                 {
-                                    this.bajaHotel_A_Rol_De_Usuario(userActual.id_usuario, hotelPrevio.id_hotel, idRol_Hoteles.Key);
+                                    this.bajaHotel_A_Rol_De_Usuario(userActual.id_usuario,idRol_Hoteles.Key, hotelPrevio.id_hotel);
                                 }
 
                             }
@@ -156,7 +156,7 @@ namespace FrbaHotel.Control
                             {
                                 if (!(hotelesPrevios.Exists(hotelPrevio => hotelPrevio.id_hotel == hotelCambios.id_hotel)))
                                 {
-                                    this.altaHotel_A_Rol_De_Usuario(userActual.id_usuario, hotelCambios.id_hotel, idRol_Hoteles.Key);
+                                    this.altaHotel_A_Rol_De_Usuario(userActual.id_usuario, idRol_Hoteles.Key, hotelCambios.id_hotel);
                                 }
 
                             }

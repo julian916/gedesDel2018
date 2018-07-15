@@ -201,5 +201,10 @@ namespace FrbaHotel.Control
             connection.Close();
             return descripcionEstado;
         }
+
+        internal int getIDHotelDeReserva(int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

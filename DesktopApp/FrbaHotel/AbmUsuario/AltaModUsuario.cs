@@ -32,6 +32,7 @@ namespace FrbaHotel.AbmUsuario
         public Boolean continuarAltaMod;
         public Boolean esModificacion = false;
         public AltaModUsuario() {
+
             InitializeComponent();
             modificarPassBtn.Visible = false;
             panelRolXHotel.Enabled = false;
@@ -241,6 +242,7 @@ namespace FrbaHotel.AbmUsuario
                     this.getRolesParaUsuario(userPrevio.id_usuario);
                 }
                 else {
+                    this.verificarCamposObligatorios();
                     this.verificar_Contrasenias();
                     //validacion de un alta
                     usuarioCtrl.validarUsername(userTextBox.Text,0);
@@ -257,6 +259,13 @@ namespace FrbaHotel.AbmUsuario
             }
             
             
+        }
+
+        private void verificarCamposObligatorios()
+        {
+            if (string.IsNullOrEmpty(userTextBox.Text) || string.IsNullOrEmpty(passTextBox.Text)) {
+                throw new System.ArgumentException("Debe ingresar usuario y contraseña");
+            }
         }
 
         private void newRolBtn_Click(object sender, EventArgs e)

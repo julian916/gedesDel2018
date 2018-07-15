@@ -202,9 +202,18 @@ namespace FrbaHotel.Control
             return descripcionEstado;
         }
 
-        internal int getIDHotelDeReserva(int p)
+        internal int getIDHotelDeReserva(int id_reserva)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarIdHotelPorIdReserva", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscaReservaPorId
+            spCommand.Parameters.Add(new SqlParameter("@idReserva", id_reserva));
+            int id_hotel = (int)spCommand.ExecuteScalar();
+            connection.Close();
+            return id_hotel;
         }
     }
 }

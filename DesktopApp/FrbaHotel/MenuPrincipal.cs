@@ -3,8 +3,13 @@ using FrbaHotel.ABMHotel;
 using FrbaHotel.AbmPersona;
 using FrbaHotel.AbmRol;
 using FrbaHotel.AbmUsuario;
+using FrbaHotel.CancelarReserva;
 using FrbaHotel.Entidades;
+using FrbaHotel.GenerarModificacionReserva;
+using FrbaHotel.GenerarModificarReserva;
+using FrbaHotel.ListadoEstadistico;
 using FrbaHotel.Login;
+using FrbaHotel.RegistrarEstadia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,10 +42,9 @@ namespace FrbaHotel
             {
                 //ActualizarStatusStrip();
                 habilitar_func_x_rol();
-     
+
                 //linkLabel_Login.Visible = false;
             }
-        
         }
         public void habilitar_func_x_rol()
         {
@@ -63,12 +67,17 @@ namespace FrbaHotel
             panelReservas.Enabled = true;
 
             menuStrip1.Enabled = true;
-            BindingList<Funcionalidad> f = DatosSesion.funcionalidades;
+            List<Funcionalidad> f = DatosSesion.funcionalidades;
             newReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
             updateReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Generar Reserva");
             cancelReservaButton.Enabled = f.Any(func => func.descripcion_funcionalidad == "Cancelar Reserva");
 
             ToolStripItemCollection itemsMenu = menuStrip1.Items;
+
+         
+            ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
+            menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Usuario");
+
 
             ToolStripItem menu_Hotel = itemsMenu.Find("aBMHotelToolStripMenuItem", true)[0];
             menu_Hotel.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Hotel");
@@ -79,13 +88,15 @@ namespace FrbaHotel
             ToolStripItem menu_cliente = itemsMenu.Find("clientesToolStripMenuItem", true)[0];
             menu_cliente.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Clientes");
 
-            ToolStripItem menu_usuario = itemsMenu.Find("usuariosToolStripMenuItem", true)[0];
-            menu_usuario.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Usuario");
-
+            
             ToolStripItem menu_rol = itemsMenu.Find("rolToolStripMenuItem", true)[0];
             menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "ABM Rol");
 
-            ToolStripItem menu_estadisticas = itemsMenu.Find("estadísticasToolStripMenuItem", true)[0];
+            ToolStripItem menu_estadias = itemsMenu.Find("estadíasToolStripMenuItem", true)[0];
+            menu_rol.Enabled = f.Any(func => func.descripcion_funcionalidad == "Registrar Estadia");
+
+
+            ToolStripItem menu_estadisticas = itemsMenu.Find("listaEstadisticasToolStripMenuItem", true)[0];
             menu_estadisticas.Enabled = f.Any(func => func.descripcion_funcionalidad == "Listado Estadistico");
                 
 
@@ -102,8 +113,11 @@ namespace FrbaHotel
 
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
-            usuarioAlta.Show();
+            AltaModUsuario usuarioAlta = new AltaModUsuario();
+            if (usuarioAlta.continuarAltaMod) {
+                usuarioAlta.Show();
+            }
+            
         }
 
         private void modicarDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,20 +136,18 @@ namespace FrbaHotel
 
         private void inicioSesionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginForm login = new LoginForm();
-            login.Show();
-            this.Hide();
+            this.iniciar_sesion();
         }
 
         private void altaHotelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaHotelForm hotelForm = new AltaHotelForm(DatosSesion.id_usuario, DatosSesion.id_rol);
+            AltaHotelForm hotelForm = new AltaHotelForm();
             hotelForm.ShowDialog();
         }
 
         private void nuevaHabitaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaHabitacionForm habForm = new AltaHabitacionForm(DatosSesion.id_hotel);
+            AltaEditHabForm habForm = new AltaEditHabForm();
             habForm.ShowDialog();
         }
 
@@ -144,6 +156,7 @@ namespace FrbaHotel
             CambioPassForm cambioPass = new CambioPassForm();
             cambioPass.ShowDialog();
         }
+
 
         private void closeSessionLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -157,21 +170,82 @@ namespace FrbaHotel
         
         private void nuevoRolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaRolForm rolForm = new AltaRolForm();
+            AltaEditRolForm rolForm = new AltaEditRolForm();
             rolForm.ShowDialog();
         }
 
         private void consultarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConsultaClienteForm consultaPersona = new ConsultaClienteForm();
-            consultaPersona.Show();
+            consultaPersona.ShowDialog();
         }
 
         private void modificacionBajaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             InfoUsuariosForm modUsuario = new InfoUsuariosForm();
-            modUsuario.Show();
+            modUsuario.ShowDialog();
 
+        }
+
+        private void modificacionBajaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ConsultaHabitaciones consultaHab = new ConsultaHabitaciones();
+            consultaHab.ShowDialog();
+        }
+
+        private void modificToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaHotelForm consultaHoteles = new ConsultaHotelForm();
+            consultaHoteles.ShowDialog();
+        }
+
+        private void listaEstadisticasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListadoEstadisticoForm estadisticas = new ListadoEstadisticoForm();
+            estadisticas.ShowDialog();
+        }
+
+        private void updateReservaButton_Click(object sender, EventArgs e)
+        {
+            ModificarReservaForm modReserva = new ModificarReservaForm();
+            if (modReserva.reservaPrevia != null)
+            {
+                modReserva.Show();
+            }
+            else {
+                MessageBox.Show("No existe reserva con el código ingresado");
+            }
+          
+        }
+
+        private void cancelReservaButton_Click(object sender, EventArgs e)
+        {
+            CancelarReservaForm cancelRes = new CancelarReservaForm();
+            cancelRes.ShowDialog();
+        }
+
+        private void newReservaButton_Click(object sender, EventArgs e)
+        {
+            GenerarReserva reservas = new GenerarReserva();
+            reservas.ShowDialog();
+        }
+
+        private void nuevaEstadíaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckINForm checkInForm = new CheckINForm();
+            checkInForm.ShowDialog();
+        }
+
+        private void modificarRolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaRolForm consultaRol = new ConsultaRolForm();
+            consultaRol.ShowDialog();
+        }
+
+        private void checkOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckOUTForm checkOutForm = new CheckOUTForm();
+            checkOutForm.ShowDialog();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

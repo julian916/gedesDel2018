@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_Alta_Hotel') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_Alta_Hotel
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_Alta_Hotel]
 	@idUsuario int,
 	@idRol int,
@@ -24,9 +27,7 @@ BEGIN
 	INSERT INTO  [CUATROGDD2018].[Usuario_X_Hotel_X_Rol] ( id_hotel, id_usuario, id_rol)
 	VALUES(@idHotel,@idUsuario, @idRol)
 
-	SELECT *
-	FROM [CUATROGDD2018].[Hoteles] H
-	WHERE H.id_hotel = @idHotel
+	SELECT @idHotel 
 			
 END
 GO

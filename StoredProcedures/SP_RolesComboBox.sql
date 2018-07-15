@@ -1,10 +1,8 @@
-USE GD1C2018
-GO
 IF OBJECT_ID('CUATROGDD2018.SP_RolesComboBox', 'P') IS NOT NULL
     DROP PROCEDURE CUATROGDD2018.SP_RolesComboBox
 GO
 CREATE PROCEDURE CUATROGDD2018.SP_RolesComboBox
 AS
 	SELECT id_rol, nombre from CUATROGDD2018.Roles
-	WHERE NOT nombre = 'GUEST' AND NOT nombre = 'Administrados General'
+	WHERE nombre != 'GUEST' AND nombre != 'Administrador General'
 GO

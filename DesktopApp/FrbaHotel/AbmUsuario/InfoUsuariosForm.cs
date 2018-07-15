@@ -38,11 +38,12 @@ namespace FrbaHotel.AbmUsuario
             {
                 Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
                 List<Usuario> usuariosEncontrados = new List<Usuario>();
-                usuariosEncontrados = usuarioCtrl.buscarUserPorUsername(userBox.Text);
+                usuariosEncontrados = usuarioCtrl.buscarUserPorUsername(userBox.Text,DatosSesion.id_hotel);
                 if (usuariosEncontrados.Count == 0)
                 {
                     MessageBox.Show("No se encontraron resultados.");
                     newUserBtn.Enabled = true;
+                    panelUsername.Enabled = false;
                 }
                 else
                 {
@@ -59,7 +60,7 @@ namespace FrbaHotel.AbmUsuario
         {
             Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
             List<Usuario> usuariosEncontrados = new List<Usuario>();
-            usuariosEncontrados = usuarioCtrl.getAllUsers();
+            usuariosEncontrados = usuarioCtrl.getAllUsers_IdHotel(DatosSesion.id_hotel);
             if (usuariosEncontrados.Count == 0)
             {
                 MessageBox.Show("No se encontraron resultados.");
@@ -69,6 +70,9 @@ namespace FrbaHotel.AbmUsuario
             {
 
                 dataGridUsers.DataSource = usuariosEncontrados;
+                //oculto la columna de Contraseña
+                dataGridUsers.Columns[2].Visible = false;
+                dataGridUsers.Columns[4].Visible = false;
                 updateUserBtn.Enabled = true;
                 newUserBtn.Enabled = false;
             }
@@ -80,9 +84,10 @@ namespace FrbaHotel.AbmUsuario
             {
                 foreach (DataGridViewRow row in dataGridUsers.SelectedRows)
                 {
+                    
                     Usuario usuarioSeleccionado = (Usuario)row.DataBoundItem;
                     Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
-                    AltaModUsuarioForm editForm = new AltaModUsuarioForm(usuarioSeleccionado);
+                    AltaModUsuario editForm = new AltaModUsuario(usuarioSeleccionado);
                     editForm.ShowDialog();
                 }
                 this.Dispose();
@@ -96,7 +101,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void newUserBtn_Click(object sender, EventArgs e)
         {
-            AltaModUsuarioForm usuarioAlta = new AltaModUsuarioForm(null);
+            AltaModUsuario usuarioAlta = new AltaModUsuario();
             usuarioAlta.Show();
         }
 
@@ -104,6 +109,29 @@ namespace FrbaHotel.AbmUsuario
         {
             this.Dispose();
             this.Close();
+        }
+
+        private void panelUsername_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void habInhUsuBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridUsers.DataSource != null && dataGridUsers.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataGridUsers.SelectedRows)
+                {
+                    Usuario usuarioSeleccionado = (Usuario)row.DataBoundItem;
+                    Usuario_Ctrl usuarioCtrl = new Usuario_Ctrl();
+                    usuarioCtrl.habInhUsuario(usuarioSeleccionado);
+                    MessageBox.Show("Se habilitó/inhabilitó el usuario");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono cliente. Seleccione una fila de la tabla");
+            }
         }
 
     }

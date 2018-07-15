@@ -17,15 +17,14 @@ namespace FrbaHotel.Entidades
         public int nro_calle { get; set; }
         public int cant_estrellas { get; set; }
         public decimal recarga_estrella { get; set; }
-        public string telefono { get; set; }
+        public int telefono { get; set; }
         public string email { get; set; }
-   
         public DateTime fecha_creacion { get; set; }
-        public BindingList<RegimenEstadia> lista_Regimenes { get; set; }
+        public List<RegimenEstadia> lista_Regimenes { get; set; }
 
         public Hotel()
         {
-            lista_Regimenes = new BindingList<RegimenEstadia>();
+            lista_Regimenes = new List<RegimenEstadia>();
         }
 
 

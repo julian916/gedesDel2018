@@ -14,7 +14,7 @@ namespace FrbaHotel.Entidades
         public static string password { get; set; } //encriptada
         public static int id_rol { get; set; }
         public static int id_hotel = 0; //, para los guest
-        public static BindingList<Funcionalidad> funcionalidades { get; set; }
+        public static List<Funcionalidad> funcionalidades { get; set; }
         public static bool sesion_iniciada = false;
         public static int intentos_Login { get; private set; }
 
@@ -28,7 +28,7 @@ namespace FrbaHotel.Entidades
             id_usuario = 0;
         }
 
-        public static void iniciar_sesion(int iduser, string pass, int idRol, int idHotel, BindingList<Funcionalidad> listaF,string user)
+        public static void iniciar_sesion(int iduser, string pass, int idRol, int idHotel, List<Funcionalidad> listaF,string user)
         {
             id_usuario = iduser;
             password = pass;

@@ -1,3 +1,6 @@
+IF OBJECT_ID('CUATROGDD2018.SP_ModificarPersona') IS NOT NULL
+    DROP PROCEDURE CUATROGDD2018.SP_ModificarPersona
+GO
 CREATE PROCEDURE [CUATROGDD2018].[SP_ModificarPersona]
 (	
 	@id_persona int,

@@ -11,7 +11,7 @@ namespace FrbaHotel.Control
 {
     public class Rol_Ctrl
     {
-
+        Funcionalidad_Ctrl funcCtrl= new Funcionalidad_Ctrl();
         public List<Rol> obtenerRolesPorID(int id_usuario)
         {
             var rolesAsignados = new List<Rol>();
@@ -49,38 +49,29 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Clear();
             //agrego parametros al SP_AltaRol
             spCommand.Parameters.Add(new SqlParameter("@nombre", nuevoRol.nombre));
-            DataTable nuevoRolTable = new DataTable();
-            nuevoRolTable.Load(spCommand.ExecuteReader());
-            int id_nuevoRol = 0;
-            if (nuevoRolTable != null && nuevoRolTable.Rows != null)
-            {
-                foreach (DataRow row in nuevoRolTable.Rows)
-                {
-                    id_nuevoRol = int.Parse(row["id_rol"].ToString());
-                }
-            }
-            if (id_nuevoRol!=0){
+            int idRol = (int)spCommand.ExecuteScalar();
+            if (idRol==-1){
                 connection.Close();
-                throw new System.ArgumentException("Error al crear nuevo Rol. Reintentelo");
+                throw new System.ArgumentException("Existe un rol con el mismo nombre. Ingrese uno nuevo");
             }
             connection.Close();
-            this.agregarFuncionalidesARol(id_nuevoRol, nuevoRol.lista_funcionalidades);
+            this.agregarFuncionalidesARol(idRol, nuevoRol.lista_funcionalidades);
             
         }
 
         private void agregarFuncionalidesARol(int id_nuevoRol, List<Funcionalidad> funcionalidades)
         {
             SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
-            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_NuevoFuncionalidadXRol", connection);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AgregarFuncionalidadRol", connection);
             spCommand.CommandType = CommandType.StoredProcedure;
             connection.Open();
 
             foreach (Funcionalidad func in funcionalidades)
             {
                 spCommand.Parameters.Clear();
-                //agrego parametros al SP_NuevoFuncionalidadXRol
-                spCommand.Parameters.Add(new SqlParameter("@idHotel", id_nuevoRol));
-                spCommand.Parameters.Add(new SqlParameter("@idFuncionalidad", func.id_funcionalidad));
+                //agrego parametros al SP_AgregarFuncionalidadRol
+                spCommand.Parameters.Add(new SqlParameter("@idRol", id_nuevoRol));
+                spCommand.Parameters.Add(new SqlParameter("@idFun", func.id_funcionalidad));
                 spCommand.ExecuteNonQuery();
             }
 
@@ -113,10 +104,109 @@ namespace FrbaHotel.Control
         {
             Rol nuevoRol = new Rol();
             nuevoRol.id_rol = Convert.ToInt32(row["id_rol"]);
-            nuevoRol.nombre = Convert.ToString(row["nonbre"]);
+            nuevoRol.nombre = Convert.ToString(row["nombre"]);
             nuevoRol.habilitado = Convert.ToBoolean(row["habilitado"]);
 
             return nuevoRol;
+        }
+
+
+
+        public List<Rol> getNuevosRoles_User(Usuario userConCambios)
+        {
+            List<Rol> todosRoles = this.getAllValidos();
+            List<int> idrolesUsuarios = userConCambios.dicRolesXHoteles.Keys.ToList();
+
+           //retorno los roles que no tiene asignado el usuario,
+            return (todosRoles.Where(rol => !(idrolesUsuarios.Contains(rol.id_rol))).ToList());
+            
+        }
+
+        internal List<Rol> getAllRoles()
+        {
+            SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetAllRoles", sqlConnection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            sqlConnection.Open();
+            var lista_Roles = new List<Rol>();
+            DataTable resultTable = new DataTable();
+            resultTable.Load(spCommand.ExecuteReader());
+
+            if (resultTable != null && resultTable.Rows != null)
+            {
+                foreach (DataRow row in resultTable.Rows)
+                {
+                    var rol = BuildRol(row);
+                    List<Funcionalidad>funcRol = funcCtrl.funcionalidadesXRol(rol.id_rol);
+                    rol.lista_funcionalidades = funcRol;
+                    lista_Roles.Add(rol);
+
+                }
+            }
+
+            return lista_Roles;
+        }
+
+        public void modificarRol(Rol nuevoRol, Rol rolAModificar)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ModificarRol", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_ModificarUsuario
+            spCommand.Parameters.Add(new SqlParameter("@idRol", rolAModificar.id_rol));
+            spCommand.Parameters.Add(new SqlParameter("@nombre", nuevoRol.nombre));
+            spCommand.Parameters.Add(new SqlParameter("@habilitado", nuevoRol.habilitado));
+            int filasAfectadas = spCommand.ExecuteNonQuery();
+            if (filasAfectadas > 0)
+            {
+                foreach (Funcionalidad funcPrevia in rolAModificar.lista_funcionalidades)
+                {
+                    if (!(nuevoRol.lista_funcionalidades.Contains(funcPrevia)))
+                    {
+                        this.quitarFuncARol(rolAModificar.id_rol, funcPrevia.id_funcionalidad);
+                    }
+
+                }
+                foreach (Funcionalidad nuevaFunc in nuevoRol.lista_funcionalidades)
+                {
+                    if (!(rolAModificar.lista_funcionalidades.Contains(nuevaFunc)))
+                    {
+                        this.agregarFuncARol(rolAModificar.id_rol, nuevaFunc.id_funcionalidad);
+                    }
+
+                }
+            }
+            connection.Close();
+        }
+
+        private void agregarFuncARol(int id_rol, int id_func)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_AgregarFuncionalidadRol", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            spCommand.CommandType = CommandType.StoredProcedure;
+            spCommand.Parameters.Add(new SqlParameter("@idRol", id_rol));
+            spCommand.Parameters.Add(new SqlParameter("@idFun", id_func));            
+            spCommand.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void quitarFuncARol(int id_rol, int id_func)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_EliminarFuncionalidadXRol", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            spCommand.CommandType = CommandType.StoredProcedure;
+            spCommand.Parameters.Add(new SqlParameter("@idRol", id_rol));
+            spCommand.Parameters.Add(new SqlParameter("@idFuncionalidad", id_func));
+            spCommand.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

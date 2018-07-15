@@ -13,9 +13,9 @@ namespace FrbaHotel.Control
 {
     public partial class Funcionalidad_Ctrl
     {
-        public BindingList<Funcionalidad> funcionalidadesXRol(int id_rol)
+        public List<Funcionalidad> funcionalidadesXRol(int id_rol)
         {
-            var funcionalidades = new BindingList<Funcionalidad>();
+            var funcionalidades = new List<Funcionalidad>();
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_Funcionalidad_X_Rol", connection);

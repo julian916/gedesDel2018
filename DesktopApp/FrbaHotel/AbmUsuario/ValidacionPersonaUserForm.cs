@@ -37,7 +37,10 @@ namespace FrbaHotel.AbmUsuario
                 Persona_Ctrl personaCtrl = new Persona_Ctrl();
                 try
                 {
-                    personaCtrl.validarDatosPersona((string)comboTipoDni.SelectedValue, Convert.ToInt32(dniBox.Text), mailBox.Text);
+                    personaCtrl.validarDatosPersona((string)comboTipoDni.SelectedValue, Convert.ToInt32(dniBox.Text), mailBox.Text,0);
+                    nro_documento = Convert.ToInt32(dniBox.Text);
+                    email = mailBox.Text;
+                    tipo_documento = (string)comboTipoDni.SelectedValue;
                     this.DialogResult = DialogResult.OK;
                     this.Dispose();
                     this.Close();
@@ -51,7 +54,7 @@ namespace FrbaHotel.AbmUsuario
         private void CancelarBtn_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-            this.Close();
+
         }
     }
 }

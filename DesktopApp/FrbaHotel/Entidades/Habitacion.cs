@@ -9,12 +9,14 @@ namespace FrbaHotel.Entidades
     public class Habitacion
     {
         public int id_habitacion { get; set; }
-        public int piso { get; set; }
         public int nro_habitacion { get; set; }
-        public bool frente { get; set; }
-        public string comodidades { get; set; }
-        public bool habilitado { get; set; }
+        public int piso { get; set; }
+        public string frente { get; set; }
         public int id_tipo_habitacion { get; set; }
-        public decimal id_hotel { get; set; }
+        public string desc_tipo_habitacion { get; set; }
+        public bool habilitado { get; set; }
+        public string comodidades { get; set; }
+        public int id_hotel { get; set; }
+
     }
 }

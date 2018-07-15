@@ -36,24 +36,32 @@ namespace FrbaHotel.AbmPersona
         public AltaPersonaForm(Persona persona,int id_usuarioCambio)
         {
             InitializeComponent();
-            esModificacion = true;
+            comboTipoDni.DataSource = new TiposDocumentos().getAll();
+            if (persona.id_persona != 0)
+            {
+                //se carga el formulario con los datos de persona
+                esModificacion = true;
+                id_persona = persona.id_persona;
+                nombreBox.Text = persona.nombre;
+                apellidoBox.Text = persona.apellido;
+                telBox.Text = persona.telefono.ToString();
+                comboNacionalidad.SelectedText = persona.nacionalidad;
+                calleBox.Text = persona.direccion;
+                nroCalleBox.Value = persona.nro_calle;
+                pisoBox.Value = persona.piso;
+                depBox.Text = persona.departamento;
+                localidadBox.Text = persona.localidad;
+                fechaBox.Value = persona.fecha_nacimiento;
+            }
+            else {
+                esModificacion = false;
+                
+            }      
             idUsuario = id_usuarioCambio;
-            //se modifican los datos, se carga el formulario con los datos de persona
-            comboTipoDni.SelectedText = persona.tipo_documento;
+            comboTipoDni.Text = persona.tipo_documento;
             dniBox.Text = persona.nro_documento.ToString();
-            nombreBox.Text = persona.nombre;
-            apellidoBox.Text = persona.apellido;
             emailBox.Text = persona.email;
-            telBox.Text = persona.telefono.ToString();
-            comboNacionalidad.SelectedText = persona.nacionalidad;
-            calleBox.Text = persona.direccion;
-            nroCalleBox.Value = persona.nro_calle;
-            pisoBox.Value = persona.piso;
-            depBox.Text = persona.departamento;
-            localidadBox.Text = persona.localidad;
-            fechaBox.Value = persona.fecha_nacimiento;
-            id_persona = persona.id_persona;
- 
+         
         }
 
         private void Aceptar_Click(object sender, EventArgs e) {
@@ -77,27 +85,18 @@ namespace FrbaHotel.AbmPersona
 
             try
             {
-                int filasAfectadas;
                 if (esModificacion)
                 {
                     nuevaPersona.id_persona = id_persona;
-                    filasAfectadas = personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                    personaCtrl.modificarPersona(nuevaPersona, idUsuario);
+                    MessageBox.Show("Se modificaron correctamente los datos.");
                 }
                 else {
-                    filasAfectadas = personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                    personaCtrl.altaPersona(nuevaPersona, idUsuario);
+                    MessageBox.Show("Registro ingresado correctamente.");
                 }
-                
-                if (filasAfectadas > 1) // ExecuteNonQuery devuelve el numero de filas afectadas, si se agregó el registro, devuelve 1
-                {
-                    MessageBox.Show("Registrado ingresado correctamente.");
-                    this.Hide();
-                }
-                else
-                {
-                    emailBox.Clear();
-                    dniBox.Clear();
-                    throw new System.ArgumentException("Existe registro con igual Nro de documento y/o mail");
-                }
+                this.Dispose();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -108,18 +107,13 @@ namespace FrbaHotel.AbmPersona
         private void AltaPersonaForm_Load(object sender, EventArgs e)
         {
             //Cargo combo de tipos de dni
-            comboTipoDni.DataSource = new TiposDocumentos().getAll();
             comboNacionalidad.DataSource = new Paises().getAll();
             comboPais.DataSource = new Paises().getAll();
             if (idUsuario!=InfoGlobal.id_usuarioGUEST)
             { //Se trata de un usuario NO Guest, los campos dni, tipo y email son no editables 
                 emailBox.ReadOnly=true;
-                comboTipoDni.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboTipoDni.Enabled = false ;
                 dniBox.ReadOnly = true;
-                emailBox.Text = emailPersona;
-                comboTipoDni.SelectedIndex = comboTipoDni.FindString(tipoDNI);
-                dniBox.Text= nroDocumento;
-
             };
         }
 

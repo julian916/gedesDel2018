@@ -14,10 +14,7 @@ namespace FrbaHotel.Control
     {
         public int altaPersona(Persona nuevaPersona, int idUsuario)
         {
-            if (idUsuario == InfoGlobal.id_usuarioGUEST)
-            {
-                this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email);
-            }
+            this.validarDatosPersona(nuevaPersona.tipo_documento,nuevaPersona.nro_documento,nuevaPersona.email,0);      
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
            
@@ -66,7 +63,7 @@ namespace FrbaHotel.Control
             return dataPersonas;
         }
 
-        public void validarDatosPersona(string tipo, int dni, string emailPer)
+        public void validarDatosPersona(string tipo, int dni, string emailPer,int idPersona)
         {
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_ValidarDatosPersona", sqlConnection);
@@ -75,6 +72,7 @@ namespace FrbaHotel.Control
             spCommand.Parameters.Add(new SqlParameter("@tipoDNI", tipo));
             spCommand.Parameters.Add(new SqlParameter("@nroDNI", dni));
             spCommand.Parameters.Add(new SqlParameter("@emailPer", emailPer));
+            spCommand.Parameters.Add(new SqlParameter("@idPersona", idPersona));
             sqlConnection.Open();
 
             bool esValido = (bool)spCommand.ExecuteScalar(); // es valido si es 1
@@ -166,10 +164,7 @@ namespace FrbaHotel.Control
 
         public int modificarPersona(Persona nuevaPersona, int idUsuario)
         {
-            if (idUsuario == InfoGlobal.id_usuarioGUEST)
-            {
-                this.validarDatosPersona(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email);
-            }
+            this.validarDatosPersona(nuevaPersona.tipo_documento, nuevaPersona.nro_documento, nuevaPersona.email,nuevaPersona.id_persona);
             SqlConnection sqlConnection = new SqlConnection(InfoGlobal.connectionString);
             DataTable dataPersonas = this.generarTablaDatosPersona(nuevaPersona, idUsuario);
 
@@ -188,6 +183,56 @@ namespace FrbaHotel.Control
 
             int filasAfectadas = spCommand.ExecuteNonQuery();
             return filasAfectadas;
+        }
+
+        public Persona getPersona_ConIDUser(int id_usuario)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_GetPersona_IDUsuario", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_BuscarCliente
+            spCommand.Parameters.Add(new SqlParameter("@idUsuario", id_usuario));
+
+            List<Persona> usuariosEncontrado = new List<Persona>();
+            DataTable clientesTable = new DataTable();
+            clientesTable.Load(spCommand.ExecuteReader());
+            if (clientesTable != null && clientesTable.Rows != null)
+            {
+                foreach (DataRow row in clientesTable.Rows)
+                {
+                    Persona personaEncontrado = this.BuildPersona(row);
+                    usuariosEncontrado.Add(personaEncontrado);
+                }
+            }
+
+            return usuariosEncontrado.ElementAt(0);
+        }
+
+        public Persona getPersona_IDPersona(int id_persona)
+        {
+            SqlConnection connection = new SqlConnection(InfoGlobal.connectionString);
+            SqlCommand spCommand = new SqlCommand("CUATROGDD2018.SP_DarDatosPersona", connection);
+            spCommand.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            spCommand.Parameters.Clear();
+            //agrego parametros al SP_DarDatosPersona
+            spCommand.Parameters.Add(new SqlParameter("@idPersona", id_persona));
+
+            Persona personaEncontrado = new Persona();
+            DataTable clientesTable = new DataTable();
+            clientesTable.Load(spCommand.ExecuteReader());
+            if (clientesTable != null && clientesTable.Rows != null)
+            {
+                foreach (DataRow row in clientesTable.Rows)
+                {
+                    personaEncontrado = this.BuildPersona(row);
+                    
+                }
+            }
+
+            return personaEncontrado;
         }
     }
 }
